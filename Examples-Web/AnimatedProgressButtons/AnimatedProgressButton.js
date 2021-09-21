@@ -18,11 +18,11 @@ function AnimateButtonProgress(inputAction) {
         var progressPercent = (EasedProgress(inputAction.detail.ProgressToClick) * 100);
 
         if (inputAction.detail.InputType === InputTypes.MOVE) {
-            overlay.style.opacity = '0.25';
+            overlay.style.opacity = '0.5';
             CircularProgress(overlay, progressPercent, relativeCursorPos);
         }
         if (inputAction.detail.InputType === InputTypes.DOWN) {
-            overlay.style.opacity = '0.5';
+            overlay.style.opacity = '0.75';
             CircularProgress(overlay, progressPercent, buttonCentre);
             overlay.id = 'pressed';
         }
