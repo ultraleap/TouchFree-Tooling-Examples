@@ -4,12 +4,16 @@ Examples of touchless content only possible through using [Touchfree Tooling](ht
 
 ## Setup
 
-1. Clone the repo and open the project located in the folder `Touchfree Tooling Examples`.
-2. Ensure that the [Touchfree](https://github.com/ultraleap/TouchFree) Service is running.
+1. Ensure that the [Touchfree](https://github.com/ultraleap/TouchFree) Service is running.
+2. Clone the repo and find the example you want to try
+3. Open the include html file in your browser
 
+These examples are best viewed fullscreen.
 
-## Progress Buttons
+## Progress Button Animations
 ![Animated Buttons Showing Progress To Click](Media/ProgressButtonsExample.gif)
 
-This example shows a button style that provides visua feedback from the UI showing when and where the user is going to click, in a visually appealing but general purpose style. 
+This example shows a button style that provides visual feedback showing when and where the user is going to interact with the UI. This is achieved through animation applied to the button that reacts to the `ProgressToClick` value provided by TouchFree. The result is a UI that feels connected to the movement of your hand.
+
+
 
