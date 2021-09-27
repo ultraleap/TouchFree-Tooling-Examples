@@ -11,9 +11,19 @@ Examples of touchless content only possible through using [Touchfree Tooling](ht
 These examples are best viewed fullscreen.
 
 ## Animated Progress Buttons
-![Animated Buttons Showing Progress To Click](Media/ProgressButtonsExample.gif)
 
-This example shows a button style that provides visual feedback showing when and where the user is going to interact with the UI. This is achieved through animation applied to the button that reacts to the `ProgressToClick` value provided by TouchFree. The result is a UI that feels connected to the movement of your hand.
+These examples show button styles that provide visual feedback showing when and where the user is going to interact with the UI. This is achieved through animation applied to the button that reacts to the `ProgressToClick` value provided by TouchFree. The result is a UI that feels connected to the movement of your hand.
+
+### Circular Progress Animation
+![Animated Buttons Showing Progress To Click As Expanding Circle](Media/CircularProgressExample.gif)
+
+Recommended Interaction: AirPush
+
+### Linear Progress Animation
+![Animated Buttons Showing Progress To Click As Linear Fill](Media/LinearProgressExample.gif)
+
+Recommended Interaction: Hover & Hold
+
 
 
 
