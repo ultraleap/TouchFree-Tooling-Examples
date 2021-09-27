@@ -68,7 +68,6 @@ function AddTouchFreeCursor()
     cursor.width = 75;
     cursor.height = 75;
     cursor.style.zIndex = "1001";
-    // cursor.style.filter = ("drop-shadow(0px 0px 5px slategray");
 
     // This is a special class used by the WebInputController to identify the html elements that
     // make up the cursor. This is so it can ignore cursor-related objects when it is looking
