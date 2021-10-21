@@ -19,6 +19,14 @@ This example shows a button style that provides visual feedback showing when and
 
 Recommended Interaction: AirPush
 
+## Grab Interaction
+
+This example shows how to use the configuration API to change to a grab interaction. The grab interaction is set on `Start` allowing you to grab and move the boxes on the screen.
+
+![Coloured boxes being moved around the screen](Media/GrabInteraction.gif)
+
+Recommended Interaction: Example sets the interaction
+
 
 
 
