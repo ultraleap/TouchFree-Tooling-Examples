@@ -26,6 +26,7 @@ This example shows how to trigger a binary operation based on a swiping movement
 ![Screen transitions triggered by swiping to the left and right](Media/DragSwipe.gif)
 
 Recommended Interaction: AirPush, TouchPlane
+
 Note: Ensure "Scroll and Drag" is enabled in the TouchFree Interaction Settings
 
 
