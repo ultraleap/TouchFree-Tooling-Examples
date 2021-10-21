@@ -488,9 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenAnimator: {fileID: 0}
-  swipeCooldown: 1
-  screens: []
-  swiping: 0
+  swipeCooldown: 0.75
   swipeDistance: 200
   activeScreen: 2
 --- !u!222 &925807920

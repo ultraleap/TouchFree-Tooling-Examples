@@ -9,7 +9,7 @@ public class ScreenSwipe : MonoBehaviour
     public float swipeCooldown = 1;
     public float swipeDistance = 200;
     public int activeScreen = 2;
-    
+
     private List<RectTransform> screens;
     private float screenSpacing;
     private bool dragging = false;
@@ -21,7 +21,8 @@ public class ScreenSwipe : MonoBehaviour
     void Start()
     {
         if (screenAnimator == null) screenAnimator = GetComponent<Animator>();
-
+        
+        screens = new List<RectTransform>();
         for(int i = 0; i < transform.childCount; i++)
         {
             screens.Add(transform.GetChild(i).GetComponent<RectTransform>());
