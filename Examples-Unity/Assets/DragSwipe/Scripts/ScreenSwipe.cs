@@ -7,14 +7,15 @@ public class ScreenSwipe : MonoBehaviour
 {
     public Animator screenAnimator;
     public float swipeCooldown = 1;
-    public List<RectTransform> screens;
-    private float screenSpacing;
-    private bool dragging = false;
-    public bool swiping = false;
-    private Vector2 dragStartPosition;
-    private Vector2 targetPosition;
     public float swipeDistance = 200;
     public int activeScreen = 2;
+    
+    private List<RectTransform> screens;
+    private float screenSpacing;
+    private bool dragging = false;
+    private bool swiping = false;
+    private Vector2 dragStartPosition;
+    private Vector2 targetPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +83,7 @@ public class ScreenSwipe : MonoBehaviour
         // Instruct the animator to change screens
         screenAnimator.SetInteger("Screen", activeScreen);
         screenAnimator.SetTrigger("Swipe");
-        
+
         // Wait before accepting new swipes to avoid accidentally triggering when moving
         // your hand back to the centre of the interaction area
         yield return new WaitForSeconds(swipeCooldown);
