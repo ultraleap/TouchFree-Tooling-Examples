@@ -19,6 +19,15 @@ This example shows a button style that provides visual feedback showing when and
 
 Recommended Interaction: AirPush
 
+## Drag based Swipe Detection
+
+This example shows how to trigger a binary operation based on a swiping movement of the cursor. A screen transition is triggered when the user pushes and drags for a set distance in a horizontal direction. 
+
+![Screen transitions triggered by swiping to the left and right](Media/DragSwipe.gif)
+
+Recommended Interaction: AirPush, TouchPlane
+Note: Ensure "Scroll and Drag" is enabled in the TouchFree Interaction Settings
+
 
 
 
