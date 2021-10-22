@@ -17,7 +17,6 @@ public class ProgressButton : MonoBehaviour,
     public InteractionType interactionType;
     [Space(10)]
     public bool AnimationEnabled = true;
-    public bool edgeDetect = true;
     [Range(1, 100)] public float progressLerpSpeed = 10;
 
     private Animator animator;
@@ -124,11 +123,6 @@ public class ProgressButton : MonoBehaviour,
 
             Vector3 position = UICamera.ScreenToWorldPoint(_inputData.CursorPosition);
 
-            if (edgeDetect)
-            {
-                position = UICamera.ScreenToWorldPoint(EdgeDetect(_inputData.CursorPosition, highlight.sizeDelta.x / 2));
-            }
-
             highlight.position = new Vector3(position.x, position.y, transform.position.z);
         }
 
@@ -158,75 +152,4 @@ public class ProgressButton : MonoBehaviour,
         RectTransform rectTransform = GetComponent<RectTransform>();
         return rectTransform.rect.Contains(rectTransform.InverseTransformPoint(_position));
     }
-
-    private Vector2 EdgeDetect(Vector2 _position, float _maxEdgeOffset)
-    {
-
-        Rect rect = RectTransformToScreenSpace(GetComponent<RectTransform>());
-        Vector2 min = RectTransformUtility.WorldToScreenPoint(UICamera, rect.min);
-        Vector2 max = RectTransformUtility.WorldToScreenPoint(UICamera, rect.max);
-        Vector2 edgePoint = NearestPointOnRect(min, max, _position);
-
-        Vector2 point = Vector3.Lerp(edgePoint, _position, 0.2f);
-        if (Vector2.Distance(edgePoint, point) > _maxEdgeOffset)
-        {
-            point = edgePoint + ((point - edgePoint).normalized * _maxEdgeOffset);
-        }
-
-        return point;
-    }
-
-    #region Utility
-    Vector2 NearestPointOnRect(Vector2 _minPos, Vector2 _maxPos, Vector2 _point)
-    {
-        if (_point.x > _maxPos.x || _point.x < _minPos.x ||
-            _point.y > _maxPos.y || _point.y < _minPos.y)
-        {
-            // we are out of the bounds so we should find the nearest point
-            Vector2 minXMaxY = new Vector2(_minPos.x, _maxPos.y);
-            Vector2 maxXminY = new Vector2(_maxPos.x, _minPos.y);
-
-            Vector2[] pointsOnLines = new Vector2[4];
-
-            pointsOnLines[0] = FindNearestPointOnLine(_minPos, minXMaxY, _point);
-            pointsOnLines[1] = FindNearestPointOnLine(minXMaxY, _maxPos, _point);
-            pointsOnLines[2] = FindNearestPointOnLine(_maxPos, maxXminY, _point);
-            pointsOnLines[3] = FindNearestPointOnLine(maxXminY, _minPos, _point);
-
-            Vector2 nearestPos = _point;
-            float shortestDist = Mathf.Infinity;
-            foreach (var pointOnLine in pointsOnLines)
-            {
-                float dist = Vector2.Distance(_point, pointOnLine);
-                if (dist < shortestDist)
-                {
-                    shortestDist = dist;
-                    nearestPos = pointOnLine;
-                }
-            }
-            return nearestPos;
-        }
-        return _point;
-    }
-
-    public Vector2 FindNearestPointOnLine(Vector2 _startOfLine, Vector2 _endOfLine, Vector2 _point)
-    {
-        //Get heading
-        Vector2 heading = (_endOfLine - _startOfLine);
-        float magnitudeMax = heading.magnitude;
-        heading.Normalize();
-
-        //Do projection from the point but clamp it
-        Vector2 lhs = _point - _startOfLine;
-        float dotP = Vector2.Dot(lhs, heading);
-        dotP = Mathf.Clamp(dotP, 0f, magnitudeMax);
-        return _startOfLine + heading * dotP;
-    }
-
-    public static Rect RectTransformToScreenSpace(RectTransform _transform)
-    {
-        Vector2 size = Vector2.Scale(_transform.rect.size, _transform.lossyScale);
-        return new Rect((Vector2)_transform.position - (size * 0.5f), size);
-    }
-    #endregion
 }

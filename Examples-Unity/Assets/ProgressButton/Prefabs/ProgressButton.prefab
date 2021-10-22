@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1811886729781201623}
   - component: {fileID: 1811886729781201622}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Highlight BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 1811886729781201616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.55, y: 1.55, z: 1}
   m_Children: []
   m_Father: {fileID: 1811886731439490173}
   m_RootOrder: 0
@@ -58,14 +58,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9215687, b: 0.52156866, a: 1}
+  m_Color: {r: 1, g: 0.9611176, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dc08875b2aaa54a4c9de2b01c0696e46, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: fef9c4bdb9d4b5d46b4313b4bf088d0e, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -306,14 +306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5562c33fa9fc5a439a67ab06e4eff13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  clicked: 0
+  UICamera: {fileID: 0}
+  highlight: {fileID: 6269704815248978036}
   allowAnyInteraction: 0
   interactionType: 2
-  highlight: {fileID: 6269704815248978036}
-  UICamera: {fileID: 0}
   AnimationEnabled: 1
-  edgeDetect: 1
   progressLerpSpeed: 10
 --- !u!114 &1811886731439490168
 MonoBehaviour:
@@ -369,7 +366,7 @@ GameObject:
   - component: {fileID: 6740244667724383605}
   - component: {fileID: 8863102355944321637}
   m_Layer: 5
-  m_Name: FG
+  m_Name: Highlight FG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20425421, g: 0.9622642, b: 0.6287398, a: 1}
+  m_Color: {r: 1, g: 0.937262, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
