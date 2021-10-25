@@ -7,8 +7,8 @@ This use case demonstrates:
 	- Slice Plugin
 - Enabling/disabling Plugins at runtime
 
-![Custom Pin Cursor](Media/PinCursor.mp4)
+![Custom Pin Cursor](Media/PinCursor.gif)
 
-![Custom Slice Cursor and Plugin](Media/SliceCursor.mp4)
+![Custom Slice Cursor and Plugin](Media/SliceCursor.gif)
 
-![Enabling/disabling Plugins at runtime](Media/PluginSwap.mp4)
+![Enabling/disabling Plugins at runtime](Media/PluginSwap.gif)
