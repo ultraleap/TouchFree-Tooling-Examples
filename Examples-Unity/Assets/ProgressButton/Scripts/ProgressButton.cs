@@ -1,9 +1,10 @@
-﻿using Ultraleap.TouchFree.Tooling;
-using Ultraleap.TouchFree.Tooling.Connection;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+using Ultraleap.TouchFree.Tooling;
+
+[RequireComponent(typeof(Animator))]
 public class ProgressButton : MonoBehaviour,
                               IPointerClickHandler,
                               IPointerDownHandler,
@@ -12,17 +13,24 @@ public class ProgressButton : MonoBehaviour,
 {
     public Camera UICamera;
     public RectTransform highlight;
+
     [Space(10)]
     public bool allowAnyInteraction;
     public InteractionType interactionType;
+
     [Space(10)]
     public bool AnimationEnabled = true;
-    [Range(1, 100)] public float progressLerpSpeed = 10;
 
+    [Range(1, 100)]
+    public float progressLerpSpeed = 10;
+
+    private RectTransform rectTransform;
     private Animator animator;
-    private float _progressToClick;
     private Selectable selectable;
+
+    private float progressToClick;
     private bool clicked;
+
     private const string ON_ENTER = "OnEnter";
     private const string ON_EXIT = "OnExit";
     private const string ON_DOWN = "OnDown";
@@ -30,25 +38,21 @@ public class ProgressButton : MonoBehaviour,
     private const string HOVER = "Hover";
     private const string PROGRESS_TO_CLICK = "ProgressToClick";
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        selectable = this.GetComponent<Selectable>();
+        selectable = GetComponent<Selectable>();
         animator = GetComponent<Animator>();
-        if (animator == null)
+        rectTransform = GetComponent<RectTransform>();
+
+        if (UICamera == null)
         {
-            Debug.LogWarning($"No animator component on Progress Button: {gameObject.name}");
+            UICamera = Camera.main;
         }
-        if (UICamera == null) UICamera = Camera.main;
     }
 
     void OnDisable()
     {
-        if (animator != null)
-        {
-            ResetButton();
-        }
+        ResetButton();
     }
 
     public void OnPointerEnter(PointerEventData _data)
@@ -58,6 +62,7 @@ public class ProgressButton : MonoBehaviour,
             return;
         }
 
+        InputActionManager.TransmitInputAction -= UpdateButton;
         InputActionManager.TransmitInputAction += UpdateButton;
 
         animator.SetBool(HOVER, true);
@@ -69,26 +74,16 @@ public class ProgressButton : MonoBehaviour,
 
     public void OnPointerExit(PointerEventData _data)
     {
-        if (!selectable.interactable || !AnimationEnabled)
+        if (!selectable.interactable || !AnimationEnabled || !clicked)
         {
+            InputActionManager.TransmitInputAction -= UpdateButton;
             animator.ResetTrigger(ON_ENTER);
             animator.SetBool(HOVER, false);
             animator.SetTrigger(ON_EXIT);
             return;
         }
-        if (!clicked)
-        {
-            animator.ResetTrigger(ON_ENTER);
 
-            InputActionManager.TransmitInputAction -= UpdateButton;
-
-            animator.SetBool(HOVER, false);
-            animator.SetTrigger(ON_EXIT);
-        }
-        else
-        {
-            clicked = false;
-        }
+        clicked = false;
     }
 
     public void OnPointerClick(PointerEventData _data)
@@ -97,6 +92,7 @@ public class ProgressButton : MonoBehaviour,
         {
             return;
         }
+
         animator.SetTrigger(ON_CLICK);
         clicked = true;
     }
@@ -107,6 +103,7 @@ public class ProgressButton : MonoBehaviour,
         {
             return;
         }
+
         animator.SetTrigger(ON_DOWN);
     }
 
@@ -116,13 +113,13 @@ public class ProgressButton : MonoBehaviour,
         {
             return;
         }
+
         if (allowAnyInteraction || _inputData.InteractionType == interactionType)
         {
-            _progressToClick = Mathf.Lerp(_progressToClick, _inputData.ProgressToClick, progressLerpSpeed * Time.deltaTime);
-            animator.SetFloat(PROGRESS_TO_CLICK, _progressToClick);
+            progressToClick = Mathf.Lerp(progressToClick, _inputData.ProgressToClick, progressLerpSpeed * Time.deltaTime);
+            animator.SetFloat(PROGRESS_TO_CLICK, progressToClick);
 
             Vector3 position = UICamera.ScreenToWorldPoint(_inputData.CursorPosition);
-
             highlight.position = new Vector3(position.x, position.y, transform.position.z);
         }
 
@@ -134,10 +131,8 @@ public class ProgressButton : MonoBehaviour,
 
     private void ResetButton()
     {
-        if (ConnectionManager.serviceConnection != null)
-        {
-            InputActionManager.TransmitInputAction -= UpdateButton;
-        }
+        InputActionManager.TransmitInputAction -= UpdateButton;
+
         animator.SetBool(HOVER, false);
         animator.ResetTrigger(ON_EXIT);
         animator.ResetTrigger(ON_CLICK);
@@ -149,7 +144,6 @@ public class ProgressButton : MonoBehaviour,
     private bool CursorIsHovering(Vector2 _position)
     {
         _position = UICamera.ScreenToWorldPoint(_position);
-        RectTransform rectTransform = GetComponent<RectTransform>();
         return rectTransform.rect.Contains(rectTransform.InverseTransformPoint(_position));
     }
 }
