@@ -38,6 +38,8 @@ public class ProgressButton : MonoBehaviour,
     private const string HOVER = "Hover";
     private const string PROGRESS_TO_CLICK = "ProgressToClick";
 
+    public UnityEngine.Events.UnityEvent onClickCompleted;
+
     void Start()
     {
         selectable = GetComponent<Selectable>();
@@ -127,6 +129,11 @@ public class ProgressButton : MonoBehaviour,
         {
             ResetButton();
         }
+    }
+
+    public void ClickAnimationCompleted()
+    {
+        onClickCompleted.Invoke();
     }
 
     private void ResetButton()
