@@ -30,6 +30,13 @@ Recommended Interaction: AirPush, TouchPlane
 Note: Ensure "Scroll and Drag" is enabled in the TouchFree Interaction Settings
 
 
+## Non-UI Interaction
+
+This example shows how to use TouchFree events to interact with scene objects that aren't part of a UI. 
+
+![Cubes being deactivated using a TouchFree cursor](Media/Non_UI_Interaction.gif)
+
+Recommended Interaction: AirPush, TouchPlane, Hover
 
 
 
