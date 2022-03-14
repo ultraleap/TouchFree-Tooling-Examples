@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blob Cursor Example</title>
+    <script name="TouchFree_Tooling" type="text/javascript" src="./TouchFree/TouchFree_Tooling.js"></script>
+    <script type="text/javascript" src="./TouchFreeConnector.js"></script>
+    <script type="text/javascript" src="./Snapping_Plugin.js"></script>
+    <script type="text/javascript" src="./BlobCursor.js"></script>
+    <link rel="stylesheet" href="./Examples.css">
+</head>
+
+<body class="bodyBG"">
+    <canvas id="Cursor" class="Blob"></canvas>
+    <div>
+        <div class="flex-container">
+            <div class="buttonDiv"> 
+                <button class="button snappable">Sorbet</button> 
+            </div>
+            <div class="buttonDiv"> 
+                <button class="button snappable">Coral</button> 
+            </div>
+            <div class="buttonDiv"> 
+                <button class="button snappable">Marigold</button> 
+            </div>
+            <div class="buttonDiv"> 
+                <button class="button snappable">Sunshine</button> 
+            </div>
+
+            <div class="buttonDiv"> 
+                <button class="button snappable">Mint</button>
+            </div>
+            <div class="buttonDiv"> 
+                <button class="button snappable">Basil</button> 
+            </div>
+            <div class="buttonDiv"> 
+                <button class="button snappable">Cerulean</button> 
+            </div>
+            <div class="buttonDiv"> 
+                <button class="button snappable">Amythist</button> 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var colours = ["#D2386C", "#E9897E", "#FDAC53", "#F5DF4D", "#A0DAA9", "#00A170", "#9BB7D4", "#0072B5", "#926AA6"]
+        var onHover = function (source)
+        {
+            source.id = 'hovered';
+            source.classList.add('buttonHover');
+            source.parentElement.classList.add('buttonDivHover');
+        }
+        
+        var onDehover = function (source)
+        {
+            source.id = 'dehovered';
+            source.classList.remove('buttonHover');
+            source.parentElement.classList.remove('buttonDivHover');
+        }
+        
+        var changeColor = function (content) {
+            document.body.style.backgroundColor = content;   
+            
+        }
+
+        var onDown = function(element, index)
+        {
+            changeColor(colours[index]);
+
+            element.classList.remove('buttonHover');
+            element.classList.add('buttonActive');
+            element.parentElement.classList.remove('buttonDivHover');
+            element.parentElement.classList.add('buttonDivActive');
+        }
+
+        var onUp = function(element)
+        {
+            element.classList.remove('buttonActive');
+            element.parentElement.classList.remove('buttonDivActive')
+        }
+        
+        var addDownListener = function(element, index)
+        {
+            element.addEventListener("pointerdown", () => onDown(element, index));
+            element.addEventListener("pointerup", () => onUp(element));
+
+        }
+        
+        var addHoverListener = function(element)
+        {
+            element.addEventListener("pointerenter", () => onHover(element));
+            element.addEventListener("pointerleave", () => onDehover(element));
+        }
+        
+        var addPointerListeners = function()
+        {
+            var buttons = document.getElementsByClassName('button');
+            for(var i = 0; i < buttons.length; i++)
+            {
+                addDownListener(buttons[i], i);
+                addHoverListener(buttons[i]);
+            }
+        }
+        
+        addPointerListeners();
+
+
+    </script>
+
+</body>
+
+</html>
