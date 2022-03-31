@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Circular Progress Button Example</title>
+    <script name="TouchFree_Tooling" type="text/javascript" src="./TouchFree/TouchFree_Tooling.js"></script>
+    <script type="text/javascript" src="./SquishAnimation.js"></script>
+    <link rel="stylesheet" href="./ProgressExample.css">
+</head>
+
+<body class="bodyBG">
+    <div style="width: 100vw; height: 100vh;">
+        <div class="container">
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--raspberry-sorbet);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--burnt-coral);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--marigold);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--illuminating);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+        </div>
+        <div class="container">
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--mint);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--green-ash);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--cerulean);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--amethyst-orchid);"></button>
+                <image src="./images/ButtonHighlight.png" class="highlight"></image>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var onHover = function (source)
+        {
+            source.parentElement.querySelector('.highlight').id = 'hovered';
+            source.classList.add('buttonHover');
+            source.parentElement.classList.add('buttonDivHover');
+        }
+
+        var onDehover = function (source)
+        {
+            source.parentElement.querySelector('.highlight').id = 'dehovered';
+            source.classList.remove('buttonHover');
+            source.parentElement.classList.remove('buttonDivHover');
+
+            source.style.transform = ``;
+        }
+
+        var changeColor = function (content) {
+            document.body.style.backgroundColor = content;
+
+        }
+
+        var onDown = function(element)
+        {
+            changeColor(element.style.backgroundColor);
+
+            element.classList.remove('buttonHover');
+            element.classList.add('buttonActive');
+            element.parentElement.classList.remove('buttonDivHover');
+            element.parentElement.classList.add('buttonDivActive');
+        }
+
+        var onUp = function(element)
+        {
+            element.classList.remove('buttonActive');
+            element.parentElement.classList.remove('buttonDivActive')
+        }
+
+        var addDownListener = function(element)
+        {
+            element.addEventListener("pointerdown", () => onDown(element));
+            element.addEventListener("pointerup", () => onUp(element));
+
+        }
+
+        var addHoverListener = function(element)
+        {
+            element.addEventListener("pointerenter", () => onHover(element));
+            element.addEventListener("pointerleave", () => onDehover(element));
+
+            element.addEventListener("InputAction", HandleInputAction);
+        }
+
+        var addPointerListeners = function()
+        {
+            var buttons = document.getElementsByClassName('button');
+            for(var i = 0; i < buttons.length; i++)
+            {
+                addDownListener(buttons[i]);
+                addHoverListener(buttons[i]);
+            }
+        }
+
+        addPointerListeners();
+
+
+    </script>
+</body>
+
+</html>

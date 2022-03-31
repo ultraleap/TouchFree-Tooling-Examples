@@ -12,70 +12,6 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 442:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-exports.__esModule = true;
-var Guid = /** @class */ (function () {
-    function Guid(guid) {
-        if (!guid) {
-            throw new TypeError("Invalid argument; `value` has no value.");
-        }
-        this.value = Guid.EMPTY;
-        if (guid && Guid.isGuid(guid)) {
-            this.value = guid;
-        }
-    }
-    Guid.isGuid = function (guid) {
-        var value = guid.toString();
-        return guid && (guid instanceof Guid || Guid.validator.test(value));
-    };
-    Guid.create = function () {
-        return new Guid([Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-"));
-    };
-    Guid.createEmpty = function () {
-        return new Guid("emptyguid");
-    };
-    Guid.parse = function (guid) {
-        return new Guid(guid);
-    };
-    Guid.raw = function () {
-        return [Guid.gen(2), Guid.gen(1), Guid.gen(1), Guid.gen(1), Guid.gen(3)].join("-");
-    };
-    Guid.gen = function (count) {
-        var out = "";
-        for (var i = 0; i < count; i++) {
-            // tslint:disable-next-line:no-bitwise
-            out += (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        }
-        return out;
-    };
-    Guid.prototype.equals = function (other) {
-        // Comparing string `value` against provided `guid` will auto-call
-        // toString on `guid` for comparison
-        return Guid.isGuid(other) && this.value === other.toString();
-    };
-    Guid.prototype.isEmpty = function () {
-        return this.value === Guid.EMPTY;
-    };
-    Guid.prototype.toString = function () {
-        return this.value;
-    };
-    Guid.prototype.toJSON = function () {
-        return {
-            value: this.value
-        };
-    };
-    Guid.validator = new RegExp("^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$", "i");
-    Guid.EMPTY = "00000000-0000-0000-0000-000000000000";
-    return Guid;
-}());
-exports.Guid = Guid;
-
-
-/***/ }),
-
 /***/ 931:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -84,16 +20,16 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ConfigurationManager = void 0;
 const TouchFreeServiceTypes_1 = __webpack_require__(5);
 const ConnectionManager_1 = __webpack_require__(597);
-const guid_typescript_1 = __webpack_require__(442);
+const uuid_1 = __webpack_require__(614);
 // Class: ConfigurationManager
 // This class provides a method for changing the configuration of the TouchFree
 // Service. Makes use of the static <ConnectionManager> for communication with the Service.
 class ConfigurationManager {
     // Function: RequestConfigChange
     // Optionally takes in an <InteractionConfig> or a <PhysicalConfig> and sends them through the <ConnectionManager>
-    // 
-    // Provide a _callBack if you require confirmation that your settings were used correctly.
-    // If your _callBack requires context it should be bound to that context via .bind().
+    //
+    // Provide a _callback if you require confirmation that your settings were used correctly.
+    // If your _callback requires context it should be bound to that context via .bind().
     //
     // WARNING!
     // If a user changes ANY values via the TouchFree Service Settings UI,
@@ -101,8 +37,8 @@ class ConfigurationManager {
     static RequestConfigChange(_interaction, _physical, _callback) {
         var _a;
         let action = TouchFreeServiceTypes_1.ActionCode.SET_CONFIGURATION_STATE;
-        let requestID = guid_typescript_1.Guid.create().toString();
-        let content = new TouchFreeServiceTypes_1.ConfigState(requestID, _interaction, _physical);
+        let requestID = uuid_1.v4();
+        let content = new TouchFreeServiceTypes_1.PartialConfigState(requestID, _interaction, _physical);
         let request = new TouchFreeServiceTypes_1.CommunicationWrapper(action, content);
         let jsonContent = JSON.stringify(request);
         (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.SendMessage(jsonContent, requestID, _callback);
@@ -111,14 +47,49 @@ class ConfigurationManager {
     // Used to request information from the Service via the <ConnectionManager>. Provides an asynchronous
     // <ConfigState> via the _callback parameter.
     //
-    // If your _callBack requires context it should be bound to that context via .bind()
+    // If your _callback requires context it should be bound to that context via .bind()
     static RequestConfigState(_callback) {
         var _a;
         if (_callback === null) {
-            console.error("Request failed. This is due to a missing callback");
+            console.error("Config state request failed. This call requires a callback.");
             return;
         }
         (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestConfigState(_callback);
+    }
+    // Function: RequestConfigFileChange
+    // Requests a modification to the configuration **files** used by the Service. Takes in an
+    // <InteractionConfig> and/or a <PhysicalConfig> representing the desired changes & sends
+    // them through the <ConnectionManager>
+    //
+    // Provide a _callback if you require confirmation that your settings were used correctly.
+    // If your _callback requires context it should be bound to that context via .bind().
+    //
+    // WARNING!
+    // Any changes that have been made using <RequestConfigChange> by *any* connected client will be
+    // lost when changing these files. The change will be applied **to the current config files directly,**
+    // disregarding current active config state, and the config will be loaded from files.
+    static RequestConfigFileChange(_interaction, _physical, _callback) {
+        var _a;
+        let action = TouchFreeServiceTypes_1.ActionCode.SET_CONFIGURATION_FILE;
+        let requestID = uuid_1.v4();
+        let content = new TouchFreeServiceTypes_1.PartialConfigState(requestID, _interaction, _physical);
+        let request = new TouchFreeServiceTypes_1.CommunicationWrapper(action, content);
+        let jsonContent = JSON.stringify(request);
+        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.SendMessage(jsonContent, requestID, _callback);
+    }
+    // Function: RequestConfigState
+    // Used to request a <ConfigState> representing the current state of the Service's config
+    // files via the WebSocket.
+    // Provides a <ConfigState> asynchronously via the _callback parameter.
+    //
+    // If your _callback requires context it should be bound to that context via .bind()
+    static RequestConfigFileState(_callback) {
+        var _a;
+        if (_callback === null) {
+            console.error("Config file state request failed. This call requires a callback.");
+            return;
+        }
+        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestConfigFile(_callback);
     }
 }
 exports.ConfigurationManager = ConfigurationManager;
@@ -130,21 +101,10 @@ exports.ConfigurationManager = ConfigurationManager;
 /***/ ((__unused_webpack_module, exports) => {
 
 
-// Class: InteractionConfig
-// This class is a container for all of the settings related to the interactions being processed
-// by the TouchFree Service. The settings at the root of this object will affect all
-// sensations. There are also some settings specific to the Hover and Hold interaction which can
-// be modified by changing the contained <HoverAndHoldInteractionSettings>.
-//
-// In order to modify the settings of the service, create an instance of this class, make the
-// changes you wish to see, and then send it to the server using the <ConfigurationManager>.
-//
-// Like all of the Settings classes found in this file, all members are optional. If you do
-// not modify a member of this class, its value will not change when the instance is sent to
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TrackedPosition = void 0;
 // Enum: TrackedPosition
-// INDEX_STABLE - Towards the screen from the proximal knuckle position of the index finger 
+// INDEX_STABLE - Towards the screen from the proximal knuckle position of the index finger
 // INDEX_TIP - The index finger tip position
 // WRIST - The wrist position
 // NEAREST - The nearest bone to the screen
@@ -259,6 +219,19 @@ class ConnectionManager extends EventTarget {
             ConnectionManager.currentServiceConnection = null;
         }
     }
+    // Function: RequestServiceStatus
+    // Used to request information from the Service via the <ConnectionManager>. Provides an asynchronous
+    // <ServiceStatus> via the _callback parameter.
+    //
+    // If your _callback requires context it should be bound to that context via .bind()
+    static RequestServiceStatus(_callback) {
+        var _a;
+        if (_callback === null) {
+            console.error("Request failed. This is due to a missing callback");
+            return;
+        }
+        (_a = ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestServiceStatus(_callback);
+    }
 }
 exports.ConnectionManager = ConnectionManager;
 // Variable: iPAddress
@@ -320,6 +293,12 @@ class MessageReceiver {
         // Variable: configStateCallbacks
         // A dictionary of unique request IDs and <ConfigStateCallback> that represent requests that are awaiting response from the Service.
         this.configStateCallbacks = {};
+        // Variable: serviceStatusQueue
+        // A queue of <ServiceStatus> that have been received from the Service.
+        this.serviceStatusQueue = [];
+        // Variable: serviceStatusCallbacks
+        // A dictionary of unique request IDs and <ServiceStatusCallback> that represent requests that are awaiting response from the Service.
+        this.serviceStatusCallbacks = {};
         // Used to ensure UP events are sent at the correct position relative to the previous
         // MOVE event.
         // This is required due to the culling of events from the actionQueue in CheckForAction.
@@ -335,6 +314,7 @@ class MessageReceiver {
     Update() {
         this.CheckForResponse();
         this.CheckForConfigState();
+        this.CheckForServiceStatus();
         this.CheckForAction();
     }
     // Function: CheckForResponse
@@ -388,6 +368,29 @@ class MessageReceiver {
             ;
         }
     }
+    // Function: CheckForServiceStatus
+    // Used to check the <serviceStatusQueue> for a <ServiceStatus>. Sends it to <HandleServiceStatus> if there is one.
+    CheckForServiceStatus() {
+        let serviceStatus = this.serviceStatusQueue.shift();
+        if (serviceStatus !== undefined) {
+            this.HandleServiceStatus(serviceStatus);
+        }
+    }
+    // Function: HandleServiceStatus
+    // Checks the dictionary of <serviceStatusCallbacks> for a matching request ID. If there is a
+    // match, calls the callback action in the matching <ServiceStatusCallback>.
+    HandleServiceStatus(_serviceStatus) {
+        if (this.serviceStatusCallbacks !== undefined) {
+            for (let key in this.serviceStatusCallbacks) {
+                if (key === _serviceStatus.requestID) {
+                    this.serviceStatusCallbacks[key].callback(_serviceStatus);
+                    delete this.serviceStatusCallbacks[key];
+                    return;
+                }
+            }
+            ;
+        }
+    }
     // Function: CheckForAction
     // Checks <actionQueue> for valid <TouchFreeInputActions>. If there are too many in the queue,
     // clears out non-essential <TouchFreeInputActions> down to the number specified by
@@ -411,9 +414,9 @@ class MessageReceiver {
         let action = this.actionQueue.shift();
         if (action !== undefined) {
             // Parse newly received messages & distribute them
-            let converted = (0, TouchFreeToolingTypes_1.ConvertInputAction)(action);
+            let converted = TouchFreeToolingTypes_1.ConvertInputAction(action);
             //Cache or use the lastKnownCursorPosition. Copy the array to ensure it is not a reference
-            if (converted.InputType != TouchFreeToolingTypes_1.InputType.UP) {
+            if (converted.InputType !== TouchFreeToolingTypes_1.InputType.UP) {
                 this.lastKnownCursorPosition = Array.from(converted.CursorPosition);
             }
             else {
@@ -421,7 +424,7 @@ class MessageReceiver {
             }
             InputActionManager_1.InputActionManager.HandleInputAction(converted);
         }
-        if (this.lastStateUpdate != TouchFreeServiceTypes_1.HandPresenceState.PROCESSED) {
+        if (this.lastStateUpdate !== TouchFreeServiceTypes_1.HandPresenceState.PROCESSED) {
             ConnectionManager_1.ConnectionManager.HandleHandPresenceEvent(this.lastStateUpdate);
             this.lastStateUpdate = TouchFreeServiceTypes_1.HandPresenceState.PROCESSED;
         }
@@ -488,7 +491,7 @@ class ServiceConnection {
         this.webSocket.addEventListener('message', this.OnMessage);
         this.handshakeCompleted = false;
         this.webSocket.addEventListener('open', (event) => {
-            let guid = (0, uuid_1.v4)();
+            let guid = uuid_1.v4();
             // construct message
             let handshakeRequest = {
                 "action": TouchFreeServiceTypes_1.ActionCode.VERSION_HANDSHAKE,
@@ -541,8 +544,18 @@ class ServiceConnection {
                 let handEvent = looseData.content;
                 ConnectionManager_1.ConnectionManager.messageReceiver.lastStateUpdate = handEvent.state;
                 break;
-            case TouchFreeServiceTypes_1.ActionCode.VERSION_HANDSHAKE_RESPONSE:
+            case TouchFreeServiceTypes_1.ActionCode.SERVICE_STATUS:
+                let serviceStatus = looseData.content;
+                ConnectionManager_1.ConnectionManager.messageReceiver.serviceStatusQueue.push(serviceStatus);
+                break;
+            case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_FILE_STATE:
+                let configFileState = looseData.content;
+                ConnectionManager_1.ConnectionManager.messageReceiver.configStateQueue.push(configFileState);
+                break;
             case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_RESPONSE:
+            case TouchFreeServiceTypes_1.ActionCode.VERSION_HANDSHAKE_RESPONSE:
+            case TouchFreeServiceTypes_1.ActionCode.SERVICE_STATUS_RESPONSE:
+            case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_FILE_RESPONSE:
                 let response = looseData.content;
                 ConnectionManager_1.ConnectionManager.messageReceiver.responseQueue.push(response);
                 break;
@@ -553,7 +566,7 @@ class ServiceConnection {
     // be given a pre-made _message and _requestID. Provides an asynchronous <WebSocketResponse>
     // via the _callback parameter.
     //
-    // If your _callBack requires context it should be bound to that context via .bind()
+    // If your _callback requires context it should be bound to that context via .bind()
     SendMessage(_message, _requestID, _callback) {
         if (_requestID === "") {
             if (_callback !== null) {
@@ -573,15 +586,51 @@ class ServiceConnection {
     // Used internally to request information from the Service via the <webSocket>.
     // Provides an asynchronous <ConfigState> via the _callback parameter.
     //
-    // If your _callBack requires context it should be bound to that context via .bind()
+    // If your _callback requires context it should be bound to that context via .bind()
     RequestConfigState(_callback) {
         if (_callback === null) {
             console.error("Request failed. This is due to a missing callback");
             return;
         }
-        let guid = (0, uuid_1.v4)();
+        let guid = uuid_1.v4();
         let request = new TouchFreeServiceTypes_1.ConfigChangeRequest(guid);
         let wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.REQUEST_CONFIGURATION_STATE, request);
+        let message = JSON.stringify(wrapper);
+        ConnectionManager_1.ConnectionManager.messageReceiver.configStateCallbacks[guid] =
+            new TouchFreeServiceTypes_1.ConfigStateCallback(Date.now(), _callback);
+        this.webSocket.send(message);
+    }
+    // Function: RequestServiceStatus
+    // Used internally to request information from the Service via the <webSocket>.
+    // Provides an asynchronous <ServiceStatus> via the _callback parameter.
+    //
+    // If your _callback requires context it should be bound to that context via .bind()
+    RequestServiceStatus(_callback) {
+        if (_callback === null) {
+            console.error("Request failed. This is due to a missing callback");
+            return;
+        }
+        let guid = uuid_1.v4();
+        let request = new TouchFreeServiceTypes_1.ServiceStatusRequest(guid);
+        let wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.REQUEST_SERVICE_STATUS, request);
+        let message = JSON.stringify(wrapper);
+        ConnectionManager_1.ConnectionManager.messageReceiver.serviceStatusCallbacks[guid] =
+            new TouchFreeServiceTypes_1.ServiceStatusCallback(Date.now(), _callback);
+        this.webSocket.send(message);
+    }
+    // Function: RequestConfigFile
+    // Used internally to request information from the Service via the <webSocket>.
+    // Provides an asynchronous <ServiceStatus> via the _callback parameter.
+    //
+    // If your _callback requires context it should be bound to that context via .bind()
+    RequestConfigFile(_callback) {
+        if (_callback === null) {
+            console.error("Request failed. This is due to a missing callback");
+            return;
+        }
+        let guid = uuid_1.v4();
+        let request = new TouchFreeServiceTypes_1.ConfigChangeRequest(guid);
+        let wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.REQUEST_CONFIGURATION_FILE, request);
         let message = JSON.stringify(wrapper);
         ConnectionManager_1.ConnectionManager.messageReceiver.configStateCallbacks[guid] =
             new TouchFreeServiceTypes_1.ConfigStateCallback(Date.now(), _callback);
@@ -598,7 +647,7 @@ exports.ServiceConnection = ServiceConnection;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.CommunicationWrapper = exports.ResponseCallback = exports.WebSocketResponse = exports.ConfigStateCallback = exports.ConfigChangeRequest = exports.ConfigState = exports.HandPresenceEvent = exports.Compatibility = exports.HandPresenceState = exports.ActionCode = void 0;
+exports.CommunicationWrapper = exports.ResponseCallback = exports.WebSocketResponse = exports.ServiceStatusCallback = exports.ServiceStatusRequest = exports.ServiceStatus = exports.ConfigStateCallback = exports.ConfigChangeRequest = exports.ConfigState = exports.PartialConfigState = exports.HandPresenceEvent = exports.Compatibility = exports.HandPresenceState = exports.ActionCode = void 0;
 // Enum: ActionCode
 // INPUT_ACTION - Represents standard interaction data
 // CONFIGURATION_STATE - Represents a collection of configurations from the Service
@@ -606,7 +655,10 @@ exports.CommunicationWrapper = exports.ResponseCallback = exports.WebSocketRespo
 // SET_CONFIGURATION_STATE - Represents a request to set new configuration files on the Service
 // REQUEST_CONFIGURATION_STATE - Represents a request to receive a current CONFIGURATION_STATE from the Service
 // VERSION_HANDSHAKE - Represents an outgoing message from Tooling to Service, attempting to compare API versions for compatibility
-// REQUEST_CONFIGURATION_STATE - Represents the result coming in from the Service
+// HAND_PRESENCE_EVENT - Represents the result coming in from the Service
+// REQUEST_SERVICE_STATUS - Represents a request to receive a current SERVICE_STATUS from the Service
+// SERVICE_STATUS_RESPONSE - Represents a Failure response from a REQUEST_SERVICE_STATUS
+// SERVICE_STATUS - Represents information about the current state of the Service
 var ActionCode;
 (function (ActionCode) {
     ActionCode["INPUT_ACTION"] = "INPUT_ACTION";
@@ -617,6 +669,13 @@ var ActionCode;
     ActionCode["VERSION_HANDSHAKE"] = "VERSION_HANDSHAKE";
     ActionCode["VERSION_HANDSHAKE_RESPONSE"] = "VERSION_HANDSHAKE_RESPONSE";
     ActionCode["HAND_PRESENCE_EVENT"] = "HAND_PRESENCE_EVENT";
+    ActionCode["REQUEST_SERVICE_STATUS"] = "REQUEST_SERVICE_STATUS";
+    ActionCode["SERVICE_STATUS_RESPONSE"] = "SERVICE_STATUS_RESPONSE";
+    ActionCode["SERVICE_STATUS"] = "SERVICE_STATUS";
+    ActionCode["REQUEST_CONFIGURATION_FILE"] = "REQUEST_CONFIGURATION_FILE";
+    ActionCode["CONFIGURATION_FILE_STATE"] = "CONFIGURATION_FILE_STATE";
+    ActionCode["SET_CONFIGURATION_FILE"] = "SET_CONFIGURATION_FILE";
+    ActionCode["CONFIGURATION_FILE_RESPONSE"] = "CONFIGURATION_FILE_RESPONSE";
 })(ActionCode = exports.ActionCode || (exports.ActionCode = {}));
 // Enum: HandPresenceState
 // HAND_FOUND - Sent when the first hand is found when no hand has been present for a moment
@@ -645,10 +704,21 @@ class HandPresenceEvent {
     }
 }
 exports.HandPresenceEvent = HandPresenceEvent;
-// Class: ConfigState
-// This data structure is used in both sending and receiving configuration data.
+// Class: PartialConfigState
+// This data structure is used to send requests for changes to configuration or to configuration files.
 //
-// When sending a configuration to the Service the structure can comprise of either partial or complete objects.
+// When sending a configuration to the Service the structure can be comprised of either partial or complete objects.
+class PartialConfigState {
+    constructor(_id, _interaction, _physical) {
+        this.requestID = _id;
+        this.interaction = _interaction;
+        this.physical = _physical;
+    }
+}
+exports.PartialConfigState = PartialConfigState;
+// Class: ConfigState
+// This data structure is used when receiving configuration data representing the state of the service
+// or its config files.
 //
 // When receiving a configuration from the Service this structure contains ALL configuration data
 class ConfigState {
@@ -681,6 +751,40 @@ class ConfigStateCallback {
     }
 }
 exports.ConfigStateCallback = ConfigStateCallback;
+// Class: ServiceStatus
+// This data structure is used to receive service status.
+//
+// When receiving a configuration from the Service this structure contains ALL status data
+class ServiceStatus {
+    constructor(_id, _trackingServiceState, _configurationState) {
+        this.requestID = _id;
+        this.trackingServiceState = _trackingServiceState;
+        this.configurationState = _configurationState;
+    }
+}
+exports.ServiceStatus = ServiceStatus;
+// class: ServiceStatusRequest
+// Used to request the current state of the status of the Service. This is received as
+// a <ServiceStatus> which should be linked to a <ServiceStatusCallback> via requestID to make
+// use of the data received.
+class ServiceStatusRequest {
+    constructor(_id) {
+        this.requestID = _id;
+    }
+}
+exports.ServiceStatusRequest = ServiceStatusRequest;
+// Class: ServiceStatusCallback
+// Used by <MessageReceiver> to wait for a <ServiceStatus> from the Service. Owns a callback
+// with a <ServiceStatus> as a parameter to allow users to make use of the new
+// <ServiceStatusResponse>. Stores a timestamp of its creation so the response has the ability to
+// timeout if not seen within a reasonable timeframe.
+class ServiceStatusCallback {
+    constructor(_timestamp, _callback) {
+        this.timestamp = _timestamp;
+        this.callback = _callback;
+    }
+}
+exports.ServiceStatusCallback = ServiceStatusCallback;
 // Class: WebSocketResponse
 // The structure seen when the Service responds to a request. This is to verify whether it was
 // successful or not and will include the original request if it fails, to allow for
@@ -805,7 +909,7 @@ class DotCursor extends TouchlessCursor_1.TouchlessCursor {
     // cursor's position, as well as the size of the ring based on the current ProgressToClick.
     UpdateCursor(_inputAction) {
         //progressToClick is between 0 and 1. Click triggered at progressToClick = 1
-        let ringScaler = (0, Utilities_1.MapRangeToRange)(_inputAction.ProgressToClick, 0, 1, this.ringSizeMultiplier, 1);
+        let ringScaler = Utilities_1.MapRangeToRange(_inputAction.ProgressToClick, 0, 1, this.ringSizeMultiplier, 1);
         this.cursorRing.style.opacity = _inputAction.ProgressToClick + "";
         this.cursorRing.style.width = this.cursor.clientWidth * ringScaler + "px";
         this.cursorRing.style.height = this.cursor.clientHeight * ringScaler + "px";
@@ -1165,6 +1269,10 @@ class WebInputController extends BaseInputController_1.BaseInputController {
         let elementAtPos = this.GetTopNonCursorElement(invertedCursorPos);
         this.activeEventProps.clientX = invertedCursorPos[0];
         this.activeEventProps.clientY = invertedCursorPos[1];
+        if (elementAtPos !== null) {
+            let inputEvent = new CustomEvent(`InputAction`, { detail: _inputData });
+            elementAtPos.dispatchEvent(inputEvent);
+        }
         switch (_inputData.InputType) {
             case TouchFreeToolingTypes_1.InputType.CANCEL:
                 let cancelEvent = new PointerEvent("cancel", this.activeEventProps);
@@ -1400,7 +1508,7 @@ module.exports = {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.FlagUtilities = exports.WebsocketInputAction = exports.BitmaskFlags = exports.InteractionType = exports.InputType = exports.HandType = exports.HandChirality = exports.ConvertInputAction = exports.TouchFreeInputAction = exports.VersionInfo = void 0;
+exports.FlagUtilities = exports.WebsocketInputAction = exports.BitmaskFlags = exports.ConfigurationState = exports.TrackingServiceState = exports.InteractionType = exports.InputType = exports.HandType = exports.HandChirality = exports.ConvertInputAction = exports.TouchFreeInputAction = exports.VersionInfo = void 0;
 // Class: VersionInfo
 // This class is used when comparing the <ApiVersion> of the Tooling and the Service.
 class VersionInfo {
@@ -1409,7 +1517,7 @@ exports.VersionInfo = VersionInfo;
 // Group: Variables
 // Variable: ApiVersion
 // The current API version of the Tooling.
-VersionInfo.ApiVersion = "1.1.0";
+VersionInfo.ApiVersion = "1.2.0";
 // Variable: API_HEADER_NAME
 // The name of the header we wish the Service to compare our version with.
 VersionInfo.API_HEADER_NAME = "TfApiVersion";
@@ -1477,6 +1585,26 @@ var InteractionType;
     InteractionType[InteractionType["PUSH"] = 2] = "PUSH";
     InteractionType[InteractionType["TOUCHPLANE"] = 3] = "TOUCHPLANE";
 })(InteractionType = exports.InteractionType || (exports.InteractionType = {}));
+// Enum: TrackingServiceState
+// UNAVAILABLE - The TouchFree service is not connected to the tracking service
+// NO_CAMERA - The TouchFree service is connected to the tracking service but there is not a camera connected
+// CONNECTED - The TouchFree service is connected to the tracking service
+var TrackingServiceState;
+(function (TrackingServiceState) {
+    TrackingServiceState[TrackingServiceState["UNAVAILABLE"] = 0] = "UNAVAILABLE";
+    TrackingServiceState[TrackingServiceState["NO_CAMERA"] = 1] = "NO_CAMERA";
+    TrackingServiceState[TrackingServiceState["CONNECTED"] = 2] = "CONNECTED";
+})(TrackingServiceState = exports.TrackingServiceState || (exports.TrackingServiceState = {}));
+// Enum: ConfigurationState
+// NOT_LOADED - The TouchFree configuration has not been loaded
+// LOADED - The TouchFree configuration has successfully been loaded
+// ERRORED - The TouchFree configuration errored on load
+var ConfigurationState;
+(function (ConfigurationState) {
+    ConfigurationState[ConfigurationState["NOT_LOADED"] = 0] = "NOT_LOADED";
+    ConfigurationState[ConfigurationState["LOADED"] = 1] = "LOADED";
+    ConfigurationState[ConfigurationState["ERRORED"] = 2] = "ERRORED";
+})(ConfigurationState = exports.ConfigurationState || (exports.ConfigurationState = {}));
 // Enum: BitmaskFlags
 // This is used to request any combination of the <HandChiralities>, <HandTypes>, <InputTypes>,
 // and <InteractionTypes> flags from the Service at once.
@@ -2495,14 +2623,12 @@ function version(uuid) {
 /******/ 			// add "moreModules" to the modules object,
 /******/ 			// then flag all "chunkIds" as loaded and fire callback
 /******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
 /******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
 /******/ 			}
+/******/ 			if(runtime) var result = runtime(__webpack_require__);
 /******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
 /******/ 			for(;i < chunkIds.length; i++) {
 /******/ 				chunkId = chunkIds[i];
