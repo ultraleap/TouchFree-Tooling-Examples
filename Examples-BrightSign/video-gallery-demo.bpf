@@ -243,7 +243,7 @@
             </parameterValueItemText>
           </parameterValue>
         </queryString>
-        <filePath>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\html-site\html_interaction_page.html</filePath>
+        <filePath>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\html-site\html_interaction_page.html</filePath>
       </localHTMLSite>
     </htmlSites>
     <presentationIdentifiers>
@@ -251,21 +251,21 @@
     <beacons>
     </beacons>
     <DirectoryLocations>
-      <AllFiles>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</AllFiles>
-      <Image>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Image>
-      <Video>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Video>
-      <Audio>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Audio>
-      <Media>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Media>
-      <Fonts>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Fonts>
-      <HTML>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</HTML>
-      <PluginScriptsAutoruns>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</PluginScriptsAutoruns>
-      <CSV>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</CSV>
-      <RFChannelScan>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</RFChannelScan>
-      <Schedules>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Schedules>
-      <ReplacementMedia>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</ReplacementMedia>
-      <UserVariables>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</UserVariables>
-      <XModemFiles>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</XModemFiles>
-      <ImportCommandFiles>C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</ImportCommandFiles>
+      <AllFiles>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</AllFiles>
+      <Image>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Image>
+      <Video>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Video>
+      <Audio>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Audio>
+      <Media>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Media>
+      <Fonts>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Fonts>
+      <HTML>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</HTML>
+      <PluginScriptsAutoruns>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</PluginScriptsAutoruns>
+      <CSV>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</CSV>
+      <RFChannelScan>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</RFChannelScan>
+      <Schedules>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</Schedules>
+      <ReplacementMedia>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</ReplacementMedia>
+      <UserVariables>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</UserVariables>
+      <XModemFiles>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</XModemFiles>
+      <ImportCommandFiles>C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign</ImportCommandFiles>
     </DirectoryLocations>
     <graphicsZOrder>Front</graphicsZOrder>
     <isMosaic>False</isMosaic>
@@ -352,7 +352,7 @@
               <liveDataFeedName />
               <files>
                 <videoItem>
-                  <file name="Combined Idle.mp4" suffix="" path="C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Combined Idle.mp4" />
+                  <file name="Combined Idle.mp4" suffix="" path="C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Combined Idle.mp4" />
                   <fileIsLocal>True</fileIsLocal>
                   <volume>100</volume>
                   <videoDisplayMode>2D</videoDisplayMode>
@@ -376,7 +376,7 @@
             <height>97</height>
             <id>6</id>
             <videoItem>
-              <file name="Combined.mp4" suffix="" path="C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Combined.mp4" />
+              <file name="Combined.mp4" suffix="" path="C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Combined.mp4" />
               <fileIsLocal>True</fileIsLocal>
               <volume>100</volume>
               <videoDisplayMode>2D</videoDisplayMode>
@@ -394,7 +394,7 @@
             <height>97</height>
             <id>8</id>
             <videoItem>
-              <file name="Madronzio.mp4" suffix="" path="C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Madronzio.mp4" />
+              <file name="Madronzio.mp4" suffix="" path="C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Madronzio.mp4" />
               <fileIsLocal>True</fileIsLocal>
               <volume>100</volume>
               <videoDisplayMode>2D</videoDisplayMode>
@@ -412,7 +412,7 @@
             <height>97</height>
             <id>9</id>
             <videoItem>
-              <file name="Routure.mp4" suffix="" path="C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Routure.mp4" />
+              <file name="Routure.mp4" suffix="" path="C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\Routure.mp4" />
               <fileIsLocal>True</fileIsLocal>
               <volume>100</volume>
               <videoDisplayMode>2D</videoDisplayMode>
@@ -430,7 +430,7 @@
             <height>97</height>
             <id>10</id>
             <videoItem>
-              <file name="LeWear 2_1.mp4" suffix="" path="C:\Users\GabeHomewood\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\LeWear 2_1.mp4" />
+              <file name="LeWear 2_1.mp4" suffix="" path="C:\source\repos\TouchFree-Tooling-Examples\Examples-BrightSign\Media\LeWear 2_1.mp4" />
               <fileIsLocal>True</fileIsLocal>
               <volume>100</volume>
               <videoDisplayMode>2D</videoDisplayMode>
