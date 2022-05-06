@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Ultraleap.TouchFree.Tooling;
 
-public class SnapToButtonPlugin : InputActionPlugin
+public class SoftSnappingPlugin : InputActionPlugin
 {
     [Range(0, 1)] public float snapSoftness = 0.1f;
     public int snapDistance = 100;
