@@ -121,6 +121,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &19153045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 19153047}
+  - component: {fileID: 19153046}
+  m_Layer: 0
+  m_Name: Magnetic Snap Plugin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &19153046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19153045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50fd8956ee3cce3408664516689d22c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapDistance: 80
+--- !u!4 &19153047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19153045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01367712, y: 0.2659121, z: -0.12512566}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416488227
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +494,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 899413377191845470, guid: 157025b17471e7c41a7d20e7f28273b5,
+        type: 3}
+      propertyPath: plugins.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 899413377191845470, guid: 157025b17471e7c41a7d20e7f28273b5,
+        type: 3}
+      propertyPath: plugins.Array.data[0].plugin
+      value: 
+      objectReference: {fileID: 19153046}
+    - target: {fileID: 899413377191845470, guid: 157025b17471e7c41a7d20e7f28273b5,
+        type: 3}
+      propertyPath: plugins.Array.data[0].enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2213489624516412114, guid: 157025b17471e7c41a7d20e7f28273b5,
         type: 3}
       propertyPath: m_RootOrder
