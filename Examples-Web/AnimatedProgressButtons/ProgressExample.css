@@ -1,0 +1,75 @@
+:root{
+    /* Hottest Colours Sprint 2021 from
+    https://www.w3schools.com/colors/colors_2021.asp */
+    --raspberry-sorbet: #D2386C;
+    --rust: #B55A30;
+    --burnt-coral: #E9897E;
+    --marigold: #FDAC53;
+    --illuminating: #F5DF4D;
+    --green-ash: #A0DAA9;
+    --mint: #00A170;
+    --cerulean: #9BB7D4;
+    --french-blue: #0072B5;
+    --amythist-orchid: #926AA6;
+}
+
+.button {
+    display: inline;
+    width: 22.5vw;
+    height: 42.5vh;
+    border-radius: 2vw;
+    border: 0.35vw solid white;
+    filter:drop-shadow(10px 0px 20px slategray);
+    transition-property: all;
+    transition-duration: 0.25s;
+    transition-timing-function:cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.buttonHover
+{
+    border: 0.75vw solid white;
+    filter:drop-shadow(10px 0px 25px slategray);
+}
+.buttonActive
+{
+    border: 0.65vw solid white;
+    filter:drop-shadow(0px 0px 5px slategray);
+}
+
+.buttonDiv {
+    padding: 1.25vw 1.25vw 1.25vw 1.25vw;
+    transition-property: all;
+    transition-duration: 0.25s;
+    transition-timing-function:cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.buttonDivHover {
+    transform: scale(1.05,1.05);
+}
+.buttonDivActive {
+    transform: scale(0.95,0.95);
+}
+
+.highlight {
+    width: 22.5vw; 
+    height: 42.5vh; 
+    display: block; 
+    position: absolute; 
+    transform: translate(0, -100%);
+    border-radius: 2vw;
+    clip-path: circle(50% at 50% 50%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    display: flex;
+}
+
+.bodyBG {
+    background-color: gainsboro;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    overflow: hidden;
+    align-items: center;
+}
