@@ -194,8 +194,8 @@ namespace Ultraleap.TouchFree.Tooling.Cursors
         {
             base.OnDisable();
 
-            ConnectionManager.HandFound -= ShowCursor;
-            ConnectionManager.HandsLost -= HideCursor;
+            connectionManager.HandFound -= ShowCursor;
+            connectionManager.HandsLost -= HideCursor;
         }
 
         // Function: InitialiseCursor
@@ -203,8 +203,8 @@ namespace Ultraleap.TouchFree.Tooling.Cursors
         // sorting orders for the ring sprites.
         protected override void InitialiseCursor()
         {
-            ConnectionManager.HandFound += ShowCursor;
-            ConnectionManager.HandsLost += HideCursor;
+            connectionManager.HandFound += ShowCursor;
+            connectionManager.HandsLost += HideCursor;
 
             bool dotSizeIsZero = Mathf.Approximately(cursorSize, 0f);
             cursorSize = dotSizeIsZero ? 1f : cursorSize;

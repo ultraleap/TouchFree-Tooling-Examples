@@ -17,13 +17,15 @@ namespace Ultraleap.TouchFree.Tooling.InputControllers
     {
         // Group: MonoBehaviour Overrides
 
+        public InputActionManager inputActionManager;
+        
         // Function: Start
         // Adds a listener to <InputActionManager> to invoke <HandleInputAction> with <InputActions> as they
         // are received.
         protected override void Start()
         {
             base.Start();
-            InputActionManager.TransmitInputAction += HandleInputAction;
+            inputActionManager.TransmitInputAction += HandleInputAction;
         }
 
         // Function: OnDestroy
@@ -31,7 +33,7 @@ namespace Ultraleap.TouchFree.Tooling.InputControllers
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            InputActionManager.TransmitInputAction -= HandleInputAction;
+            inputActionManager.TransmitInputAction -= HandleInputAction;
         }
 
         // Functions:

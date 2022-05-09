@@ -17,29 +17,18 @@ namespace Ultraleap.TouchFree.Tooling
         // Variable: TransmitInputAction
         // An event for transmitting <InputActions> that have been modified via the active
         // <plugins>
-        public static event InputActionEvent TransmitInputAction;
+        public event InputActionEvent TransmitInputAction;
 
         // Variable: TransmitRawInputAction
         // An event for transmitting <InputActions> that have NOT been modified via any
         // <plugins>
-        public static event InputActionEvent TransmitRawInputAction;
-
-        public static InputActionManager Instance;
+        public event InputActionEvent TransmitRawInputAction;
 
         // Variable: plugins
         // A pre-defined plugin array of <ToggleablePlugins> that modify incoming <InputActions>
         // based on custom rules.
         [Tooltip("These plugins modify InputActions and are performed in order.")]
         [SerializeField] ToggleablePlugin[] plugins;
-
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
-                return;
-            }
-            Instance = this;
-        }
 
         internal void SendInputAction(InputAction _inputAction)
         {

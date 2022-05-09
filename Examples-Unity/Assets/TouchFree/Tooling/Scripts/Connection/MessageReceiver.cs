@@ -14,6 +14,10 @@ namespace Ultraleap.TouchFree.Tooling.Connection
     {
         // Group: Variables
 
+        public ConnectionManager connectionManager;
+        public InputActionManager inputActionManager;
+        [Space]
+
         // Variable: callbackClearTimer
         // The amount of time between checks of <responseCallbacks> to eliminate expired
         // <ResponseCallbacks>. Used in <ClearUnresponsiveCallbacks>.
@@ -191,12 +195,12 @@ namespace Ultraleap.TouchFree.Tooling.Connection
                     action.CursorPosition = lastKnownCursorPosition;
                 }
 
-                InputActionManager.Instance.SendInputAction(action);
+                inputActionManager.SendInputAction(action);
             }
 
             if (handState != HandPresenceState.PROCESSED)
             {
-                ConnectionManager.HandleHandPresenceEvent(handState);
+                connectionManager.HandleHandPresenceEvent(handState);
                 handState = HandPresenceState.PROCESSED;
             }
         }

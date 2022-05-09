@@ -14,6 +14,10 @@ namespace Ultraleap.TouchFree.Tooling.Cursors
     {
         // Group: Variables
 
+        public ConnectionManager connectionManager;
+        public InputActionManager inputActionManager;
+        [Space]
+
         // Variable: cursorTransform
         // The transform for the image presented by this cursor
         public RectTransform cursorTransform;
@@ -68,7 +72,7 @@ namespace Ultraleap.TouchFree.Tooling.Cursors
         // Also registers the Cursor for updates from the <InputActionManager>
         protected virtual void OnEnable()
         {
-            InputActionManager.TransmitInputAction += HandleInputAction;
+            inputActionManager.TransmitInputAction += HandleInputAction;
             InitialiseCursor();
         }
 
@@ -77,7 +81,7 @@ namespace Ultraleap.TouchFree.Tooling.Cursors
         // <InputActionManager>
         protected virtual void OnDisable()
         {
-            InputActionManager.TransmitInputAction -= HandleInputAction;
+            inputActionManager.TransmitInputAction -= HandleInputAction;
         }
 
         // Group: Functions
