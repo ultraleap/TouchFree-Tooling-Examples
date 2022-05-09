@@ -6,8 +6,6 @@ public class SoftSnappingPlugin : InputActionPlugin
     [Range(0, 1)] public float snapSoftness = 0.1f;
     public int snapDistance = 100;
 
-    public RectTransform cursorRect;
-
     protected override InputAction? ModifyInputAction(InputAction _inputAction)
     {
         var selectables = FindObjectsOfType<UnityEngine.UI.Selectable>();
@@ -51,8 +49,6 @@ public class SoftSnappingPlugin : InputActionPlugin
                 center = RectTransformUtility.WorldToScreenPoint(Camera.main, rect.center);
             }
         }
-
-        cursorRect.anchoredPosition = _inputAction.CursorPosition;
 
         if (Vector2.Distance(nearestBtnPos, _inputAction.CursorPosition) < snapDistance)
         {
