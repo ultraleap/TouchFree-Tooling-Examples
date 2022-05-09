@@ -14,18 +14,18 @@ namespace Ultraleap.TouchFree.Tooling.Configuration
         // Used to request a <ConfigState> representing the config currently in use by the Service
         // via the <webSocket>.
         // Provides a <ConfigState> asynchronously via the _callback parameter.
-        public static void RequestConfigState(Action<ConfigState> _callback)
+        public static void RequestConfigState(ConnectionManager _connectionManager, Action<ConfigState> _callback)
         {
-            ConnectionManager.serviceConnection.RequestConfigState(_callback);
+            _connectionManager.serviceConnection.RequestConfigState(_callback);
         }
 
         // Function: RequestConfigState
         // Used to request a <ConfigState> representing the current state of the Service's config
         // files from the Service via the <webSocket>.
         // Provides a <ConfigState> asynchronously via the _callback parameter.
-        public static void RequestConfigFileState(Action<ConfigState> _callback)
+        public static void RequestConfigFileState(ConnectionManager _connectionManager, Action<ConfigState> _callback)
         {
-            ConnectionManager.serviceConnection.RequestConfigFile(_callback);
+            _connectionManager.serviceConnection.RequestConfigFile(_callback);
         }
 
         #region Request Config Change
@@ -37,7 +37,7 @@ namespace Ultraleap.TouchFree.Tooling.Configuration
         // WARNING!
         // If a user changes ANY values via the TouchFree Service Settings UI,
         // values set from a client via this function will be discarded.
-        public static void RequestConfigChange(InteractionConfig _interaction, PhysicalConfig _physical, Action<WebSocketResponse> _callback = null)
+        public static void RequestConfigChange(ConnectionManager _connectionManager, InteractionConfig _interaction, PhysicalConfig _physical, Action<WebSocketResponse> _callback = null)
         {
             string action = ActionCode.SET_CONFIGURATION_STATE.ToString();
             Guid requestGUID = Guid.NewGuid();
@@ -60,7 +60,7 @@ namespace Ultraleap.TouchFree.Tooling.Configuration
 
             jsonContent += "}}";
 
-            ConnectionManager.serviceConnection.SendMessage(jsonContent, requestID, _callback);
+            _connectionManager.serviceConnection.SendMessage(jsonContent, requestID, _callback);
         }
 
         // Function: RequestConfigFileChange
@@ -74,7 +74,7 @@ namespace Ultraleap.TouchFree.Tooling.Configuration
         // Any changes that have been made using <RequestConfigChange> by *any* connected client will be
         // lost when changing these files. The change will be applied **to the current config files directly,**
         // disregarding current active confiag state, and the config will be loaded from files.
-        public static void RequestConfigFileChange(InteractionConfig _interaction, PhysicalConfig _physical, Action<WebSocketResponse> _callback = null)
+        public static void RequestConfigFileChange(ConnectionManager _connectionManager, InteractionConfig _interaction, PhysicalConfig _physical, Action<WebSocketResponse> _callback = null)
         {
             string action = ActionCode.SET_CONFIGURATION_FILE.ToString();
             Guid requestGUID = Guid.NewGuid();
@@ -97,7 +97,7 @@ namespace Ultraleap.TouchFree.Tooling.Configuration
 
             jsonContent += "}}";
 
-            ConnectionManager.serviceConnection.SendMessage(jsonContent, requestID, _callback);
+            _connectionManager.serviceConnection.SendMessage(jsonContent, requestID, _callback);
         }
 
         // Group: Private Serialization Functions

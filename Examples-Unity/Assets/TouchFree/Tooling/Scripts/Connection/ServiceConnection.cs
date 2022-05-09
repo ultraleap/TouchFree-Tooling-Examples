@@ -18,6 +18,8 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         // A reference to the websocket we are connected to.
         WebSocket webSocket;
 
+        ConnectionManager connectionManager;
+
         // Group: Functions
 
         // Function: ServiceConnection
@@ -27,12 +29,14 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         // Client's API version number. The service will not send data over an open connection
         // until this handshake is completed succesfully.
         internal ServiceConnection(
+            ConnectionManager _manager,
             string _ip = "127.0.0.1",
             string _port = "9739",
             Action onClose = null,
             Action onError = null
         )
         {
+            connectionManager = _manager;
             webSocket = new WebSocket($"ws://{_ip}:{_port}/connect");
 
             webSocket.OnMessage += (sender, e) =>
@@ -120,23 +124,23 @@ namespace Ultraleap.TouchFree.Tooling.Connection
                 case ActionCode.INPUT_ACTION:
                     WebsocketInputAction wsInput = JsonUtility.FromJson<WebsocketInputAction>(content);
                     InputAction cInput = new InputAction(wsInput);
-                    ConnectionManager.messageReceiver.actionQueue.Enqueue(cInput);
+                    connectionManager.messageReceiver.actionQueue.Enqueue(cInput);
                     break;
                 case ActionCode.CONFIGURATION_STATE:
                     ConfigState configState = JsonUtility.FromJson<ConfigState>(content);
-                    ConnectionManager.messageReceiver.configStateQueue.Enqueue(configState);
+                    connectionManager.messageReceiver.configStateQueue.Enqueue(configState);
                     break;
                 case ActionCode.HAND_PRESENCE_EVENT:
                     HandPresenceEvent handEvent = JsonUtility.FromJson<HandPresenceEvent>(content);
-                    ConnectionManager.messageReceiver.handState = handEvent.state;
+                    connectionManager.messageReceiver.handState = handEvent.state;
                     break;
                 case ActionCode.SERVICE_STATUS:
                     ServiceStatus serviceStatus = JsonUtility.FromJson<ServiceStatus>(content);
-                    ConnectionManager.messageReceiver.serviceStatusQueue.Enqueue(serviceStatus);
+                    connectionManager.messageReceiver.serviceStatusQueue.Enqueue(serviceStatus);
                     break;
                 case ActionCode.CONFIGURATION_FILE_STATE:
                     ConfigState configFileState = JsonUtility.FromJson<ConfigState>(content);
-                    ConnectionManager.messageReceiver.configStateQueue.Enqueue(configFileState);
+                    connectionManager.messageReceiver.configStateQueue.Enqueue(configFileState);
                     break;
 
                 case ActionCode.CONFIGURATION_RESPONSE:
@@ -144,7 +148,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
                 case ActionCode.SERVICE_STATUS_RESPONSE:
                 case ActionCode.CONFIGURATION_FILE_RESPONSE:
                     WebSocketResponse response = JsonUtility.FromJson<WebSocketResponse>(content);
-                    ConnectionManager.messageReceiver.responseQueue.Enqueue(response);
+                    connectionManager.messageReceiver.responseQueue.Enqueue(response);
                     break;
             }
         }
@@ -169,7 +173,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
 
             if (_callback != null)
             {
-                ConnectionManager.messageReceiver.responseCallbacks.Add(_requestID, new ResponseCallback(DateTime.Now.Millisecond, _callback));
+                connectionManager.messageReceiver.responseCallbacks.Add(_requestID, new ResponseCallback(DateTime.Now.Millisecond, _callback));
             }
 
             webSocket.Send(_message);
@@ -190,7 +194,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
 
             if (_callback != null)
             {
-                ConnectionManager.messageReceiver.configStateCallbacks.Add(requestID, new ConfigStateCallback(DateTime.Now.Millisecond, _callback));
+                connectionManager.messageReceiver.configStateCallbacks.Add(requestID, new ConfigStateCallback(DateTime.Now.Millisecond, _callback));
             }
 
             webSocket.Send(jsonMessage);
@@ -208,7 +212,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
 
             if (_callback != null)
             {
-                ConnectionManager.messageReceiver.configStateCallbacks.Add(requestID, new ConfigStateCallback(DateTime.Now.Millisecond, _callback));
+                connectionManager.messageReceiver.configStateCallbacks.Add(requestID, new ConfigStateCallback(DateTime.Now.Millisecond, _callback));
             }
 
             webSocket.Send(jsonMessage);
@@ -229,7 +233,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
 
             if (_callback != null)
             {
-                ConnectionManager.messageReceiver.serviceStatusCallbacks.Add(requestID, new ServiceStatusCallback(DateTime.Now.Millisecond, _callback));
+                connectionManager.messageReceiver.serviceStatusCallbacks.Add(requestID, new ServiceStatusCallback(DateTime.Now.Millisecond, _callback));
             }
 
             webSocket.Send(jsonMessage);

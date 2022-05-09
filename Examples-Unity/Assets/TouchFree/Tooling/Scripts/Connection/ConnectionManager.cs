@@ -16,15 +16,15 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         //
         // Instead of adding listeners to this event, use <AddConnectionListener> to ensure that your
         // function is invoked if the connection has already been made by the time your class runs.
-        public static event Action OnConnected;
+        public event Action OnConnected;
 
         // Variable: currentServiceConnection
         // The private reference to the currently managed <ServiceConnection>.
-        static ServiceConnection currentServiceConnection;
+        ServiceConnection currentServiceConnection;
 
         // Variable: serviceConnection
         // The public get-only reference to the currently managed <ServiceConnection>.
-        public static ServiceConnection serviceConnection
+        public ServiceConnection serviceConnection
         {
             get
             {
@@ -34,15 +34,15 @@ namespace Ultraleap.TouchFree.Tooling.Connection
 
         // Variable: messageReceiver
         // A reference to the receiver that handles destribution of data received via the <currentServiceConnection> if connected.
-        public static MessageReceiver messageReceiver;
+        public MessageReceiver messageReceiver;
 
         // Variable: HandFound
         // An event allowing users to react to a hand being found when none has been present for a moment.
-        public static event Action HandFound;
+        public event Action HandFound;
 
         // Variable: HandsLost
         // An event allowing users to react to the last hand being lost when one has been present.
-        public static event Action HandsLost;
+        public event Action HandsLost;
 
         // Variable: iPAddress
         // The IP Address that will be used in the <ServiceConnection> to connect to the target WebSocket.
@@ -55,14 +55,14 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         // This value is settable in the Inspector.
         [SerializeField] string port = "9739";
 
-        static bool shouldReconnect = false;
+        bool shouldReconnect = false;
 
         // Group: Functions
 
         // Function: AddConnectionListener
         // Used to both add the _onConnectFunc action to the listeners of <OnConnected>
         // as well as auto-call the _onConnectFunc if a connection is already made.
-        public static void AddConnectionListener(Action _onConnectFunc)
+        public void AddConnectionListener(Action _onConnectFunc)
         {
             OnConnected += _onConnectFunc;
 
@@ -79,7 +79,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         {
             shouldReconnect = true;
 
-            currentServiceConnection = new ServiceConnection(iPAddress, port, RetryConnecting);
+            currentServiceConnection = new ServiceConnection(this, iPAddress, port, RetryConnecting);
             if (currentServiceConnection.IsConnected())
             {
                 OnConnected?.Invoke();
@@ -111,7 +111,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         // Function: Disconnect
         // Disconnects <currentServiceConnection> if it is connected to a WebSocket and
         // sets it to null.
-        public static void Disconnect()
+        public void Disconnect()
         {
             shouldReconnect = false;
 
@@ -125,7 +125,7 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         // Function: HandleHandPresenceEvent
         // Called by the <MessageReciever> to pass HandPresence events via the <HandFound> and
         // <HandsLost> events on this class
-        internal static void HandleHandPresenceEvent(HandPresenceState _state)
+        internal void HandleHandPresenceEvent(HandPresenceState _state)
         {
             if (_state == HandPresenceState.HAND_FOUND)
             {
@@ -144,7 +144,6 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         // Also attempts to immediately <Connect> to a WebSocket.
         private void Awake()
         {
-            messageReceiver = GetComponent<MessageReceiver>();
             Connect();
         }
 
@@ -178,9 +177,9 @@ namespace Ultraleap.TouchFree.Tooling.Connection
         // Function: RequestServiceStatus
         // Used to request a <ServiceStatus> from the Service via the <webSocket>.
         // Provides an asynchronous <ServiceStatus> via the _callback parameter.
-        public static void RequestServiceStatus(Action<ServiceStatus> _callback)
+        public void RequestServiceStatus(Action<ServiceStatus> _callback)
         {
-            ConnectionManager.serviceConnection.RequestServiceStatus(_callback);
+            serviceConnection.RequestServiceStatus(_callback);
         }
     }
 }
