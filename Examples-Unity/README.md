@@ -19,7 +19,8 @@ This example shows a button style that provides visual feedback showing when and
 
 Recommended Interaction: AirPush
 
+## Magnetic Snapping
 
+This example shows a Magnetic Snapping plugin which makes it more likely that a cursor will be over a nearby button. Once on a button, the user has free movement over the button. This GIF includes a black dot that represents the original cursor position as a guide.
 
-
-
+![Magnetic Snapping in use](Media/MagneticSnap.gif)
