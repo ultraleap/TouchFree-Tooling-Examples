@@ -19,9 +19,14 @@ This example shows a button style that provides visual feedback showing when and
 
 Recommended Interaction: AirPush
 
-
 ## Soft Snapping
 
 This example shows a Soft Snapping plugin which makes it more likely that a cursor will be over a nearby button, once on a button it also makes it more likely to stay on the button. This version of snapping tries to avoid visually jumping the cursor from button to button. This GIF includes a black dot that represents the original cursor position as a guide.
 
 ![Soft Snapping shown with a black cursor as a guide](Media/SoftSnapping.gif)
+
+## Magnetic Snapping
+
+This example shows a Magnetic Snapping plugin which makes it more likely that a cursor will be over a nearby button. Once on a button, the user has free movement over the button. This GIF includes a black dot that represents the original cursor position as a guide.
+
+![Magnetic Snapping in use](Media/MagneticSnap.gif)
