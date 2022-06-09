@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Animated Circular Progress Button Example</title>
-    <script name="TouchFree_Tooling" type="text/javascript" src="./TouchFree/TouchFree_Tooling.js"></script>
-    <script type="text/javascript" src="./CircularProgressAnimation.js"></script>
+    <!-- <script name="TouchFree_Tooling" type="text/javascript" src="./TouchFree/TouchFree_Tooling.js"></script> -->
+    <!-- <script type="text/javascript" src="./CircularProgressAnimation.js"></script> -->
     <link rel="stylesheet" href="./ProgressExample.css">
 </head>
 
@@ -13,7 +13,7 @@
     <div style="width: 100vw; height: 100vh;">
         <div class="container">
             <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--raspberry-sorbet);"></button> 
+                <button class="button" style="background-color:var(--raspberry-sorbet);" onclick="onClick()"></button> 
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
             <div class="buttonDiv"> 
@@ -83,6 +83,11 @@
         {
             element.classList.remove('buttonActive');
             element.parentElement.classList.remove('buttonDivActive')
+        }
+
+        var onClick = function()
+        {
+            console.log("Hello");
         }
         
         var addDownListener = function(element)
