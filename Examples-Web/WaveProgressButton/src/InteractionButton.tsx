@@ -21,7 +21,7 @@ const InteractionButton: React.FC<InteractionButtonProps> = ({
   const wavePosition = (): React.CSSProperties => {
     if (progress > 0) {
       return {
-        backgroundPosition: `${progress * 200}% ${progress * 200 - 140}%`,
+        backgroundPosition: `${progress * 500}% ${progress * 240 - 210}%`,
       };
     }
     return {

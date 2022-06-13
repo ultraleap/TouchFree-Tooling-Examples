@@ -25,10 +25,9 @@
   width: 22.5vw;
   height: 42.5vh;
   background-blend-mode: multiply;
-  background: url(./Images/wave.svg);
+  background: url(./Images/wave.png);
   background-repeat: repeat-x;
-  background-size: auto 150%;
-  background-position: 0 -180%;
+  background-position: 0 -200%;
   border-radius: 2vw;
   border: 0.35vw solid white;
   box-shadow: 0 2vh #999;

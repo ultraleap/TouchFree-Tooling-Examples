@@ -19,3 +19,5 @@ This example shows a button style that provide visual feedback showing when and 
 ![Animated Buttons Showing Progress To Click As A Wave Fill](public/media/wave-fill.gif)
 
 Recommended Interaction: Hover & Hold
+
+Surfer emoji designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project. License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)
