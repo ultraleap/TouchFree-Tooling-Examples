@@ -27,6 +27,6 @@ Recommended Interaction: AirPush
 Recommended Interaction: Hover & Hold
 
 ### Wave Progress Animation
-![Animated Buttons Showing Progress To Click As A Wave Fill](WaveProgressButton/media/wave-fill.gif)
+![Animated Buttons Showing Progress To Click As A Wave Fill](WaveProgressButton/public/media/wave-fill.gif)
 
 Recommended Interaction: Hover & Hold
