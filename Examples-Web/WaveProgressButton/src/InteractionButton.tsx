@@ -21,7 +21,9 @@ const InteractionButton: React.FC<InteractionButtonProps> = ({
   const wavePosition = (): React.CSSProperties => {
     if (progress > 0) {
       return {
-        backgroundPosition: `${progress * 500}% ${progress * 240 - 210}%`,
+        // Wave min height (hidden) = 42.5vh, Wave max height (entire button): -4vh,
+        // Wave range = 46.5
+        backgroundPosition: `${progress * 500}% ${42.5 - progress * 46.5}vh`,
       };
     }
     return {

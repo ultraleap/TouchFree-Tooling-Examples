@@ -26,8 +26,8 @@
   height: 42.5vh;
   background-blend-mode: multiply;
   background: url(./Images/wave.png);
+  background-position: 0 42.5vh;
   background-repeat: repeat-x;
-  background-position: 0 -200%;
   border-radius: 2vw;
   border: 0.35vw solid white;
   box-shadow: 0 2vh #999;
