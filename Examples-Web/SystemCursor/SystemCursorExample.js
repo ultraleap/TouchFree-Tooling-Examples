@@ -5,10 +5,6 @@ const InteractionTypes = TouchFree.TouchFreeToolingTypes.InteractionType;
 window.onload = function () {
     AddTouchFreeCursor();
     new TouchFree.InputControllers.WebInputController();
-
-    TouchFree.Connection.ConnectionManager.AddConnectionListener(() => {
-        new LinearProgress();
-        });
 }
 
 function AddTouchFreeCursor()
