@@ -4,6 +4,8 @@ Examples of touchless content only possible through using [Touchfree Tooling](ht
 
 ## Setup
 
+Wave Progress Button is set up slightly differently as it is a react app. The WaveProgressButton folder contains a readme on how to setup that example.
+
 1. Ensure that the [Touchfree](https://github.com/ultraleap/TouchFree) Service is running.
 2. Clone the repo and find the example you want to try
 3. Open the include html file in your browser
@@ -24,6 +26,7 @@ Recommended Interaction: AirPush
 
 Recommended Interaction: Hover & Hold
 
+### Wave Progress Animation
+![Animated Buttons Showing Progress To Click As A Wave Fill](WaveProgressButton/media/wave-fill.gif)
 
-
-
+Recommended Interaction: Hover & Hold
