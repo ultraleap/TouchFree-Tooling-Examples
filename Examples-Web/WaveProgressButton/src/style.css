@@ -1,0 +1,50 @@
+.center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+
+.container{
+  position: relative;
+  display: flex;
+  height: 50%;
+}
+
+.buttonDiv {
+  padding: 1.25vw;
+}
+
+.button {
+  width: 22.5vw;
+  height: 42.5vh;
+  background-blend-mode: multiply;
+  background: url(./Images/wave.png);
+  background-position: 0 42.5vh;
+  background-repeat: repeat-x;
+  border-radius: 2vw;
+  border: 0.35vw solid white;
+  box-shadow: 0 2vh #999;
+  position: relative;
+  cursor: pointer;
+}
+
+.buttonHover,
+.button:hover {
+  filter: brightness(110%);
+  transform: scale(1.03,1.03);
+}
+
+.buttonActive,
+.button:active {
+  filter: brightness(90%);
+  box-shadow: 0 1vh #666;
+  transition: 0.1s;
+  transform: translateY(1vh);
+}
