@@ -14,3 +14,6 @@ If you require assistance whilst working with these repositories we recommend ut
 - Find the desired example subdirectory within this repository
 - Copy the desired example subdirectory into your project that uses TouchFree Tooling
 - Read the Readme within the desired example subdirectory to ensure you have all dependencies and matching Tooling versions
+
+## Attributions
+Surfer emoji used in WaveProgressButton Example designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project. License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)
