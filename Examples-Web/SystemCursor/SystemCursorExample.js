@@ -62,6 +62,17 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
         super(_cursor);
         this.cursorBorder = _cursorBorder;
         this.cursorFill = _cursorFill;
+		
+        this.animationUpdateDuration = (1 / 30) * 1000;
+        this.fadeOutDelayMs = 500;
+        this.currentFadingInterval = -1;
+        this.fadeOutDelayTimeout = -1;
+        this.opacity = 0.0;
+
+        this.FadeCursorOut();
+
+        TouchFree.Connection.ConnectionManager.instance.addEventListener('HandFound', this.ShowCursor.bind(this));
+        TouchFree.Connection.ConnectionManager.instance.addEventListener('HandsLost', this.HideCursor.bind(this));
     }
 
     UpdateCursor(_inputAction) {
@@ -70,5 +81,45 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
         this.cursor.style.left = this.cursorBorder.style.left = this.cursorFill.style.left = left;
         this.cursor.style.top = this.cursorBorder.style.top = this.cursorFill.style.top = top;
         this.cursorFill.style.clipPath = "inset(" + (100 - (_inputAction.ProgressToClick * 100)).toString() + "% 0% 0% 0%)";
+    }
+	
+    ShowCursor() {
+        clearTimeout(this.fadeOutDelayTimeout);
+        clearInterval(this.currentFadingInterval);
+        this.currentFadingInterval = setInterval(this.FadeCursorIn.bind(this), this.animationUpdateDuration);
+    }
+
+    HideCursor() {
+        this.fadeOutDelayTimeout = setTimeout(() => {
+            clearTimeout(this.fadeOutDelayTimeout);
+            clearInterval(this.currentFadingInterval);
+            this.currentFadingInterval = setInterval(this.FadeCursorOut.bind(this), this.animationUpdateDuration);
+        }, this.fadeOutDelayMs);
+    }
+
+    FadeCursorIn() {
+        this.opacity += 0.05;
+        if (this.opacity >= 1) {
+            this.opacity = 1;
+            clearInterval(this.currentFadingInterval);
+            this.currentFadingInterval = -1;
+        }
+        this.ApplyOpacity([this.cursor, this.cursorBorder, this.cursorFill]);
+    }
+
+    FadeCursorOut() {
+        this.opacity -= 0.05;
+        if (this.opacity <= 0) {
+            this.opacity = 0;
+            clearInterval(this.currentFadingInterval);
+            this.currentFadingInterval = -1;
+        }
+        this.ApplyOpacity([this.cursor, this.cursorBorder, this.cursorFill]);
+    }
+
+    ApplyOpacity(elementArray) {
+        for (let i = 0; i < elementArray.length; i++) {
+            elementArray[i].style.opacity = this.opacity;
+        }
     }
 }
