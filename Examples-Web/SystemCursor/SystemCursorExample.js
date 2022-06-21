@@ -66,11 +66,11 @@ function AddTouchFreeCursor()
     // Create style to fade-in/fade-out the CTI
     const style = document.createElement('style');
     style.textContent = `
-        video:not(.hidden) {
+        video:not(.hidden), :host(.touchfreecursor:not(.hidden)) {
             opacity: 1;
             transition: opacity 0.5s;
         }
-        .hidden {
+        .hidden, :host(.touchfreecursor.hidden) {
             opacity: 0;
             transition: opacity 0.5s;
         }
@@ -108,13 +108,7 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
         this.video = _video;
         this.source = _source;
 
-        this.animationUpdateDuration = (1 / 30) * 1000;
-        this.fadeOutDelayMs = 500;
-        this.currentFadingInterval = -1;
-        this.fadeOutDelayTimeout = -1;
-        this.opacity = 0.0;
-
-        this.FadeCursorOut();
+        this.HideCursor();
 
         this.timeOut = null;
         this.ctiShown = false;
@@ -124,10 +118,8 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
     }
 
     UpdateCursor(_inputAction) {
-        let left = _inputAction.CursorPosition[0] + "px";
-        let top = (window.innerHeight - _inputAction.CursorPosition[1]) + "px";
-        this.cursor.style.left = left;
-        this.cursor.style.top = top;
+        this.cursor.style.left = `${_inputAction.CursorPosition[0]}px`;
+        this.cursor.style.top = `${window.innerHeight - _inputAction.CursorPosition[1]}px`;
         this.cursorFill.style.clipPath = "inset(" + (100 - (_inputAction.ProgressToClick * 100)).toString() + "% 0% 0% 0%)";
     }
 
@@ -147,20 +139,11 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
     }
 
     ShowCursor() {
-        clearTimeout(this.fadeOutDelayTimeout);
-        clearInterval(this.currentFadingInterval);
-        this.currentFadingInterval = setInterval(this.FadeCursorIn.bind(this), this.animationUpdateDuration);
-
         this.timeOut = setTimeout(this.ShowCTI.bind(this), 8000);
+        this.cursor.classList.remove("hidden");
     }
 
     HideCursor() {
-        this.fadeOutDelayTimeout = setTimeout(() => {
-            clearTimeout(this.fadeOutDelayTimeout);
-            clearInterval(this.currentFadingInterval);
-            this.currentFadingInterval = setInterval(this.FadeCursorOut.bind(this), this.animationUpdateDuration);
-        }, this.fadeOutDelayMs);
-
         if (this.timeOut) {
             clearTimeout(this.timeOut);
             this.timeOut = null;
@@ -168,32 +151,7 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
         if (this.ctiShown) {
             this.HideCTI();
         }
-    }
-
-    FadeCursorIn() {
-        this.opacity += 0.05;
-        if (this.opacity >= 1) {
-            this.opacity = 1;
-            clearInterval(this.currentFadingInterval);
-            this.currentFadingInterval = -1;
-        }
-        this.ApplyOpacity([this.cursor]);
-    }
-
-    FadeCursorOut() {
-        this.opacity -= 0.05;
-        if (this.opacity <= 0) {
-            this.opacity = 0;
-            clearInterval(this.currentFadingInterval);
-            this.currentFadingInterval = -1;
-        }
-        this.ApplyOpacity([this.cursor]);
-    }
-
-    ApplyOpacity(elementArray) {
-        for (let i = 0; i < elementArray.length; i++) {
-            elementArray[i].style.opacity = this.opacity;
-        }
+        this.cursor.classList.add("hidden");
     }
 
     ShowCTI() {
