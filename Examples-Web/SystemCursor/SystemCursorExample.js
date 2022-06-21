@@ -45,55 +45,66 @@ function AddTouchFreeCursor()
     cursorFill.style.transformOrigin = "50% 0%";
     cursorFill.style.transform = "translate(-50%, 0%) rotate(-30deg)";
 
-    const cti = document.createElement("div");
-    cti.style.width = `300px`;
-    cti.style.height = `300px`;
-    cti.style.backgroundColor = "blue";
-    cti.style.zIndex = "9004";
-    cti.style.opacity = "0";
-    cti.style.transform = "translate(50%, 0%)";
-    cti.style.borderRadius = "5%";
-    cti.style.boxShadow = "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px";
-
-    const video = document.createElement("video");
-    video.setAttribute("width", "100%");
-    video.setAttribute("height", "100%");
-    video.setAttribute('loop', "true");
-    video.style.borderRadius = "5%";
-    video.muted = true;
-
     const source = document.createElement("source");
     source.setAttribute('src', './ctis/Scroll_lite.mp4');
     source.setAttribute('type', 'video/mp4');
 
+    const video = document.createElement("video");
+    video.setAttribute("width", "300px");
+    video.setAttribute("height", "300px");
+    video.setAttribute('loop', "true");
+    video.style.borderRadius = "5%";
+    video.style.transform = "translate(50%, 0%)";
+    video.style.zIndex = "9004";
+    video.style.boxShadow = "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px";
+    video.muted = true;
     video.appendChild(source);
-    cti.appendChild(video);
+    video.classList.add('hidden');
+
+    //cti.appendChild(video);
+
+    // Create style to fade-in/fade-out the CTI
+    const style = document.createElement('style');
+    style.textContent = `
+        video:not(.hidden) {
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+        .hidden {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+    `;
 
     // This is a special class used by the WebInputController to identify the html elements that
     // make up the cursor. This is so it can ignore cursor-related objects when it is looking
     // for elements to pointerover/pointerout etc.
-    cursor.classList.add('touchfreecursor');
-    cursorBorder.classList.add('touchfreecursor');
-    cursorFill.classList.add('touchfreecursor');
-    cti.classList.add('touchfreecursor');
-    container.classList.add('touchfreecursor');
-
-    container.appendChild(cursor);
-    container.appendChild(cursorBorder);
-    container.appendChild(cursorFill);
-    container.appendChild(cti);
+    [
+        cursor,
+        cursorBorder,
+        cursorFill,
+        video,
+        container
+    ].forEach(el => el.classList.add('touchfreecursor'));
 
     document.body.appendChild(container);
 
-    var dotCursor = new SystemCursor(cursorFill, cti, container, video, source);
+    // Create shadow root DOM. This allows an isolation of the style
+    const shadow = container.attachShadow({mode: 'open'});
+    shadow.appendChild(style);
+    shadow.appendChild(cursor);
+    shadow.appendChild(cursorBorder);
+    shadow.appendChild(cursorFill);
+    shadow.appendChild(video);
+
+    const dotCursor = new SystemCursor(cursorFill, container, video, source);
 }
 
 class SystemCursor extends TouchFree.Cursors.TouchlessCursor
 {
-    constructor(_cursorFill, _cti, _container, _video, _source) {
+    constructor(_cursorFill, _container, _video, _source) {
         super(_container);
         this.cursorFill = _cursorFill;
-        this.cti = _cti;
         this.video = _video;
         this.source = _source;
 
@@ -135,8 +146,6 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
         }
     }
 
-
-	
     ShowCursor() {
         clearTimeout(this.fadeOutDelayTimeout);
         clearInterval(this.currentFadingInterval);
@@ -189,13 +198,13 @@ class SystemCursor extends TouchFree.Cursors.TouchlessCursor
 
     ShowCTI() {
         this.ctiShown = true;
-        this.cti.style.opacity = "1";
+        this.video.classList.remove('hidden');
         this.video.play();
     }
 
     HideCTI() {
         this.ctiShown = false;
-        this.cti.style.opacity = "0";
+        this.video.classList.add('hidden');
         this.video.pause();
         this.video.currentTime = 0;
     }
