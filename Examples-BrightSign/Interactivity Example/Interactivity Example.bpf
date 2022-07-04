@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BrightAuthor version="6" BrightAuthorVersion="4.7.2.18" type="project">
+  <meta>
+    <name>Interactivity Example</name>
+    <isBackup>False</isBackup>
+    <model>XT1144</model>
+    <videoMode>1920x1080x60p</videoMode>
+    <monitorOrientation>Portrait</monitorOrientation>
+    <videoConnector>HDMI</videoConnector>
+    <deviceWebPageDisplay>Standard</deviceWebPageDisplay>
+    <alphabetizeVariableNames>True</alphabetizeVariableNames>
+    <delayScheduleChangeUntilMediaEndEvent>False</delayScheduleChangeUntilMediaEndEvent>
+    <htmlEnableJavascriptConsole>True</htmlEnableJavascriptConsole>
+    <backgroundScreenColor a="255" r="0" g="0" b="0" />
+    <forceResolution>True</forceResolution>
+    <dolbyVision>False</dolbyVision>
+    <fullResGraphicsEnabled>False</fullResGraphicsEnabled>
+    <tenBitColorEnabled>False</tenBitColorEnabled>
+    <monitorOverscan>noOverscan</monitorOverscan>
+    <gpio0>input</gpio0>
+    <gpio1>input</gpio1>
+    <gpio2>input</gpio2>
+    <gpio3>input</gpio3>
+    <gpio4>input</gpio4>
+    <gpio5>input</gpio5>
+    <gpio6>input</gpio6>
+    <gpio7>input</gpio7>
+    <BP900AConfigureAutomatically>True</BP900AConfigureAutomatically>
+    <BP900BConfigureAutomatically>True</BP900BConfigureAutomatically>
+    <BP900CConfigureAutomatically>True</BP900CConfigureAutomatically>
+    <BP900DConfigureAutomatically>True</BP900DConfigureAutomatically>
+    <BP200AConfigureAutomatically>True</BP200AConfigureAutomatically>
+    <BP200BConfigureAutomatically>True</BP200BConfigureAutomatically>
+    <BP200CConfigureAutomatically>True</BP200CConfigureAutomatically>
+    <BP200DConfigureAutomatically>True</BP200DConfigureAutomatically>
+    <BP900AConfiguration>0</BP900AConfiguration>
+    <BP900BConfiguration>0</BP900BConfiguration>
+    <BP900CConfiguration>0</BP900CConfiguration>
+    <BP900DConfiguration>0</BP900DConfiguration>
+    <BP200AConfiguration>0</BP200AConfiguration>
+    <BP200BConfiguration>0</BP200BConfiguration>
+    <BP200CConfiguration>0</BP200CConfiguration>
+    <BP200DConfiguration>0</BP200DConfiguration>
+    <SerialPortConfiguration>
+      <port>0</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <SerialPortConfiguration>
+      <port>1</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <SerialPortConfiguration>
+      <port>2</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <SerialPortConfiguration>
+      <port>3</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <SerialPortConfiguration>
+      <port>4</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <SerialPortConfiguration>
+      <port>5</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <SerialPortConfiguration>
+      <port>6</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <SerialPortConfiguration>
+      <port>7</port>
+      <baudRate>115200</baudRate>
+      <dataBits>8</dataBits>
+      <parity>N</parity>
+      <stopBits>1</stopBits>
+      <protocol>ASCII</protocol>
+      <sendEol>CR</sendEol>
+      <receiveEol>CR</receiveEol>
+      <invertSignals>False</invertSignals>
+      <connectedDevice>None</connectedDevice>
+    </SerialPortConfiguration>
+    <udpDestinationAddressType>IPAddress</udpDestinationAddressType>
+    <udpDestinationAddress>255.255.255.255</udpDestinationAddress>
+    <udpDestinationPort>5000</udpDestinationPort>
+    <udpReceiverPort>5000</udpReceiverPort>
+    <flipCoordinates>false</flipCoordinates>
+    <touchCursorDisplayMode>auto</touchCursorDisplayMode>
+    <language>English</language>
+    <languageKey>eng</languageKey>
+    <audioConfiguration>MixedAudioPCMOnly</audioConfiguration>
+    <audioAutoLevel>False</audioAutoLevel>
+    <audio1MinVolume>0</audio1MinVolume>
+    <audio1MaxVolume>100</audio1MaxVolume>
+    <audio2MinVolume>0</audio2MinVolume>
+    <audio2MaxVolume>100</audio2MaxVolume>
+    <audio3MinVolume>0</audio3MinVolume>
+    <audio3MaxVolume>100</audio3MaxVolume>
+    <usbAMinVolume>0</usbAMinVolume>
+    <usbAMaxVolume>100</usbAMaxVolume>
+    <usbBMinVolume>0</usbBMinVolume>
+    <usbBMaxVolume>100</usbBMaxVolume>
+    <usbCMinVolume>0</usbCMinVolume>
+    <usbCMaxVolume>100</usbCMaxVolume>
+    <usbDMinVolume>0</usbDMinVolume>
+    <usbDMaxVolume>100</usbDMaxVolume>
+    <usbTypeAMinVolume>0</usbTypeAMinVolume>
+    <usbTypeAMaxVolume>100</usbTypeAMaxVolume>
+    <usbTypeCMinVolume>0</usbTypeCMinVolume>
+    <usbTypeCMaxVolume>100</usbTypeCMaxVolume>
+    <usb700_1MinVolume>0</usb700_1MinVolume>
+    <usb700_1MaxVolume>100</usb700_1MaxVolume>
+    <usb700_2MinVolume>0</usb700_2MinVolume>
+    <usb700_2MaxVolume>100</usb700_2MaxVolume>
+    <usb700_3MinVolume>0</usb700_3MinVolume>
+    <usb700_3MaxVolume>100</usb700_3MaxVolume>
+    <usb700_4MinVolume>0</usb700_4MinVolume>
+    <usb700_4MaxVolume>100</usb700_4MaxVolume>
+    <usb700_5MinVolume>0</usb700_5MinVolume>
+    <usb700_5MaxVolume>100</usb700_5MaxVolume>
+    <usb700_6MinVolume>0</usb700_6MinVolume>
+    <usb700_6MaxVolume>100</usb700_6MaxVolume>
+    <usb700_7MinVolume>0</usb700_7MinVolume>
+    <usb700_7MaxVolume>100</usb700_7MaxVolume>
+    <hdmiMinVolume>0</hdmiMinVolume>
+    <hdmiMaxVolume>100</hdmiMaxVolume>
+    <spdifMinVolume>0</spdifMinVolume>
+    <spdifMaxVolume>100</spdifMaxVolume>
+    <mediaListInactivityTimeoutIsGlobal>True</mediaListInactivityTimeoutIsGlobal>
+    <inactivityTimeout>False</inactivityTimeout>
+    <inactivityTime>30</inactivityTime>
+    <autoCreateMediaCounterVariables>False</autoCreateMediaCounterVariables>
+    <resetVariablesOnPresentationStart>False</resetVariablesOnPresentationStart>
+    <networkedVariablesUpdateInterval>300</networkedVariablesUpdateInterval>
+    <userDefinedEvents>
+    </userDefinedEvents>
+    <userVariables>
+    </userVariables>
+    <liveDataFeeds>
+    </liveDataFeeds>
+    <scriptPlugins>
+    </scriptPlugins>
+    <videoModePlugins>
+    </videoModePlugins>
+    <parserPlugins>
+    </parserPlugins>
+    <htmlSites>
+      <localHTMLSite>
+        <name>TouchFree Interactivity</name>
+        <queryString>
+          <parameterValue>
+            <parameterValueItemText>
+              <value />
+            </parameterValueItemText>
+          </parameterValue>
+        </queryString>
+        <filePath>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example\TouchFree_Interactivity.html</filePath>
+      </localHTMLSite>
+    </htmlSites>
+    <presentationIdentifiers>
+    </presentationIdentifiers>
+    <beacons>
+    </beacons>
+    <DirectoryLocations>
+      <AllFiles>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</AllFiles>
+      <Image>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</Image>
+      <Video>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</Video>
+      <Audio>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</Audio>
+      <Media>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</Media>
+      <Fonts>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</Fonts>
+      <HTML>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</HTML>
+      <PluginScriptsAutoruns>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</PluginScriptsAutoruns>
+      <CSV>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</CSV>
+      <RFChannelScan>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</RFChannelScan>
+      <Schedules>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</Schedules>
+      <ReplacementMedia>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</ReplacementMedia>
+      <UserVariables>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</UserVariables>
+      <XModemFiles>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</XModemFiles>
+      <ImportCommandFiles>C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example</ImportCommandFiles>
+    </DirectoryLocations>
+    <graphicsZOrder>Front</graphicsZOrder>
+    <isMosaic>False</isMosaic>
+  </meta>
+  <zones>
+    <zone>
+      <name>Video or Images</name>
+      <x>0</x>
+      <y>0</y>
+      <width>1920</width>
+      <height>1080</height>
+      <type>VideoOrImages</type>
+      <id>1</id>
+      <zoomValue>1</zoomValue>
+      <horizontalOffset>0</horizontalOffset>
+      <verticalOffset>0</verticalOffset>
+      <zoneSpecificParameters>
+        <viewMode>Letterboxed and Centered</viewMode>
+        <audioOutput>Analog Audio</audioOutput>
+        <audioMode>Multichannel Surround</audioMode>
+        <audioMapping>Audio-1</audioMapping>
+        <analogOutput>None</analogOutput>
+        <analog2Output>None</analog2Output>
+        <analog3Output>None</analog3Output>
+        <hdmiOutput>PCM</hdmiOutput>
+        <spdifOutput>None</spdifOutput>
+        <usbOutput>None</usbOutput>
+        <usbOutputA>None</usbOutputA>
+        <usbOutputB>None</usbOutputB>
+        <usbOutputC>None</usbOutputC>
+        <usbOutputD>None</usbOutputD>
+        <usbOutputTypeA>None</usbOutputTypeA>
+        <usbOutputTypeC>None</usbOutputTypeC>
+        <usbOutput700_1>None</usbOutput700_1>
+        <usbOutput700_2>None</usbOutput700_2>
+        <usbOutput700_3>None</usbOutput700_3>
+        <usbOutput700_4>None</usbOutput700_4>
+        <usbOutput700_5>None</usbOutput700_5>
+        <usbOutput700_6>None</usbOutput700_6>
+        <usbOutput700_7>None</usbOutput700_7>
+        <audioMixMode>Stereo</audioMixMode>
+        <videoVolume>100</videoVolume>
+        <audioVolume>100</audioVolume>
+        <minimumVolume>0</minimumVolume>
+        <maximumVolume>100</maximumVolume>
+        <liveVideoInput>S-Video</liveVideoInput>
+        <liveVideoStandard>NTSC-M</liveVideoStandard>
+        <brightness>128</brightness>
+        <contrast>64</contrast>
+        <saturation>64</saturation>
+        <hue>0</hue>
+        <zOrderFront>True</zOrderFront>
+        <mosaic>False</mosaic>
+        <maxContentResolution>_NotApplicable</maxContentResolution>
+        <imageMode>Scale to Fit</imageMode>
+      </zoneSpecificParameters>
+      <playlist>
+        <name>Playlist 0</name>
+        <type>interactive</type>
+        <states>
+          <initialState>Video1.mp4</initialState>
+          <state>
+            <name>Video1.mp4</name>
+            <x>160</x>
+            <y>69</y>
+            <width>114</width>
+            <height>97</height>
+            <id>0</id>
+            <videoItem>
+              <file name="Video1.mp4" suffix="" path="C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example\Video1.mp4" />
+              <fileIsLocal>True</fileIsLocal>
+              <volume>100</volume>
+              <videoDisplayMode>2D</videoDisplayMode>
+              <automaticallyLoop>True</automaticallyLoop>
+            </videoItem>
+            <brightSignExitCommands>
+            </brightSignExitCommands>
+            <notes />
+          </state>
+          <state>
+            <name>Video2.mp4</name>
+            <x>163</x>
+            <y>222</y>
+            <width>114</width>
+            <height>97</height>
+            <id>1</id>
+            <videoItem>
+              <file name="Video2.mp4" suffix="" path="C:\TouchFree-Tooling-Examples\Examples-BrightSign\Interactivity Example\Video2.mp4" />
+              <fileIsLocal>True</fileIsLocal>
+              <volume>100</volume>
+              <videoDisplayMode>2D</videoDisplayMode>
+              <automaticallyLoop>True</automaticallyLoop>
+            </videoItem>
+            <brightSignExitCommands>
+            </brightSignExitCommands>
+            <notes />
+          </state>
+          <transition>
+            <sourceMediaState>Video1.mp4</sourceMediaState>
+            <userEvent>
+              <name>udp</name>
+              <parameters>
+                <parameter>nextClicked</parameter>
+                <label>Next Clicked</label>
+                <export>True</export>
+              </parameters>
+            </userEvent>
+            <targetMediaState>Video2.mp4</targetMediaState>
+            <remainOnCurrentStateActions>None</remainOnCurrentStateActions>
+            <displayMode>displayConnectingLine</displayMode>
+            <labelLocation>bottom</labelLocation>
+            <assignInputToUserVariable>False</assignInputToUserVariable>
+            <assignWildcardToUserVariable>False</assignWildcardToUserVariable>
+          </transition>
+          <transition>
+            <sourceMediaState>Video2.mp4</sourceMediaState>
+            <userEvent>
+              <name>udp</name>
+              <parameters>
+                <parameter>nextClicked</parameter>
+                <label>Next Clicked</label>
+                <export>True</export>
+              </parameters>
+            </userEvent>
+            <targetMediaState>Video1.mp4</targetMediaState>
+            <remainOnCurrentStateActions>None</remainOnCurrentStateActions>
+            <displayMode>displayLabel</displayMode>
+            <labelLocation>bottom</labelLocation>
+            <assignInputToUserVariable>False</assignInputToUserVariable>
+            <assignWildcardToUserVariable>False</assignWildcardToUserVariable>
+          </transition>
+        </states>
+      </playlist>
+    </zone>
+    <zone>
+      <name>HTML Zone</name>
+      <x>960</x>
+      <y>0</y>
+      <width>960</width>
+      <height>1079</height>
+      <type>Images</type>
+      <id>2</id>
+      <zoomValue>1</zoomValue>
+      <horizontalOffset>0</horizontalOffset>
+      <verticalOffset>0</verticalOffset>
+      <zoneSpecificParameters>
+        <imageMode>Scale to Fit</imageMode>
+      </zoneSpecificParameters>
+      <playlist>
+        <name>Playlist 1</name>
+        <type>interactive</type>
+        <states>
+          <initialState>TouchFree Interactivity</initialState>
+          <state>
+            <name>TouchFree Interactivity</name>
+            <x>478</x>
+            <y>122</y>
+            <width>114</width>
+            <height>97</height>
+            <id>0</id>
+            <html5Item>
+              <name>TouchFree Interactivity</name>
+              <htmlSiteName>TouchFree Interactivity</htmlSiteName>
+              <enableExternalData>True</enableExternalData>
+              <enableCamera>False</enableCamera>
+              <enableMouseEvents>True</enableMouseEvents>
+              <displayCursor>False</displayCursor>
+              <hwzOn>True</hwzOn>
+              <enableScrollBars>False</enableScrollBars>
+              <useUserStylesheet>False</useUserStylesheet>
+              <userStylesheet />
+              <timeOnScreen>0</timeOnScreen>
+            </html5Item>
+            <brightSignExitCommands>
+            </brightSignExitCommands>
+            <notes />
+          </state>
+        </states>
+      </playlist>
+    </zone>
+  </zones>
+</BrightAuthor>
