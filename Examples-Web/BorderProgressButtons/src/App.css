@@ -1,0 +1,41 @@
+.App {
+  height: 100vh;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+
+.button {
+  position: relative;
+  border: "2px solid white";
+}
+
+.button::before,
+.button::after {
+  position: absolute;
+  content: "";
+}
+
+.button::before {
+  top: 0;
+  left: 0;
+  width: var(--left-width);
+  height: var(--left-height);
+  border-left: var(--border-style);
+  border-top: var(--border-style);
+  border-top-left-radius: 10px;
+}
+
+.button::after {
+  bottom: 0;
+  right: 0;
+  width: var(--right-width);
+  height: var(--right-height);
+  border-right: var(--border-style);
+  border-bottom: var(--border-style);
+  border-bottom-right-radius: 10px;
+}
