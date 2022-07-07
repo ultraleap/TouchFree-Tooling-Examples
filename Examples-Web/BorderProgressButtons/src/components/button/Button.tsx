@@ -7,6 +7,14 @@ export default function Button(props: ButtonProps) {
     // ================================= States =================================
     const [style, setStyle] = useState(defaultButtonStyle);
     const [isMouseOver, setIsMouseOver] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+
+    const setDefaultStyle = () => {
+        setStyle({
+            ...defaultButtonStyle,
+            backgroundColor: colour,
+        });
+    };
 
     // ============================= Event Handlers =============================
     const mouseEvents = {
@@ -17,11 +25,17 @@ export default function Button(props: ButtonProps) {
 
         onPointerLeave: () => {
             setIsMouseOver(false);
-            setStyle({
-                ...defaultButtonStyle,
-                backgroundColor: colour,
-                transform: "scale(1)",
-            });
+            setDefaultStyle();
+        },
+
+        onPointerUp: () => {
+            setIsClicked(true);
+            setDefaultStyle();
+            clickCallback(colour);
+        },
+
+        onPointerDown: () => {
+            setIsClicked(false);
         },
     };
 
@@ -33,27 +47,27 @@ export default function Button(props: ButtonProps) {
     }, [colour]);
 
     useEffect(() => {
-        if (progressToClick === 0 || !isMouseOver) {
-            setStyle({
-                ...defaultButtonStyle,
-                backgroundColor: colour,
-            });
+        if (progressToClick < 0.05 || !isMouseOver) {
+            setIsClicked(false);
+            setDefaultStyle();
+            return;
+        }
+
+        if (isClicked) {
+            setDefaultStyle();
             return;
         }
 
         setStyle((s) => ({
             ...s,
-            "--left-width": `${progressToClick * 100 - 3}%`,
-            "--right-width": `${progressToClick * 100 - 3}%`,
-            "--left-height": `${progressToClick * 100 - 6}%`,
-            "--right-height": `${progressToClick * 100 - 6}%`,
+            "--left-width": `${progressToClick * 100 - 2}%`,
+            "--right-width": `${progressToClick * 100 - 2}%`,
+            "--left-height": `${progressToClick * 100 - 3}%`,
+            "--right-height": `${progressToClick * 100 - 3}%`,
             "--border-style": "3px solid black",
             transform: `scale(${1.2 - progressToClick / 2})`,
         }));
 
-        if (progressToClick === 1) {
-            clickCallback(colour);
-        }
         // eslint-disable-next-line
     }, [progressToClick]);
 
