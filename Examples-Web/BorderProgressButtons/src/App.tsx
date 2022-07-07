@@ -19,7 +19,7 @@ export default function App() {
         setAppStyle((s) => ({ ...s, backgroundColor: darken(colour, 80) }));
     };
 
-    const handleTF = (inputAction: CustomEvent) => {
+    const handleTouchFree = (inputAction: CustomEvent) => {
         const { ProgressToClick } = inputAction.detail;
         if (ProgressToClick) {
             setProgressToClick(ProgressToClick);
@@ -28,12 +28,13 @@ export default function App() {
 
     // ================================ Effects ================================
     useEffect(() => {
+        document.body.style.overflow = "hidden";
         addTouchFreeCursor();
         const controller = new TouchFree.InputControllers.WebInputController();
 
         TouchFree.Plugins.InputActionManager._instance.addEventListener(
             "TransmitInputAction",
-            handleTF,
+            handleTouchFree,
             false
         );
 
@@ -44,27 +45,31 @@ export default function App() {
 
     return (
         <div className="App" style={appStyle}>
-            <div className="button-container">
-                <Button
-                    progressToClick={progressToClick}
-                    colour="#2a9d8f"
-                    clickCallback={onClick}
-                />
-                <Button
-                    progressToClick={progressToClick}
-                    colour="#e9c46a"
-                    clickCallback={onClick}
-                />
-                <Button
-                    progressToClick={progressToClick}
-                    colour="#f4a261"
-                    clickCallback={onClick}
-                />
-                <Button
-                    progressToClick={progressToClick}
-                    colour="#e76f51"
-                    clickCallback={onClick}
-                />
+            <div className="button-col">
+                <div className="button-row">
+                    <Button
+                        progressToClick={progressToClick}
+                        colour="#2a9d8f"
+                        clickCallback={onClick}
+                    />
+                    <Button
+                        progressToClick={progressToClick}
+                        colour="#e9c46a"
+                        clickCallback={onClick}
+                    />
+                </div>
+                <div className="button-row">
+                    <Button
+                        progressToClick={progressToClick}
+                        colour="#f4a261"
+                        clickCallback={onClick}
+                    />
+                    <Button
+                        progressToClick={progressToClick}
+                        colour="#e76f51"
+                        clickCallback={onClick}
+                    />
+                </div>
             </div>
         </div>
     );
