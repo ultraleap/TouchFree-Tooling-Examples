@@ -11,15 +11,15 @@ const defaultAppStyle = {
 
 export default function App() {
     // ================================= States =================================
-    const [progressToClick, setProgressToClick] = useState(0);
+    const [progressToClick, setProgressToClick] = useState<number>(0);
     const [appStyle, setAppStyle] = useState(defaultAppStyle);
 
     // ============================= Event Handlers =============================
-    const onClick = (colour: string) => {
+    const onClick = (colour: string): void => {
         setAppStyle((s) => ({ ...s, backgroundColor: darken(colour, 80) }));
     };
 
-    const handleTouchFree = (inputAction: CustomEvent) => {
+    const handleTouchFree = (inputAction: CustomEvent): void => {
         const { ProgressToClick } = inputAction.detail;
         if (ProgressToClick) {
             setProgressToClick(ProgressToClick);
