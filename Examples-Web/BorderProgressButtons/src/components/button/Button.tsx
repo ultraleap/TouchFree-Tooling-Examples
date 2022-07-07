@@ -71,5 +71,5 @@ export default function Button(props: ButtonProps) {
         // eslint-disable-next-line
     }, [progressToClick]);
 
-    return <div className="button" style={style} {...mouseEvents} />;
+    return <button className="button" style={style} {...mouseEvents} />;
 }
