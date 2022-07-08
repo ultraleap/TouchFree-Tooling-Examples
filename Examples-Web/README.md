@@ -17,16 +17,25 @@ These examples are best viewed fullscreen.
 These examples show button styles that provide visual feedback showing when and where the user is going to interact with the UI. This is achieved through animation applied to the button that reacts to the `ProgressToClick` value provided by TouchFree. The result is a UI that feels connected to the movement of your hand.
 
 ### Circular Progress Animation
+
 ![Animated Buttons Showing Progress To Click As Expanding Circle](Media/CircularProgressExample.gif)
 
 Recommended Interaction: AirPush
 
 ### Linear Progress Animation
+
 ![Animated Buttons Showing Progress To Click As Linear Fill](Media/LinearProgressExample.gif)
 
 Recommended Interaction: Hover & Hold
 
 ### Wave Progress Animation
+
 ![Animated Buttons Showing Progress To Click As A Wave Fill](WaveProgressButton/public/media/wave-fill.gif)
 
 Recommended Interaction: Hover & Hold
+
+### Border Progress Animation
+
+![Animated Buttons Showing Progress To Click As a Gradually Completed Border](BorderProgressButtons/public/BorderProgressExample.gif)
+
+Recommended Interaction: AirPush
