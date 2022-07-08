@@ -6,7 +6,7 @@ export interface ButtonProps {
     colour?: string;
 }
 
-interface customCSS extends CSSProperties {
+interface CustomCSS extends CSSProperties {
     "--left-width"?: string;
     "--left-height"?: string;
     "--right-width"?: string;
@@ -17,7 +17,7 @@ interface customCSS extends CSSProperties {
 const heightPx = 100;
 const widthPx = 200;
 
-export const defaultButtonStyle: customCSS = {
+export const defaultButtonStyle: CustomCSS = {
     height: `${heightPx}px`,
     width: `${widthPx}px`,
     border: 0,
