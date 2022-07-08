@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ButtonProps, defaultButtonStyle } from "./types";
 
 export default function Button(props: ButtonProps) {
@@ -9,12 +9,12 @@ export default function Button(props: ButtonProps) {
     const [isMouseOver, setIsMouseOver] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
 
-    const setDefaultStyle = () => {
-        setStyle({
-            ...defaultButtonStyle,
-            backgroundColor: colour,
-        });
-    };
+    const setDefaultStyle = useCallback(() => {
+            setStyle({
+                ...defaultButtonStyle,
+                backgroundColor: colour,
+            });
+        }, [colour]);
 
     // ============================= Event Handlers =============================
     const mouseEvents = {
@@ -67,9 +67,7 @@ export default function Button(props: ButtonProps) {
             "--border-style": "3px solid black",
             transform: `scale(${1.2 - progressToClick / 2})`,
         }));
-
-        // eslint-disable-next-line
-    }, [progressToClick]);
+    }, [progressToClick, isClicked, isMouseOver, setDefaultStyle]);
 
     return <button className="button" style={style} {...mouseEvents} />;
 }
