@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script name="TouchFree" type="text/javascript" src="TouchFree_Tooling.js"></script>
+    <script name="TouchFree" type="text/javascript">
+        window.onload = function () {
+            TouchFree.Connection.ConnectionManager.init();
+            var inputSystem = new TouchFree.InputControllers.WebInputController();
+        }
+
+        var bsSocket;
+        try {
+            bsSocket = new BSDatagramSocket();
+        }
+        catch {
+            console.log("BrightSign not available");
+        }
+
+        touchFreeEvent = function (valueToSend) {
+            console.log(valueToSend);
+
+            if (bsSocket) {
+                bsSocket.SendTo('127.0.0.1', '5000', valueToSend);
+            }
+        }
+
+        nextClicked = function () {
+            touchFreeEvent('nextClicked');
+        }
+
+        nextHovered = function (buttonElement) {
+            if (!buttonElement.classList.contains('hovered')) {
+                buttonElement.classList.add('hovered');
+            }
+        }
+
+        nextUnhovered = function (buttonElement) {
+            if (buttonElement.classList.contains('hovered')) {
+                buttonElement.classList.remove('hovered');
+            }
+        }
+    </script>
+
+    <style>
+        .hovered {
+            background-color: darkgrey;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="height:300px;width:100vw">
+        <button style="margin-left:75%; height:100%; width:20%"
+            onpointerup="nextClicked()"
+            onpointerenter="nextHovered(this)"
+            onpointerleave="nextUnhovered(this)">
+            Next Video
+        </button>
+    </div>
+</body>
+
+</html>
