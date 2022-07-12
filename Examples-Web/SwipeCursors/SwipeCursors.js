@@ -72,8 +72,8 @@ class SwipeChevrons
  
             this.DrawCursorRing(params);
         }
-
-        this.previousAction = structuredClone(inputAction.detail);
+        
+        this.previousAction = Object.assign({}, inputAction.detail);
     }
 
     DrawCursorRing(params)
