@@ -1,0 +1,60 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "airbnb",
+        "airbnb-typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".ts", ".tsx"],
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
+    },
+    "plugins": ["react", "@typescript-eslint"],
+    "ignorePatterns": ["src/TouchFree"],
+    "rules": {
+        "indent": "off",
+        "@typescript-eslint/indent": "off",
+        "linebreak-style": ["error", "windows"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "max-len": ["error", { "code": 120 }],
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+        "@typescript-eslint/ban-types": [
+            "error",
+            {
+                "types": {
+                    "{}": false
+                },
+                "extendDefaults": true
+            }
+        ],
+        "import/extensions": "off",
+        "no-console": "off",
+        "react/jsx-indent": "off",
+        "react/button-has-type": "off",
+        "no-new": "off",
+        "@typescript-eslint/comma-dangle": "off"
+    }
+}
