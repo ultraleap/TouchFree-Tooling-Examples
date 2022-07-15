@@ -22,6 +22,7 @@ class SwipeChevrons
         this.ctx = this.canvas.getContext("2d");
         this.previousAction = null;
         this.maxVelocity = 8000;
+        this.velocity = [0,0];
     }
 
     CreateCursor(){
@@ -61,16 +62,23 @@ class SwipeChevrons
             this.canvas.style.top = (inputAction.detail.CursorPosition[1] - (this.canvas.height / 2)) + "px";
             
             let duration = this.previousAction === null ? 0 : inputAction.detail.Timestamp - this.previousAction.Timestamp;
-            let velocityX = this.previousAction === null ? 0 : (inputAction.detail.CursorPosition[0] - this.previousAction.CursorPosition[0]) / duration;
-            let velocityY = this.previousAction === null ? 0 : (inputAction.detail.CursorPosition[1] - this.previousAction.CursorPosition[1]) / duration;
-            
+            if (duration > 0)
+            {
+                let velocityX = this.previousAction === null ? 0 : (inputAction.detail.CursorPosition[0] - this.previousAction.CursorPosition[0]) / duration;
+                let velocityY = this.previousAction === null ? 0 : (inputAction.detail.CursorPosition[1] - this.previousAction.CursorPosition[1]) / duration;
+                this.velocity[0] += velocityX;
+                this.velocity[1] += velocityY;
+    
+            }
             let params = {
                 ProgressToClick: inputAction.detail.ProgressToClick,
-                velocityX: velocityX,
-                velocityY: velocityY
+                velocityX: this.velocity[0],
+                velocityY: this.velocity[1],
             }
- 
+
             this.DrawCursorRing(params);
+            this.velocity[0] *= 0.5;
+            this.velocity[1] *= 0.5;
         }
         
         this.previousAction = Object.assign({}, inputAction.detail);
@@ -84,22 +92,35 @@ class SwipeChevrons
         // Draw the ring cursor
         this.ctx.beginPath();
         this.ctx.strokeStyle = "#FFFFFF40";
-        this.ctx.lineWidth = 10 + ((params.velocityX * this.maxVelocity) * 0.5);
-        // this.ctx.arc(this.canvas.width / 2, this.canvas.height / 2, 50, 0, 2 * Math.PI);
-        
+        this.ctx.lineCap = 'round';
+
         let mag = Math.sqrt((params.velocityX * params.velocityX) + (params.velocityY * params.velocityY));
         let dot = params.velocityX;
         let angle = params.velocityY > 0 ? Math.acos((dot / mag)): (Math.PI * 2) - Math.acos((dot / mag));
         let spread = Math.min((mag / this.maxVelocity) * 1000000 * Math.PI, 0.45 * Math.PI);
         
-        this.ctx.arc(this.canvas.width / 2, this.canvas.height / 2, 75, angle - Math.max(0.25,spread), angle + Math.max(0.25,spread));
-        this.ctx.stroke();
-        this.ctx.closePath();
-        this.ctx.beginPath();
-        this.ctx.strokeStyle = "#00EEFF80";
+        let x = (this.canvas.width / 2) + (params.velocityX * this.maxVelocity);
+        let y = (this.canvas.height / 2) + (params.velocityY * this.maxVelocity);
+        
+        if (!this.dragging)
+        {
+            this.ctx.lineWidth = ((mag * this.maxVelocity) * 0.5);
+            this.ctx.arc(this.canvas.width / 2, this.canvas.height / 2, 75, angle - Math.max(0.25,spread), angle + Math.max(0.25,spread));
+            this.ctx.stroke();
+            
+            this.ctx.closePath();
+            this.ctx.beginPath();
 
-        this.ctx.lineWidth = (params.ProgressToClick + 1) * 5;
-        this.ctx.arc((this.canvas.width / 2) + (params.velocityX * this.maxVelocity), (this.canvas.height / 2) + (params.velocityY * this.maxVelocity), 15, 0, 2 * Math.PI);
+            this.ctx.strokeStyle = "#00EEFF80";
+            this.ctx.lineWidth = (params.ProgressToClick + 1) * 5;
+
+            this.ctx.arc(x, y, 15, angle - (Math.PI * 0.5), angle + (Math.PI * 0.5));
+            this.ctx.ellipse(x, y, 15 + Math.abs(mag * this.maxVelocity * 0.5), 15, angle, (Math.PI * 0.5), -(Math.PI * 0.5));
+        }
+        else
+        {
+            this.ctx.arc(x, y, 15, 0, (Math.PI * 2));
+        }
 
         this.ctx.shadowBlur = 10;
         this.ctx.shadowColor = '#FFFFFF80';
