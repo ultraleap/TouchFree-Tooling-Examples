@@ -14,10 +14,7 @@ class WebClickScrollInputController extends TouchFree.InputControllers.WebInputC
         this.scrollTopDownPos;
         this.scrollDownHandler;
 
-        this.primedForUpEvent = false;
-        this.progressToClickUpDispatch = 0.5;
         this.scrollDistanceThreshold = 25;
-        this.downEventTimestamp;
 
         TouchFree.Connection.ConnectionManager.AddConnectionListener(() => {
             TouchFree.Configuration.ConfigurationManager.RequestConfigState(function(state) {
@@ -40,10 +37,6 @@ class WebClickScrollInputController extends TouchFree.InputControllers.WebInputC
     }
 
     HandleInputActionPush(_inputData, elementAtPos) {
-        if (this.primedForUpEvent && _inputData.ProgressToClick < this.progressToClickUpDispatch) {
-            this.dispatchUp(elementAtPos);
-        }
-
         switch (_inputData.InputType) {
             case TouchFree.TouchFreeToolingTypes.InputType.CANCEL:
                 let cancelEvent = new PointerEvent("pointercancel", this.activeEventProps);
@@ -66,19 +59,11 @@ class WebClickScrollInputController extends TouchFree.InputControllers.WebInputC
             case TouchFree.TouchFreeToolingTypes.InputType.DOWN:
                 let downEvent = new PointerEvent("pointerdown", this.activeEventProps);
                 this.DispatchToTarget(downEvent, elementAtPos);
-                this.downEventTimestamp = _inputData.Timestamp;
                 this.pointerDownElement = elementAtPos;
                 this.cancelUpDueToScrolling = false;
-                this.primedForUpEvent = false;
                 break;
             case TouchFree.TouchFreeToolingTypes.InputType.UP:
-                // TouchFree service PUSH interaction will produce an UP event after a 1500ms timeout.
-                // Ensure we pass on the UP event in this case, rather than priming until progressToClickUpDispatch is reached.
-                if (_inputData.Timestamp - this.downEventTimestamp > 1.49e6) {
-                    this.dispatchUp(elementAtPos);
-                    break;
-                }
-                this.primedForUpEvent = true;
+                this.dispatchUp(elementAtPos);
                 break;
         }
     }
@@ -124,8 +109,6 @@ class WebClickScrollInputController extends TouchFree.InputControllers.WebInputC
     }
 
     dispatchUp(elementAtPos) {
-        this.primedForUpEvent = false;
-
         let upEvent = new PointerEvent("pointerup", this.activeEventProps);
         this.DispatchToTarget(upEvent, elementAtPos);
         if (!this.cancelUpDueToScrolling) {
