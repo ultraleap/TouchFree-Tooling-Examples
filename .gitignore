@@ -51,4 +51,4 @@ AssetDirStat.asset
 # ================ #
 #  npm generated   #
 # ================ #
-node_modules
+/node_modules

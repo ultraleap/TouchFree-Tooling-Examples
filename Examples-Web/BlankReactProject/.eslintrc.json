@@ -3,13 +3,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
-        "airbnb",
-        "airbnb-typescript"
-    ],
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:react/recommended"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
@@ -30,12 +24,11 @@
             }
         }
     },
-    "plugins": ["react", "@typescript-eslint"],
+    "plugins": ["react", "@typescript-eslint", "no-relative-import-paths"],
     "ignorePatterns": ["src/TouchFree"],
     "rules": {
         "indent": "off",
-        "@typescript-eslint/indent": "off",
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": "off",
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "max-len": ["error", { "code": 120 }],
@@ -50,11 +43,7 @@
                 "extendDefaults": true
             }
         ],
-        "import/extensions": "off",
-        "no-console": "off",
-        "react/jsx-indent": "off",
-        "react/button-has-type": "off",
-        "no-new": "off",
-        "@typescript-eslint/comma-dangle": "off"
+        "@typescript-eslint/no-empty-interface": "warn",
+        "no-relative-import-paths/no-relative-import-paths": ["error", { "allowSameFolder": true, "rootDir": "src" }]
     }
 }
