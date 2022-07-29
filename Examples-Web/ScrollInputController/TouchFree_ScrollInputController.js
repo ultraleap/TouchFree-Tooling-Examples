@@ -29,14 +29,6 @@ class WebClickScrollInputController extends TouchFree.InputControllers.WebInputC
         this.activeEventProps.clientX = invertedCursorPos[0];
         this.activeEventProps.clientY = invertedCursorPos[1];
 
-        if (this.interactionType == InteractionType.PUSH) {
-            this.HandleInputActionPush(_inputData, elementAtPos);
-        } else {
-            this.HandleInputActionDefault(_inputData, elementAtPos);
-        }
-    }
-
-    HandleInputActionPush(_inputData, elementAtPos) {
         switch (_inputData.InputType) {
             case TouchFree.TouchFreeToolingTypes.InputType.CANCEL:
                 let cancelEvent = new PointerEvent("pointercancel", this.activeEventProps);
@@ -64,46 +56,6 @@ class WebClickScrollInputController extends TouchFree.InputControllers.WebInputC
                 break;
             case TouchFree.TouchFreeToolingTypes.InputType.UP:
                 this.dispatchUp(elementAtPos);
-                break;
-        }
-    }
-
-    HandleInputActionDefault(_inputData, elementAtPos) {
-        switch (_inputData.InputType) {
-            case TouchFree.TouchFreeToolingTypes.InputType.CANCEL:
-                let cancelEvent = new PointerEvent("pointercancel", this.activeEventProps);
-                if (elementAtPos !== null) {
-                    let parentTree = this.GetOrderedParents(elementAtPos);
-                    parentTree.forEach((parent) => {
-                        if (parent !== null) {
-                            parent.dispatchEvent(cancelEvent);
-                        }
-                    });
-                }
-                if (this.pointerDownElement !== null) {
-                    this.pointerDownElement.dispatchEvent(cancelEvent);
-                    this.pointerDownElement = null;
-                }
-                break;
-            case TouchFree.TouchFreeToolingTypes.InputType.MOVE:
-                this.HandleMove(elementAtPos);
-                break;
-            case TouchFree.TouchFreeToolingTypes.InputType.DOWN:
-                let downEvent = new PointerEvent("pointerdown", this.activeEventProps);
-                this.DispatchToTarget(downEvent, elementAtPos);
-                this.pointerDownElement = elementAtPos;
-                this.cancelUpDueToScrolling = false;
-                break;
-            case TouchFree.TouchFreeToolingTypes.InputType.UP:
-                let upEvent = new PointerEvent("pointerup", this.activeEventProps);
-                this.DispatchToTarget(upEvent, elementAtPos);
-                if (!this.cancelUpDueToScrolling) {
-                    if (elementAtPos !== null) {
-                        let clickEvent = new PointerEvent("click", this.activeEventProps);
-                        this.DispatchToTarget(clickEvent, elementAtPos);
-                    }
-                }
-                this.cancelUpDueToScrolling = false;
                 break;
         }
     }
