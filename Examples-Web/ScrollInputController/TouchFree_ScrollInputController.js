@@ -104,7 +104,7 @@ class WebClickScrollInputController extends TouchFree.InputControllers.WebInputC
         this.scrollTarget = elementToScroll;
         document.addEventListener("pointermove", this.globalScrollMove);
         document.addEventListener("pointerup", this.globalScrollUp);
-        document.addEventListener("cancel", this.globalScrollCancel);
+        document.addEventListener("pointercancel", this.globalScrollCancel);
     }
 
     globalScrollMove = (e) => {
