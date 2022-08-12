@@ -6,7 +6,7 @@ import { ConnectionManager } from 'TouchFree/Connection/ConnectionManager';
 // observed for specified timeout in milliseconds.
 // ConnectionManager.init() must be called before this hook.
 const useIdleTimeout = (timeoutMs: number): boolean => {
-    const [isIdle, setIsIdle] = React.useState<boolean>(false);
+    const [isIdle, setIsIdle] = React.useState<boolean>(true);
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;

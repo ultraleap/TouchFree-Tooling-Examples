@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import CursorManager from 'Components/CursorManager';
 import IdleOverlay from 'Components/IdleOverlay';
-import UseIdleTimeout from 'Hooks/IdleTimeout';
+import useIdleTimeout from 'Hooks/IdleTimeout';
 
 import { ConnectionManager } from './TouchFree/Connection/ConnectionManager';
 import { WebInputController } from './TouchFree/InputControllers/WebInputController';
@@ -22,7 +22,7 @@ const App = () => {
     }, []);
 
     // Must be called after ConnectionManager.init()
-    const isIdle = UseIdleTimeout(10000);
+    const isIdle = useIdleTimeout(3000);
 
     return (
         <div className="app">
