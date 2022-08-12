@@ -1,0 +1,16 @@
+{
+    "singleQuote": true,
+    "tabWidth": 4,
+    "endOfLine": "crlf",
+    "printWidth": 120,
+    "importOrder": [
+        "(.*).(scss|css)$",
+        "(.*)react(.*)",
+        "index",
+        "^TouchFree/(.*)",
+        "^(Videos|Images)/(.*)",
+        "^(Components/|Hooks/)(.*)",
+        "^[./]"
+    ],
+    "importOrderSeparation": true
+}
