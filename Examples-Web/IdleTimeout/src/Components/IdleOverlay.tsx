@@ -1,20 +1,44 @@
 import './IdleOverlay.scss';
 
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
+
+import { AppState } from 'Hooks/IdleTimeout';
 
 interface IdleOverlayProps {
-    state: 'Idle' | 'Inactive';
+    state: AppState;
 }
 
+const reducer = (_current: JSX.Element, state: AppState) => {
+    switch (state) {
+        case 'Idle':
+            return (
+                <div className="overlay" style={{ backgroundColor: 'rgba(0,0,0,0.95)' }}>
+                    <div className="overlay-content" style={{ display: 'flex' }}>
+                        <h1 style={{ color: 'white' }}>Experience touchless interaction</h1>
+                    </div>
+                </div>
+            );
+        case 'Active':
+            return (
+                <div className="overlay" style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
+                    <div className="overlay-content" style={{ display: 'none' }}>
+                        <h1 style={{ color: 'white' }}>Experience touchless interaction</h1>
+                    </div>
+                </div>
+            );
+        default:
+            throw new Error('Overlay state not handled');
+    }
+};
+
 const IdleOverlay: React.FC<IdleOverlayProps> = ({ state }) => {
-    const backgroundColor = `rgb(0, 0, 0, ${state === 'Idle' ? 0.95 : 0})`;
-    return (
-        <div className="overlay" style={{ backgroundColor: backgroundColor }}>
-            <div className="overlay-content" style={{ display: state === 'Idle' ? 'flex' : 'none' }}>
-                <h1 style={{ color: 'white' }}>Experience touchless interaction</h1>
-            </div>
-        </div>
-    );
+    const [displayState, dispatch] = useReducer(reducer, <></>);
+
+    useEffect(() => {
+        dispatch(state);
+    }, [state]);
+
+    return displayState;
 };
 
 export default IdleOverlay;

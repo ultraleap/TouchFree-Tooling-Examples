@@ -22,16 +22,12 @@ const App = () => {
     }, []);
 
     // Must be called after ConnectionManager.init()
-    const isIdle = useIdleTimeout(3000);
+    const appState = useIdleTimeout(3000);
 
     return (
         <div className="app">
-            <IdleOverlay state={isIdle ? 'Idle' : 'Inactive'} />
-            <h1>
-                Blank React App
-                <br />
-                featuring Touch Free Cursor
-            </h1>
+            <IdleOverlay state={appState} />
+            <h1>TouchFree Application</h1>
         </div>
     );
 };

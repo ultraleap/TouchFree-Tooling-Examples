@@ -2,18 +2,21 @@ import React, { useEffect } from 'react';
 
 import { ConnectionManager } from 'TouchFree/Connection/ConnectionManager';
 
-// Custom hook which will return true when no hands have been
-// observed for specified timeout in milliseconds.
+export type AppState = 'Idle' | 'Active';
+
+// Custom hook which will return app state based on hand presence.
+// If no hands have been observed for specified timeout in milliseconds
+// the state will be idle.
 // ConnectionManager.init() must be called before this hook.
-const useIdleTimeout = (timeoutMs: number): boolean => {
-    const [isIdle, setIsIdle] = React.useState<boolean>(true);
+const useIdleTimeout = (timeoutMs: number): AppState => {
+    const [appState, setAppState] = React.useState<AppState>('Idle');
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
-        const timeoutFunction = () => setIsIdle(true);
+        const timeoutFunction = () => setAppState('Idle');
         const handFoundCallback = () => {
             clearTimeout(timeoutId);
-            setIsIdle(false);
+            setAppState('Active'); // Improvement: pass in another function which determines the app state when not idle
         };
         const handLostCallback = () => {
             timeoutId = setTimeout(timeoutFunction, timeoutMs);
@@ -27,7 +30,7 @@ const useIdleTimeout = (timeoutMs: number): boolean => {
         };
     }, [timeoutMs]);
 
-    return isIdle;
+    return appState;
 };
 
 export default useIdleTimeout;
