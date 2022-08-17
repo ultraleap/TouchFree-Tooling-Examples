@@ -9,26 +9,13 @@ interface IdleOverlayProps {
 }
 
 const reducer = (_current: JSX.Element, state: AppState) => {
-    switch (state) {
-        case 'Idle':
-            return (
-                <div className="overlay" style={{ backgroundColor: 'rgba(0,0,0,0.95)' }}>
-                    <div className="overlay-content" style={{ display: 'flex' }}>
-                        <h1 style={{ color: 'white' }}>Experience touchless interaction</h1>
-                    </div>
-                </div>
-            );
-        case 'Active':
-            return (
-                <div className="overlay" style={{ backgroundColor: 'rgba(0,0,0,0)' }}>
-                    <div className="overlay-content" style={{ display: 'none' }}>
-                        <h1 style={{ color: 'white' }}>Experience touchless interaction</h1>
-                    </div>
-                </div>
-            );
-        default:
-            throw new Error('Overlay state not handled');
-    }
+    return (
+        <div className={`overlay${state === 'Idle' ? ' overlay-idle' : ''}`}>
+            <div className="overlay-content">
+                <h1 style={{ color: 'white' }}>Experience touchless interaction</h1>
+            </div>
+        </div>
+    );
 };
 
 const IdleOverlay: React.FC<IdleOverlayProps> = ({ state }) => {
