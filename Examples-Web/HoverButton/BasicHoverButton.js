@@ -12,7 +12,7 @@ window.onload = function () {
         // When the cursor enters the button then call onHover
         element.addEventListener("pointerenter", () => onHover(element));
         // When the cursor leaves the button then call onHover
-        element.addEventListener("pointerleave", () => onDehover(element));
+        element.addEventListener("pointerleave", () => onUnhover(element));
 
         element.addEventListener("pointerdown", () => onDown(element));
         element.addEventListener("pointerup", () => onUp(element));
@@ -24,7 +24,7 @@ const onHover = (element) => {
     element.classList.add("button--hovered");
 };
 
-const onDehover = (element) => {
+const onUnhover = (element) => {
     // Remove "button-hovered" class to the button
     element.classList.remove("button--hovered");
 };
