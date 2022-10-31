@@ -12,6 +12,14 @@ Wave Progress Button is set up slightly differently as it is a react app. The Wa
 
 These examples are best viewed fullscreen.
 
+## Hover Buttons
+
+This example shows you the most basic way to add hover states to your UI using `pointerEnter` and `pointerExit` events.
+
+![Hover Button Example](Media/HoverButtonExample.gif)
+
+Recommended Interaction: AirPush
+
 ## Animated Progress Buttons
 
 These examples show button styles that provide visual feedback showing when and where the user is going to interact with the UI. This is achieved through animation applied to the button that reacts to the `ProgressToClick` value provided by TouchFree. The result is a UI that feels connected to the movement of your hand.
