@@ -11,7 +11,7 @@ window.onload = function () {
         const element = buttons[i];
         // When the cursor enters the button then call onHover
         element.addEventListener("pointerenter", () => onHover(element));
-        // When the cursor leaves the button then call onHover
+        // When the cursor leaves the button then call onUnhover
         element.addEventListener("pointerleave", () => onUnhover(element));
 
         element.addEventListener("pointerdown", () => onDown(element));
