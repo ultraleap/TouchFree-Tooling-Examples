@@ -1,0 +1,8 @@
+{
+  "name": "touchfree-workspaces",
+  "workspaces": [
+    "./TouchFree/TF_Tooling_Web",
+    "./Examples-Web/BorderProgressButtons"
+  ],
+  "private": true
+}
