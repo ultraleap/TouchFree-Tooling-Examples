@@ -2,26 +2,17 @@ import './App.scss';
 
 import { useEffect } from 'react';
 
-import CursorManager from 'Components/CursorManager';
+import TouchFree from 'TouchFree/src/TouchFree';
+
 import IdleOverlay from 'Components/IdleOverlay';
 import useIdleTimeout from 'Hooks/IdleTimeout';
 
-import { ConnectionManager } from './TouchFree/Connection/ConnectionManager';
-import { WebInputController } from './TouchFree/InputControllers/WebInputController';
-
 const App = () => {
     useEffect(() => {
-        ConnectionManager.init();
-        const controller: WebInputController = new WebInputController();
-
-        new CursorManager();
-
-        return () => {
-            controller.disconnect();
-        };
+        TouchFree.Init();
     }, []);
 
-    // Must be called after ConnectionManager.init()
+    // Must be called after TouchFree.init()
     const appState = useIdleTimeout(3000);
 
     return (

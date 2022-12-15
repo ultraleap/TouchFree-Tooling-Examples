@@ -2,7 +2,8 @@
   "name": "touchfree-workspaces",
   "workspaces": [
     "./TouchFree/TF_Tooling_Web",
-    "./Examples-Web/BorderProgressButtons"
+    "./Examples-Web/BorderProgressButtons",
+    "./Examples-Web/IdleTimeout"
   ],
   "private": true
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { ConnectionManager } from 'TouchFree/Connection/ConnectionManager';
+import { ConnectionManager } from 'TouchFree/src/Connection/ConnectionManager';
 
 export type AppState = 'Idle' | 'Active';
 
