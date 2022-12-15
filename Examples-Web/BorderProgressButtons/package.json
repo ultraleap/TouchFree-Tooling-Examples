@@ -1,5 +1,5 @@
 {
-  "name": "button-example",
+  "name": "border-progress",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,6 +46,8 @@
     "vite": "^4.0.1"
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ]
   }
 }
