@@ -3,7 +3,8 @@
   "workspaces": [
     "./TouchFree/TF_Tooling_Web",
     "./Examples-Web/BorderProgressButtons",
-    "./Examples-Web/IdleTimeout"
+    "./Examples-Web/IdleTimeout",
+    "./Examples-Web/WaveProgressButton"
   ],
   "private": true
 }
