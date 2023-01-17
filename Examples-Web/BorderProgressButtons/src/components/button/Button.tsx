@@ -48,8 +48,10 @@ export default function Button(props: ButtonProps) {
 
     useEffect(() => {
         if (progressToClick < 0.05 || !isMouseOver) {
+            if (!isMouseOver) {
+                setDefaultStyle();
+            }
             setIsClicked(false);
-            setDefaultStyle();
             return;
         }
 

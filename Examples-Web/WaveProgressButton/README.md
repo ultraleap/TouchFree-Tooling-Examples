@@ -1,6 +1,6 @@
-# TouchFree Tooling Examples for Web
+# Wave Progress Example
 
-Examples of touchless content only possible through using [Touchfree Tooling](https://github.com/ultraleap/TouchFree).
+This example shows a button style that provide visual feedback showing when and where the user is going to interact with the UI. This is achieved through animation applied to the button that reacts to the `ProgressToClick` value provided by TouchFree. The result is a UI that feels connected to the movement of your hand.
 
 ## Setup
 
@@ -11,14 +11,12 @@ Examples of touchless content only possible through using [Touchfree Tooling](ht
 
 This example is best viewed fullscreen.
 
-## Animated Progress Buttons
+## Wave Progress Animation
 
-This example shows a button style that provide visual feedback showing when and where the user is going to interact with the UI. This is achieved through animation applied to the button that reacts to the `ProgressToClick` value provided by TouchFree. The result is a UI that feels connected to the movement of your hand.
-
-### Wave Progress Animation
 ![Animated Buttons Showing Progress To Click As A Wave Fill](public/media/wave-fill.gif)
 
 Recommended Interaction: Hover & Hold
 
 ## Attributions
+
 Surfer emoji designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project. License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)

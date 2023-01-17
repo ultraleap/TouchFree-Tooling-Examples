@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import "./style.css";
-import InteractionButton from "./InteractionButton";
-import { ConnectionManager } from "./TouchFree/Connection/ConnectionManager";
-import { DotCursor } from "./TouchFree/Cursors/DotCursor";
-import { WebInputController } from "./TouchFree/InputControllers/WebInputController";
-import { InputActionManager } from "./TouchFree/Plugins/InputActionManager";
-import { InputType } from "./TouchFree/TouchFreeToolingTypes";
 import surferImg from "./Images/surfer.png";
+import InteractionButton from "./InteractionButton";
+import "./style.css";
+import { DotCursor } from "TouchFree/src/Cursors/DotCursor";
+import TouchFree from "TouchFree/src/TouchFree";
+import {
+  InputType,
+  TouchFreeInputAction,
+} from "TouchFree/src/TouchFreeToolingTypes";
+import React, { useEffect, useRef } from "react";
 
 const colors: string[] = [
   "#D2386C",
@@ -29,25 +30,24 @@ const App: React.FC = () => {
   const appRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    ConnectionManager.init();
+    TouchFree.Init({ initialiseCursor: false });
     addTouchFreeCursor();
-    const controller: WebInputController = new WebInputController();
 
-    InputActionManager._instance.addEventListener(
+    const inputHandler = TouchFree.RegisterEventCallback(
       "TransmitInputAction",
       handleTFInput
     );
 
     return () => {
-      controller.disconnect();
+      inputHandler.UnregisterEventCallback();
     };
   }, []);
 
-  const handleTFInput = (evt: any): void => {
-    const inputAction = evt?.detail?.InputType;
+  const handleTFInput = (evt: TouchFreeInputAction): void => {
+    const inputAction = evt.InputType;
     // DOWN input has a bug where it sends ProgressToClick of 0 so ignore this for now
     if (inputAction !== InputType.DOWN) {
-      const prog = evt?.detail?.ProgressToClick;
+      const prog = evt.ProgressToClick;
       setProgressToClick(prog ? prog : 0);
     }
   };

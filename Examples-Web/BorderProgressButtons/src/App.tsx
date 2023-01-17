@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Button from "./components/button/Button";
 import darken from "./darken";
-import { addTouchFreeCursor } from "./TouchFree/addTouchFreeCursor";
-import TouchFree from "./TouchFree/TouchFree_Tooling";
+import TouchFree from "TouchFree/src/TouchFree";
+import { TouchFreeInputAction } from "TouchFree/src/TouchFreeToolingTypes";
 
 const defaultAppStyle = {
     backgroundColor: "#264653",
@@ -19,8 +19,8 @@ export default function App() {
         setAppStyle((s) => ({ ...s, backgroundColor: darken(colour, 80) }));
     };
 
-    const handleTouchFree = (inputAction: CustomEvent): void => {
-        const { ProgressToClick } = inputAction.detail;
+    const handleTouchFree = (inputAction: TouchFreeInputAction): void => {
+        const { ProgressToClick } = inputAction;
         if (ProgressToClick) {
             setProgressToClick(ProgressToClick);
         }
@@ -29,18 +29,10 @@ export default function App() {
     // ================================ Effects ================================
     useEffect(() => {
         document.body.style.overflow = "hidden";
-        addTouchFreeCursor();
-        const controller = new TouchFree.InputControllers.WebInputController();
-
-        TouchFree.Plugins.InputActionManager._instance.addEventListener(
-            "TransmitInputAction",
-            handleTouchFree,
-            false
-        );
-
+        const inputHandler = TouchFree.RegisterEventCallback('TransmitInputAction', handleTouchFree);
         return () => {
-            controller.disconnect();
-        };
+            inputHandler.UnregisterEventCallback();
+        }
     }, []);
 
     return (

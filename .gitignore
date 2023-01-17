@@ -48,3 +48,7 @@ Thumbs.db
 Builds/
 AssetDirStat.asset
 
+# ====================== #
+#  NodeJS generated   #
+# ====================== #
+node_modules/
