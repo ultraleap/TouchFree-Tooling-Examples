@@ -1,0 +1,10 @@
+{
+  "name": "touchfree-workspaces",
+  "workspaces": [
+    "./TouchFreeWebTooling",
+    "./BorderProgressButtons",
+    "./IdleTimeout",
+    "./WaveProgressButton"
+  ],
+  "private": true
+}
