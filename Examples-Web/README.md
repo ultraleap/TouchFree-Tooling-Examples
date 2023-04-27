@@ -14,17 +14,16 @@ These examples are best viewed fullscreen.
 
 ### TouchFree Web Tooling Integration
 
-Several examples use an [NPM workspace](https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true) to integrate TouchFree Web Tooling as a submodule from `TouchFreeWebTooling` while others include a bundled version of tooling. When integrating the tooling into your own project there are a couple of ways we recommend:
+Several examples use a bundled version of tooling while others reference the [TouchFreeWebTooling GitHub](https://github.com/ultraleap/TouchFreeWebTooling) as an npm package dependency. When integrating the tooling into your own project there are a couple of ways we recommend:
 
 1. JS Bundle
    - A single `TouchFree_Tooling.js` bundle file available as a [download on the Ultraleap website](https://developer.leapmotion.com/touchfree-tooling-for-web).
    - Steps to add this to a website are shown in the [documentation site](https://docs.ultraleap.com/touchfree-user-manual/tooling-for-web.html#add-touchfree-tooling-in-one-minute).
-2. NPM Workspace with Git Submodule
-   - Create a root package.json in a project folder (above both the submodule and your project) and add your project’s package.json and TouchFree Web Tooling package.json as workspaces within. See the official npm workspaces docs for more details.
-   - As an example, this repository has a workspaces package.json. Note that you cannot reuse this file in your project as root-level package.json files are not nestable.
+2. Integrating with Git URL
+   - Use TouchFree Web Tooling as an NPM package retrieved from the [GitHub repository](https://github.com/ultraleap/TouchFreeWebTooling). See [npm install docs](https://docs.npmjs.com/cli/v9/commands/npm-install) for more details about installing from git url.
+3. NPM Workspace with Git Submodule
+   - Create a root package.json in a project folder (above both the submodule and your project) and add your project’s package.json and TouchFree Web Tooling package.json as workspaces within. See the [official npm workspaces docs](https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true) for more details.
    - NOTE: Webpack doesn't seem to work with this method
-3. Integrating with Git URL
-   - Use TouchFree Web Tooling as an NPM package retrieved from the [GitHub repository](https://github.com/ultraleap/TouchFreeWebTooling).
 
 ## Hover Buttons
 
