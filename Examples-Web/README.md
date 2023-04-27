@@ -1,12 +1,12 @@
 # TouchFree Tooling Examples for Web
 
-Examples of touchless content only possible through using [Touchfree Tooling](https://github.com/ultraleap/TouchFree).
+Examples of touchless content only possible through using [TouchFree Web Tooling](https://developer.leapmotion.com/touchfree-tooling-for-web).
 
 ## Setup
 
 Wave Progress Button is set up slightly differently as it is a react app. The WaveProgressButton folder contains a readme on how to setup that example.
 
-1. Ensure that the [Touchfree](https://github.com/ultraleap/TouchFree) Service is running.
+1. Ensure that the [TouchFree Service](https://docs.ultraleap.com/touchfree-user-manual/#touchfree-service) is running. [Download the installer here](https://developer.leapmotion.com/touchfree).
 2. Clone the repo and find the example you want to try
 3. Open the include html file in your browser
 

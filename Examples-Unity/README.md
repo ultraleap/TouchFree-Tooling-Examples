@@ -1,12 +1,12 @@
 # TouchFree Tooling Examples for Unity
 
-Examples of touchless content only possible through using [Touchfree Tooling](https://github.com/ultraleap/TouchFree).
+Examples of touchless content only possible through using [TouchFree Unity Tooling](https://developer.leapmotion.com/touchfree-tooling-unity).
 
 ## Setup
 
-1. Ensure that the [Touchfree](https://github.com/ultraleap/TouchFree) Service is running.
+1. Ensure that the [TouchFree Service](https://docs.ultraleap.com/touchfree-user-manual/#touchfree-service) is running. [Download the installer here](https://developer.leapmotion.com/touchfree).
 2. Clone the repo and open the Unity project
-4. Open the scene file in the example directory 
+3. Open the scene file in the example directory
 
 These examples are best viewed fullscreen.
 Tested with Unity 2019.4.22f1
