@@ -12,6 +12,7 @@
 [![touchfree](https://img.shields.io/badge/TouchFree-00cf75)][touchfree]
 [![webtooling](https://img.shields.io/badge/Web%20Tooling-00cf75)][web]
 [![unitytooling](https://img.shields.io/badge/Unity%20Tooling-00cf75)][unity]
+![GitHub](https://img.shields.io/github/license/ultraleap/TouchFree-Tooling-Examples)
 
 [![documentation](https://img.shields.io/badge/Documentation-docs.ultraleap.com-e47400)][documentation]
 [![mail](https://img.shields.io/badge/Email%20Support%20-%20support%40ultraleap.com-7535de)](mailto:support@ultraleap.com)
