@@ -12,65 +12,62 @@
 <body class="bodyBG">
     <div style="width: 100vw; height: 100vh;">
         <div class="container">
-            <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--raspberry-sorbet);"></button> 
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--raspberry-sorbet);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
-            <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--burnt-coral);"></button> 
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--burnt-coral);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
-            <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--marigold);"></button> 
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--marigold);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
-            <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--illuminating);"></button> 
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--illuminating);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
         </div>
         <div class="container">
-            <div class="buttonDiv"> 
+            <div class="buttonDiv">
                 <button class="button" style="background-color:var(--mint);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
-            <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--green-ash);"></button> 
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--green-ash);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
-            <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--cerulean);"></button> 
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--cerulean);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
-            <div class="buttonDiv"> 
-                <button class="button" style="background-color:var(--amythist-orchid);"></button> 
+            <div class="buttonDiv">
+                <button class="button" style="background-color:var(--amythist-orchid);"></button>
                 <image src="./images/ButtonHighlight.png" class="highlight"></image>
             </div>
         </div>
     </div>
-    
+
     <script>
-        var onHover = function (source)
-        {
+        function onHover(source) {
             source.parentElement.querySelector('.highlight').id = 'hovered';
             source.classList.add('buttonHover');
             source.parentElement.classList.add('buttonDivHover');
         }
-        
-        var onDehover = function (source)
-        {
+
+        function onDehover(source) {
             source.parentElement.querySelector('.highlight').id = 'dehovered';
             source.classList.remove('buttonHover');
             source.parentElement.classList.remove('buttonDivHover');
         }
-        
-        var changeColor = function (content) {
-            document.body.style.backgroundColor = content;   
-            
+
+        function changeColor(content) {
+            document.body.style.backgroundColor = content;
+
         }
 
-        var onDown = function(element)
-        {
+        function onDown(element) {
             changeColor(element.style.backgroundColor);
 
             element.classList.remove('buttonHover');
@@ -79,38 +76,27 @@
             element.parentElement.classList.add('buttonDivActive');
         }
 
-        var onUp = function(element)
-        {
+        function onUp(element) {
             element.classList.remove('buttonActive');
             element.parentElement.classList.remove('buttonDivActive')
         }
-        
-        var addDownListener = function(element)
-        {
+
+        function addDownListener(element) {
             element.addEventListener("pointerdown", () => onDown(element));
             element.addEventListener("pointerup", () => onUp(element));
 
         }
-        
-        var addHoverListener = function(element)
-        {
+
+        function addHoverListener(element) {
             element.addEventListener("pointerenter", () => onHover(element));
             element.addEventListener("pointerleave", () => onDehover(element));
         }
-        
-        var addPointerListeners = function()
-        {
-            var buttons = document.getElementsByClassName('button');
-            for(var i = 0; i < buttons.length; i++)
-            {
-                addDownListener(buttons[i]);
-                addHoverListener(buttons[i]);
-            }
+
+        const buttons = document.getElementsByClassName('button');
+        for (let i = 0; i < buttons.length; i++) {
+            addDownListener(buttons[i]);
+            addHoverListener(buttons[i]);
         }
-        
-        addPointerListeners();
-
-
     </script>
 
 </body>
