@@ -1,9 +1,6 @@
-window.onload = function () {
+window.onload = () => {
     // Set up TouchFree
-    TouchFree.Connection.ConnectionManager.init();
-    new TouchFree.InputControllers.WebInputController();
-    // Add basic inbuilt cursor
-    new TouchFree.Cursors.SVGCursor();
+    TouchFree.Init();
 
     // Add eventListers to all the buttons
     const buttons = document.getElementsByClassName("button");
@@ -19,22 +16,22 @@ window.onload = function () {
     }
 };
 
-const onHover = (element) => {
+function onHover(element) {
     // Add "button-hovered" class to the button
     element.classList.add("button--hovered");
-};
+}
 
-const onUnhover = (element) => {
+function onUnhover(element) {
     // Remove "button-hovered" class to the button
     element.classList.remove("button--hovered");
-};
+}
 
-const onDown = (element) => {
+function onDown(element) {
     element.classList.add("button--pressed");
     // Change background color
     document.body.style.backgroundColor = element.style.backgroundColor;
-};
+}
 
-const onUp = (element) => {
+function onUp(element) {
     element.classList.remove("button--pressed");
-};
+}
