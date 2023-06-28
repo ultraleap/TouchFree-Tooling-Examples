@@ -1,15 +1,42 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Basic Hover Button Example</title>
-        <script name="TouchFree_Tooling" type="text/javascript" src="./TouchFree/TouchFree_Tooling.js"></script>
-        <script type="text/javascript" src="./BasicHoverButton.js"></script>
-        <link rel="stylesheet" href="./BasicHoverButton.css" />
-    </head>
 
-    <body class="bodyBG">
-        <button class="button" style="background-color: #fdac53" />
-        <button class="button" style="background-color: #d2386c" />
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <title>Basic Hover Button Example</title>
+    <script name="TouchFree_Tooling" type="text/javascript" src="./TouchFree_Tooling.js"></script>
+    <link rel="stylesheet" href="./BasicHoverButton.css" />
+</head>
+
+<body>
+    <button class="button" style="background-color: #fdac53" onpointerenter="onHover(this)"
+        onpointerleave="onUnhover(this)" onpointerdown="onDown(this)" onpointerup="onUp(this)">
+    </button>
+    <button class="button" style="background-color: #d2386c" onpointerenter="onHover(this)"
+        onpointerleave="onUnhover(this)" onpointerdown="onDown(this)" onpointerup="onUp(this)">
+    </button>
+</body>
+<script>
+    window.onload = () => {
+        TouchFree.Init();
+    };
+
+    function onHover(e) {
+        e.classList.add("button--hovered");
+    }
+
+    function onUnhover(e) {
+        e.classList.remove("button--hovered");
+    }
+
+    function onDown(e) {
+        e.classList.add("button--pressed");
+        document.body.style.backgroundColor = e.style.backgroundColor;
+    }
+
+    function onUp(e) {
+        e.classList.remove("button--pressed");
+    }
+</script>
+
 </html>

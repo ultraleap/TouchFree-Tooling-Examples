@@ -1,3 +1,0 @@
-TouchFree Tooling for Web Version: 1.1.1
-TouchFree Tooling API Version: 1.2.0
-Release Reference: deb6ae91

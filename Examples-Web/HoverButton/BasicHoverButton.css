@@ -1,4 +1,4 @@
-.bodyBG {
+body {
     background-color: gainsboro;
     transition: all 0.5s linear;
     display: flex;
@@ -7,16 +7,16 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    gap: 10vw;
 }
 
 .button {
-    width: 18%;
-    height: 30%;
+    width: 20vw;
+    height: 20vh;
     border-radius: 50px;
     border: 0.35vw solid white;
     filter: drop-shadow(10px 0px 20px slategray);
     transition: all 0.25s;
-    margin: 0% 4%;
 }
 
 .button--hovered {
