@@ -11,8 +11,8 @@ body {
 }
 
 .button {
-    width: 20vw;
-    height: 20vh;
+    width: 30vw;
+    height: 30vw;
     border-radius: 50px;
     border: 0.35vw solid white;
     filter: drop-shadow(10px 0px 20px slategray);
