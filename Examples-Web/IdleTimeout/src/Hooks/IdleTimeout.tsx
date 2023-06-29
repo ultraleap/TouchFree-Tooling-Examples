@@ -1,22 +1,21 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import TouchFree, { EventHandle } from 'TouchFree/src/TouchFree';
 
-export type AppState = 'Idle' | 'Active';
-
-// Custom hook which will return app state based on hand presence.
+// Custom hook which will return whether the application is idle or not
+// based on hand presence.
 // If no hands have been observed for specified timeout in milliseconds
 // the state will be idle.
 // TouchFree.Init() must be called before this hook.
-const useIdleTimeout = (timeoutMs: number): AppState => {
-    const [appState, setAppState] = React.useState<AppState>('Idle');
+const useIdleTimeout = (timeoutMs: number): boolean => {
+    const [isIdle, setIsIdle] = useState(true);
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
-        const timeoutFunction = () => setAppState('Idle');
+        const timeoutFunction = () => setIsIdle(true);
         const handFoundCallback = () => {
             clearTimeout(timeoutId);
-            setAppState('Active'); // Improvement: pass in another function which determines the app state when not idle
+            setIsIdle(false);
         };
         const handLostCallback = () => {
             timeoutId = setTimeout(timeoutFunction, timeoutMs);
@@ -31,7 +30,7 @@ const useIdleTimeout = (timeoutMs: number): AppState => {
         };
     }, [timeoutMs]);
 
-    return appState;
+    return isIdle;
 };
 
 export default useIdleTimeout;
