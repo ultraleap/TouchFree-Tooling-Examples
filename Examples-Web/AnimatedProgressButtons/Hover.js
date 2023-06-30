@@ -19,11 +19,13 @@ function onUp(element) {
     document.querySelector(":root").style.setProperty("--progress", "0%");
 }
 
-const buttons = document.getElementsByClassName("button");
-for (let i = 0; i < buttons.length; i++) {
-    const button = buttons[i];
-    button.addEventListener("pointerdown", () => onDown(button));
-    button.addEventListener("pointerup", () => onUp(button));
-    button.addEventListener("pointerenter", () => onEnter(button));
-    button.addEventListener("pointerleave", () => onLeave(button));
-}
+window.addEventListener("load", () => {
+    const buttons = document.getElementsByClassName("button");
+    for (let i = 0; i < buttons.length; i++) {
+        const button = buttons[i];
+        button.addEventListener("pointerdown", () => onDown(button));
+        button.addEventListener("pointerup", () => onUp(button));
+        button.addEventListener("pointerenter", () => onEnter(button));
+        button.addEventListener("pointerleave", () => onLeave(button));
+    }
+});
