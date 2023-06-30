@@ -13,11 +13,11 @@ const App = () => {
     }, []);
 
     // Must be called after TouchFree.init()
-    const appState = useIdleTimeout(3000);
+    const isIdle = useIdleTimeout(3000);
 
     return (
         <div className="app">
-            <IdleOverlay state={appState} />
+            <IdleOverlay visible={isIdle} />
             <h1>TouchFree Application</h1>
         </div>
     );

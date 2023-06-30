@@ -1,36 +1,35 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import { ConnectionManager } from 'TouchFree/src/Connection/ConnectionManager';
+import TouchFree, { EventHandle } from 'TouchFree/src/TouchFree';
 
-export type AppState = 'Idle' | 'Active';
-
-// Custom hook which will return app state based on hand presence.
+// Custom hook which will return whether the application is idle or not
+// based on hand presence.
 // If no hands have been observed for specified timeout in milliseconds
 // the state will be idle.
-// ConnectionManager.init() must be called before this hook.
-const useIdleTimeout = (timeoutMs: number): AppState => {
-    const [appState, setAppState] = React.useState<AppState>('Idle');
+// TouchFree.Init() must be called before this hook.
+const useIdleTimeout = (timeoutMs: number): boolean => {
+    const [isIdle, setIsIdle] = useState(true);
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
-        const timeoutFunction = () => setAppState('Idle');
         const handFoundCallback = () => {
             clearTimeout(timeoutId);
-            setAppState('Active'); // Improvement: pass in another function which determines the app state when not idle
+            setIsIdle(false);
         };
         const handLostCallback = () => {
-            timeoutId = setTimeout(timeoutFunction, timeoutMs);
+            timeoutId = setTimeout(() => setIsIdle(true), timeoutMs);
         };
-        ConnectionManager.instance.addEventListener('HandFound', handFoundCallback);
-        ConnectionManager.instance.addEventListener('HandsLost', handLostCallback);
+        const handlers: EventHandle[] = [
+            TouchFree.RegisterEventCallback('HandFound', handFoundCallback),
+            TouchFree.RegisterEventCallback('HandsLost', handLostCallback),
+        ];
 
         return () => {
-            ConnectionManager.instance.removeEventListener('HandFound', handFoundCallback);
-            ConnectionManager.instance.removeEventListener('HandLost', handLostCallback);
+            handlers.forEach((handler) => handler.UnregisterEventCallback());
         };
     }, [timeoutMs]);
 
-    return appState;
+    return isIdle;
 };
 
 export default useIdleTimeout;

@@ -1,0 +1,17 @@
+.hovered {
+    border: 0.75vw solid white;
+    filter: drop-shadow(10px 0px 25px slategray);
+    background: linear-gradient(
+        to right,
+        var(--gradientTwo),
+        var(--gradientOne) var(--progress),
+        transparent var(--progress)
+    );
+    transform: scale(1.05, 1.05);
+}
+.active {
+    border: 0.65vw solid white;
+    filter: drop-shadow(0px 0px 5px slategray);
+    transform: scale(0.95, 0.95);
+    background: linear-gradient(to right, var(--gradientTwo), var(--gradientOne));
+}
