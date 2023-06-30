@@ -12,13 +12,12 @@ const useIdleTimeout = (timeoutMs: number): boolean => {
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
-        const timeoutFunction = () => setIsIdle(true);
         const handFoundCallback = () => {
             clearTimeout(timeoutId);
             setIsIdle(false);
         };
         const handLostCallback = () => {
-            timeoutId = setTimeout(timeoutFunction, timeoutMs);
+            timeoutId = setTimeout(() => setIsIdle(true), timeoutMs);
         };
         const handlers: EventHandle[] = [
             TouchFree.RegisterEventCallback('HandFound', handFoundCallback),
