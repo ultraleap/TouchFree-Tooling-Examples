@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script name="TouchFree" type="text/javascript" src="TouchFree_Tooling.js"></script>
+  <script name="TouchFree_Quick_Start" type="text/javascript">
+    window.onload = function () {
+      TouchFree.Init();
+    }
+
+    let bsSocket;
+    try {
+      bsSocket = new BSDatagramSocket();
+    } catch {
+      console.error("BrightSign not available");
+    }
+
+    function sendUdpMessage(value) {
+      if (bsSocket) {
+        bsSocket.SendTo("127.0.0.1", "5000", value);
+      }
+    }
+
+    function onHover(element) {
+      element.classList.add("hovered");
+    }
+
+    function onLeave(element) {
+      element.classList.remove("hovered");
+    }
+  </script>
+  <style>
+    .hovered {
+      background-color: SpringGreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="height:300px;width:100vw">
+    <button style="margin-left:10%;height:100%;width:80%" onpointerup="sendUdpMessage('next-clicked')"
+      onpointerenter="onHover(this)" onpointerleave="onLeave(this)">Next Video</button>
+  </div>
+</body>
+
+</html>
