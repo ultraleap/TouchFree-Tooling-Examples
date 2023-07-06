@@ -1,0 +1,2049 @@
+{
+  "bsdm": {
+    "sign": {
+      "properties": {
+        "id": "3caebc09-fc79-4000-aa12-70b9924db000",
+        "version": "1.3.10",
+        "name": "Interactivity Example XC5",
+        "videoMode": "1920x1080x60p",
+        "size": {
+          "width": 1080,
+          "height": 1920
+        },
+        "model": "XC2055",
+        "monitorOrientation": "Landscape",
+        "monitorOverscan": "NoOverscan",
+        "videoConnector": "HDMI",
+        "deviceWebPageDisplay": "Standard",
+        "backgroundScreenColor": {
+          "a": 255,
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        "forceResolution": true,
+        "tenBitColorEnabled": false,
+        "dolbyVisionEnabled": false,
+        "fullResGraphicsEnabled": true,
+        "audioConfiguration": "MixedAudioPCMOnly",
+        "audioAutoLevel": false,
+        "htmlEnableJavascriptConsole": true,
+        "alphabetizeVariableNames": true,
+        "autoCreateMediaCounterVariables": false,
+        "resetVariablesOnPresentationStart": false,
+        "networkedVariablesUpdateInterval": 300,
+        "delayScheduleChangeUntilMediaEndEvent": false,
+        "language": "English",
+        "languageKey": "eng",
+        "flipCoordinates": false,
+        "inactivityTimeout": false,
+        "inactivityTime": 30,
+        "touchCursorDisplayMode": "Auto",
+        "udpDestinationAddressType": "IPAddress",
+        "udpDestinationAddress": "255.255.255.255",
+        "udpDestinationPort": 5000,
+        "udpReceiverPort": 5000,
+        "enableEnhancedSynchronization": {},
+        "disableSettingsHandler": false,
+        "isMosaic": false,
+        "graphicsZOrder": "Back"
+      },
+      "serialPortConfigurations": [
+        {
+          "port": "0",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        },
+        {
+          "port": "1",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        },
+        {
+          "port": "2",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        },
+        {
+          "port": "3",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        },
+        {
+          "port": "4",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        },
+        {
+          "port": "5",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        },
+        {
+          "port": "6",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        },
+        {
+          "port": "7",
+          "baudRate": 115200,
+          "dataBits": 8,
+          "stopBits": 1,
+          "parity": "N",
+          "protocol": "ASCII",
+          "sendEol": "CR",
+          "receiveEol": "CR",
+          "invertSignals": false,
+          "connectedDevice": "None"
+        }
+      ],
+      "gpio": [
+        "input",
+        "input",
+        "input",
+        "input",
+        "input",
+        "input",
+        "input",
+        "input"
+      ],
+      "buttonPanels": {
+        "bp900a": {
+          "configureAutomatically": true,
+          "configuration": 0
+        },
+        "bp900b": {
+          "configureAutomatically": true,
+          "configuration": 0
+        },
+        "bp900c": {
+          "configureAutomatically": true,
+          "configuration": 0
+        },
+        "bp900d": {
+          "configureAutomatically": true,
+          "configuration": 0
+        },
+        "bp200a": {
+          "configureAutomatically": true,
+          "configuration": 0
+        },
+        "bp200b": {
+          "configureAutomatically": true,
+          "configuration": 0
+        },
+        "bp200c": {
+          "configureAutomatically": true,
+          "configuration": 0
+        },
+        "bp200d": {
+          "configureAutomatically": true,
+          "configuration": 0
+        }
+      },
+      "irRemote": {
+        "irInConfiguration": {
+          "source": "Iguana"
+        },
+        "irOutConfiguration": {
+          "destination": "Iguana"
+        },
+        "irRemoteControl": {
+          "id": "RC-1001",
+          "encoding": "NEC",
+          "manufacturerCode": 28560,
+          "buttons": {
+            "16": {
+              "buttonCode": 16,
+              "buttonDescription": "Left"
+            },
+            "17": {
+              "buttonCode": 17,
+              "buttonDescription": "Right"
+            },
+            "18": {
+              "buttonCode": 18,
+              "buttonDescription": "Up"
+            },
+            "19": {
+              "buttonCode": 19,
+              "buttonDescription": "Down"
+            },
+            "20": {
+              "buttonCode": 20,
+              "buttonDescription": "Ok"
+            },
+            "21": {
+              "buttonCode": 21,
+              "buttonDescription": "Back"
+            },
+            "22": {
+              "buttonCode": 22,
+              "buttonDescription": "Power"
+            },
+            "23": {
+              "buttonCode": 23,
+              "buttonDescription": "Home"
+            },
+            "24": {
+              "buttonCode": 24,
+              "buttonDescription": "Search"
+            },
+            "25": {
+              "buttonCode": 25,
+              "buttonDescription": "Play"
+            },
+            "26": {
+              "buttonCode": 26,
+              "buttonDescription": "Fast Forward"
+            },
+            "27": {
+              "buttonCode": 27,
+              "buttonDescription": "Rewind"
+            },
+            "28": {
+              "buttonCode": 28,
+              "buttonDescription": "Pause"
+            },
+            "29": {
+              "buttonCode": 29,
+              "buttonDescription": "Add"
+            },
+            "30": {
+              "buttonCode": 30,
+              "buttonDescription": "Shuffle"
+            },
+            "31": {
+              "buttonCode": 31,
+              "buttonDescription": "Repeat"
+            },
+            "64": {
+              "buttonCode": 64,
+              "buttonDescription": "Volume Up"
+            },
+            "65": {
+              "buttonCode": 65,
+              "buttonDescription": "Volume Down"
+            },
+            "66": {
+              "buttonCode": 66,
+              "buttonDescription": "Brightness"
+            }
+          }
+        }
+      },
+      "audioSignPropertyMap": {
+        "analog1": {
+          "min": 0,
+          "max": 100
+        },
+        "analog2": {
+          "min": 0,
+          "max": 100
+        },
+        "analog3": {
+          "min": 0,
+          "max": 100
+        },
+        "hdmi": {
+          "min": 0,
+          "max": 100
+        },
+        "hdmi1": {
+          "min": 0,
+          "max": 100
+        },
+        "hdmi2": {
+          "min": 0,
+          "max": 100
+        },
+        "hdmi3": {
+          "min": 0,
+          "max": 100
+        },
+        "hdmi4": {
+          "min": 0,
+          "max": 100
+        },
+        "spdif": {
+          "min": 0,
+          "max": 100
+        },
+        "usbA": {
+          "min": 0,
+          "max": 100
+        },
+        "usbB": {
+          "min": 0,
+          "max": 100
+        },
+        "usbC": {
+          "min": 0,
+          "max": 100
+        },
+        "usbD": {
+          "min": 0,
+          "max": 100
+        },
+        "usbTypeA": {
+          "min": 0,
+          "max": 100
+        },
+        "usbTypeC": {
+          "min": 0,
+          "max": 100
+        },
+        "usb700_1": {
+          "min": 0,
+          "max": 100
+        },
+        "usb700_2": {
+          "min": 0,
+          "max": 100
+        },
+        "usb700_3": {
+          "min": 0,
+          "max": 100
+        },
+        "usb700_4": {
+          "min": 0,
+          "max": 100
+        },
+        "usb700_5": {
+          "min": 0,
+          "max": 100
+        },
+        "usb700_6": {
+          "min": 0,
+          "max": 100
+        },
+        "usb700_7": {
+          "min": 0,
+          "max": 100
+        },
+        "usb_1": {
+          "min": 0,
+          "max": 100
+        },
+        "usb_2": {
+          "min": 0,
+          "max": 100
+        },
+        "usb_3": {
+          "min": 0,
+          "max": 100
+        },
+        "usb_4": {
+          "min": 0,
+          "max": 100
+        },
+        "usb_5": {
+          "min": 0,
+          "max": 100
+        },
+        "usb_6": {
+          "min": 0,
+          "max": 100
+        }
+      },
+      "wssDeviceSpec": {},
+      "lastModifiedTime": "2023-07-06T13:11:11.566Z"
+    },
+    "zones": {
+      "zonesById": {
+        "0752d681-ed3e-4000-ae33-2269ef351000": {
+          "id": "0752d681-ed3e-4000-ae33-2269ef351000",
+          "name": "Video or Images",
+          "type": "VideoOrImages",
+          "tag": "1",
+          "nonInteractive": false,
+          "initialMediaStateId": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1080,
+            "height": 1920,
+            "pct": false
+          },
+          "properties": {
+            "viewMode": "Letterboxed and Centered",
+            "videoVolume": 100,
+            "maxContentResolution": "NotApplicable",
+            "brightness": 128,
+            "contrast": 64,
+            "saturation": 64,
+            "hue": 0,
+            "zOrderFront": true,
+            "mosaic": false,
+            "audioOutput": "Analog",
+            "audioMode": "Surround",
+            "audioMapping": "Audio1",
+            "audioOutputAssignments": {
+              "analog1": "None",
+              "analog2": "None",
+              "analog3": "None",
+              "usbA": "None",
+              "usbB": "None",
+              "usbC": "None",
+              "usbD": "None",
+              "usbTypeA": "None",
+              "usbTypeC": "None",
+              "usb700_1": "None",
+              "usb700_2": "None",
+              "usb700_3": "None",
+              "usb700_4": "None",
+              "usb700_5": "None",
+              "usb700_6": "None",
+              "usb700_7": "None",
+              "usb_1": "None",
+              "usb_2": "None",
+              "usb_3": "None",
+              "usb_4": "None",
+              "usb_5": "None",
+              "usb_6": "None",
+              "spdif": "None",
+              "hdmi": "Pcm",
+              "hdmi1": "Pcm",
+              "hdmi2": "None",
+              "hdmi3": "None",
+              "hdmi4": "None"
+            },
+            "audioMixMode": "Stereo",
+            "audioVolume": 100,
+            "minimumVolume": 0,
+            "maximumVolume": 100,
+            "imageMode": "Scale to Fit"
+          }
+        },
+        "b2174776-ed6e-4000-a9f5-360ba21a5000": {
+          "id": "b2174776-ed6e-4000-a9f5-360ba21a5000",
+          "name": "HTML Zone",
+          "type": "Images",
+          "tag": "2",
+          "nonInteractive": false,
+          "initialMediaStateId": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
+          "position": {
+            "x": 0,
+            "y": 1080,
+            "width": 1080,
+            "height": 640,
+            "pct": false
+          },
+          "properties": {
+            "imageMode": "Scale to Fit"
+          }
+        },
+        "788080e6-c5e8-4000-a199-d5a335670000": {
+          "id": "788080e6-c5e8-4000-a199-d5a335670000",
+          "name": "Hand Presence Manager",
+          "type": "Images",
+          "tag": "3",
+          "nonInteractive": false,
+          "initialMediaStateId": "a0a58380-c81b-4000-a55f-17bec9032000",
+          "position": {
+            "x": 270,
+            "y": 480,
+            "width": 540,
+            "height": 960,
+            "pct": false
+          },
+          "properties": {
+            "imageMode": "Scale to Fit"
+          }
+        }
+      },
+      "allZones": [
+        "0752d681-ed3e-4000-ae33-2269ef351000",
+        "b2174776-ed6e-4000-a9f5-360ba21a5000",
+        "788080e6-c5e8-4000-a199-d5a335670000"
+      ],
+      "zoneLayersById": {
+        "bce39498-0d47-4000-ade7-04428fe62000": {
+          "id": "bce39498-0d47-4000-ade7-04428fe62000",
+          "type": "Graphics",
+          "zoneSequence": [
+            "0752d681-ed3e-4000-ae33-2269ef351000",
+            "b2174776-ed6e-4000-a9f5-360ba21a5000",
+            "788080e6-c5e8-4000-a199-d5a335670000"
+          ]
+        },
+        "111883e0-38c7-4000-a7de-d75642ed1000": {
+          "id": "111883e0-38c7-4000-a7de-d75642ed1000",
+          "type": "Audio",
+          "zoneSequence": []
+        },
+        "76ca5b00-18e9-4000-a17e-bda0d4f2c000": {
+          "id": "76ca5b00-18e9-4000-a17e-bda0d4f2c000",
+          "type": "Invisible",
+          "zoneSequence": []
+        },
+        "c3817de8-6b01-4000-adbf-56be81af7000": {
+          "id": "c3817de8-6b01-4000-adbf-56be81af7000",
+          "type": "Video",
+          "zoneSequence": [
+            "0752d681-ed3e-4000-ae33-2269ef351000"
+          ],
+          "zoneLayerSpecificProperties": {
+            "type": "FourK",
+            "index": 0,
+            "sharedDecoder": false,
+            "enableMosaicDeinterlacer": false
+          }
+        },
+        "05b94637-0ec4-4000-ad35-434a667f8000": {
+          "id": "05b94637-0ec4-4000-ad35-434a667f8000",
+          "type": "Video",
+          "zoneSequence": [],
+          "zoneLayerSpecificProperties": {
+            "type": "FourK",
+            "index": 1,
+            "sharedDecoder": false,
+            "enableMosaicDeinterlacer": false
+          }
+        }
+      },
+      "zoneLayerSequence": [
+        "bce39498-0d47-4000-ade7-04428fe62000",
+        "c3817de8-6b01-4000-adbf-56be81af7000",
+        "05b94637-0ec4-4000-ad35-434a667f8000"
+      ],
+      "zoneTagIndices": {
+        "0752d681-ed3e-4000-ae33-2269ef351000": 6,
+        "b2174776-ed6e-4000-a9f5-360ba21a5000": 2,
+        "788080e6-c5e8-4000-a199-d5a335670000": 4
+      }
+    },
+    "screens": {
+      "screensById": {
+        "04319d4d-2304-4000-afde-f696b8ffb000": {
+          "id": "04319d4d-2304-4000-afde-f696b8ffb000",
+          "name": "Screen 1",
+          "videoMode": "1920x1080x60p",
+          "videoConnectorName": "HDMI-1",
+          "monitorOrientation": "PortraitBottomLeft",
+          "fullResGraphicsEnabled": false,
+          "dolbyVisionEnabled": false,
+          "videoConnector": "HDMI",
+          "dimensions": {
+            "bezelTop": 0,
+            "bezelRight": 0,
+            "bezelBottom": 0,
+            "bezelLeft": 0,
+            "screenWidth": 0,
+            "screenHeight": 0,
+            "x": 0,
+            "y": 0
+          },
+          "forceResolution": false,
+          "tenBitColorEnabled": false
+        }
+      },
+      "allScreens": [
+        [
+          "04319d4d-2304-4000-afde-f696b8ffb000"
+        ]
+      ]
+    },
+    "mediaStates": {
+      "mediaStatesById": {
+        "a4b936b2-4042-4000-a3b1-b7ed22bc8000": {
+          "id": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+          "name": "Video List",
+          "tag": "1",
+          "container": {
+            "id": "0752d681-ed3e-4000-ae33-2269ef351000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "Video List",
+            "type": "MediaList",
+            "playbackType": "FromIndex",
+            "startIndex": 1,
+            "shuffle": false,
+            "support4KImage": false,
+            "sendMediaZoneMessage": false,
+            "useDataFeed": false,
+            "dataFeedId": "0",
+            "transition": "No effect",
+            "transitionDuration": 1,
+            "autoTransitions": false,
+            "inactivityTimeout": false,
+            "inactivityTime": 0
+          }
+        },
+        "f10ecfcf-283d-4000-a404-a478c3bca000": {
+          "id": "f10ecfcf-283d-4000-a404-a478c3bca000",
+          "name": "Combined Idle.mp4",
+          "tag": "",
+          "container": {
+            "id": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+            "type": 1
+          },
+          "contentItem": {
+            "name": "Combined Idle.mp4",
+            "type": "Video",
+            "assetId": "9ff153b1-f3e2-4000-a96b-89ea56a76000",
+            "volume": 100,
+            "videoDisplayMode": "2D",
+            "automaticallyLoop": true
+          }
+        },
+        "19512465-bda1-4000-aba3-7ea077d7a000": {
+          "id": "19512465-bda1-4000-aba3-7ea077d7a000",
+          "name": "Combined.mp4",
+          "tag": "2",
+          "container": {
+            "id": "0752d681-ed3e-4000-ae33-2269ef351000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "Combined.mp4",
+            "type": "Video",
+            "assetId": "65463aaf-68f2-4000-ad5b-afc77d994000",
+            "volume": 100,
+            "videoDisplayMode": "2D",
+            "automaticallyLoop": true
+          }
+        },
+        "f8a7e261-7426-4000-a53a-9d218df48000": {
+          "id": "f8a7e261-7426-4000-a53a-9d218df48000",
+          "name": "Madronzio.mp4",
+          "tag": "3",
+          "container": {
+            "id": "0752d681-ed3e-4000-ae33-2269ef351000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "Madronzio.mp4",
+            "type": "Video",
+            "assetId": "655bb4b1-8daa-4000-ae4b-4e1c546f4000",
+            "volume": 100,
+            "videoDisplayMode": "2D",
+            "automaticallyLoop": true
+          }
+        },
+        "38df97e7-9e11-4000-a7bd-f0e252c4b000": {
+          "id": "38df97e7-9e11-4000-a7bd-f0e252c4b000",
+          "name": "Routure.mp4",
+          "tag": "4",
+          "container": {
+            "id": "0752d681-ed3e-4000-ae33-2269ef351000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "Routure.mp4",
+            "type": "Video",
+            "assetId": "69177f6c-eaef-4000-a58f-82f64a946000",
+            "volume": 100,
+            "videoDisplayMode": "2D",
+            "automaticallyLoop": true
+          }
+        },
+        "de73c485-d6ee-4000-a750-b8f959d68000": {
+          "id": "de73c485-d6ee-4000-a750-b8f959d68000",
+          "name": "LeWear 2_1.mp4",
+          "tag": "5",
+          "container": {
+            "id": "0752d681-ed3e-4000-ae33-2269ef351000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "LeWear 2_1.mp4",
+            "type": "Video",
+            "assetId": "74a64dfb-0aea-4000-af07-0a19e3ddf000",
+            "volume": 100,
+            "videoDisplayMode": "2D",
+            "automaticallyLoop": true
+          }
+        },
+        "2a5fdee3-fd69-4000-aa9e-609f8d6d8000": {
+          "id": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
+          "name": "html-interaction",
+          "tag": "1",
+          "container": {
+            "id": "b2174776-ed6e-4000-a9f5-360ba21a5000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "html-interaction",
+            "type": "Html",
+            "siteId": "0ab2f6fb-96f0-4000-a59d-134fa20b2000",
+            "enableBrightSignJavascriptObjects": true,
+            "enableCrossDomainPolicyChecks": false,
+            "ignoreHttpsCertificateErrors": true,
+            "enableCamera": false,
+            "enableMouseEvents": true,
+            "displayCursor": false,
+            "hwzOn": true,
+            "useUserStylesheet": false,
+            "enableFileURLSharedStorage": true,
+            "enableHtmlURLSharedStorage": false,
+            "customFonts": []
+          }
+        },
+        "a0a58380-c81b-4000-a55f-17bec9032000": {
+          "id": "a0a58380-c81b-4000-a55f-17bec9032000",
+          "name": "Idle",
+          "tag": "1",
+          "container": {
+            "id": "788080e6-c5e8-4000-a199-d5a335670000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "Idle",
+            "type": "EventHandler",
+            "stopPlayback": false
+          }
+        },
+        "436683ad-38ba-4000-a750-a462d216f000": {
+          "id": "436683ad-38ba-4000-a750-a462d216f000",
+          "name": "Hand Lost",
+          "tag": "2",
+          "container": {
+            "id": "788080e6-c5e8-4000-a199-d5a335670000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "Hand Lost",
+            "type": "EventHandler",
+            "stopPlayback": false
+          }
+        },
+        "0a17961c-4367-4000-a2b2-695feafb0000": {
+          "id": "0a17961c-4367-4000-a2b2-695feafb0000",
+          "name": "Hand Present",
+          "tag": "3",
+          "container": {
+            "id": "788080e6-c5e8-4000-a199-d5a335670000",
+            "type": 0
+          },
+          "contentItem": {
+            "name": "Hand Present",
+            "type": "EventHandler",
+            "stopPlayback": false
+          }
+        }
+      },
+      "sequencesByParentId": {
+        "a4b936b2-4042-4000-a3b1-b7ed22bc8000": {
+          "id": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+          "parentType": 1,
+          "sequence": [
+            "f10ecfcf-283d-4000-a404-a478c3bca000"
+          ]
+        }
+      }
+    },
+    "events": {
+      "49466df8-98b9-4000-a2c9-8cdf1687d000": {
+        "id": "49466df8-98b9-4000-a2c9-8cdf1687d000",
+        "name": "mediaListEventName",
+        "type": "MediaEnd",
+        "mediaStateId": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+        "disabled": false,
+        "data": null,
+        "action": "SeqFwd"
+      },
+      "55f9887e-d43a-4000-a108-452d734da000": {
+        "id": "55f9887e-d43a-4000-a108-452d734da000",
+        "name": "Video List_ev_ev",
+        "type": "ZoneMessage",
+        "mediaStateId": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+        "disabled": false,
+        "data": {
+          "data": "hand_found",
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "4e8a9dfd-abc9-4000-a4a0-a506af556000": {
+        "id": "4e8a9dfd-abc9-4000-a4a0-a506af556000",
+        "name": "Combined.mp4_ev_ev",
+        "type": "ZoneMessage",
+        "mediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+        "disabled": false,
+        "data": {
+          "data": "hand_lost_extended",
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "b96b51b0-e7dc-4000-ad01-ad5215ccc000": {
+        "id": "b96b51b0-e7dc-4000-ad01-ad5215ccc000",
+        "name": "Combined.mp4_ev_ev",
+        "type": "ZoneMessage",
+        "mediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+        "disabled": false,
+        "data": {
+          "data": "play_video_a",
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "5af8c444-df5a-4000-a7ea-15c3bfee0000": {
+        "id": "5af8c444-df5a-4000-a7ea-15c3bfee0000",
+        "name": "Combined.mp4_ev_ev",
+        "type": "ZoneMessage",
+        "mediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+        "disabled": false,
+        "data": {
+          "data": "play_video_b",
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "008f526e-fa75-4000-a336-2617278a1000": {
+        "id": "008f526e-fa75-4000-a336-2617278a1000",
+        "name": "Combined.mp4_ev_ev",
+        "type": "ZoneMessage",
+        "mediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+        "disabled": false,
+        "data": {
+          "data": "play_video_c",
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "8138b5fc-85d7-4000-ac69-aedaa7350000": {
+        "id": "8138b5fc-85d7-4000-ac69-aedaa7350000",
+        "name": "Madronzio.mp4_ev_ev",
+        "type": "MediaEnd",
+        "mediaStateId": "f8a7e261-7426-4000-a53a-9d218df48000",
+        "disabled": false,
+        "data": null,
+        "action": "None"
+      },
+      "8bd4f1ab-5e9b-4000-ad85-a3788c708000": {
+        "id": "8bd4f1ab-5e9b-4000-ad85-a3788c708000",
+        "name": "Routure.mp4_ev_ev",
+        "type": "MediaEnd",
+        "mediaStateId": "38df97e7-9e11-4000-a7bd-f0e252c4b000",
+        "disabled": false,
+        "data": null,
+        "action": "None"
+      },
+      "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000": {
+        "id": "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000",
+        "name": "LeWear 2_1.mp4_ev_ev",
+        "type": "MediaEnd",
+        "mediaStateId": "de73c485-d6ee-4000-a750-b8f959d68000",
+        "disabled": false,
+        "data": null,
+        "action": "None"
+      },
+      "1826c15b-db64-4000-a405-c63db5401000": {
+        "id": "1826c15b-db64-4000-a405-c63db5401000",
+        "name": "html-interaction_ev_ev",
+        "type": "Udp",
+        "mediaStateId": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
+        "disabled": false,
+        "data": {
+          "data": "play_video_a",
+          "label": "play_video_a",
+          "export": true,
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "6691c3e9-df0c-4000-a109-c33ecba5e000": {
+        "id": "6691c3e9-df0c-4000-a109-c33ecba5e000",
+        "name": "html-interaction_ev_ev",
+        "type": "Udp",
+        "mediaStateId": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
+        "disabled": false,
+        "data": {
+          "data": "play_video_b",
+          "label": "play_video_b",
+          "export": true,
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "6080d7f5-6544-4000-a02b-5f1e2b1c2000": {
+        "id": "6080d7f5-6544-4000-a02b-5f1e2b1c2000",
+        "name": "html-interaction_ev_ev",
+        "type": "Udp",
+        "mediaStateId": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
+        "disabled": false,
+        "data": {
+          "data": "play_video_c",
+          "label": "play_video_c",
+          "export": true,
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "9ae054da-d21c-4000-af23-f5d87d85d000": {
+        "id": "9ae054da-d21c-4000-af23-f5d87d85d000",
+        "name": "Idle_ev_ev",
+        "type": "Udp",
+        "mediaStateId": "a0a58380-c81b-4000-a55f-17bec9032000",
+        "disabled": false,
+        "data": {
+          "data": "hand_detected",
+          "label": "hand_detected",
+          "export": true,
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "1671c8e5-f2a6-4000-ac03-ead8b4dc8000": {
+        "id": "1671c8e5-f2a6-4000-ac03-ead8b4dc8000",
+        "name": "Hand Lost_ev_ev",
+        "type": "Timer",
+        "mediaStateId": "436683ad-38ba-4000-a750-a462d216f000",
+        "disabled": false,
+        "data": {
+          "interval": 7
+        },
+        "action": "None"
+      },
+      "c6e86369-b0f7-4000-a7f9-ef9233fa4000": {
+        "id": "c6e86369-b0f7-4000-a7f9-ef9233fa4000",
+        "name": "Hand Lost_ev_ev",
+        "type": "Udp",
+        "mediaStateId": "436683ad-38ba-4000-a750-a462d216f000",
+        "disabled": false,
+        "data": {
+          "data": "hand_detected",
+          "label": "hand_detected",
+          "export": true,
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      },
+      "8981cce7-1e8c-4000-a0b1-98e810ae5000": {
+        "id": "8981cce7-1e8c-4000-a0b1-98e810ae5000",
+        "name": "Hand Present_ev_ev",
+        "type": "Udp",
+        "mediaStateId": "0a17961c-4367-4000-a2b2-695feafb0000",
+        "disabled": false,
+        "data": {
+          "data": "hand_lost",
+          "label": "hand_lost",
+          "export": true,
+          "assignInputToUserVariable": false,
+          "assignWildcardToUserVariable": false,
+          "userVariableToAssignInput": "0",
+          "userVariableToAssignWildcard": "0"
+        },
+        "action": "None"
+      }
+    },
+    "transitions": {
+      "transitionsById": {
+        "4922e8fb-a67f-4000-a97d-c9a2aee0e000": {
+          "id": "4922e8fb-a67f-4000-a97d-c9a2aee0e000",
+          "name": "Video List_ev_tr",
+          "eventId": "55f9887e-d43a-4000-a108-452d734da000",
+          "targetMediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "bc78a78c-a544-4000-ad60-28ab70dcc000": {
+          "id": "bc78a78c-a544-4000-ad60-28ab70dcc000",
+          "name": "Combined.mp4_ev_tr",
+          "eventId": "4e8a9dfd-abc9-4000-a4a0-a506af556000",
+          "targetMediaStateId": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "6e260234-9989-4000-accd-058def67b000": {
+          "id": "6e260234-9989-4000-accd-058def67b000",
+          "name": "Combined.mp4_ev_tr",
+          "eventId": "b96b51b0-e7dc-4000-ad01-ad5215ccc000",
+          "targetMediaStateId": "f8a7e261-7426-4000-a53a-9d218df48000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "cfd8be65-9422-4000-a82a-cd2030a55000": {
+          "id": "cfd8be65-9422-4000-a82a-cd2030a55000",
+          "name": "Combined.mp4_ev_tr",
+          "eventId": "5af8c444-df5a-4000-a7ea-15c3bfee0000",
+          "targetMediaStateId": "38df97e7-9e11-4000-a7bd-f0e252c4b000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "9f78d0d9-83ba-4000-a002-b11898e3a000": {
+          "id": "9f78d0d9-83ba-4000-a002-b11898e3a000",
+          "name": "Combined.mp4_ev_tr",
+          "eventId": "008f526e-fa75-4000-a336-2617278a1000",
+          "targetMediaStateId": "de73c485-d6ee-4000-a750-b8f959d68000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "89567a08-0e4f-4000-a7e5-ffe5b4d31000": {
+          "id": "89567a08-0e4f-4000-a7e5-ffe5b4d31000",
+          "name": "Madronzio.mp4_ct",
+          "eventId": "8138b5fc-85d7-4000-ac69-aedaa7350000",
+          "targetMediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+          "type": "No effect",
+          "duration": 0,
+          "condition": {
+            "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+            "compareOperator": "EQ",
+            "compareValue1": {
+              "params": [
+                {
+                  "type": "Text",
+                  "value": "true"
+                }
+              ]
+            },
+            "compareValue2": {
+              "params": []
+            }
+          },
+          "conditionalAction": "None"
+        },
+        "646ca135-beb7-4000-aa17-32533ccab000": {
+          "id": "646ca135-beb7-4000-aa17-32533ccab000",
+          "name": "Madronzio.mp4_ct",
+          "eventId": "8138b5fc-85d7-4000-ac69-aedaa7350000",
+          "targetMediaStateId": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+          "type": "No effect",
+          "duration": 0,
+          "condition": {
+            "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+            "compareOperator": "EQ",
+            "compareValue1": {
+              "params": [
+                {
+                  "type": "Text",
+                  "value": "false"
+                }
+              ]
+            },
+            "compareValue2": {
+              "params": []
+            }
+          },
+          "conditionalAction": "None"
+        },
+        "94036e24-a4ff-4000-a44d-057b97098000": {
+          "id": "94036e24-a4ff-4000-a44d-057b97098000",
+          "name": "Routure.mp4_ct",
+          "eventId": "8bd4f1ab-5e9b-4000-ad85-a3788c708000",
+          "targetMediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+          "type": "No effect",
+          "duration": 0,
+          "condition": {
+            "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+            "compareOperator": "EQ",
+            "compareValue1": {
+              "params": [
+                {
+                  "type": "Text",
+                  "value": "true"
+                }
+              ]
+            },
+            "compareValue2": {
+              "params": []
+            }
+          },
+          "conditionalAction": "None"
+        },
+        "f6fa348d-680f-4000-a178-39079ec32000": {
+          "id": "f6fa348d-680f-4000-a178-39079ec32000",
+          "name": "Routure.mp4_ct",
+          "eventId": "8bd4f1ab-5e9b-4000-ad85-a3788c708000",
+          "targetMediaStateId": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+          "type": "No effect",
+          "duration": 0,
+          "condition": {
+            "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+            "compareOperator": "EQ",
+            "compareValue1": {
+              "params": [
+                {
+                  "type": "Text",
+                  "value": "false"
+                }
+              ]
+            },
+            "compareValue2": {
+              "params": []
+            }
+          },
+          "conditionalAction": "None"
+        },
+        "8da87e82-3eb2-4000-a680-5e55978fd000": {
+          "id": "8da87e82-3eb2-4000-a680-5e55978fd000",
+          "name": "LeWear 2_1.mp4_ct",
+          "eventId": "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000",
+          "targetMediaStateId": "19512465-bda1-4000-aba3-7ea077d7a000",
+          "type": "No effect",
+          "duration": 0,
+          "condition": {
+            "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+            "compareOperator": "EQ",
+            "compareValue1": {
+              "params": [
+                {
+                  "type": "Text",
+                  "value": "true"
+                }
+              ]
+            },
+            "compareValue2": {
+              "params": []
+            }
+          },
+          "conditionalAction": "None"
+        },
+        "d732b3d8-351d-4000-a2f9-9a06968ec000": {
+          "id": "d732b3d8-351d-4000-a2f9-9a06968ec000",
+          "name": "LeWear 2_1.mp4_ct",
+          "eventId": "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000",
+          "targetMediaStateId": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+          "type": "No effect",
+          "duration": 0,
+          "condition": {
+            "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+            "compareOperator": "EQ",
+            "compareValue1": {
+              "params": [
+                {
+                  "type": "Text",
+                  "value": "false"
+                }
+              ]
+            },
+            "compareValue2": {
+              "params": []
+            }
+          },
+          "conditionalAction": "None"
+        },
+        "32a0c5ce-c61c-4000-a628-6c5756c51000": {
+          "id": "32a0c5ce-c61c-4000-a628-6c5756c51000",
+          "name": "Idle_ev_tr",
+          "eventId": "9ae054da-d21c-4000-af23-f5d87d85d000",
+          "targetMediaStateId": "0a17961c-4367-4000-a2b2-695feafb0000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "4c00bcec-e507-4000-a808-3e9bbecc7000": {
+          "id": "4c00bcec-e507-4000-a808-3e9bbecc7000",
+          "name": "Hand Lost_ev_tr",
+          "eventId": "1671c8e5-f2a6-4000-ac03-ead8b4dc8000",
+          "targetMediaStateId": "a0a58380-c81b-4000-a55f-17bec9032000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "d736a68c-4ec5-4000-ad38-515beeb02000": {
+          "id": "d736a68c-4ec5-4000-ad38-515beeb02000",
+          "name": "Hand Lost_ev_tr",
+          "eventId": "c6e86369-b0f7-4000-a7f9-ef9233fa4000",
+          "targetMediaStateId": "0a17961c-4367-4000-a2b2-695feafb0000",
+          "type": "No effect",
+          "duration": 0
+        },
+        "6e95b26f-4b95-4000-a439-fd943b103000": {
+          "id": "6e95b26f-4b95-4000-a439-fd943b103000",
+          "name": "Hand Present_ev_tr",
+          "eventId": "8981cce7-1e8c-4000-a0b1-98e810ae5000",
+          "targetMediaStateId": "436683ad-38ba-4000-a750-a462d216f000",
+          "type": "No effect",
+          "duration": 0
+        }
+      },
+      "sequencesByEventId": {
+        "8138b5fc-85d7-4000-ac69-aedaa7350000": {
+          "id": "8138b5fc-85d7-4000-ac69-aedaa7350000",
+          "sequence": [
+            "89567a08-0e4f-4000-a7e5-ffe5b4d31000",
+            "646ca135-beb7-4000-aa17-32533ccab000"
+          ]
+        },
+        "8bd4f1ab-5e9b-4000-ad85-a3788c708000": {
+          "id": "8bd4f1ab-5e9b-4000-ad85-a3788c708000",
+          "sequence": [
+            "94036e24-a4ff-4000-a44d-057b97098000",
+            "f6fa348d-680f-4000-a178-39079ec32000"
+          ]
+        },
+        "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000": {
+          "id": "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000",
+          "sequence": [
+            "8da87e82-3eb2-4000-a680-5e55978fd000",
+            "d732b3d8-351d-4000-a2f9-9a06968ec000"
+          ]
+        }
+      }
+    },
+    "commands": {
+      "commandsById": {
+        "fd24822b-0212-4000-a665-6073e709e000": {
+          "id": "fd24822b-0212-4000-a665-6073e709e000",
+          "name": "setVariable",
+          "operations": [
+            {
+              "type": "setVariable",
+              "data": {
+                "userVariableId": "1f876478-0d02-4000-a8fe-d10263a87000",
+                "userVariableValue": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "true"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "eb2e5260-dfbb-4000-a76e-64b44a607000"
+        },
+        "a25f5dbc-3eaa-4000-a620-434622c1f000": {
+          "id": "a25f5dbc-3eaa-4000-a620-434622c1f000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "hand_lost_extended"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "eb2e5260-dfbb-4000-a76e-64b44a607000"
+        },
+        "bb45011e-740b-4000-ab30-e0ecab685000": {
+          "id": "bb45011e-740b-4000-ab30-e0ecab685000",
+          "name": "setVariable",
+          "operations": [
+            {
+              "type": "setVariable",
+              "data": {
+                "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+                "userVariableValue": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "false"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "31d60ba3-4734-4000-acfc-3d2c35c63000"
+        },
+        "1149e7b8-c76f-4000-ad6c-d6a1b2f5d000": {
+          "id": "1149e7b8-c76f-4000-ad6c-d6a1b2f5d000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "hand_lost"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "31d60ba3-4734-4000-acfc-3d2c35c63000"
+        },
+        "7ce439a1-82bd-4000-a88f-5a520fab1000": {
+          "id": "7ce439a1-82bd-4000-a88f-5a520fab1000",
+          "name": "setVariable",
+          "operations": [
+            {
+              "type": "setVariable",
+              "data": {
+                "userVariableId": "a0099688-e914-4000-a443-3f1a7c5c6000",
+                "userVariableValue": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "true"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "ce3e76b4-aabe-4000-ad60-18f7a24ef000"
+        },
+        "90a72207-f20b-4000-aff2-57046a166000": {
+          "id": "90a72207-f20b-4000-aff2-57046a166000",
+          "name": "setVariable",
+          "operations": [
+            {
+              "type": "setVariable",
+              "data": {
+                "userVariableId": "1f876478-0d02-4000-a8fe-d10263a87000",
+                "userVariableValue": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "false"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "ce3e76b4-aabe-4000-ad60-18f7a24ef000"
+        },
+        "c8dbb02f-1d55-4000-a248-104ac3698000": {
+          "id": "c8dbb02f-1d55-4000-a248-104ac3698000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "hand_found"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "ce3e76b4-aabe-4000-ad60-18f7a24ef000"
+        },
+        "4e634864-80e2-4000-ad5f-fd0e72cce000": {
+          "id": "4e634864-80e2-4000-ad5f-fd0e72cce000",
+          "name": "setVariable",
+          "operations": [
+            {
+              "type": "setVariable",
+              "data": {
+                "userVariableId": "ba86b89d-98d6-4000-a197-103ea5c1e000",
+                "userVariableValue": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "a"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "1a3f5bf2-073e-4000-a0bb-bdcfb6810000"
+        },
+        "88253185-43e5-4000-a74c-3d9fa5bb7000": {
+          "id": "88253185-43e5-4000-a74c-3d9fa5bb7000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "video_selected"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "1a3f5bf2-073e-4000-a0bb-bdcfb6810000"
+        },
+        "4a8381ab-d584-4000-a8fd-8d0a643f9000": {
+          "id": "4a8381ab-d584-4000-a8fd-8d0a643f9000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "play_video_a"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "1a3f5bf2-073e-4000-a0bb-bdcfb6810000"
+        },
+        "ccea8b16-e550-4000-a313-afdde1226000": {
+          "id": "ccea8b16-e550-4000-a313-afdde1226000",
+          "name": "setVariable",
+          "operations": [
+            {
+              "type": "setVariable",
+              "data": {
+                "userVariableId": "ba86b89d-98d6-4000-a197-103ea5c1e000",
+                "userVariableValue": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "b"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "dcd38226-5582-4000-acf0-296660d69000"
+        },
+        "f0d84e81-f77b-4000-a5a5-c5731bd97000": {
+          "id": "f0d84e81-f77b-4000-a5a5-c5731bd97000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "video_selected"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "dcd38226-5582-4000-acf0-296660d69000"
+        },
+        "358c59c1-e371-4000-afbe-617f2feba000": {
+          "id": "358c59c1-e371-4000-afbe-617f2feba000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "play_video_b"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "dcd38226-5582-4000-acf0-296660d69000"
+        },
+        "623cb485-2e58-4000-acdc-ec3d962d6000": {
+          "id": "623cb485-2e58-4000-acdc-ec3d962d6000",
+          "name": "setVariable",
+          "operations": [
+            {
+              "type": "setVariable",
+              "data": {
+                "userVariableId": "ba86b89d-98d6-4000-a197-103ea5c1e000",
+                "userVariableValue": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "c"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "c7552133-6aad-4000-abee-ea60ceb53000"
+        },
+        "943c9331-0ebc-4000-a5f8-a71455e31000": {
+          "id": "943c9331-0ebc-4000-a5f8-a71455e31000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "video_selected"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "c7552133-6aad-4000-abee-ea60ceb53000"
+        },
+        "ce74131f-600f-4000-a9fd-3244e3177000": {
+          "id": "ce74131f-600f-4000-a9fd-3244e3177000",
+          "name": "sendZoneMessage",
+          "operations": [
+            {
+              "type": "sendZoneMessage",
+              "data": {
+                "messageData": {
+                  "params": [
+                    {
+                      "type": "Text",
+                      "value": "play_video_c"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sequenceId": "c7552133-6aad-4000-abee-ea60ceb53000"
+        }
+      },
+      "sequencesById": {
+        "eb2e5260-dfbb-4000-a76e-64b44a607000": {
+          "id": "eb2e5260-dfbb-4000-a76e-64b44a607000",
+          "type": "StateEntry",
+          "parentId": "a0a58380-c81b-4000-a55f-17bec9032000",
+          "sequence": [
+            "fd24822b-0212-4000-a665-6073e709e000",
+            "a25f5dbc-3eaa-4000-a620-434622c1f000"
+          ]
+        },
+        "31d60ba3-4734-4000-acfc-3d2c35c63000": {
+          "id": "31d60ba3-4734-4000-acfc-3d2c35c63000",
+          "type": "StateEntry",
+          "parentId": "436683ad-38ba-4000-a750-a462d216f000",
+          "sequence": [
+            "bb45011e-740b-4000-ab30-e0ecab685000",
+            "1149e7b8-c76f-4000-ad6c-d6a1b2f5d000"
+          ]
+        },
+        "ce3e76b4-aabe-4000-ad60-18f7a24ef000": {
+          "id": "ce3e76b4-aabe-4000-ad60-18f7a24ef000",
+          "type": "StateEntry",
+          "parentId": "0a17961c-4367-4000-a2b2-695feafb0000",
+          "sequence": [
+            "7ce439a1-82bd-4000-a88f-5a520fab1000",
+            "90a72207-f20b-4000-aff2-57046a166000",
+            "c8dbb02f-1d55-4000-a248-104ac3698000"
+          ]
+        },
+        "1a3f5bf2-073e-4000-a0bb-bdcfb6810000": {
+          "id": "1a3f5bf2-073e-4000-a0bb-bdcfb6810000",
+          "type": "Event",
+          "parentId": "1826c15b-db64-4000-a405-c63db5401000",
+          "sequence": [
+            "4e634864-80e2-4000-ad5f-fd0e72cce000",
+            "88253185-43e5-4000-a74c-3d9fa5bb7000",
+            "4a8381ab-d584-4000-a8fd-8d0a643f9000"
+          ]
+        },
+        "dcd38226-5582-4000-acf0-296660d69000": {
+          "id": "dcd38226-5582-4000-acf0-296660d69000",
+          "type": "Event",
+          "parentId": "6691c3e9-df0c-4000-a109-c33ecba5e000",
+          "sequence": [
+            "ccea8b16-e550-4000-a313-afdde1226000",
+            "f0d84e81-f77b-4000-a5a5-c5731bd97000",
+            "358c59c1-e371-4000-afbe-617f2feba000"
+          ]
+        },
+        "c7552133-6aad-4000-abee-ea60ceb53000": {
+          "id": "c7552133-6aad-4000-abee-ea60ceb53000",
+          "type": "Event",
+          "parentId": "6080d7f5-6544-4000-a02b-5f1e2b1c2000",
+          "sequence": [
+            "623cb485-2e58-4000-acdc-ec3d962d6000",
+            "943c9331-0ebc-4000-a5f8-a71455e31000",
+            "ce74131f-600f-4000-a9fd-3244e3177000"
+          ]
+        }
+      }
+    },
+    "htmlSites": {
+      "0ab2f6fb-96f0-4000-a59d-134fa20b2000": {
+        "id": "0ab2f6fb-96f0-4000-a59d-134fa20b2000",
+        "type": "Hosted",
+        "name": "html-interaction",
+        "queryString": {
+          "params": []
+        },
+        "indexAssetId": "b010b61e-595c-4000-a066-5bf5ed5c3000",
+        "enableNode": false
+      }
+    },
+    "nodeApps": {},
+    "dataFeeds": {
+      "feedsById": {},
+      "sourcesById": {}
+    },
+    "userVariables": {
+      "variablesById": {
+        "a0099688-e914-4000-a443-3f1a7c5c6000": {
+          "id": "a0099688-e914-4000-a443-3f1a7c5c6000",
+          "name": "hand_detected",
+          "defaultValue": {
+            "params": [
+              {
+                "type": "Text",
+                "value": "false"
+              }
+            ]
+          },
+          "access": "Private",
+          "isNetworked": false,
+          "dataFeedId": "0",
+          "systemVariable": null,
+          "data": null
+        },
+        "ba86b89d-98d6-4000-a197-103ea5c1e000": {
+          "id": "ba86b89d-98d6-4000-a197-103ea5c1e000",
+          "name": "video_to_play",
+          "defaultValue": {
+            "params": [
+              {
+                "type": "Text",
+                "value": "a"
+              }
+            ]
+          },
+          "access": "Private",
+          "isNetworked": false,
+          "dataFeedId": "0",
+          "systemVariable": null,
+          "data": null
+        },
+        "d5c9e13d-b0d8-4000-a648-15a42ded7000": {
+          "id": "d5c9e13d-b0d8-4000-a648-15a42ded7000",
+          "name": "show_control_panel",
+          "defaultValue": {
+            "params": [
+              {
+                "type": "Text",
+                "value": "true"
+              }
+            ]
+          },
+          "access": "Private",
+          "isNetworked": false,
+          "dataFeedId": "0",
+          "systemVariable": null,
+          "data": null
+        },
+        "1f876478-0d02-4000-a8fe-d10263a87000": {
+          "id": "1f876478-0d02-4000-a8fe-d10263a87000",
+          "name": "hand_lost_extended",
+          "defaultValue": {
+            "params": [
+              {
+                "type": "Text",
+                "value": "true"
+              }
+            ]
+          },
+          "access": "Private",
+          "isNetworked": false,
+          "dataFeedId": "0",
+          "systemVariable": null,
+          "data": null
+        }
+      },
+      "sequence": [
+        "a0099688-e914-4000-a443-3f1a7c5c6000",
+        "ba86b89d-98d6-4000-a197-103ea5c1e000",
+        "d5c9e13d-b0d8-4000-a648-15a42ded7000",
+        "1f876478-0d02-4000-a8fe-d10263a87000"
+      ]
+    },
+    "liveText": {
+      "itemsById": {},
+      "layersByCanvasId": {},
+      "dataFeedsByGroupId": {},
+      "canvasesById": {}
+    },
+    "deviceWebPages": {},
+    "scriptPlugins": {},
+    "parserPlugins": {},
+    "videoModePlugins": {},
+    "auxiliaryFiles": {},
+    "linkedPresentations": {},
+    "partnerProducts": {},
+    "customAutorun": "0",
+    "assetMap": {
+      "9ff153b1-f3e2-4000-a96b-89ea56a76000": {
+        "id": "9ff153b1-f3e2-4000-a96b-89ea56a76000",
+        "name": "Combined Idle.mp4",
+        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "networkId": 0,
+        "location": "Local",
+        "assetType": "Content",
+        "scope": "38032c17272d8c3a",
+        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Combined Idle.mp4",
+        "mediaType": "Video",
+        "fileSize": 25705375,
+        "lastModifiedDate": "2022-07-05T15:41:14.650Z",
+        "refCount": 1
+      },
+      "65463aaf-68f2-4000-ad5b-afc77d994000": {
+        "id": "65463aaf-68f2-4000-ad5b-afc77d994000",
+        "name": "Combined.mp4",
+        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "networkId": 0,
+        "location": "Local",
+        "assetType": "Content",
+        "scope": "38032c17272d8c3a",
+        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Combined.mp4",
+        "mediaType": "Video",
+        "fileSize": 10380987,
+        "lastModifiedDate": "2022-07-05T15:41:14.683Z",
+        "refCount": 1
+      },
+      "655bb4b1-8daa-4000-ae4b-4e1c546f4000": {
+        "id": "655bb4b1-8daa-4000-ae4b-4e1c546f4000",
+        "name": "Madronzio.mp4",
+        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "networkId": 0,
+        "location": "Local",
+        "assetType": "Content",
+        "scope": "38032c17272d8c3a",
+        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Madronzio.mp4",
+        "mediaType": "Video",
+        "fileSize": 8252225,
+        "lastModifiedDate": "2022-07-05T15:41:14.737Z",
+        "refCount": 1
+      },
+      "69177f6c-eaef-4000-a58f-82f64a946000": {
+        "id": "69177f6c-eaef-4000-a58f-82f64a946000",
+        "name": "Routure.mp4",
+        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "networkId": 0,
+        "location": "Local",
+        "assetType": "Content",
+        "scope": "38032c17272d8c3a",
+        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Routure.mp4",
+        "mediaType": "Video",
+        "fileSize": 8962696,
+        "lastModifiedDate": "2022-07-05T15:41:14.764Z",
+        "refCount": 1
+      },
+      "74a64dfb-0aea-4000-af07-0a19e3ddf000": {
+        "id": "74a64dfb-0aea-4000-af07-0a19e3ddf000",
+        "name": "LeWear 2_1.mp4",
+        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "networkId": 0,
+        "location": "Local",
+        "assetType": "Content",
+        "scope": "38032c17272d8c3a",
+        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\LeWear 2_1.mp4",
+        "mediaType": "Video",
+        "fileSize": 9037606,
+        "lastModifiedDate": "2022-07-05T15:41:14.710Z",
+        "refCount": 1
+      },
+      "b010b61e-595c-4000-a066-5bf5ed5c3000": {
+        "id": "b010b61e-595c-4000-a066-5bf5ed5c3000",
+        "name": "html_interaction_page.html",
+        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\html-site\\",
+        "networkId": 0,
+        "location": "Local",
+        "assetType": "HtmlSite",
+        "scope": "38032c17272d8c3a",
+        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\html-site\\html_interaction_page.html",
+        "fileSize": 3219,
+        "lastModifiedDate": "2023-07-06T13:10:34.043Z",
+        "refCount": 1
+      }
+    },
+    "thumbnail": {
+      "type": "image/jpeg",
+      "data": "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",
+      "size": {
+        "width": 200,
+        "height": 112
+      },
+      "hash": "6ee2bc65c75586d3efb994b955987c1bc257efd1"
+    }
+  },
+  "selection": {
+    "hovered": null,
+    "selectionContainer": {
+      "id": "b2174776-ed6e-4000-a9f5-360ba21a5000",
+      "type": "ZONE",
+      "selectableType": "ZONE"
+    },
+    "selectionEntities": {
+      "2a5fdee3-fd69-4000-aa9e-609f8d6d8000": {
+        "id": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
+        "type": "Html",
+        "selectableType": "STATE",
+        "selectableData": null
+      }
+    },
+    "isEventAdvancedEnabled": false,
+    "activeAssetMenuTab": "ASSETS",
+    "prevSelectionEntities": {}
+  },
+  "interactiveCanvas": {
+    "statePositionById": {
+      "a4b936b2-4042-4000-a3b1-b7ed22bc8000": {
+        "id": "a4b936b2-4042-4000-a3b1-b7ed22bc8000",
+        "position": {
+          "x": 540,
+          "y": -60
+        }
+      },
+      "19512465-bda1-4000-aba3-7ea077d7a000": {
+        "id": "19512465-bda1-4000-aba3-7ea077d7a000",
+        "position": {
+          "x": 487,
+          "y": 195
+        }
+      },
+      "f8a7e261-7426-4000-a53a-9d218df48000": {
+        "id": "f8a7e261-7426-4000-a53a-9d218df48000",
+        "position": {
+          "x": 213,
+          "y": 407
+        }
+      },
+      "38df97e7-9e11-4000-a7bd-f0e252c4b000": {
+        "id": "38df97e7-9e11-4000-a7bd-f0e252c4b000",
+        "position": {
+          "x": 492,
+          "y": 418
+        }
+      },
+      "de73c485-d6ee-4000-a750-b8f959d68000": {
+        "id": "de73c485-d6ee-4000-a750-b8f959d68000",
+        "position": {
+          "x": 775,
+          "y": 423
+        }
+      },
+      "2a5fdee3-fd69-4000-aa9e-609f8d6d8000": {
+        "id": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
+        "position": {
+          "x": 300,
+          "y": 60
+        }
+      },
+      "a0a58380-c81b-4000-a55f-17bec9032000": {
+        "id": "a0a58380-c81b-4000-a55f-17bec9032000",
+        "position": {
+          "x": 210,
+          "y": 14
+        }
+      },
+      "436683ad-38ba-4000-a750-a462d216f000": {
+        "id": "436683ad-38ba-4000-a750-a462d216f000",
+        "position": {
+          "x": 86,
+          "y": 204
+        }
+      },
+      "0a17961c-4367-4000-a2b2-695feafb0000": {
+        "id": "0a17961c-4367-4000-a2b2-695feafb0000",
+        "position": {
+          "x": 330,
+          "y": 200
+        }
+      }
+    },
+    "eventDataById": {
+      "55f9887e-d43a-4000-a108-452d734da000": {
+        "id": "55f9887e-d43a-4000-a108-452d734da000",
+        "displayType": "DisplayLine",
+        "labelLocation": "Bottom"
+      },
+      "4e8a9dfd-abc9-4000-a4a0-a506af556000": {
+        "id": "4e8a9dfd-abc9-4000-a4a0-a506af556000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "b96b51b0-e7dc-4000-ad01-ad5215ccc000": {
+        "id": "b96b51b0-e7dc-4000-ad01-ad5215ccc000",
+        "displayType": "DisplayLine",
+        "labelLocation": "Bottom"
+      },
+      "5af8c444-df5a-4000-a7ea-15c3bfee0000": {
+        "id": "5af8c444-df5a-4000-a7ea-15c3bfee0000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "008f526e-fa75-4000-a336-2617278a1000": {
+        "id": "008f526e-fa75-4000-a336-2617278a1000",
+        "displayType": "DisplayLine",
+        "labelLocation": "Bottom"
+      },
+      "8138b5fc-85d7-4000-ac69-aedaa7350000": {
+        "id": "8138b5fc-85d7-4000-ac69-aedaa7350000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "8bd4f1ab-5e9b-4000-ad85-a3788c708000": {
+        "id": "8bd4f1ab-5e9b-4000-ad85-a3788c708000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000": {
+        "id": "dd54e8f5-ad6d-4000-a1e3-a93b9e7dd000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "1826c15b-db64-4000-a405-c63db5401000": {
+        "id": "1826c15b-db64-4000-a405-c63db5401000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "6691c3e9-df0c-4000-a109-c33ecba5e000": {
+        "id": "6691c3e9-df0c-4000-a109-c33ecba5e000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "6080d7f5-6544-4000-a02b-5f1e2b1c2000": {
+        "id": "6080d7f5-6544-4000-a02b-5f1e2b1c2000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "9ae054da-d21c-4000-af23-f5d87d85d000": {
+        "id": "9ae054da-d21c-4000-af23-f5d87d85d000",
+        "displayType": "DisplayLine",
+        "labelLocation": "Bottom"
+      },
+      "1671c8e5-f2a6-4000-ac03-ead8b4dc8000": {
+        "id": "1671c8e5-f2a6-4000-ac03-ead8b4dc8000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "c6e86369-b0f7-4000-a7f9-ef9233fa4000": {
+        "id": "c6e86369-b0f7-4000-a7f9-ef9233fa4000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      },
+      "8981cce7-1e8c-4000-a0b1-98e810ae5000": {
+        "id": "8981cce7-1e8c-4000-a0b1-98e810ae5000",
+        "displayType": "DisplayLabel",
+        "labelLocation": "Bottom"
+      }
+    },
+    "viewTransformByZoneId": {
+      "788080e6-c5e8-4000-a199-d5a335670000": {
+        "x": 359.4812108559499,
+        "y": 36.04070981210856,
+        "k": 0.9582463465553236
+      },
+      "0752d681-ed3e-4000-ae33-2269ef351000": {
+        "x": -115,
+        "y": 101,
+        "k": 1
+      },
+      "b2174776-ed6e-4000-a9f5-360ba21a5000": {
+        "x": 0,
+        "y": 0,
+        "k": 1
+      }
+    },
+    "isLoaderEnabled": false
+  },
+  "eventMenu": {
+    "isOpen": true,
+    "showTitles": true
+  },
+  "liveText": {},
+  "screenLayoutSettings": {
+    "selectedLayoutId": "Portrait1x1",
+    "screenCount": 1,
+    "isLayoutBoundaryToggled": false,
+    "selectedBezel": null,
+    "isSnapToCanvasToggled": false,
+    "layout": {
+      "id": "Portrait1x1",
+      "columns": 1,
+      "rows": 1,
+      "screenOrientation": "PortraitBottomLeft"
+    }
+  }
+}

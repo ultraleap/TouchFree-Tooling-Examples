@@ -1,20 +1,28 @@
-var connectedToTracking = false;
-var bsSocket;
+const defaultSize = 60;
+const buttonGoalSize = [defaultSize, defaultSize, defaultSize];
+const minChange = 0.001;
 
-try {
-    TouchFree.Connection.ConnectionManager.init();
-    TouchFree.Connection.ConnectionManager.instance.addEventListener('OnConnected', () => { connectedToTracking = true });
+let connectedToTracking = false;
+let bsSocket;
 
+let videosSelectable = true;
+let buttonHideTimeout = -1;
+let container = null;
+let windowWidth = 0;
+let handPresent = false;
+let buttonCurrentSize = [defaultSize, defaultSize, defaultSize];
+let firstHoverDone = false;
 
-} catch {
-
-}
-
-var retryTrackingTimeout = 30000;
+const retryTrackingTimeout = 30000;
 
 window.onload = function () {
-
-    var inputSystem = new TouchFree.InputControllers.WebInputController();
+    TouchFree.Init({ initialiseCursor: false });
+    TouchFree.RegisterEventCallback("OnConnected", () => (connectedToTracking = true));
+    TouchFree.RegisterEventCallback("HandFound", handleHandFound);
+    TouchFree.RegisterEventCallback("HandsLost", handleHandsLost);
+    TouchFree.RegisterEventCallback("TransmitInputAction", (action) => {
+        setTimeout(() => handleInputAction(action), 1);
+    });
 
     setTimeout(() => {
         tryConnect();
@@ -22,48 +30,81 @@ window.onload = function () {
 
     try {
         bsSocket = new BSDatagramSocket();
-    }
-    catch {
+    } catch {
         console.log("BrightSign not available");
         document.body.classList.add("body");
     }
+};
+
+function handleHandFound() {
+    touchFreeEvent("hand_detected");
+    handPresent = true;
+    container.classList.add("hand");
+
+    if (videosSelectable) {
+        resetButtonMenuVisibility();
+    }
+
+    if (buttonHideTimeout !== -1) {
+        clearTimeout(buttonHideTimeout);
+    }
 }
 
-var tryConnect = function () {
+function handleHandsLost() {
+    touchFreeEvent("hand_lost");
+    handPresent = false;
+    firstHoverDone = false;
+
+    if (container.classList.contains("hand")) {
+        container.classList.remove("hand");
+    }
+
+    for (let i = 0; i < container.children.length; i++) {
+        updateContainerItem(i, 0);
+        dehover(container.children[i]);
+    }
+
+    buttonHideTimeout = window.setTimeout(() => {
+        container.style.opacity = 0;
+        buttonHideTimeout = -1;
+    }, 7000);
+}
+
+function tryConnect() {
     if (!connectedToTracking) {
         try {
             TouchFree.Connection.ConnectionManager.Connect();
-            console.log('Connected');
-        } catch { }
+            console.log("Connected");
+        } catch {}
 
         setTimeout(() => {
             tryConnect();
         }, retryTrackingTimeout);
     }
 
-    TouchFree.Plugins.InputActionManager.SetPlugins([ new LockedYAxis() ]);
+    TouchFree.Plugins.InputActionManager.SetPlugins([new LockedYAxis()]);
     TouchFree.Plugins.InputActionManager.plugins[0].SetYValue(window.innerHeight / 2);
 }
 
-var lastElementWithDown = null;
+let lastElementWithDown = null;
 
-var pointerdown = (element) => {
+function pointerdown(element) {
     lastElementWithDown = element;
 }
 
-var videoAClick = function (element) {
-    videoClick(element, 'play_video_a');
-};
+function videoAClick(element) {
+    videoClick(element, "play_video_a");
+}
 
-var videoBClick = function (element) {
-    videoClick(element, 'play_video_b');
-};
+function videoBClick(element) {
+    videoClick(element, "play_video_b");
+}
 
-var videoCClick = function (element) {
-    videoClick(element, 'play_video_c');
-};
+function videoCClick(element) {
+    videoClick(element, "play_video_c");
+}
 
-var videoClick = (element, eventName) => {
+function videoClick(element, eventName) {
     if (videosSelectable && lastElementWithDown === element) {
         touchFreeEvent(eventName);
         videoSelected();
@@ -71,7 +112,7 @@ var videoClick = (element, eventName) => {
     }
 }
 
-var videoSelected = function () {
+function videoSelected() {
     videosSelectable = false;
     setTimeout(() => {
         container.style.opacity = "0";
@@ -82,33 +123,13 @@ var videoSelected = function () {
     }, 300);
 }
 
-var resetButtonMenuVisibility = function () {
+function resetButtonMenuVisibility() {
     if (handPresent) {
         container.style.opacity = null;
         videosSelectable = true;
-        var selected = document.getElementsByClassName("selected")[0];
-        if (selected) {
-            selected.classList.remove("selected");
-        }
+        document.querySelector(".selected")?.classList.remove("selected");
     }
 }
-
-var videosSelectable = true;
-var buttonHideTimeout = -1;
-
-var container = null;
-var windowWidth = 0;
-
-var handPresent = false;
-
-var defaultSize = 60;
-
-var buttonGoalSize = [defaultSize, defaultSize, defaultSize];
-var buttonCurrentSize = [defaultSize, defaultSize, defaultSize];
-var minChange = 0.001;
-
-var firstHoverDone = false;
-
 
 setTimeout(() => {
     container = document.getElementsByClassName("container")[0];
@@ -116,54 +137,18 @@ setTimeout(() => {
     updateButtonSizes();
 }, 10);
 
-TouchFree.Connection.ConnectionManager.instance.addEventListener('HandFound', () => {
-    touchFreeEvent('hand_detected');
-    handPresent = true;
-    container.classList.add('hand');
-
-    if (videosSelectable) {
-        resetButtonMenuVisibility();
-    }
-
-    if (buttonHideTimeout !== -1) {
-        clearTimeout(buttonHideTimeout);
-    }
-});
-
-TouchFree.Connection.ConnectionManager.instance.addEventListener('HandsLost', () => {
-    touchFreeEvent('hand_lost');
-    handPresent = false;
-    firstHoverDone = false;
-
-    if (container.classList.contains('hand')) {
-        container.classList.remove('hand');
-    }
-
-    for (var i = 0; i < container.children.length; i++) {
-        updateContainerItem(i, 0);
-        dehover(container.children[i]);
-    }
-
-    buttonHideTimeout = window.setTimeout(() => {
-        container.style.opacity = 0;
-        buttonHideTimeout = -1;
-    }, 7000);
-});
-
-
-
-var touchFreeEvent = function (valueToSend) {
+function touchFreeEvent(valueToSend) {
     console.log(valueToSend);
     if (bsSocket) {
-        bsSocket.SendTo('127.0.0.1', '5000', valueToSend);
+        bsSocket.SendTo("127.0.0.1", "5000", valueToSend);
     }
 }
 
-var updateButtonSizes = function () {
-    var furtherUpdateRequired = false;
+function updateButtonSizes() {
+    let furtherUpdateRequired = false;
     for (var i = 0; i < 3; i++) {
         if (buttonCurrentSize[i] !== buttonGoalSize[i]) {
-            var maxToChange = (buttonCurrentSize[i] - buttonGoalSize[i]) / 2;
+            const maxToChange = (buttonCurrentSize[i] - buttonGoalSize[i]) / 2;
 
             if (maxToChange > minChange || maxToChange < -minChange) {
                 buttonCurrentSize[i] = buttonCurrentSize[i] - maxToChange;
@@ -172,7 +157,7 @@ var updateButtonSizes = function () {
                 buttonCurrentSize[i] = buttonGoalSize[i];
             }
 
-            var childToUpdate = container.children[i].children[0];
+            const childToUpdate = container.children[i].children[0];
             childToUpdate.style.width = `${buttonCurrentSize[i]}%`;
             childToUpdate.style.height = `${buttonCurrentSize[i]}%`;
         }
@@ -185,19 +170,16 @@ var updateButtonSizes = function () {
     }
 }
 
-var updateButtonRef = null;
+let updateButtonRef = null;
 
-var progressToClick = 0;
-TouchFree.Plugins.InputActionManager.instance.addEventListener('TransmitInputAction', (action) => {
-    setTimeout(() => handleInputAction(action), 1);
-});
+let progressToClick = 0;
 
-var handleInputAction = function (action) {
-    progressToClick = !action ? 0 : (!action.detail ? 0 : action.detail.ProgressToClick);
+function handleInputAction(action) {
+    progressToClick = action?.ProgressToClick ?? 0;
 
-    if (action && action.detail && handPresent) {
-        var xPosition = action.detail.CursorPosition[0] > 0 ? action.detail.CursorPosition[0] : 0;
-        var mouseXpercentage = Math.round(xPosition / windowWidth * 100);
+    if (action && handPresent) {
+        var xPosition = action.CursorPosition[0] > 0 ? action.CursorPosition[0] : 0;
+        var mouseXpercentage = Math.round((xPosition / windowWidth) * 100);
 
         for (var i = 0; i < container.children.length; i++) {
             if (mouseXpercentage > 33 * i && mouseXpercentage < 33 * (i + 1)) {
@@ -210,7 +192,6 @@ var handleInputAction = function (action) {
                 updateContainerItem(i, null);
             }
         }
-
     } else {
         for (var i = 0; i < container.children.length; i++) {
             updateContainerItem(i, 3);
@@ -222,24 +203,24 @@ var handleInputAction = function (action) {
     }
 }
 
-var updateContainerItem = function (index, progressToClick) {
+function updateContainerItem(index, progressToClick) {
     if (progressToClick !== null) {
-        buttonGoalSize[index] = 90 - (10 * progressToClick);
+        buttonGoalSize[index] = 90 - 10 * progressToClick;
     } else {
         buttonGoalSize[index] = 80;
     }
 }
 
-var hover = function (element) {
-    if (!element.classList.contains('hovered')) {
-        element.classList.add('hovered');
+function hover(element) {
+    if (!element.classList.contains("hovered")) {
+        element.classList.add("hovered");
         element.children[0].src = element.dataset.gif;
     }
 }
 
-var dehover = function (element) {
-    if (element.classList.contains('hovered')) {
-        element.classList.remove('hovered');
+function dehover(element) {
+    if (element.classList.contains("hovered")) {
+        element.classList.remove("hovered");
         element.children[0].src = element.dataset.png;
     }
 }
