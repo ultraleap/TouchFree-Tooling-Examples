@@ -4,8 +4,8 @@
 <head>
   <script name="TouchFree" type="text/javascript" src="TouchFree_Tooling.js"></script>
   <script name="TouchFree_Quick_Start" type="text/javascript">
-    window.onload = function () {
-      TouchFree.Init();
+    window.onload = () => {
+      TouchFree.Init({ initialiseCursor: false });
     }
 
     let bsSocket;
