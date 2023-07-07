@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+#container {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+button {
+    background: none;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    height: 500px;
+    transition: transform 0.2s ease, border 0.2s ease;
+    background-position: center;
+    background-size: cover;
+}
+
+button.hovered {
+    transform: scale(1.1);
+    border: 10px solid white;
+}
+
+.selected {
+    box-shadow: 0 1px 30px rgba(255, 255, 255, 0.8);
+    border: 20px solid #fff;
+}

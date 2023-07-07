@@ -396,7 +396,7 @@
         }
       },
       "wssDeviceSpec": {},
-      "lastModifiedTime": "2023-07-06T13:11:11.566Z"
+      "lastModifiedTime": "2023-07-07T13:40:02.304Z"
     },
     "zones": {
       "zonesById": {
@@ -472,10 +472,10 @@
           "nonInteractive": false,
           "initialMediaStateId": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
           "position": {
-            "x": 0,
-            "y": 1080,
             "width": 1080,
             "height": 640,
+            "x": 0,
+            "y": 1080,
             "pct": false
           },
           "properties": {
@@ -1756,12 +1756,12 @@
       "9ff153b1-f3e2-4000-a96b-89ea56a76000": {
         "id": "9ff153b1-f3e2-4000-a96b-89ea56a76000",
         "name": "Combined Idle.mp4",
-        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "path": "TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\",
         "networkId": 0,
         "location": "Local",
         "assetType": "Content",
         "scope": "38032c17272d8c3a",
-        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Combined Idle.mp4",
+        "locator": "file://\\TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\Combined Idle.mp4",
         "mediaType": "Video",
         "fileSize": 25705375,
         "lastModifiedDate": "2022-07-05T15:41:14.650Z",
@@ -1770,12 +1770,12 @@
       "65463aaf-68f2-4000-ad5b-afc77d994000": {
         "id": "65463aaf-68f2-4000-ad5b-afc77d994000",
         "name": "Combined.mp4",
-        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "path": "TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\",
         "networkId": 0,
         "location": "Local",
         "assetType": "Content",
         "scope": "38032c17272d8c3a",
-        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Combined.mp4",
+        "locator": "file://\\TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\Combined.mp4",
         "mediaType": "Video",
         "fileSize": 10380987,
         "lastModifiedDate": "2022-07-05T15:41:14.683Z",
@@ -1784,12 +1784,12 @@
       "655bb4b1-8daa-4000-ae4b-4e1c546f4000": {
         "id": "655bb4b1-8daa-4000-ae4b-4e1c546f4000",
         "name": "Madronzio.mp4",
-        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "path": "TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\",
         "networkId": 0,
         "location": "Local",
         "assetType": "Content",
         "scope": "38032c17272d8c3a",
-        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Madronzio.mp4",
+        "locator": "file://\\TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\Madronzio.mp4",
         "mediaType": "Video",
         "fileSize": 8252225,
         "lastModifiedDate": "2022-07-05T15:41:14.737Z",
@@ -1798,12 +1798,12 @@
       "69177f6c-eaef-4000-a58f-82f64a946000": {
         "id": "69177f6c-eaef-4000-a58f-82f64a946000",
         "name": "Routure.mp4",
-        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "path": "TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\",
         "networkId": 0,
         "location": "Local",
         "assetType": "Content",
         "scope": "38032c17272d8c3a",
-        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\Routure.mp4",
+        "locator": "file://\\TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\Routure.mp4",
         "mediaType": "Video",
         "fileSize": 8962696,
         "lastModifiedDate": "2022-07-05T15:41:14.764Z",
@@ -1812,12 +1812,12 @@
       "74a64dfb-0aea-4000-af07-0a19e3ddf000": {
         "id": "74a64dfb-0aea-4000-af07-0a19e3ddf000",
         "name": "LeWear 2_1.mp4",
-        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\",
+        "path": "TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\",
         "networkId": 0,
         "location": "Local",
         "assetType": "Content",
         "scope": "38032c17272d8c3a",
-        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\Media\\LeWear 2_1.mp4",
+        "locator": "file://\\TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\Media\\LeWear 2_1.mp4",
         "mediaType": "Video",
         "fileSize": 9037606,
         "lastModifiedDate": "2022-07-05T15:41:14.710Z",
@@ -1826,14 +1826,14 @@
       "b010b61e-595c-4000-a066-5bf5ed5c3000": {
         "id": "b010b61e-595c-4000-a066-5bf5ed5c3000",
         "name": "html_interaction_page.html",
-        "path": "C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\html-site\\",
+        "path": "TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\html-site\\",
         "networkId": 0,
         "location": "Local",
         "assetType": "HtmlSite",
         "scope": "38032c17272d8c3a",
-        "locator": "file://\\C:\\Users\\TomCartwright\\Documents\\ooh\\TouchFree-Tooling-Examples\\Examples-BrightSign\\html-site\\html_interaction_page.html",
-        "fileSize": 3219,
-        "lastModifiedDate": "2023-07-06T13:10:34.043Z",
+        "locator": "file://\\TouchFree-Tooling-Examples\\Examples-BrightSign\\VideoGallery\\html-site\\html_interaction_page.html",
+        "fileSize": 1293,
+        "lastModifiedDate": "2023-07-07T13:29:09.172Z",
         "refCount": 1
       }
     },
@@ -1850,21 +1850,21 @@
   "selection": {
     "hovered": null,
     "selectionContainer": {
-      "id": "b2174776-ed6e-4000-a9f5-360ba21a5000",
-      "type": "ZONE",
-      "selectableType": "ZONE"
+      "id": "PRESENTATION",
+      "type": "PRESENTATION",
+      "selectableType": "PRESENTATION"
     },
-    "selectionEntities": {
-      "2a5fdee3-fd69-4000-aa9e-609f8d6d8000": {
-        "id": "2a5fdee3-fd69-4000-aa9e-609f8d6d8000",
-        "type": "Html",
-        "selectableType": "STATE",
-        "selectableData": null
-      }
-    },
+    "selectionEntities": {},
     "isEventAdvancedEnabled": false,
     "activeAssetMenuTab": "ASSETS",
-    "prevSelectionEntities": {}
+    "prevSelectionEntities": {
+      "b2174776-ed6e-4000-a9f5-360ba21a5000": {
+        "id": "b2174776-ed6e-4000-a9f5-360ba21a5000",
+        "type": "ZONE",
+        "selectableType": "ZONE",
+        "selectableData": null
+      }
+    }
   },
   "interactiveCanvas": {
     "statePositionById": {
