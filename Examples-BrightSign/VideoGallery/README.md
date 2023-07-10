@@ -1,6 +1,6 @@
 # Creating a BrightSign presentation that is interactive using TouchFree
 
-This example uses BrightAuthor: Connected and is set up for the XC2055.
+This example uses BrightAuthor:connected and is set up for the XC2055.
 
 ## BrightAuthor presentation
 
