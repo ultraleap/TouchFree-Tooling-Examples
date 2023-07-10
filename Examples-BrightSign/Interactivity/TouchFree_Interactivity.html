@@ -20,6 +20,10 @@
                 }
             }
 
+            function nextClicked() {
+                sendUdpMessage("next-clicked");
+            }
+
             function onHover(element) {
                 element.classList.add("hovered");
             }
@@ -39,7 +43,7 @@
         <div style="height: 300px; width: 100vw">
             <button
                 style="margin-left: 10%; height: 100%; width: 80%"
-                onpointerup="sendUdpMessage('next-clicked')"
+                onpointerup="nextClicked()"
                 onpointerenter="onHover(this)"
                 onpointerleave="onLeave(this)"
             >
