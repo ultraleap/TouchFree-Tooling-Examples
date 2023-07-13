@@ -2,9 +2,9 @@
   "bsdm": {
     "sign": {
       "properties": {
-        "id": "3caebc09-fc79-4000-aa12-70b9924db000",
+        "id": "554a1c7d-e40c-4000-a460-7b7a4e813000",
         "version": "1.3.10",
-        "name": "Interactivity Example XC5",
+        "name": "video-gallery-XC5",
         "videoMode": "1920x1080x60p",
         "size": {
           "width": 1080,
@@ -396,7 +396,7 @@
         }
       },
       "wssDeviceSpec": {},
-      "lastModifiedTime": "2023-07-07T13:40:02.304Z"
+      "lastModifiedTime": "2023-07-13T10:34:19.880Z"
     },
     "zones": {
       "zonesById": {
@@ -1854,17 +1854,17 @@
       "type": "PRESENTATION",
       "selectableType": "PRESENTATION"
     },
-    "selectionEntities": {},
-    "isEventAdvancedEnabled": false,
-    "activeAssetMenuTab": "ASSETS",
-    "prevSelectionEntities": {
-      "b2174776-ed6e-4000-a9f5-360ba21a5000": {
-        "id": "b2174776-ed6e-4000-a9f5-360ba21a5000",
+    "selectionEntities": {
+      "0752d681-ed3e-4000-ae33-2269ef351000": {
+        "id": "0752d681-ed3e-4000-ae33-2269ef351000",
         "type": "ZONE",
         "selectableType": "ZONE",
         "selectableData": null
       }
-    }
+    },
+    "isEventAdvancedEnabled": false,
+    "activeAssetMenuTab": "ASSETS",
+    "prevSelectionEntities": {}
   },
   "interactiveCanvas": {
     "statePositionById": {
