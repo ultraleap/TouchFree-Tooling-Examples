@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basic Hover Button Example</title>
+        <script name="TouchFree_Tooling" type="text/javascript" src="../TouchFree/TouchFree_Tooling.js"></script>
+        <link rel="stylesheet" href="./Depth.css" />
+    </head>
+
+    <body>
+        <div class="rect rect-0" />
+        <div class="rect rect-1" />
+        <div class="rect rect-2" />
+        <div class="rect rect-3" />
+        <div class="rect rect-4" />
+    </body>
+    <script>
+        window.onload = () => {
+            TouchFree.Init({ initialiseCursor: false });
+            TouchFree.RegisterEventCallback("TransmitInputAction", onAction);
+        };
+
+        const max = 0.4;
+
+        const maxWidthAdder = 325;
+        const maxHeightAdder = 100;
+
+        function onAction(event) {
+            const distanceM = event.DistanceFromScreen;
+
+            if (distanceM >= max) {
+                document.body.style.setProperty("--width", "100%");
+                document.body.style.setProperty("--height", "100%");
+                return;
+            }
+
+            const scalar = 1 - distanceM / max;
+            document.body.style.setProperty("--width", `${100 + scalar * maxWidthAdder}%`);
+            document.body.style.setProperty("--height", `${100 + scalar * maxHeightAdder}%`);
+        }
+    </script>
+</html>
