@@ -8,40 +8,53 @@
     </head>
 
     <body>
-        <div class="rect rect-0" />
-        <div class="rect rect-1" />
-        <div class="rect rect-2" />
-        <div class="rect rect-3" />
-        <div class="rect rect-4" />
-        <div class="rect rect-5" />
-        <div class="rect rect-6" />
-        <div class="rect rect-7" />
-        <div class="rect rect-8" />
-        <div class="rect rect-9" />
+        <div id="container" />
     </body>
     <script>
+        const colors = [
+            "#e2e2dfff",
+            "#d2d2cfff",
+            "#e2cfc4ff",
+            "#f7d9c4ff",
+            "#faedcbff",
+            "#c9e4deff",
+            "#c6def1ff",
+            "#dbcdf0ff",
+            "#f2c6deff",
+            "#f9c6c9ff",
+        ];
+
         window.onload = () => {
+            // Create lots of nested divs to build up the layers
+            let parent = document.getElementById("container");
+            for (let i = 0; i <= 3 * colors.length - 1; i++) {
+                const element = document.createElement("div");
+                if (i === 0) {
+                    element.id = "base-layer";
+                }
+                element.classList.add("layer");
+                element.style.setProperty("--color", colors[i % colors.length]);
+                parent.appendChild(element);
+                parent = element;
+            }
+
+            // Initialse TouchFree without a cursor
             TouchFree.Init({ initialiseCursor: false });
+            // Call onAction when we recieve an InputAction from TouchFree
             TouchFree.RegisterEventCallback("TransmitInputAction", onAction);
         };
 
-        const max = 0.4;
-
-        const maxWidthAdder = 125;
-        const maxHeightAdder = 50;
+        const maxDistanceM = 0.4;
+        const zoomMultiplier = 1000;
 
         function onAction(event) {
             const distanceM = event.DistanceFromScreen;
 
-            if (distanceM >= max) {
-                document.body.style.setProperty("--width", "100%");
-                document.body.style.setProperty("--height", "100%");
-                return;
-            }
-
-            const scalar = 1 - distanceM / max;
-            document.body.style.setProperty("--width", `${100 + scalar * maxWidthAdder}%`);
-            document.body.style.setProperty("--height", `${100 + scalar * maxHeightAdder}%`);
+            // Get the distance from screen and map to our zoom range
+            const scalar = (1 - distanceM / maxDistanceM) * zoomMultiplier;
+            // Set min zoom as 180
+            const zoom = Math.max(180, 100 + scalar);
+            document.body.style.setProperty("--zoom", `${zoom}%`);
         }
     </script>
 </html>

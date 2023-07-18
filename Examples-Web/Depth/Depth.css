@@ -1,66 +1,40 @@
 body {
-    --width: 100%;
-    --height: 100%;
-    background-color: gainsboro;
+    --zoom: 180%;
     height: 100vh;
     width: 100vw;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #073547;
+}
+
+#container {
+    height: min(100vh, 100vw);
+    width: min(100vh, 100vw);
     display: grid;
-    grid-template-rows: var(--height);
-    grid-template-columns: var(--width);
+    grid-template-rows: var(--zoom);
+    grid-template-columns: var(--zoom);
     justify-content: center;
     align-content: space-evenly;
     overflow: hidden;
 }
 
-.rect {
-    --borderSize: 8;
-    width: calc(100% - (2% * var(--borderSize)));
-    height: calc(100% - (1% * var(--borderSize)));
+.layer {
+    --borderSize: 90%;
+    width: var(--borderSize);
+    height: var(--borderSize);
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 10px;
+    color: color-mix(in srgb, var(--color) 60%, black);
+    background-color: var(--color);
 }
 
-.rect-0 {
-    --borderSize: 0;
-    background-color: #001219;
-    box-shadow: inset 0px 0px 10px #000000;
-    border-radius: 0px;
-}
-.rect-1 {
-    background-color: #005f73;
-    box-shadow: inset 0px 0px 20px #00252c;
-}
-.rect-2 {
-    background-color: #0a9396;
-    box-shadow: inset 0px 0px 20px #065d5f;
-}
-.rect-3 {
-    background-color: #94d2bd;
-    box-shadow: inset 0px 0px 20px #496f62;
-}
-.rect-4 {
-    background-color: #e9d8a6;
-    box-shadow: inset 0px 0px 20px #9e9371;
-}
-.rect-5 {
-    background-color: #ee9b00;
-    box-shadow: inset 0px 0px 20px #966202;
-}
-.rect-6 {
-    background-color: #ca6702;
-    box-shadow: inset 0px 0px 20px #844302;
-}
-.rect-7 {
-    background-color: #bb3e03;
-    box-shadow: inset 0px 0px 20px #7d2f0a;
-}
-.rect-8 {
-    background-color: #ae2012;
-    box-shadow: inset 0px 0px 20px #811910;
-}
-.rect-9 {
-    background-color: #9b2226;
-    box-shadow: inset 0px 0px 20px #8c1d20;
+#base-layer {
+    width: 100%;
+    height: 100%;
 }
