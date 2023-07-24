@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basic Hover Button Example</title>
+        <script name="TouchFree_Tooling" type="text/javascript" src="../TouchFree/TouchFree_Tooling.js"></script>
+        <link rel="stylesheet" href="./Depth.css" />
+    </head>
+
+    <body>
+        <div class="touchfree-no-scroll" id="container" />
+    </body>
+    <script>
+        const colors = [
+            "#e2e2dfff",
+            "#d2d2cfff",
+            "#e2cfc4ff",
+            "#f7d9c4ff",
+            "#faedcbff",
+            "#c9e4deff",
+            "#c6def1ff",
+            "#dbcdf0ff",
+            "#f2c6deff",
+            "#f9c6c9ff",
+        ];
+
+        window.onload = () => {
+            // Create lots of nested divs to build up the layers
+            let parent = document.getElementById("container");
+            for (let i = 0; i <= 3 * colors.length - 1; i++) {
+                const element = document.createElement("div");
+                if (i === 0) {
+                    element.id = "base-layer";
+                }
+                element.classList.add("layer");
+                element.style.setProperty("--color", colors[i % colors.length]);
+                parent.appendChild(element);
+                parent = element;
+            }
+
+            // Initialse TouchFree without a cursor
+            TouchFree.Init({ initialiseCursor: false });
+            // Call onAction when we recieve an InputAction from TouchFree
+            TouchFree.RegisterEventCallback("TransmitInputAction", onAction);
+        };
+
+        const maxDistanceM = 0.4;
+        const zoomMultiplier = 1000;
+
+        function onAction(event) {
+            // Get the distance from screen
+            const distanceM = event.DistanceFromScreen;
+
+            // Map distance to our zoom range
+            const scalar = (1 - distanceM / maxDistanceM) * zoomMultiplier;
+            // Set min zoom as 180 (so you can't zoom out past the outer most layer)
+            const zoom = Math.max(180, 100 + scalar);
+            // Set outer most layer size to be our zoom value
+            // As the other divs are all nested scaling the outer most div will scale the children
+            document.body.style.setProperty("--zoom", `${zoom}%`);
+        }
+    </script>
+</html>
