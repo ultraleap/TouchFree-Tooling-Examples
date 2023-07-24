@@ -4,7 +4,7 @@ Examples of touchless content only possible through using [TouchFree Web Tooling
 
 ## Setup
 
-Wave Progress Button is set up slightly differently as it is a react app. The WaveProgressButton folder contains a readme on how to setup that example.
+Wave Progress and Border Progress Buttons are set up slightly differently as they are React apps. They both contain a readme on how to setup React example.
 
 1. Ensure that the [TouchFree Service](https://docs.ultraleap.com/touchfree-user-manual/#touchfree-service) is running. [Download the installer here](https://developer.leapmotion.com/touchfree).
 2. Clone the repo and find the example you want to try
@@ -32,6 +32,14 @@ This example shows you the most basic way to add hover states to your UI using `
 ![Hover Button Example](Media/HoverButtonExample.gif)
 
 Recommended Interaction: AirPush
+
+## Depth
+
+This example shows you how to add depth to your content using `distanceFromScreen`.
+
+![Depth Example](Media/DepthExample.gif)
+
+Recommended Interaction: Any!
 
 ## Animated Progress Buttons
 
