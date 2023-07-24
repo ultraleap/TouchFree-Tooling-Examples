@@ -48,12 +48,15 @@
         const zoomMultiplier = 1000;
 
         function onAction(event) {
+            // Get the distance from screen
             const distanceM = event.DistanceFromScreen;
 
-            // Get the distance from screen and map to our zoom range
+            // Map distance to our zoom range
             const scalar = (1 - distanceM / maxDistanceM) * zoomMultiplier;
-            // Set min zoom as 180
+            // Set min zoom as 180 (so you can't zoom out past the outer most layer)
             const zoom = Math.max(180, 100 + scalar);
+            // Set outer most layer size to be our zoom value
+            // As the other divs are all nested scaling the outer most div will scale the children
             document.body.style.setProperty("--zoom", `${zoom}%`);
         }
     </script>
