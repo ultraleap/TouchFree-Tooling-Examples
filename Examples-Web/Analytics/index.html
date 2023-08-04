@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script
+      name="TouchFree_Tooling"
+      type="text/javascript"
+      src="../TouchFree/TouchFree_Tooling.js"
+    ></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="analytics">
+      <button onpointerup="onStart()">Start Session</button>
+      <button onpointerup="onStop()">Stop Session</button>
+      <p>Session status: <br /><span id="status">Stopped</span></p>
+    </div>
+    <div id="content"></div>
+  </body>
+  <script>
+    // =============== Page Setup ===============
+    // Populate a grid of buttons
+    const content = document.getElementById("content");
+    for (let i = 0; i < 15; i++) {
+      content.appendChild(document.createElement("button"));
+    }
+
+    // Setup for hovering with TouchFree
+    const buttonArray = Array.from(document.querySelectorAll("button"));
+    buttonArray.forEach((button) => {
+      button.addEventListener("pointerenter", () =>
+        button.classList.add("hovered")
+      );
+      button.addEventListener("pointerleave", () =>
+        button.classList.remove("hovered")
+      );
+      button.addEventListener("pointerdown", () =>
+        button.classList.remove("hovered")
+      );
+      button.addEventListener("pointerup", () =>
+        button.classList.add("hovered")
+      );
+    });
+
+    // ===========================================
+
+    // ============= TouchFree Setup =============
+    TouchFree.Init();
+
+    TouchFree.RegisterEventCallback("WhenConnected", () => {
+      // Register non-touchfree events to be logged. Defaults to touch events: 'touchstart', 'touchmove' & 'touchend'
+      TouchFree.RegisterAnalyticEvents([
+        "touchstart",
+        "touchmove",
+        "touchend",
+        "pointerdown",
+        "pointerup",
+      ]);
+    });
+    // ===========================================
+
+    // ============= Analytics Setup =============
+    const applicationName = "ExampleApplication";
+    const statusTextElement = document.getElementById("status");
+
+    function callback(detail) {
+      if (detail.status === "Failure") {
+        console.warn(detail.message);
+      } else {
+        console.log(detail.message);
+      }
+    }
+
+    function onStart() {
+      TouchFree.StartAnalyticsSession(applicationName, {
+        callback: (detail) => {
+          if (detail.status !== "Failure") {
+            statusTextElement.textContent = "Running";
+          }
+          callback(detail);
+        },
+        stopCurrentSession: true,
+      });
+    }
+
+    function onStop() {
+      TouchFree.StopAnalyticsSession(applicationName, {
+        callback: (detail) => {
+          if (detail.status !== "Failure") {
+            statusTextElement.textContent = "Stopped";
+          }
+          callback(detail);
+        },
+      });
+    }
+    // ===========================================
+  </script>
+</html>
