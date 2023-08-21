@@ -1,12 +1,10 @@
 {
   "name": "quickstart",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vite"
   },
   "dependencies": {
     "touchfree": "^2.0.0"

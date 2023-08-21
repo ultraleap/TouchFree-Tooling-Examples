@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "touchfree": "github:ultraleap/TouchFreeWebTooling"
+    "touchfree": "^2.0.0"
   },
   "scripts": {
     "start": "vite",
