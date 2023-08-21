@@ -4,38 +4,7 @@ import { TouchFreeInputAction } from "touchfree";
 
 TouchFree.init();
 
-let isDark = false;
-
-const dark = document.getElementById("dark");
-const label = document.getElementById("label");
-
-const textArea = document.querySelector(
-  ".text-container"
-) as HTMLDivElement | null;
-
-const root = document.querySelector(":root") as HTMLDivElement | null;
-const title = document.querySelector(
-  ".text-container"
-) as HTMLDivElement | null;
-
-dark?.addEventListener("pointerup", () => {
-  if (!label) return;
-  if (isDark) {
-    root?.style.setProperty("--background-color", "white");
-    root?.style.setProperty("--percent", "80%");
-    title?.style.setProperty("color", "black");
-    label.textContent = "Dark";
-    isDark = false;
-  } else {
-    root?.style.setProperty("--background-color", "#5c5c5c");
-    root?.style.setProperty("--percent", "50%");
-    title?.style.setProperty("color", "white");
-    label.textContent = "Light";
-    isDark = true;
-  }
-});
-
-const colorMap = [
+const COLOR_MAP = [
   "var(--melon)",
   "var(--sunset)",
   "var(--cream)",
@@ -47,12 +16,39 @@ const colorMap = [
   "var(--baby-powder)",
 ];
 
+let isDark = false;
+
+const dark = document.getElementById("dark");
+const label = document.getElementById("label");
+const textArea = document.querySelector(
+  ".text-container"
+) as HTMLDivElement | null;
+const root = document.querySelector(":root") as HTMLDivElement | null;
+
+dark?.addEventListener("pointerup", () => {
+  if (!label) return;
+  if (isDark) {
+    root?.style.setProperty("--background-color", "white");
+    root?.style.setProperty("--percent", "80%");
+    textArea?.style.setProperty("color", "black");
+    label.textContent = "Dark";
+    isDark = false;
+  } else {
+    root?.style.setProperty("--background-color", "#5c5c5c");
+    root?.style.setProperty("--percent", "50%");
+    textArea?.style.setProperty("color", "white");
+    label.textContent = "Light";
+    isDark = true;
+  }
+});
+
 function onClick(event: Event) {
-  if (!textArea || !event || !event.target || !root) return;
+  if (!textArea) return;
   const button = event.target as HTMLButtonElement;
   textArea.textContent = button.textContent;
   textArea.style.backgroundColor = button.style.backgroundColor;
-  root.style.setProperty("--display-color", button.style.backgroundColor);
+  root?.style.setProperty("--display-color", button.style.backgroundColor);
+  textArea?.style.setProperty("color", "black");
 }
 
 function onPointerEnter(event: Event) {
@@ -80,7 +76,7 @@ function createButton(index: number, content: "NUM" | "ALPHA") {
   button.addEventListener("pointerup", onClick);
   button.addEventListener("pointerenter", onPointerEnter);
   button.addEventListener("pointerleave", onPointerLeave);
-  button.style.backgroundColor = colorMap[index];
+  button.style.backgroundColor = COLOR_MAP[index];
   return button;
 }
 
