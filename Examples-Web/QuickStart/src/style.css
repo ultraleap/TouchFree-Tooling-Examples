@@ -32,7 +32,7 @@ body {
   gap: 2vw;
 }
 
-.col__right {
+.col--right {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,13 +51,13 @@ body {
   border-radius: 15px;
 }
 
-.scroll-container__vertical {
+.scroll-container--vertical {
   height: 80vh;
   width: 30vw;
   overflow-y: scroll;
 }
 
-.scroll-container__horizontal {
+.scroll-container--horizontal {
   height: 20vh;
   width: 60vw;
   overflow-x: scroll;
@@ -80,7 +80,7 @@ body {
   text-align: center;
 }
 
-.button-container__vertical {
+.button-container--vertical {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +88,7 @@ body {
   margin: 2vw 0;
 }
 
-.button-container__horizontal {
+.button-container--horizontal {
   position: absolute;
   display: flex;
   align-items: center;
@@ -106,12 +106,12 @@ body {
   transform: scale(1);
 }
 
-.button-container__vertical button {
+.button-container--vertical button {
   height: 15vh;
   width: 25vw;
 }
 
-.button-container__horizontal button {
+.button-container--horizontal button {
   height: 15vh;
   width: 15vw;
 }

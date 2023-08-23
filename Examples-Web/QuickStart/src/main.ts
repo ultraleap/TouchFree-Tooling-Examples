@@ -80,27 +80,15 @@ function createButton(index: number, content: "ALPHA" | "NUM") {
   return button;
 }
 
-const horizontalContainer = Array.from(
-  document.querySelectorAll(".button-container__horizontal")
+const horizontalContainer = document.querySelector(
+  ".button-container--horizontal"
 );
+const verticalContainer = document.querySelector(".button-container--vertical");
 
-const verticalContainer = Array.from(
-  document.querySelectorAll(".button-container__vertical")
-);
-
-verticalContainer.forEach((container) => {
-  for (let i = 0; i < 8; i++) {
-    const button = createButton(i, "NUM");
-    container.appendChild(button);
-  }
-});
-
-horizontalContainer.forEach((container) => {
-  for (let i = 0; i < 8; i++) {
-    const button = createButton(i, "ALPHA");
-    container.appendChild(button);
-  }
-});
+for (let i = 0; i < 8; i++) {
+  verticalContainer?.appendChild(createButton(i, "NUM"));
+  horizontalContainer?.appendChild(createButton(i, "ALPHA"));
+}
 
 TouchFree.registerEventCallback(
   "transmitInputAction",
