@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script name="TouchFree_Tooling" type="text/javascript" src="./TouchFree_Tooling.js"></script>
+        <script type="text/javascript" src="./Video_Gallery_Demo.js"></script>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+
+    <body>
+        <div id="container" style="opacity: 0">
+            <button
+                id="left"
+                onpointerdown="pointerdown(this)"
+                onpointerup="videoClick(this, 'a')"
+                onpointerenter="hover(this, 'Madronzio_play.gif')"
+                onpointerleave="dehover(this, 'Madronzio.png')"
+            ></button>
+            <button
+                id="middle"
+                onpointerdown="pointerdown(this)"
+                onpointerup="videoClick(this, 'b')"
+                onpointerenter="hover(this, 'Routure_play.gif')"
+                onpointerleave="dehover(this, 'Routure.png')"
+            ></button>
+            <button
+                id="right"
+                onpointerdown="pointerdown(this)"
+                onpointerup="videoClick(this, 'c')"
+                onpointerenter="hover(this, 'LeWear_play.gif')"
+                onpointerleave="dehover(this, 'LeWear.png')"
+            ></button>
+        </div>
+    </body>
+</html>
