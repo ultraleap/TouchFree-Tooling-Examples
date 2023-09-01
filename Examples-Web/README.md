@@ -68,3 +68,9 @@ Recommended Interaction: Hover & Hold
 ![Animated Buttons Showing Progress To Click As a Gradually Completed Border](Media/BorderProgressExample.gif)
 
 Recommended Interaction: AirPush
+
+## Analytics
+
+This example demonstrates how to begin and end analytics sessions from TouchFree Web Tooling. This is an "opt in" feature and will only run when triggered via Web Tooling as part of an application.
+
+The output of the analytics recording can be found in csv files in this location: `C:\ProgramData\Ultraleap\TouchFree\AnalyticsSessions`

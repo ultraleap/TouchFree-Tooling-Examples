@@ -65,6 +65,10 @@ class ConfigurationManager {
     static RequestConfigFileChange(_interaction, _physical, _callback) {
         ConfigurationManager.BaseConfigChangeRequest(_interaction, _physical, _callback, TouchFreeServiceTypes_1.ActionCode.SET_CONFIGURATION_FILE);
     }
+    static ResetInteractionConfigToDefault(_callback) {
+        var _a;
+        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.ResetInteractionConfigFile(_callback);
+    }
     static BaseConfigChangeRequest(_interaction, _physical, _callback, action) {
         var _a;
         const requestID = (0, uuid_1.v4)();
@@ -391,6 +395,13 @@ class MessageReceiver {
         // A dictionary of unique request IDs and <TrackingStateCallback> that represent requests
         // that are awaiting response from the Service.
         this.trackingStateCallbacks = {};
+        // Variable: analyticsRequestQueue
+        // A queue of responses from service analytic calls.
+        this.analyticsRequestQueue = [];
+        // Variable: analyticsRequestCallbacks
+        // A dictionary of unique request IDs and <ResponseCallback> that represent requests
+        // that are awaiting response from the Service.
+        this.analyticsRequestCallbacks = {};
         // Used to ensure UP events are sent at the correct position relative to the previous
         // MOVE event.
         // This is required due to the culling of events from the actionQueue in CheckForAction.
@@ -407,9 +418,10 @@ class MessageReceiver {
         this.CheckForResponse();
         this.CheckForConfigState();
         this.CheckForServiceStatus();
-        this.CheckForTrackingStateResponse();
+        this.CheckQueue(this.trackingStateQueue, this.trackingStateCallbacks);
         this.CheckForAction();
         this.CheckForHandData();
+        this.CheckQueue(this.analyticsRequestQueue, this.analyticsRequestCallbacks);
     }
     // Function: CheckForHandshakeResponse
     // Used to check the <responseQueue> for a <WebSocketResponse>. Sends it to Sends it to <HandleCallbackList> with
@@ -491,6 +503,8 @@ class MessageReceiver {
     // match, calls the callback action in the matching <TouchFreeRequestCallback>.
     // Returns true if it was able to find a callback, returns false if not
     static HandleCallbackList(callbackResult, callbacks) {
+        if (!callbackResult || !callbacks)
+            return 'NoCallbacksFound';
         for (const key in callbacks) {
             if (key === callbackResult.requestID) {
                 callbacks[key].callback(callbackResult);
@@ -499,6 +513,20 @@ class MessageReceiver {
             }
         }
         return 'NoCallbacksFound';
+    }
+    // Function: CheckQueue
+    // Gets the next response in a given queue and handles the callback if present.
+    CheckQueue(queue, callbacks) {
+        const response = queue.shift();
+        if (!response || !callbacks)
+            return;
+        for (const key in callbacks) {
+            if (key === response.requestID) {
+                callbacks[key].callback(response);
+                delete callbacks[key];
+                return;
+            }
+        }
     }
     // Function: CheckForServiceStatus
     // Used to check the <serviceStatusQueue> for a <ServiceStatus>. Sends it to <HandleCallbackList> with
@@ -528,6 +556,9 @@ class MessageReceiver {
     // Function: CheckForTrackingStateResponse
     // Used to check the <trackingStateQueue> for a <TrackingStateResponse>.
     // Sends it to <HandleTrackingStateResponse> if there is one.
+    //
+    // This method is no longer used within this class (replaced with a call to CheckQueue).
+    // It has been left in to not break the API, but should be considered deprecated.
     CheckForTrackingStateResponse() {
         const trackingStateResponse = this.trackingStateQueue.shift();
         if (trackingStateResponse) {
@@ -537,6 +568,9 @@ class MessageReceiver {
     // Function: HandleTrackingStateResponse
     // Checks the dictionary of <trackingStateCallbacks> for a matching request ID. If there is a
     // match, calls the callback action in the matching <TrackingStateCallback>.
+    //
+    // This method is no longer used within this class (replaced with a call to CheckQueue).
+    // It has been left in to not break the API, but should be considered deprecated.
     HandleTrackingStateResponse(trackingStateResponse) {
         if (this.trackingStateCallbacks !== undefined) {
             for (const key in this.trackingStateCallbacks) {
@@ -759,7 +793,7 @@ class ServiceConnection {
                 }
                 case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_RESPONSE:
                 case TouchFreeServiceTypes_1.ActionCode.SERVICE_STATUS_RESPONSE:
-                case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_FILE_RESPONSE:
+                case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_FILE_CHANGE_RESPONSE:
                 case TouchFreeServiceTypes_1.ActionCode.QUICK_SETUP_RESPONSE: {
                     const response = looseData.content;
                     ConnectionManager_1.ConnectionManager.messageReceiver.responseQueue.push(response);
@@ -773,6 +807,14 @@ class ServiceConnection {
                 case TouchFreeServiceTypes_1.ActionCode.INTERACTION_ZONE_EVENT: {
                     const { state } = looseData.content;
                     ConnectionManager_1.ConnectionManager.messageReceiver.lastInteractionZoneUpdate = { status: 'UNPROCESSED', state: state };
+                    break;
+                }
+                case TouchFreeServiceTypes_1.ActionCode.ANALYTICS_SESSION_REQUEST: {
+                    ConnectionManager_1.ConnectionManager.messageReceiver.analyticsRequestQueue.push(looseData.content);
+                    break;
+                }
+                case TouchFreeServiceTypes_1.ActionCode.ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST: {
+                    ConnectionManager_1.ConnectionManager.messageReceiver.analyticsRequestQueue.push(looseData.content);
                     break;
                 }
             }
@@ -813,6 +855,24 @@ class ServiceConnection {
             const guid = (0, uuid_1.v4)();
             const request = new TouchFreeServiceTypes_1.ConfigChangeRequest(guid);
             const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.REQUEST_CONFIGURATION_STATE, request);
+            const message = JSON.stringify(wrapper);
+            ConnectionManager_1.ConnectionManager.messageReceiver.configStateCallbacks[guid] = new TouchFreeServiceTypes_1.ConfigStateCallback(Date.now(), _callback);
+            this.webSocket.send(message);
+        };
+        // Function: ResetInteractionConfigFile
+        // Used internally to request that the Service resets the Interaction Config File to
+        // its default state. Provides the Default <InteractionConfigFull> returned by the Service
+        // once the reset is complete.
+        //
+        // If your _callback requires context it should be bound to that context via .bind()
+        this.ResetInteractionConfigFile = (_callback) => {
+            if (_callback === null) {
+                console.error('Request for config state failed. This is due to a missing callback');
+                return;
+            }
+            const guid = (0, uuid_1.v4)();
+            const request = new TouchFreeServiceTypes_1.ResetInteractionConfigFileRequest(guid);
+            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.RESET_INTERACTION_CONFIG_FILE, request);
             const message = JSON.stringify(wrapper);
             ConnectionManager_1.ConnectionManager.messageReceiver.configStateCallbacks[guid] = new TouchFreeServiceTypes_1.ConfigStateCallback(Date.now(), _callback);
             this.webSocket.send(message);
@@ -922,6 +982,24 @@ class ServiceConnection {
             }
             this.webSocket.send(message);
         };
+        // Function: BaseAnalyticsRequest
+        // Base functionality for sending an analytics request to the Service
+        this.BaseAnalyticsRequest = (fields, actionCode, callback) => {
+            const requestID = (0, uuid_1.v4)();
+            const content = Object.assign(Object.assign({}, fields), { requestID });
+            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(actionCode, content);
+            const message = JSON.stringify(wrapper);
+            if (callback) {
+                ConnectionManager_1.ConnectionManager.messageReceiver.analyticsRequestCallbacks[requestID] = new TouchFreeServiceTypes_1.ResponseCallback(Date.now(), callback);
+            }
+            this.webSocket.send(message);
+        };
+        // Function: AnalyticsSessionRequest
+        // Used to either start a new analytics session, or stop the current session.
+        this.AnalyticsSessionRequest = (requestType, sessionID, callback) => this.BaseAnalyticsRequest({ sessionID, requestType }, TouchFreeServiceTypes_1.ActionCode.ANALYTICS_SESSION_REQUEST, callback);
+        // Function: UpdateAnalyticSessionEvents
+        // Used to send a request to update the analytic session's events stored in the Service
+        this.UpdateAnalyticSessionEvents = (sessionID, callback) => this.BaseAnalyticsRequest({ sessionID, sessionEvents: TouchFree_1.default.GetAnalyticSessionEvents() }, TouchFreeServiceTypes_1.ActionCode.ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST, callback);
         this.webSocket = new WebSocket(`ws://${_ip}:${_port}/connect`);
         this.webSocket.binaryType = 'arraybuffer';
         this.webSocket.addEventListener('message', this.OnMessage);
@@ -944,7 +1022,7 @@ var ServiceBinaryDataTypes;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TrackingStateCallback = exports.SimpleRequest = exports.TrackingStateRequest = exports.CommunicationWrapper = exports.ResponseCallback = exports.VersionHandshakeResponse = exports.WebSocketResponse = exports.ServiceStatusCallback = exports.ServiceStatusRequest = exports.ServiceStatus = exports.ConfigStateCallback = exports.HandRenderDataStateRequest = exports.ConfigChangeRequest = exports.ConfigState = exports.PartialConfigState = exports.TouchFreeRequest = exports.TouchFreeRequestCallback = exports.HandPresenceEvent = exports.Compatibility = exports.InteractionZoneState = exports.HandPresenceState = exports.ActionCode = void 0;
+exports.TrackingStateCallback = exports.SimpleRequest = exports.TrackingStateRequest = exports.CommunicationWrapper = exports.ResponseCallback = exports.VersionHandshakeResponse = exports.WebSocketResponse = exports.ServiceStatusCallback = exports.ServiceStatusRequest = exports.ServiceStatus = exports.HandRenderDataStateRequest = exports.ResetInteractionConfigFileRequest = exports.ConfigStateCallback = exports.ConfigChangeRequest = exports.ConfigState = exports.PartialConfigState = exports.TouchFreeRequest = exports.TouchFreeRequestCallback = exports.HandPresenceEvent = exports.Compatibility = exports.InteractionZoneState = exports.HandPresenceState = exports.ActionCode = void 0;
 // Enum: ActionCode
 // INPUT_ACTION - Represents standard interaction data
 // CONFIGURATION_STATE - Represents a collection of configurations from the Service
@@ -970,6 +1048,9 @@ exports.TrackingStateCallback = exports.SimpleRequest = exports.TrackingStateReq
 // SET_HAND_DATA_STREAM_STATE - Represents a request to the Service to enable/disable
 //                              the HAND_DATA stream or change the lens to have the hand position relative to.
 // INTERACTION_ZONE_EVENT - Represents the interaction zone state received from the Service
+//
+// ANALYTICS_SESSION_REQUEST - Represents a request to start or stop an analytics session
+// ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST - Represents a request to update the analytic events for the current session.
 var ActionCode;
 (function (ActionCode) {
     ActionCode["INPUT_ACTION"] = "INPUT_ACTION";
@@ -986,7 +1067,7 @@ var ActionCode;
     ActionCode["REQUEST_CONFIGURATION_FILE"] = "REQUEST_CONFIGURATION_FILE";
     ActionCode["CONFIGURATION_FILE_STATE"] = "CONFIGURATION_FILE_STATE";
     ActionCode["SET_CONFIGURATION_FILE"] = "SET_CONFIGURATION_FILE";
-    ActionCode["CONFIGURATION_FILE_RESPONSE"] = "CONFIGURATION_FILE_RESPONSE";
+    ActionCode["CONFIGURATION_FILE_CHANGE_RESPONSE"] = "CONFIGURATION_FILE_CHANGE_RESPONSE";
     ActionCode["QUICK_SETUP"] = "QUICK_SETUP";
     ActionCode["QUICK_SETUP_CONFIG"] = "QUICK_SETUP_CONFIG";
     ActionCode["QUICK_SETUP_RESPONSE"] = "QUICK_SETUP_RESPONSE";
@@ -996,6 +1077,9 @@ var ActionCode;
     ActionCode["HAND_DATA"] = "HAND_DATA";
     ActionCode["SET_HAND_DATA_STREAM_STATE"] = "SET_HAND_DATA_STREAM_STATE";
     ActionCode["INTERACTION_ZONE_EVENT"] = "INTERACTION_ZONE_EVENT";
+    ActionCode["RESET_INTERACTION_CONFIG_FILE"] = "RESET_INTERACTION_CONFIG_FILE";
+    ActionCode["ANALYTICS_SESSION_REQUEST"] = "ANALYTICS_SESSION_REQUEST";
+    ActionCode["ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST"] = "ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST";
 })(ActionCode = exports.ActionCode || (exports.ActionCode = {}));
 // Enum: HandPresenceState
 // HAND_FOUND - Sent when the first hand is found when no hand has been present for a moment
@@ -1083,6 +1167,21 @@ exports.ConfigState = ConfigState;
 class ConfigChangeRequest extends TouchFreeRequest {
 }
 exports.ConfigChangeRequest = ConfigChangeRequest;
+// Class: ConfigStateCallback
+// Used by <MessageReceiver> to wait for a <ConfigState> from the Service. Owns a callback
+// with a <ConfigState> as a parameter to allow users to make use of the new
+// <ConfigStateResponse>. Stores a timestamp of its creation so the response has the ability to
+// timeout if not seen within a reasonable timeframe.
+class ConfigStateCallback extends TouchFreeRequestCallback {
+}
+exports.ConfigStateCallback = ConfigStateCallback;
+// class: ResetInteractionConfigFile
+// Used internally to request that the Service resets the Interaction Config File to
+// its default state. Provides the Default <InteractionConfigFull> returned by the Service
+// once the reset is complete.
+class ResetInteractionConfigFileRequest extends TouchFreeRequest {
+}
+exports.ResetInteractionConfigFileRequest = ResetInteractionConfigFileRequest;
 // class: HandRenderDataStateRequest
 // Used to set the state of the Hand Render Data stream.
 class HandRenderDataStateRequest extends TouchFreeRequest {
@@ -1093,14 +1192,6 @@ class HandRenderDataStateRequest extends TouchFreeRequest {
     }
 }
 exports.HandRenderDataStateRequest = HandRenderDataStateRequest;
-// Class: ConfigStateCallback
-// Used by <MessageReceiver> to wait for a <ConfigState> from the Service. Owns a callback
-// with a <ConfigState> as a parameter to allow users to make use of the new
-// <ConfigStateResponse>. Stores a timestamp of its creation so the response has the ability to
-// timeout if not seen within a reasonable timeframe.
-class ConfigStateCallback extends TouchFreeRequestCallback {
-}
-exports.ConfigStateCallback = ConfigStateCallback;
 // Class: ServiceStatus
 // This data structure is used to receive service status.
 //
@@ -1481,6 +1572,9 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         this.yPositionAttribute = 'cy';
         this.isDarkCursor = false;
         this.cursorShowing = false;
+        this.baseRadius = 15;
+        this.baseDotBorderThickness = 2;
+        this.baseRingThickness = 5;
         this.isDarkCursor = darkCursor;
         const documentBody = document.querySelector('body');
         const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1494,14 +1588,13 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         svgElement.style.transition = 'opacity 0.5s linear';
         svgElement.setAttribute('width', '100%');
         svgElement.setAttribute('height', '100%');
-        svgElement.setAttribute('shape-rendering', 'optimizeSpeed');
         svgElement.id = 'svg-cursor';
         documentBody === null || documentBody === void 0 ? void 0 : documentBody.appendChild(svgElement);
         const svgRingElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         svgRingElement.classList.add('touchfree-cursor');
-        svgRingElement.setAttribute('r', '15');
+        svgRingElement.setAttribute('r', this.baseRadius.toString());
         svgRingElement.setAttribute('fill-opacity', '0');
-        svgRingElement.setAttribute('stroke-width', '5');
+        svgRingElement.setAttribute('stroke-width', this.baseRingThickness.toString());
         svgRingElement.setAttribute(this.xPositionAttribute, '100');
         svgRingElement.setAttribute(this.yPositionAttribute, '100');
         svgRingElement.style.filter = 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.7))';
@@ -1510,10 +1603,11 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         this.cursorRing = svgRingElement;
         const svgDotElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         svgDotElement.classList.add('touchfree-cursor');
-        svgDotElement.setAttribute('r', '15');
+        svgDotElement.setAttribute('r', this.baseRadius.toString());
         svgDotElement.setAttribute(this.xPositionAttribute, '100');
         svgDotElement.setAttribute(this.yPositionAttribute, '100');
         svgDotElement.setAttribute('opacity', '1');
+        svgDotElement.setAttribute('stroke-width', this.baseDotBorderThickness.toString());
         svgDotElement.style.transformBox = 'fill-box';
         svgDotElement.style.transformOrigin = 'center';
         svgDotElement.style.transform = 'scale(1)';
@@ -1530,6 +1624,7 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         this.cursorCanvas = svgElement;
         this.ResetToDefaultColors();
         this.ringSizeMultiplier = ringSizeMultiplier;
+        this.baseRingSizeMultiplier = ringSizeMultiplier;
         TouchFree_1.default.RegisterEventCallback('HandFound', this.ShowCursor.bind(this));
         TouchFree_1.default.RegisterEventCallback('HandsLost', this.HideCursor.bind(this));
         TouchFree_1.default.RegisterEventCallback('HandEntered', this.ShowCursor.bind(this));
@@ -1545,7 +1640,8 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         }
         const ringScaler = (0, Utilities_1.MapRangeToRange)(inputAction.ProgressToClick, 0, 1, this.ringSizeMultiplier, 1);
         this.cursorRing.setAttribute('opacity', inputAction.ProgressToClick.toString());
-        this.cursorRing.setAttribute('r', Math.round(this.GetCurrentCursorRadius() * ringScaler).toString());
+        const radius = Math.round(this.GetCurrentCursorRadius() * ringScaler + this.GetCurrentCursorRingWidth() / 2);
+        this.cursorRing.setAttribute('r', radius.toString());
         let position = inputAction.CursorPosition;
         if (position) {
             position = [Math.round(position[0]), Math.round(position[1])];
@@ -1592,6 +1688,19 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
     SetCursorSize(newWidth, cursorToChange) {
         cursorToChange === null || cursorToChange === void 0 ? void 0 : cursorToChange.setAttribute('r', Math.round(newWidth).toString());
     }
+    // Function: SetCursorScale
+    // Used to set the scale of the cursor
+    SetCursorScale(scale) {
+        const cursor = this.cursor;
+        this.SetCursorSize(this.baseRadius * scale, cursor);
+        this.ringSizeMultiplier = this.baseRingSizeMultiplier + (scale - 1);
+        cursor.setAttribute('stroke-width', Math.round(this.baseDotBorderThickness * scale).toString());
+    }
+    // Function: SetRingThicknessScale
+    // Used to set the scale of the cursor's ring thickness
+    SetRingThicknessScale(scale) {
+        this.cursorRing.setAttribute('stroke-width', Math.round(this.baseRingThickness * scale).toString());
+    }
     // Function: ShowCursor
     // Used to make the cursor visible, fades over time
     ShowCursor() {
@@ -1620,31 +1729,46 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
     SetCursorOpacity(opacity) {
         this.cursorCanvas.style.opacity = opacity.toString();
     }
+    // Function: SetCursorOptimise
+    // Used to set the rendering mode of the SVGCursor to be optimised for speed or rendered in the default manner
+    SetCursorOptimise(optimise) {
+        this.cursorCanvas.setAttribute('shape-rendering', optimise ? 'optimizeSpeed' : 'auto');
+    }
+    // Function: GetCurrentCursorRadius
+    // Used to set the radius of the cursor
     GetCurrentCursorRadius() {
-        if (this.cursor) {
-            const radius = this.cursor.getAttribute('r');
-            if (!radius) {
-                return 0;
-            }
-            const radiusAsNumber = parseFloat(radius);
-            return radiusAsNumber;
-        }
-        return 0;
+        var _a;
+        const radius = (_a = this.cursor) === null || _a === void 0 ? void 0 : _a.getAttribute('r');
+        return !radius ? 0 : parseFloat(radius);
+    }
+    // Function: GetCurrentCursorRingWidth
+    // Used to set the width of the cursor ring
+    GetCurrentCursorRingWidth() {
+        const width = this.cursorRing.getAttribute('stroke-width');
+        return !width ? 0 : parseFloat(width);
     }
     // Function: SetDefaultColors
     // Used to reset the SVGCursor to it's default styling
     ResetToDefaultColors() {
-        var _a, _b, _c;
+        var _a, _b;
         (_a = this.cursor) === null || _a === void 0 ? void 0 : _a.setAttribute('fill', this.isDarkCursor ? 'black' : 'white');
-        (_b = this.cursor) === null || _b === void 0 ? void 0 : _b.removeAttribute('stroke-width');
-        (_c = this.cursor) === null || _c === void 0 ? void 0 : _c.removeAttribute('stroke');
+        (_b = this.cursor) === null || _b === void 0 ? void 0 : _b.removeAttribute('stroke');
         this.cursorRing.setAttribute('stroke', this.isDarkCursor ? 'black' : 'white');
+    }
+    // Function: ResetToDefaultScale
+    // Used to reset the SVGCursor to it's default scale
+    ResetToDefaultScale() {
+        const cursor = this.cursor;
+        this.SetCursorSize(this.baseRadius, cursor);
+        this.ringSizeMultiplier = this.baseRingSizeMultiplier;
+        cursor.setAttribute('stroke-width', this.baseDotBorderThickness.toString());
+        this.cursorRing.setAttribute('stroke-width', this.baseRingThickness.toString());
     }
     // Function: SetColor
     // Used to set a part of the SVGCursor to a specific color
     // Takes a CursorPart enum to select which part of the cursor to color and a color represented by a string
     SetColor(cursorPart, color) {
-        var _a, _b, _c;
+        var _a, _b;
         switch (cursorPart) {
             case 0 /* CursorPart.CENTER_FILL */:
                 (_a = this.cursor) === null || _a === void 0 ? void 0 : _a.setAttribute('fill', color);
@@ -1654,7 +1778,6 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
                 return;
             case 2 /* CursorPart.CENTER_BORDER */:
                 (_b = this.cursor) === null || _b === void 0 ? void 0 : _b.setAttribute('stroke', color);
-                (_c = this.cursor) === null || _c === void 0 ? void 0 : _c.setAttribute('stroke-width', '2');
                 return;
         }
     }
@@ -2009,9 +2132,10 @@ class WebInputController extends BaseInputController_1.BaseInputController {
                 this.ResetScrollData();
                 const cancelEvent = new PointerEvent('pointercancel', this.activeEventProps);
                 const outEvent = new PointerEvent('pointerout', this.activeEventProps);
-                if (this.lastHoveredElement !== null && this.lastHoveredElement !== elementAtPos) {
+                if (this.lastHoveredElement !== null) {
                     this.lastHoveredElement.dispatchEvent(cancelEvent);
                     this.lastHoveredElement.dispatchEvent(outEvent);
+                    this.lastHoveredElement = null;
                 }
                 const elementOnDown = this.GetTopNonCursorElement(this.elementsOnDown);
                 if (elementOnDown) {
@@ -2385,30 +2509,123 @@ const SvgCursor_1 = __webpack_require__(429);
 const WebInputController_1 = __webpack_require__(52);
 const HandDataManager_1 = __webpack_require__(333);
 const InputActionManager_1 = __webpack_require__(53);
+const uuid_1 = __webpack_require__(982);
 let InputController;
 let CurrentCursor;
+let CurrentSessionId;
 const GetCurrentCursor = () => CurrentCursor;
+const SetCurrentCursor = (cursor) => (CurrentCursor = cursor);
 const GetInputController = () => InputController;
+const IsAnalyticsActive = () => CurrentSessionId !== undefined;
 // Function: Init
 // Initializes TouchFree - must be called before any functionality requiring a TouchFree service connection.
 const Init = (tfInitParams) => {
-    var _a;
-    ConnectionManager_1.ConnectionManager.init((_a = { address: tfInitParams === null || tfInitParams === void 0 ? void 0 : tfInitParams.address }) !== null && _a !== void 0 ? _a : undefined);
-    ConnectionManager_1.ConnectionManager.AddConnectionListener(() => {
-        InputController = new WebInputController_1.WebInputController();
-        if (tfInitParams === undefined) {
+    ConnectionManager_1.ConnectionManager.init({ address: tfInitParams === null || tfInitParams === void 0 ? void 0 : tfInitParams.address });
+    InputController = new WebInputController_1.WebInputController();
+    if (tfInitParams === undefined) {
+        CurrentCursor = new SvgCursor_1.SVGCursor();
+    }
+    else {
+        if (tfInitParams.initialiseCursor === undefined || tfInitParams.initialiseCursor === true) {
             CurrentCursor = new SvgCursor_1.SVGCursor();
         }
-        else {
-            if (tfInitParams.initialiseCursor === undefined || tfInitParams.initialiseCursor === true) {
-                CurrentCursor = new SvgCursor_1.SVGCursor();
-            }
+    }
+};
+const analyticEvents = {};
+// Function: GetRegisteredAnalyticEvents
+// Returns a list of registered analytic event keys
+const GetRegisteredAnalyticEventKeys = () => Object.keys(analyticEvents);
+let sessionEvents = {};
+// Function: GetRegisteredAnalyticEvents
+// Returns a copy of an indexed object detailing how many times each analytics event has been trigger
+const GetAnalyticSessionEvents = () => Object.assign({}, sessionEvents);
+const defaultAnalyticEvents = ['touchstart', 'touchmove', 'touchend'];
+// Function: RegisterAnalyticEvents
+// Registers a given list of event for the TouchFree service to record.
+// If no list of events is provided then the default set of events will be recorded.
+const RegisterAnalyticEvents = (eventsIn = defaultAnalyticEvents) => {
+    eventsIn.forEach((evt) => {
+        if (analyticEvents[evt])
+            return;
+        const onEvent = () => {
+            const eventCount = sessionEvents[evt];
+            sessionEvents[evt] = eventCount === undefined ? 1 : eventCount + 1;
+        };
+        analyticEvents[evt] = onEvent;
+        document.addEventListener(evt, onEvent, true);
+    });
+};
+// Function: UnregisterAnalyticEvents
+// Unregister any registered analytic events.
+// If no list of events is provided then all registered analytic events will be unregistered.
+const UnregisterAnalyticEvents = (eventsIn) => {
+    const events = eventsIn !== null && eventsIn !== void 0 ? eventsIn : Object.keys(analyticEvents);
+    events.forEach((evt) => {
+        const evtFunc = analyticEvents[evt];
+        if (evtFunc) {
+            document.removeEventListener(evt, evtFunc, true);
+            delete analyticEvents[evt];
         }
     });
 };
 // Function: IsConnected
 // Are we connected to the TouchFree service?
 const IsConnected = () => ConnectionManager_1.ConnectionManager.IsConnected;
+let analyticsHeartbeat;
+// Function: ControlAnalyticsSession
+// Used to start or stop an analytics session.
+const ControlAnalyticsSession = (requestType, application, callback) => {
+    const serviceConnection = ConnectionManager_1.ConnectionManager.serviceConnection();
+    if (!serviceConnection)
+        return;
+    if (requestType === 'START') {
+        if (CurrentSessionId) {
+            console.warn(`Session: ${CurrentSessionId} already in progress`);
+            return;
+        }
+        const newID = `${application}:${(0, uuid_1.v4)()}`;
+        serviceConnection.AnalyticsSessionRequest(requestType, newID, (detail) => {
+            if (detail.status !== 'Failure') {
+                CurrentSessionId = newID;
+                analyticsHeartbeat = window.setInterval(() => serviceConnection.UpdateAnalyticSessionEvents(newID), 2000);
+                callback === null || callback === void 0 ? void 0 : callback(detail);
+            }
+        });
+        return;
+    }
+    if (requestType === 'STOP') {
+        if (!CurrentSessionId) {
+            console.warn('No active session');
+            return;
+        }
+        const validSessionId = CurrentSessionId;
+        clearInterval(analyticsHeartbeat);
+        serviceConnection.UpdateAnalyticSessionEvents(validSessionId, () => {
+            // Clear session events
+            sessionEvents = {};
+            serviceConnection.AnalyticsSessionRequest(requestType, validSessionId, callback);
+            CurrentSessionId = undefined;
+        });
+    }
+};
+// Function StopAnalyticsSession
+// Used to stop an analytics session with an optional callback
+const StopAnalyticsSession = (applicationName, options) => {
+    ControlAnalyticsSession('STOP', applicationName, options === null || options === void 0 ? void 0 : options.callback);
+};
+// Function StartAnalyticsSession
+// Used to start an analytics session with an optional callback and flag to stop the currently running session
+const StartAnalyticsSession = (applicationName, options) => {
+    if ((options === null || options === void 0 ? void 0 : options.stopCurrentSession) && CurrentSessionId) {
+        ControlAnalyticsSession('STOP', applicationName, (detail) => {
+            var _a;
+            ControlAnalyticsSession('START', applicationName, options.callback);
+            (_a = options.callback) === null || _a === void 0 ? void 0 : _a.call(options, detail);
+        });
+        return;
+    }
+    ControlAnalyticsSession('START', applicationName, options === null || options === void 0 ? void 0 : options.callback);
+};
 // Turns a callback with an argument into a CustomEvent<T> Event Listener
 const MakeCustomEventWrapper = (callback) => {
     return ((evt) => {
@@ -2585,12 +2802,20 @@ const DispatchEvent = (eventType, ...args) => {
 exports["default"] = {
     CurrentCursor,
     GetCurrentCursor,
+    SetCurrentCursor,
     DispatchEvent,
     Init,
     InputController,
     GetInputController,
     IsConnected,
     RegisterEventCallback,
+    RegisterAnalyticEvents,
+    UnregisterAnalyticEvents,
+    IsAnalyticsActive,
+    GetRegisteredAnalyticEventKeys,
+    GetAnalyticSessionEvents,
+    StartAnalyticsSession,
+    StopAnalyticsSession,
 };
 
 
@@ -2610,7 +2835,7 @@ exports.VersionInfo = VersionInfo;
 // Group: Variables
 // Variable: ApiVersion
 // The current API version of the Tooling.
-VersionInfo.ApiVersion = '1.4.0';
+VersionInfo.ApiVersion = '1.5.0';
 // Variable: API_HEADER_NAME
 // The name of the header we wish the Service to compare our version with.
 VersionInfo.API_HEADER_NAME = 'TfApiVersion';
