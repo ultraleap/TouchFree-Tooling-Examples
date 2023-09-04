@@ -2,14 +2,14 @@ import './App.scss';
 
 import { useEffect } from 'react';
 
-import TouchFree from 'TouchFree/src/TouchFree';
+import { init } from 'TouchFree/src/index';
 
 import IdleOverlay from 'Components/IdleOverlay';
 import useIdleTimeout from 'Hooks/IdleTimeout';
 
 const App = () => {
     useEffect(() => {
-        TouchFree.Init();
+        init();
     }, []);
 
     // Must be called after TouchFree.init()

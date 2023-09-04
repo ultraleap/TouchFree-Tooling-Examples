@@ -6,7 +6,7 @@ import TouchFree, { EventHandle } from 'TouchFree/src/TouchFree';
 // based on hand presence.
 // If no hands have been observed for specified timeout in milliseconds
 // the state will be idle.
-// TouchFree.Init() must be called before this hook.
+// TouchFree.init() must be called before this hook.
 const useIdleTimeout = (timeoutMs: number): boolean => {
     const [isIdle, setIsIdle] = useState(true);
 
@@ -20,8 +20,8 @@ const useIdleTimeout = (timeoutMs: number): boolean => {
             timeoutId = setTimeout(() => setIsIdle(true), timeoutMs);
         };
         const handlers: EventHandle[] = [
-            TouchFree.RegisterEventCallback('HandFound', handFoundCallback),
-            TouchFree.RegisterEventCallback('HandsLost', handLostCallback),
+            TouchFree.registerEventCallback('handFound', handFoundCallback),
+            TouchFree.registerEventCallback('handsLost', handLostCallback),
         ];
 
         return () => {

@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
-    TouchFree.Init({ initialiseCursor: false });
+    TouchFree.init({ initialiseCursor: false });
     AddTouchFreeCursor();
-    TouchFree.RegisterEventCallback("TransmitInputAction", AnimateLinearProgress);
+    TouchFree.registerEventCallback("transmitInputAction", AnimateLinearProgress);
 });
 
 // Animates a clip path for active overlay elements, identified by the "hovered" id
@@ -28,5 +28,5 @@ function AddTouchFreeCursor() {
 
     document.body.appendChild(cursor);
 
-    new TouchFree.Cursors.DotCursor(cursor, document.createElement("img"));
+    new TouchFree.DotCursor(cursor, document.createElement("img"));
 }

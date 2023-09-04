@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Button from "./components/button/Button";
 import darken from "./darken";
-import TouchFree from "TouchFree/src/TouchFree";
-import { TouchFreeInputAction } from "TouchFree/src/TouchFreeToolingTypes";
+import { registerEventCallback, TouchFreeInputAction } from "TouchFree/src/index";
 
 const defaultAppStyle = {
     backgroundColor: "#264653",
@@ -29,7 +28,7 @@ export default function App() {
     // ================================ Effects ================================
     useEffect(() => {
         document.body.style.overflow = "hidden";
-        const inputHandler = TouchFree.RegisterEventCallback('TransmitInputAction', handleTouchFree);
+        const inputHandler = registerEventCallback('transmitInputAction', handleTouchFree);
         return () => {
             inputHandler.UnregisterEventCallback();
         }

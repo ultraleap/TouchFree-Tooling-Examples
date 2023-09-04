@@ -1,6 +1,6 @@
 window.addEventListener("load", () => {
-    TouchFree.Init({ initialiseCursor: false });
-    TouchFree.RegisterEventCallback("TransmitInputAction", AnimateCircularProgress);
+    TouchFree.init({ initialiseCursor: false });
+    TouchFree.registerEventCallback("transmitInputAction", AnimateCircularProgress);
 });
 
 // Animates a clip path for active overlay elements, identified by the "hovered" id
