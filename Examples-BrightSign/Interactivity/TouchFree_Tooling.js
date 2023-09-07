@@ -4,119 +4,16 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["TouchFree"] = factory();
+		exports["touchfree"] = factory();
 	else
-		root["TouchFree"] = factory();
+		root["touchfree"] = factory();
 })(self, () => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 931:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ConfigurationManager = void 0;
-const ConnectionManager_1 = __webpack_require__(597);
-const TouchFreeServiceTypes_1 = __webpack_require__(5);
-const uuid_1 = __webpack_require__(982);
-// Class: ConfigurationManager
-// This class provides a method for changing the configuration of the TouchFree
-// Service. Makes use of the static <ConnectionManager> for communication with the Service.
-class ConfigurationManager {
-    // Function: RequestConfigChange
-    // Optionally takes in an <InteractionConfig> or a <PhysicalConfig> and sends them through the <ConnectionManager>
-    //
-    // Provide a _callback if you require confirmation that your settings were used correctly.
-    // If your _callback requires context it should be bound to that context via .bind().
-    //
-    // WARNING!
-    // If a user changes ANY values via the TouchFree Service Settings UI,
-    // values set from the Tooling via this function will be discarded.
-    static RequestConfigChange(_interaction, _physical, _callback) {
-        ConfigurationManager.BaseConfigChangeRequest(_interaction, _physical, _callback, TouchFreeServiceTypes_1.ActionCode.SET_CONFIGURATION_STATE);
-    }
-    // Function: RequestConfigState
-    // Used to request information from the Service via the <ConnectionManager>. Provides an asynchronous
-    // <ConfigState> via the _callback parameter.
-    //
-    // If your _callback requires context it should be bound to that context via .bind()
-    static RequestConfigState(_callback) {
-        var _a;
-        if (_callback === null) {
-            console.error('Config state request failed. This call requires a callback.');
-            return;
-        }
-        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestConfigState(_callback);
-    }
-    // Function: RequestConfigFileChange
-    // Requests a modification to the configuration **files** used by the Service. Takes in an
-    // <InteractionConfig> and/or a <PhysicalConfig> representing the desired changes & sends
-    // them through the <ConnectionManager>
-    //
-    // Provide a _callback if you require confirmation that your settings were used correctly.
-    // If your _callback requires context it should be bound to that context via .bind().
-    //
-    // WARNING!
-    // Any changes that have been made using <RequestConfigChange> by *any* connected client will be
-    // lost when changing these files. The change will be applied **to the current config files directly,**
-    // disregarding current active config state, and the config will be loaded from files.
-    static RequestConfigFileChange(_interaction, _physical, _callback) {
-        ConfigurationManager.BaseConfigChangeRequest(_interaction, _physical, _callback, TouchFreeServiceTypes_1.ActionCode.SET_CONFIGURATION_FILE);
-    }
-    static BaseConfigChangeRequest(_interaction, _physical, _callback, action) {
-        var _a;
-        const requestID = (0, uuid_1.v4)();
-        const content = new TouchFreeServiceTypes_1.PartialConfigState(requestID, _interaction, _physical);
-        const request = new TouchFreeServiceTypes_1.CommunicationWrapper(action, content);
-        const jsonContent = JSON.stringify(request);
-        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.SendMessage(jsonContent, requestID, _callback);
-    }
-    // Function: RequestConfigState
-    // Used to request a <ConfigState> representing the current state of the Service's config
-    // files via the WebSocket.
-    // Provides a <ConfigState> asynchronously via the _callback parameter.
-    //
-    // If your _callback requires context it should be bound to that context via .bind()
-    static RequestConfigFileState(_callback) {
-        var _a;
-        if (_callback === null) {
-            console.error('Config file state request failed. This call requires a callback.');
-            return;
-        }
-        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestConfigFile(_callback);
-    }
-}
-exports.ConfigurationManager = ConfigurationManager;
-
-
-/***/ }),
-
-/***/ 449:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TrackedPosition = void 0;
-// Enum: TrackedPosition
-// INDEX_STABLE - Towards the screen from the proximal knuckle position of the index finger
-// INDEX_TIP - The index finger tip position
-// WRIST - The wrist position
-// NEAREST - The nearest bone to the screen
-var TrackedPosition;
-(function (TrackedPosition) {
-    TrackedPosition[TrackedPosition["INDEX_STABLE"] = 0] = "INDEX_STABLE";
-    TrackedPosition[TrackedPosition["INDEX_TIP"] = 1] = "INDEX_TIP";
-    TrackedPosition[TrackedPosition["WRIST"] = 2] = "WRIST";
-    TrackedPosition[TrackedPosition["NEAREST"] = 3] = "NEAREST";
-})(TrackedPosition = exports.TrackedPosition || (exports.TrackedPosition = {}));
-
-
-/***/ }),
-
-/***/ 490:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 7816:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -135,6 +32,9 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -143,322 +43,1109 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const ConfigurationManager_1 = __webpack_require__(931);
-const ConfigurationTypes = __importStar(__webpack_require__(449));
-module.exports = {
-    ConfigurationManager: ConfigurationManager_1.ConfigurationManager,
-    ConfigurationTypes: ConfigurationTypes,
-};
+exports.internal = void 0;
+__exportStar(__webpack_require__(1920), exports);
+exports.internal = __importStar(__webpack_require__(2721));
 
 
 /***/ }),
 
-/***/ 597:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 1920:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+/**
+ * @packageDocumentation
+ * TouchFree is an ecosystem of software products for enabling
+ * touchless interfaces. This package is a client package
+ * for integrating TouchFree into web application.
+ * See https://docs.ultraleap.com/touchfree-user-manual/
+ */
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ConnectionManager = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const MessageReceiver_1 = __webpack_require__(184);
-const ServiceConnection_1 = __webpack_require__(636);
-const TouchFreeServiceTypes_1 = __webpack_require__(5);
-// Class: ConnectionManager
-// This Class manages the connection to the Service. It provides static variables
-// for ease of use and is a Singleton to allow for easy referencing.
-class ConnectionManager extends EventTarget {
-    // Variable: serviceConnection
-    // The public get-only reference to the currently managed <ServiceConnection>.
-    static serviceConnection() {
-        return ConnectionManager.currentServiceConnection;
-    }
-    // Group: Functions
-    // Function: init
-    // Used to begin the connection. Creates the required <MessageReceiver>.
-    // Also attempts to immediately <Connect> to a WebSocket.
-    static init(initParams) {
-        ConnectionManager.messageReceiver = new MessageReceiver_1.MessageReceiver();
-        ConnectionManager.instance = new ConnectionManager();
-        if (initParams === null || initParams === void 0 ? void 0 : initParams.address) {
-            ConnectionManager.SetAddress(initParams.address);
+exports.dispatchEventCallback = exports.registerEventCallback = exports.mapRangeToRange = exports.InteractionType = exports.InputType = exports.HandType = exports.HandChirality = exports.init = exports.setCurrentCursor = exports.getCurrentCursor = exports.TouchlessCursor = exports.SVGCursor = exports.DotCursor = exports.InteractionZoneState = exports.HandPresenceState = exports.ConfigurationState = exports.TrackingServiceState = exports.requestServiceStatus = exports.getDefaultServiceAddress = exports.getCurrentServiceAddress = exports.disconnect = exports.connect = exports.isConnected = exports.TrackedPosition = exports.resetInteractionConfigFileToDefault = exports.requestConfigFileState = exports.requestConfigFileChange = exports.requestConfigState = exports.requestConfigChange = exports.stopAnalyticsSession = exports.startAnalyticsSession = exports.unregisterAnalyticEvents = exports.registerAnalyticEvents = exports.getRegisteredAnalyticEventKeys = exports.isAnalyticsActive = void 0;
+/**
+ * This file exports the public API surface of the library.
+ * Internals should not be leaked from this export, if any
+ * internals are required then explicit usage of the internal
+ * module is recommended.
+ */
+var index_1 = __webpack_require__(2721);
+/** Analytics - Record analytics data while running */
+Object.defineProperty(exports, "isAnalyticsActive", ({ enumerable: true, get: function () { return index_1.isAnalyticsActive; } }));
+Object.defineProperty(exports, "getRegisteredAnalyticEventKeys", ({ enumerable: true, get: function () { return index_1.getRegisteredAnalyticEventKeys; } }));
+Object.defineProperty(exports, "registerAnalyticEvents", ({ enumerable: true, get: function () { return index_1.registerAnalyticEvents; } }));
+Object.defineProperty(exports, "unregisterAnalyticEvents", ({ enumerable: true, get: function () { return index_1.unregisterAnalyticEvents; } }));
+Object.defineProperty(exports, "startAnalyticsSession", ({ enumerable: true, get: function () { return index_1.startAnalyticsSession; } }));
+Object.defineProperty(exports, "stopAnalyticsSession", ({ enumerable: true, get: function () { return index_1.stopAnalyticsSession; } }));
+/** Configuration - Change configuration of the TouchFree Service */
+Object.defineProperty(exports, "requestConfigChange", ({ enumerable: true, get: function () { return index_1.requestConfigChange; } }));
+Object.defineProperty(exports, "requestConfigState", ({ enumerable: true, get: function () { return index_1.requestConfigState; } }));
+Object.defineProperty(exports, "requestConfigFileChange", ({ enumerable: true, get: function () { return index_1.requestConfigFileChange; } }));
+Object.defineProperty(exports, "requestConfigFileState", ({ enumerable: true, get: function () { return index_1.requestConfigFileState; } }));
+Object.defineProperty(exports, "resetInteractionConfigFileToDefault", ({ enumerable: true, get: function () { return index_1.resetInteractionConfigFileToDefault; } }));
+Object.defineProperty(exports, "TrackedPosition", ({ enumerable: true, get: function () { return index_1.TrackedPosition; } }));
+/** Connection - Manage a connection to the TouchFree service and messages send or receive messages */
+Object.defineProperty(exports, "isConnected", ({ enumerable: true, get: function () { return index_1.isConnected; } }));
+Object.defineProperty(exports, "connect", ({ enumerable: true, get: function () { return index_1.connect; } }));
+Object.defineProperty(exports, "disconnect", ({ enumerable: true, get: function () { return index_1.disconnect; } }));
+Object.defineProperty(exports, "getCurrentServiceAddress", ({ enumerable: true, get: function () { return index_1.getCurrentServiceAddress; } }));
+Object.defineProperty(exports, "getDefaultServiceAddress", ({ enumerable: true, get: function () { return index_1.getDefaultServiceAddress; } }));
+Object.defineProperty(exports, "requestServiceStatus", ({ enumerable: true, get: function () { return index_1.requestServiceStatus; } }));
+Object.defineProperty(exports, "TrackingServiceState", ({ enumerable: true, get: function () { return index_1.TrackingServiceState; } }));
+Object.defineProperty(exports, "ConfigurationState", ({ enumerable: true, get: function () { return index_1.ConfigurationState; } }));
+Object.defineProperty(exports, "HandPresenceState", ({ enumerable: true, get: function () { return index_1.HandPresenceState; } }));
+Object.defineProperty(exports, "InteractionZoneState", ({ enumerable: true, get: function () { return index_1.InteractionZoneState; } }));
+/** Cursors - Multiple cursor styles/implementations and current cursor management */
+Object.defineProperty(exports, "DotCursor", ({ enumerable: true, get: function () { return index_1.DotCursor; } }));
+Object.defineProperty(exports, "SVGCursor", ({ enumerable: true, get: function () { return index_1.SVGCursor; } }));
+Object.defineProperty(exports, "TouchlessCursor", ({ enumerable: true, get: function () { return index_1.TouchlessCursor; } }));
+Object.defineProperty(exports, "getCurrentCursor", ({ enumerable: true, get: function () { return index_1.getCurrentCursor; } }));
+Object.defineProperty(exports, "setCurrentCursor", ({ enumerable: true, get: function () { return index_1.setCurrentCursor; } }));
+Object.defineProperty(exports, "init", ({ enumerable: true, get: function () { return index_1.init; } }));
+Object.defineProperty(exports, "HandChirality", ({ enumerable: true, get: function () { return index_1.HandChirality; } }));
+Object.defineProperty(exports, "HandType", ({ enumerable: true, get: function () { return index_1.HandType; } }));
+Object.defineProperty(exports, "InputType", ({ enumerable: true, get: function () { return index_1.InputType; } }));
+Object.defineProperty(exports, "InteractionType", ({ enumerable: true, get: function () { return index_1.InteractionType; } }));
+/** Math types and functions */
+Object.defineProperty(exports, "mapRangeToRange", ({ enumerable: true, get: function () { return index_1.mapRangeToRange; } }));
+Object.defineProperty(exports, "registerEventCallback", ({ enumerable: true, get: function () { return index_1.registerEventCallback; } }));
+Object.defineProperty(exports, "dispatchEventCallback", ({ enumerable: true, get: function () { return index_1.dispatchEventCallback; } }));
+
+
+/***/ }),
+
+/***/ 6661:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.stopAnalyticsSession = exports.startAnalyticsSession = exports.unregisterAnalyticEvents = exports.registerAnalyticEvents = exports.getRegisteredAnalyticEventKeys = exports.getAnalyticSessionEvents = exports.isAnalyticsActive = void 0;
+const ConnectionApi_1 = __webpack_require__(3770);
+const uuid_1 = __webpack_require__(7429);
+let currentSessionId;
+let analyticsHeartbeat;
+let sessionEvents = {};
+const analyticEvents = {};
+const defaultAnalyticEvents = ['touchstart', 'touchmove', 'touchend'];
+const isTFPointerEvent = (e) => 'pointerType' in e && e.pointerType === 'pen' && !e.isTrusted;
+/**
+ * @returns `true` if there is an active analytics session, `false` otherwise
+ * @public
+ */
+const isAnalyticsActive = () => currentSessionId !== undefined;
+exports.isAnalyticsActive = isAnalyticsActive;
+/**
+ * Returns a copy of an indexed object detailing how many times each analytics event has been triggered
+ * @internal
+ */
+const getAnalyticSessionEvents = () => Object.assign({}, sessionEvents);
+exports.getAnalyticSessionEvents = getAnalyticSessionEvents;
+/**
+ * Returns the list of registered analytic event keys
+ * @public
+ */
+const getRegisteredAnalyticEventKeys = () => Object.keys(analyticEvents);
+exports.getRegisteredAnalyticEventKeys = getRegisteredAnalyticEventKeys;
+/**
+ * Registers a given list of event for the TouchFree service to record.
+ * @param eventsIn - Events to register. If none are provided then default set of events will be recorded.
+ *
+ * @public
+ */
+function registerAnalyticEvents(eventsIn = defaultAnalyticEvents) {
+    eventsIn.forEach((evt) => {
+        if (analyticEvents[evt])
+            return;
+        const onEvent = (e) => {
+            if (isTFPointerEvent(e))
+                return;
+            const eventCount = sessionEvents[evt];
+            sessionEvents[evt] = eventCount === undefined ? 1 : eventCount + 1;
+        };
+        analyticEvents[evt] = onEvent;
+        document.addEventListener(evt, onEvent, true);
+    });
+}
+exports.registerAnalyticEvents = registerAnalyticEvents;
+/**
+ * Unregisters a given list of event for the TouchFree service to record.
+ * @param eventsIn - Events to unregister. If none are provided then all events will be unregistered.
+ *
+ * @public
+ */
+function unregisterAnalyticEvents(eventsIn) {
+    const events = eventsIn !== null && eventsIn !== void 0 ? eventsIn : Object.keys(analyticEvents);
+    events.forEach((evt) => {
+        const evtFunc = analyticEvents[evt];
+        if (evtFunc) {
+            document.removeEventListener(evt, evtFunc, true);
+            delete analyticEvents[evt];
         }
-        else {
-            ConnectionManager.Connect();
-        }
-    }
-    // Function: AddConnectionListener
-    // Used to both add the _onConnectFunc action to the listeners of <OnConnected>
-    // as well as auto-call the _onConnectFunc if a connection is already made.
-    static AddConnectionListener(_onConnectFunc) {
-        TouchFree_1.default.RegisterEventCallback('WhenConnected', _onConnectFunc);
-    }
-    static get IsConnected() {
-        return (ConnectionManager.currentServiceConnection !== null &&
-            ConnectionManager.currentServiceConnection.webSocket.readyState === WebSocket.OPEN &&
-            ConnectionManager.currentServiceConnection.handshakeComplete);
-    }
-    static AddServiceStatusListener(_serviceStatusFunc) {
-        TouchFree_1.default.RegisterEventCallback('OnTrackingServiceStateChange', _serviceStatusFunc);
-    }
-    // Function: Connect
-    // Creates a new <ServiceConnection> using <iPAddress> and <port>.
-    // Also invokes <OnConnected> on all listeners.
-    static Connect() {
-        ConnectionManager.currentServiceConnection = new ServiceConnection_1.ServiceConnection(ConnectionManager.iPAddress, ConnectionManager.port);
-    }
-    // Function: HandleHandPresenceEvent
-    // Called by the <MessageReciever> to pass HandPresence events via the <HandFound> and
-    // <HandsLost> events on this class
-    static HandleHandPresenceEvent(_state) {
-        ConnectionManager.currentHandPresence = _state;
-        if (_state === TouchFreeServiceTypes_1.HandPresenceState.HAND_FOUND) {
-            TouchFree_1.default.DispatchEvent('HandFound');
-        }
-        else {
-            TouchFree_1.default.DispatchEvent('HandsLost');
-        }
-    }
-    // Function: HandleInteractionZoneEvent
-    // Called by the <MessageReciever> to pass InteractionZone events via the <HandEntered> and
-    // <HandsExited> events on this class
-    static HandleInteractionZoneEvent(_state) {
-        ConnectionManager.currentInteractionZoneState = _state;
-        if (_state === TouchFreeServiceTypes_1.InteractionZoneState.HAND_ENTERED) {
-            TouchFree_1.default.DispatchEvent('HandEntered');
-        }
-        else {
-            TouchFree_1.default.DispatchEvent('HandExited');
-        }
-    }
-    // Function: Disconnect
-    // Disconnects <currentServiceConnection> if it is connected to a WebSocket and
-    // sets it to null.
-    static Disconnect() {
-        if (ConnectionManager.currentServiceConnection !== null) {
-            ConnectionManager.currentServiceConnection.Disconnect();
-            ConnectionManager.currentServiceConnection = null;
-        }
-    }
-    // Function: RequestServiceStatus
-    // Used to request information from the Service via the <ConnectionManager>. Provides an asynchronous
-    // <ServiceStatus> via the _callback parameter.
-    //
-    // If your _callback requires context it should be bound to that context via .bind()
-    static RequestServiceStatus(_callback) {
-        var _a;
-        if (_callback === null) {
-            console.error('Request failed. This is due to a missing callback');
+    });
+}
+exports.unregisterAnalyticEvents = unregisterAnalyticEvents;
+/**
+ * Used to start or stop an analytics session
+ *
+ * @param requestType - START or STOP session. See {@link AnalyticsSessionRequestType}
+ * @param application - Name of application
+ * @param callback - Optional callback to handle Service's response
+ */
+function controlAnalyticsSession(requestType, application, callback) {
+    const serviceConnection = (0, ConnectionApi_1.getServiceConnection)();
+    if (!serviceConnection)
+        return;
+    if (requestType === 'START') {
+        if (currentSessionId) {
+            console.warn(`Session: ${currentSessionId} already in progress`);
             return;
         }
-        (_a = ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestServiceStatus(_callback);
+        const newID = `${application}:${(0, uuid_1.v4)()}`;
+        serviceConnection.analyticsSessionRequest(requestType, newID, (detail) => {
+            if (detail.status !== 'Failure') {
+                currentSessionId = newID;
+                analyticsHeartbeat = window.setInterval(() => serviceConnection.updateAnalyticSessionEvents(newID, (0, exports.getAnalyticSessionEvents)()), 2000);
+                callback === null || callback === void 0 ? void 0 : callback(detail);
+            }
+        });
+        return;
     }
-    // Function: GetCurrentHandPresence
-    // Function to get the current hand presense state
-    static GetCurrentHandPresence() {
-        return ConnectionManager.currentHandPresence;
-    }
-    // Function: GetCurrentInteractionZoneState
-    // Function to get the current hand presense state
-    static GetCurrentInteractionZoneState() {
-        return ConnectionManager.currentInteractionZoneState;
-    }
-    // Function: SetAddress
-    // Function to set the ip and port that Tooling should attempt to connect to the Service via
-    static SetAddress(address) {
-        var _a, _b;
-        ConnectionManager.iPAddress = (_a = address.ip) !== null && _a !== void 0 ? _a : '127.0.0.1';
-        ConnectionManager.port = (_b = address.port) !== null && _b !== void 0 ? _b : '9739';
-        ConnectionManager.Disconnect();
-        ConnectionManager.Connect();
+    if (requestType === 'STOP') {
+        if (!currentSessionId) {
+            console.warn('No active session');
+            return;
+        }
+        const validSessionId = currentSessionId;
+        clearInterval(analyticsHeartbeat);
+        serviceConnection.updateAnalyticSessionEvents(validSessionId, (0, exports.getAnalyticSessionEvents)(), () => {
+            // Clear session events
+            sessionEvents = {};
+            serviceConnection.analyticsSessionRequest(requestType, validSessionId, callback);
+            currentSessionId = undefined;
+        });
     }
 }
-exports.ConnectionManager = ConnectionManager;
-// Group: Events
-// Event: OnConnected
-// An event which is emitted when <Connect> is called.
-//
-// Instead of adding listeners to this event, use <AddConnectionListener> to ensure that your
-// function is invoked if the connection has already been made by the time your class runs.
-// Group: Variables
-// Variable: currentServiceConnection
-// The private reference to the currently managed <ServiceConnection>.
-ConnectionManager.currentServiceConnection = null;
-// Variable: iPAddress
-// The IP Address that will be used in the <ServiceConnection> to connect to the target
-// WebSocket. This value is settable in the Inspector.
-ConnectionManager.iPAddress = '127.0.0.1';
-// Variable: port
-// The Port that will be used in the <ServiceConnection> to connect to the target WebSocket.
-// This value is settable in the Inspector.
-ConnectionManager.port = '9739';
-// Variable: currentHandPresence
-// Private reference to the current hand presence state
-ConnectionManager.currentHandPresence = TouchFreeServiceTypes_1.HandPresenceState.HANDS_LOST;
-// Variable: currentInteractionZoneState
-// Private reference to the current interaction zone state
-ConnectionManager.currentInteractionZoneState = TouchFreeServiceTypes_1.InteractionZoneState.HAND_EXITED;
+/**
+ * Used to stop an analytics session with an optional callback
+ * @param applicationName - Name of application
+ * @param options - See {@link StartAnalyticsSessionOptions}
+ *
+ * @public
+ */
+function startAnalyticsSession(applicationName, options) {
+    if ((options === null || options === void 0 ? void 0 : options.stopCurrentSession) && currentSessionId) {
+        controlAnalyticsSession('STOP', applicationName, (detail) => {
+            var _a;
+            controlAnalyticsSession('START', applicationName, options.callback);
+            (_a = options.callback) === null || _a === void 0 ? void 0 : _a.call(options, detail);
+        });
+        return;
+    }
+    controlAnalyticsSession('START', applicationName, options === null || options === void 0 ? void 0 : options.callback);
+}
+exports.startAnalyticsSession = startAnalyticsSession;
+/**
+ * Used to stop an analytics session with an optional callback
+ * @param applicationName - Name of application
+ * @param options - See {@link StopAnalyticsSessionOptions}
+ *
+ * @public
+ */
+function stopAnalyticsSession(applicationName, options) {
+    controlAnalyticsSession('STOP', applicationName, options === null || options === void 0 ? void 0 : options.callback);
+}
+exports.stopAnalyticsSession = stopAnalyticsSession;
 
 
 /***/ }),
 
-/***/ 184:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 2160:
+/***/ ((__unused_webpack_module, exports) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.MessageReceiver = void 0;
-const HandDataManager_1 = __webpack_require__(333);
-const InputActionManager_1 = __webpack_require__(53);
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const TouchFreeToolingTypes_1 = __webpack_require__(579);
-const ConnectionManager_1 = __webpack_require__(597);
-const TouchFreeServiceTypes_1 = __webpack_require__(5);
-// Class: MessageReceiver
-// Handles the receiving of messages from the Service in an ordered manner.
-// Distributes the results of the messages to the respective managers.
-class MessageReceiver {
-    // Group: Functions
-    // Function: constructor
-    // Starts the two regular intervals managed for this (running <ClearUnresponsiveCallbacks> on an
-    // interval of <callbackClearTimer> and <Update> on an interval of updateDuration
-    constructor() {
-        // Group: Variables
-        // Variable: callbackClearTimer
-        // The amount of time between checks of <responseCallbacks> to eliminate expired
-        // <ResponseCallbacks>. Used in <ClearUnresponsiveCallbacks>.
-        this.callbackClearTimer = 300;
-        // Variable: update Rate
-        // How many times per second to process <WebSocketResponse> & <TouchFreeInputActions>
-        this.updateRate = 60;
-        // Variable: actionCullToCount
-        // How many non-essential <TouchFreeInputActions> should the <actionQueue> be trimmed *to* per
-        // frame. This is used to ensure the Tooling can keep up with the Events sent over the
-        // WebSocket.
-        this.actionCullToCount = 2;
-        // Variable: actionQueue
-        // A queue of <TouchFreeInputActions> that have been received from the Service.
-        this.actionQueue = [];
-        // Variable: latestHandDataItem
-        // The latest <HandFrame> that has been received from the Service.
-        this.latestHandDataItem = undefined;
-        // Variable: responseQueue
-        // A queue of <WebSocketResponses> that have been received from the Service.
-        this.responseQueue = [];
-        // Variable: responseCallbacks
-        // A dictionary of unique request IDs and <ResponseCallbacks> that represent requests
-        // that are awaiting response from the Service.
-        this.responseCallbacks = {};
-        // Variable: handshakeQueue
-        // A queue of handshake <WebSocketResponses> that have been received from the Service.
-        this.handshakeQueue = [];
-        // Variable: handshakeCallbacks
-        // A dictionary of unique request IDs and <ResponseCallbacks> that represent handshake requests
-        // that are awaiting response from the Service.
-        this.handshakeCallbacks = {};
-        // Variable: configStateQueue
-        // A queue of <ConfigState> that have been received from the Service.
-        this.configStateQueue = [];
-        // Variable: configStateCallbacks
-        // A dictionary of unique request IDs and <ConfigStateCallback> that represent requests
-        // that are awaiting response from the Service.
-        this.configStateCallbacks = {};
-        // Variable: serviceStatusQueue
-        // A queue of <ServiceStatus> that have been received from the Service.
-        this.serviceStatusQueue = [];
-        // Variable: serviceStatusCallbacks
-        // A dictionary of unique request IDs and <ServiceStatusCallback> that represent requests
-        // that are awaiting response from the Service.
-        this.serviceStatusCallbacks = {};
-        // Variable: lastStateUpdate
-        // The last hand presence state update received from the Service.
-        this.lastStateUpdate = TouchFreeServiceTypes_1.HandPresenceState.PROCESSED;
-        // Variable: lastInteractionZoneUpdate
-        // The last interaction zone event update received from the Service.
-        this.lastInteractionZoneUpdate = {
-            state: TouchFreeServiceTypes_1.InteractionZoneState.HAND_EXITED,
-            status: 'PROCESSED',
-        };
-        // Variable: trackingStateQueue
-        // A queue of <TrackingStates> that have been received from the Service.
-        this.trackingStateQueue = [];
-        // Variable: trackingSettingsStateCallbacks
-        // A dictionary of unique request IDs and <TrackingStateCallback> that represent requests
-        // that are awaiting response from the Service.
-        this.trackingStateCallbacks = {};
-        // Used to ensure UP events are sent at the correct position relative to the previous
-        // MOVE event.
-        // This is required due to the culling of events from the actionQueue in CheckForAction.
-        this.lastKnownCursorPosition = [0, 0];
-        this.updateDuration = (1 / this.updateRate) * 1000;
-        this.callbackClearInterval = setInterval(this.ClearUnresponsivePromises, this.callbackClearTimer);
-        this.updateInterval = setInterval(this.Update.bind(this), this.updateDuration);
+
+
+/***/ }),
+
+/***/ 1893:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.resetInteractionConfigFileToDefault = exports.requestConfigFileState = exports.requestConfigFileChange = exports.requestConfigState = exports.requestConfigChange = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const ConnectionApi_1 = __webpack_require__(3770);
+const uuid_1 = __webpack_require__(7429);
+/**
+ * Send updated configuration to the TouchFree Service
+ *
+ * @remarks
+ * WARNING! If a user changes ANY values via the TouchFree Service Settings UI,
+ * all values set from the Tooling via this function will be discarded.
+ * @param interaction - Optional interaction config modifications to send
+ * @param physical - Optional physical config modifications to send
+ * @param callback - Optional callback confirming a response from the service
+ *
+ * @public
+ */
+function requestConfigChange(interaction, physical, callback) {
+    baseConfigChangeRequest(ActionCode_1.ActionCode.SET_CONFIGURATION_STATE, interaction, physical, callback);
+}
+exports.requestConfigChange = requestConfigChange;
+/**
+ * Request active configuration state of the TouchFree Service
+ * @param callback - Callback with the requested {@link TouchFreeConfig}
+ *
+ * @public
+ */
+function requestConfigState(callback) {
+    var _a;
+    if (!callback) {
+        console.error('Config state request failed. This call requires a callback.');
+        return;
     }
-    // Function: Update
-    // Update function. Checks all queues for messages to handle. Run on an interval
-    // started during the constructor
-    Update() {
-        this.CheckForHandshakeResponse();
-        this.CheckForResponse();
-        this.CheckForConfigState();
-        this.CheckForServiceStatus();
-        this.CheckForTrackingStateResponse();
-        this.CheckForAction();
-        this.CheckForHandData();
+    (_a = (0, ConnectionApi_1.getServiceConnection)()) === null || _a === void 0 ? void 0 : _a.requestConfigState(callback);
+}
+exports.requestConfigState = requestConfigState;
+/**
+ * Requests a modification to the configuration **files** used by the TouchFree Service.
+ *
+ * @remarks
+ * WARNING! Any changes that have been made using {@link requestConfigChange}
+ * by *any* connected client will be lost when changing these files.
+ * The change will be applied **to the current config files directly**,
+ * disregarding current active config state.
+ * @param interaction - Optional interaction config modifications to send
+ * @param physical - Optional physical config modifications to send
+ * @param callback - Optional callback confirming a response from the service
+ *
+ * @public
+ */
+function requestConfigFileChange(interaction, physical, callback) {
+    baseConfigChangeRequest(ActionCode_1.ActionCode.SET_CONFIGURATION_FILE, interaction, physical, callback);
+}
+exports.requestConfigFileChange = requestConfigFileChange;
+/**
+ * Request configuration state of the services config files.
+ * @param callback - Callback with the requested {@link TouchFreeConfig}
+ *
+ * @public
+ */
+function requestConfigFileState(callback) {
+    var _a;
+    if (!callback) {
+        console.error('Config file state request failed. This call requires a callback.');
+        return;
     }
-    // Function: CheckForHandshakeResponse
-    // Used to check the <responseQueue> for a <WebSocketResponse>. Sends it to Sends it to <HandleCallbackList> with
-    // the <responseCallbacks> dictionary if there is one.
-    CheckForHandshakeResponse() {
-        const response = this.handshakeQueue.shift();
-        if (response) {
-            const responseResult = MessageReceiver.HandleCallbackList(response, this.handshakeCallbacks);
-            switch (responseResult) {
-                case 'NoCallbacksFound':
-                    this.LogNoCallbacksWarning(response);
+    (_a = (0, ConnectionApi_1.getServiceConnection)()) === null || _a === void 0 ? void 0 : _a.requestConfigFile(callback);
+}
+exports.requestConfigFileState = requestConfigFileState;
+/**
+ * Requests service to reset the interaction config file to it's default state
+ *
+ * @remarks
+ * WARNING! Any changes that have been made using {@link requestConfigChange}
+ * by *any* connected client will be lost when changing these files.
+ * The change will be applied **to the current config files directly**,
+ * disregarding current active config state.
+ * @param callback - callback containing the new {@link TouchFreeConfig}
+ *
+ * @public
+ */
+function resetInteractionConfigFileToDefault(callback) {
+    var _a;
+    (_a = (0, ConnectionApi_1.getServiceConnection)()) === null || _a === void 0 ? void 0 : _a.resetInteractionConfigFile(callback);
+}
+exports.resetInteractionConfigFileToDefault = resetInteractionConfigFileToDefault;
+function baseConfigChangeRequest(action, interaction, physical, callback) {
+    var _a;
+    const requestID = (0, uuid_1.v4)();
+    const content = { requestID, interaction, physical };
+    const request = { action, content };
+    const jsonContent = JSON.stringify(request);
+    (_a = (0, ConnectionApi_1.getServiceConnection)()) === null || _a === void 0 ? void 0 : _a.sendMessage(jsonContent, requestID, callback);
+}
+
+
+/***/ }),
+
+/***/ 7265:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.TrackedPosition = void 0;
+/**
+ * Explicitly named tracked positions
+ * @public
+ */
+var TrackedPosition;
+(function (TrackedPosition) {
+    /** Towards the screen from the proximal knuckle position of the index finger */
+    TrackedPosition[TrackedPosition["INDEX_STABLE"] = 0] = "INDEX_STABLE";
+    /** The index finger tip position */
+    TrackedPosition[TrackedPosition["INDEX_TIP"] = 1] = "INDEX_TIP";
+    /** The wrist position */
+    TrackedPosition[TrackedPosition["WRIST"] = 2] = "WRIST";
+    /** The nearest bone to the screen */
+    TrackedPosition[TrackedPosition["NEAREST"] = 3] = "NEAREST";
+})(TrackedPosition = exports.TrackedPosition || (exports.TrackedPosition = {}));
+
+
+/***/ }),
+
+/***/ 1962:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ActionCode = void 0;
+/**
+ * Action codes for requests between TouchFree Service and this client
+ * @internal
+ */
+var ActionCode;
+(function (ActionCode) {
+    /** Represents standard interaction data */
+    ActionCode["INPUT_ACTION"] = "INPUT_ACTION";
+    /**
+     * General configuration request response code.
+     * Can represent success or failure with an included error message
+     */
+    ActionCode["CONFIGURATION_RESPONSE"] = "CONFIGURATION_RESPONSE";
+    /** Request current configuration state from the Service */
+    ActionCode["REQUEST_CONFIGURATION_STATE"] = "REQUEST_CONFIGURATION_STATE";
+    /** Response for a {@link REQUEST_CONFIGURATION_STATE} request */
+    ActionCode["CONFIGURATION_STATE"] = "CONFIGURATION_STATE";
+    /** Request change to configuration the Service */
+    ActionCode["SET_CONFIGURATION_STATE"] = "SET_CONFIGURATION_STATE";
+    /**
+     * An outgoing message from Tooling to Service which
+     * compares client and service API versions for compatibility
+     */
+    ActionCode["VERSION_HANDSHAKE"] = "VERSION_HANDSHAKE";
+    /** Response code for a {@link VERSION_HANDSHAKE} */
+    ActionCode["VERSION_HANDSHAKE_RESPONSE"] = "VERSION_HANDSHAKE_RESPONSE";
+    /** Message with hand presence event data sent by the Service */
+    ActionCode["HAND_PRESENCE_EVENT"] = "HAND_PRESENCE_EVENT";
+    /** Represents a request to receive a current SERVICE_STATUS from the Service */
+    ActionCode["REQUEST_SERVICE_STATUS"] = "REQUEST_SERVICE_STATUS";
+    /** Failure response from a {@link REQUEST_SERVICE_STATUS} request */
+    ActionCode["SERVICE_STATUS_RESPONSE"] = "SERVICE_STATUS_RESPONSE";
+    /**
+     * Message with information about the current state of the Service.
+     *
+     * @remarks
+     * Can be a response to a {@link REQUEST_SERVICE_STATUS} request
+     * or sent by the service when status changes
+     */
+    ActionCode["SERVICE_STATUS"] = "SERVICE_STATUS";
+    /** Request the state of configuration *files* */
+    ActionCode["REQUEST_CONFIGURATION_FILE"] = "REQUEST_CONFIGURATION_FILE";
+    /** Response code for a {@link REQUEST_CONFIGURATION_FILE} request */
+    ActionCode["CONFIGURATION_FILE_STATE"] = "CONFIGURATION_FILE_STATE";
+    /** Request changes to configuration *files* */
+    ActionCode["SET_CONFIGURATION_FILE"] = "SET_CONFIGURATION_FILE";
+    /** Response code for a {@link SET_CONFIGURATION_FILE} request */
+    ActionCode["CONFIGURATION_FILE_CHANGE_RESPONSE"] = "CONFIGURATION_FILE_CHANGE_RESPONSE";
+    /**
+     * Response code for a {@link SET_CONFIGURATION_FILE} request
+     * @deprecated for {@link CONFIGURATION_FILE_CHANGE_RESPONSE}
+     */
+    ActionCode["CONFIGURATION_FILE_RESPONSE"] = "CONFIGURATION_FILE_RESPONSE";
+    /** Represents a request for performing a quick setup of the Service */
+    ActionCode["QUICK_SETUP"] = "QUICK_SETUP";
+    /**
+     * Represents a response from the Service after a {@link QUICK_SETUP} request
+     * where the configuration was updated as the quick setup was successfully completed.
+     */
+    ActionCode["QUICK_SETUP_CONFIG"] = "QUICK_SETUP_CONFIG";
+    /**
+     * Represents a response from the Service after a {@link QUICK_SETUP} request
+     * where the configuration was not updated.
+     */
+    ActionCode["QUICK_SETUP_RESPONSE"] = "QUICK_SETUP_RESPONSE";
+    /** Represents a request to receive the current state of the tracking settings */
+    ActionCode["GET_TRACKING_STATE"] = "GET_TRACKING_STATE";
+    /** Represents a request to set the current state of the tracking settings */
+    ActionCode["SET_TRACKING_STATE"] = "SET_TRACKING_STATE";
+    /**
+     * Represents a response from the Service with the current state of the tracking settings,
+     * received following a {@link GET_TRACKING_STATE} or {@link SET_TRACKING_STATE} request
+     */
+    ActionCode["TRACKING_STATE"] = "TRACKING_STATE";
+    /** Represents more complete hand data sent from the service. */
+    ActionCode["HAND_DATA"] = "HAND_DATA";
+    /**
+     * Represents a request to the Service to enable/disable
+     * the {@link HAND_DATA} stream or change the lens to have the hand position relative to.
+     */
+    ActionCode["SET_HAND_DATA_STREAM_STATE"] = "SET_HAND_DATA_STREAM_STATE";
+    /**
+     * Represents the interaction zone state received from the Service
+     */
+    ActionCode["INTERACTION_ZONE_EVENT"] = "INTERACTION_ZONE_EVENT";
+    /**
+     * Represents a request to reset the interaction config to it's default state
+     */
+    ActionCode["RESET_INTERACTION_CONFIG_FILE"] = "RESET_INTERACTION_CONFIG_FILE";
+    /**
+     * Represents a request to start or stop an analytics session
+     */
+    ActionCode["ANALYTICS_SESSION_REQUEST"] = "ANALYTICS_SESSION_REQUEST";
+    /**
+     * Represents a request to update the non-TF analytic events for the current session
+     */
+    ActionCode["ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST"] = "ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST";
+})(ActionCode = exports.ActionCode || (exports.ActionCode = {}));
+
+
+/***/ }),
+
+/***/ 4025:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.setClearCallbacksInterval = exports.createDefaultCallbackLists = void 0;
+const createDefaultCallbackLists = () => ({
+    analyticsRequestCallbacks: {},
+    configStateCallbacks: {},
+    handshakeCallbacks: {},
+    responseCallbacks: {},
+    serviceStatusCallbacks: {},
+    trackingStateCallbacks: {},
+});
+exports.createDefaultCallbackLists = createDefaultCallbackLists;
+const setClearCallbacksInterval = (timeoutMs, intervalDurationMs, callbackLists) => {
+    const clearExpiredCallbacks = () => {
+        const currentTime = Date.now();
+        Object.values(callbackLists).forEach((callbacks) => {
+            if (callbacks === undefined)
+                return;
+            for (const key in callbacks) {
+                if (currentTime - callbacks[key].timestamp > timeoutMs) {
+                    delete callbacks[key];
+                }
+                else {
                     break;
-                case 'Success':
-                    if (response.message && response.status === 'Success') {
-                        if (response.message.indexOf('Handshake Warning') >= 0) {
-                            console.warn('Received Handshake Warning from TouchFree:\n' + response.message);
-                        }
-                        else {
-                            console.log('Received Handshake Success from TouchFree:\n' + response.message);
-                        }
-                    }
-                    else {
-                        console.error('Received Handshake Error from TouchFree:\n' + response.message);
-                    }
-                    break;
+                }
             }
+        });
+    };
+    setInterval(clearExpiredCallbacks, intervalDurationMs);
+};
+exports.setClearCallbacksInterval = setClearCallbacksInterval;
+
+
+/***/ }),
+
+/***/ 3770:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.requestServiceStatus = exports.disconnect = exports.connect = exports.getServiceConnection = exports.getCurrentServiceAddress = exports.getDefaultServiceAddress = exports.isConnected = void 0;
+const RequestTypes_1 = __webpack_require__(6735);
+const ServiceConnection_1 = __webpack_require__(7051);
+/** The private reference to the currently managed `ServiceConnection`. */
+let currentServiceConnection = null;
+/** Default address to connect to the service websocket */
+const defaultConnectionAddress = { ip: '127.0.0.1', port: '9739' };
+/** The address that will be used to connect to the service websocket */
+let currentConnectionAddress = defaultConnectionAddress;
+/**
+ * Are we connected to the TouchFree service?
+ *
+ * @returns Whether connected to TouchFree service or not.
+ * @public
+ */
+function isConnected() {
+    return (currentServiceConnection !== null &&
+        currentServiceConnection.webSocket.readyState === WebSocket.OPEN &&
+        currentServiceConnection.handshakeComplete);
+}
+exports.isConnected = isConnected;
+/**
+ * Get the default address to to connect to the service websocket
+ * @public
+ */
+function getDefaultServiceAddress() {
+    return defaultConnectionAddress;
+}
+exports.getDefaultServiceAddress = getDefaultServiceAddress;
+/**
+ * Get the current address to to connect to the service websocket
+ * @public
+ */
+function getCurrentServiceAddress() {
+    return currentConnectionAddress;
+}
+exports.getCurrentServiceAddress = getCurrentServiceAddress;
+/**
+ * Getter for currently managed static {@link ServiceConnection}.
+ *
+ * @internal
+ */
+function getServiceConnection() {
+    return currentServiceConnection;
+}
+exports.getServiceConnection = getServiceConnection;
+/**
+ * Connect to TouchFree service at given {@link Address}.
+ * A successful connection will dispatch the `"onConnected"` event.
+ * @public
+ */
+function connect(address = defaultConnectionAddress) {
+    currentServiceConnection = new ServiceConnection_1.ServiceConnection(address);
+    currentConnectionAddress = address;
+}
+exports.connect = connect;
+/**
+ * Disconnects service connection and sets it to null.
+ * @public
+ */
+function disconnect() {
+    if (currentServiceConnection !== null) {
+        currentServiceConnection.disconnect();
+        currentServiceConnection = null;
+    }
+}
+exports.disconnect = disconnect;
+/**
+ * Request service status from the service
+ * @param callback - Callback to call with the response
+ * @public
+ */
+function requestServiceStatus(callback) {
+    var _a;
+    if (!callback) {
+        console.error('Request failed. This is due to a missing callback');
+        return;
+    }
+    (_a = getServiceConnection()) === null || _a === void 0 ? void 0 : _a.requestServiceStatus((detail) => callback((0, RequestTypes_1.convertResponseToServiceState)(detail)));
+}
+exports.requestServiceStatus = requestServiceStatus;
+
+
+/***/ }),
+
+/***/ 2630:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InteractionZoneState = exports.HandPresenceState = exports.ConfigurationState = exports.TrackingServiceState = void 0;
+/**
+ * State of the Ultraleap Tracking Service that TouchFree Service connects to
+ * @public
+ */
+var TrackingServiceState;
+(function (TrackingServiceState) {
+    /** The TouchFree service is not connected to the tracking service */
+    TrackingServiceState[TrackingServiceState["UNAVAILABLE"] = 0] = "UNAVAILABLE";
+    /** The TouchFree service is connected to the tracking service but there is not a camera connected */
+    TrackingServiceState[TrackingServiceState["NO_CAMERA"] = 1] = "NO_CAMERA";
+    /** The TouchFree service is connected to the tracking service */
+    TrackingServiceState[TrackingServiceState["CONNECTED"] = 2] = "CONNECTED";
+})(TrackingServiceState = exports.TrackingServiceState || (exports.TrackingServiceState = {}));
+/**
+ * State of a configuration file
+ * @public
+ */
+var ConfigurationState;
+(function (ConfigurationState) {
+    /** The TouchFree configuration has not been loaded */
+    ConfigurationState[ConfigurationState["NOT_LOADED"] = 0] = "NOT_LOADED";
+    /** The TouchFree configuration has successfully been loaded */
+    ConfigurationState[ConfigurationState["LOADED"] = 1] = "LOADED";
+    /** The TouchFree configuration errored on load */
+    ConfigurationState[ConfigurationState["ERRORED"] = 2] = "ERRORED";
+})(ConfigurationState = exports.ConfigurationState || (exports.ConfigurationState = {}));
+/**
+ * Hand presence enumeration
+ * @public
+ */
+var HandPresenceState;
+(function (HandPresenceState) {
+    /** Sent when the first hand is found when no hands were present previously */
+    HandPresenceState[HandPresenceState["HAND_FOUND"] = 0] = "HAND_FOUND";
+    /** Sent when the last observed hand is lost, meaning no more hands are observed */
+    HandPresenceState[HandPresenceState["HANDS_LOST"] = 1] = "HANDS_LOST";
+    /**
+     * Used to indicate that no change in state is awaiting processing.
+     * @internal
+     */
+    HandPresenceState[HandPresenceState["PROCESSED"] = 2] = "PROCESSED";
+})(HandPresenceState = exports.HandPresenceState || (exports.HandPresenceState = {}));
+/**
+ * Interaction zone states
+ * @public
+ */
+var InteractionZoneState;
+(function (InteractionZoneState) {
+    /** Sent when the "active" hand enters the interaction zone */
+    InteractionZoneState[InteractionZoneState["HAND_ENTERED"] = 0] = "HAND_ENTERED";
+    /** Sent when the "active" hand leaves the interaction zone */
+    InteractionZoneState[InteractionZoneState["HAND_EXITED"] = 1] = "HAND_EXITED";
+})(InteractionZoneState = exports.InteractionZoneState || (exports.InteractionZoneState = {}));
+
+
+/***/ }),
+
+/***/ 3338:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AnalyticsMessageReceiver = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives analytics messages from the service and distributes them
+ *
+ * @internal
+ */
+class AnalyticsMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming messages from a queue and passing them to the callbacks
+     */
+    constructor(callbackList) {
+        super(true);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [
+            ActionCode_1.ActionCode.ANALYTICS_SESSION_REQUEST,
+            ActionCode_1.ActionCode.ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST,
+        ];
+        this.setup(() => this.checkQueue(this.queue, callbackList));
+    }
+}
+exports.AnalyticsMessageReceiver = AnalyticsMessageReceiver;
+
+
+/***/ }),
+
+/***/ 9079:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.BaseMessageReceiver = void 0;
+/**
+ * Base message receiver class to contain generic message processing functionality
+ *
+ * @internal
+ */
+class BaseMessageReceiver {
+    /**
+     * Constructs the class
+     *
+     * @param useQueue - Whether the message receiver should use a queue or just store the last item
+     */
+    constructor(useQueue) {
+        /**
+         * How many times per second to process {@link queue} or check {@link lastItem}.
+         */
+        this.updateRate = 60;
+        /**
+         * Duration (in seconds) of update interval - inverse of {@link updateRate}
+         */
+        this.updateDuration = (1 / this.updateRate) * 1000;
+        /**
+         * Starts a regular interval - {@link checkQueue} (at {@link updateRate})
+         */
+        this.setup = (checkQueue) => {
+            setInterval(checkQueue, this.updateDuration);
+        };
+        /**
+         * A queue of {@link ConvertedMessage | Messages} that have been received from the Service.
+         */
+        this.queue = [];
+        /**
+         * Handles processing the message from the service into a consumable format
+         * and adds it either to a queue or updates the latest item depending on the
+         * value of {@link useQueue}
+         *
+         * @param message - The message received from the Service
+         */
+        this.receiveMessage = (message) => {
+            const messageContent = message.content;
+            if (this.useQueue) {
+                this.queue.push(messageContent);
+            }
+            else {
+                this.lastItem = messageContent;
+            }
+        };
+        /**
+         * Takes an item off a queue and passes it to be handled
+         *
+         * @param queue - The message queue to process
+         * @param callbacks - The callback list to check the response against
+         */
+        this.checkQueue = (queue, callbacks) => {
+            const response = queue.shift();
+            BaseMessageReceiver.handleCallbackList(response, callbacks);
+        };
+        this.useQueue = useQueue;
+    }
+}
+exports.BaseMessageReceiver = BaseMessageReceiver;
+/**
+ * Checks a callback dictionary for a request id and handles invoking the callback.
+ *
+ * @param callbackResult - Callback data
+ * @param callbacks - Callback dictionary to check
+ * @returns String literal result representing success or what went wrong
+ */
+BaseMessageReceiver.handleCallbackList = (callbackResult, callbacks) => {
+    if (!callbackResult || !callbacks)
+        return 'NoCallbacksFound';
+    for (const key in callbacks) {
+        if (key === callbackResult.requestID) {
+            callbacks[key].callback(callbackResult);
+            delete callbacks[key];
+            return 'Success';
         }
     }
-    LogNoCallbacksWarning(response) {
-        console.warn('Received a Handshake Response that did not match a callback.' +
-            'This is the content of the response: \n Response ID: ' +
-            response.requestID +
-            '\n Status: ' +
-            response.status +
-            '\n Message: ' +
-            response.message +
-            '\n Original request - ' +
-            response.originalRequest);
+    return 'NoCallbacksFound';
+};
+BaseMessageReceiver.logNoCallbacksWarning = (response) => {
+    console.warn('Received a Handshake Response that did not match a callback.' +
+        'This is the content of the response: \n Response ID: ' +
+        response.requestID +
+        '\n Status: ' +
+        response.status +
+        '\n Message: ' +
+        response.message +
+        '\n Original request - ' +
+        response.originalRequest);
+};
+
+
+/***/ }),
+
+/***/ 8066:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ConfigStateMessageReceiver = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives configuration state messages from the service and distributes them
+ *
+ * @internal
+ */
+class ConfigStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming messages from a queue and passing them to the callbacks
+     */
+    constructor(callbackList) {
+        super(true);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [
+            ActionCode_1.ActionCode.CONFIGURATION_STATE,
+            ActionCode_1.ActionCode.CONFIGURATION_FILE_STATE,
+            ActionCode_1.ActionCode.QUICK_SETUP_CONFIG,
+        ];
+        /**
+         * Checks {@link queue} for a single {@link configState} and handles it.
+         */
+        this.checkForState = (callbackList) => {
+            const configState = this.queue.shift();
+            if (configState) {
+                const configResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(configState, callbackList);
+                switch (configResult) {
+                    case 'NoCallbacksFound':
+                        console.warn('Received a ConfigState message that did not match a callback.');
+                        break;
+                    case 'Success':
+                        // no-op
+                        break;
+                }
+            }
+        };
+        this.setup(() => this.checkForState(callbackList));
     }
-    // Function: CheckForResponse
-    // Used to check the <responseQueue> for a <WebSocketResponse>. Sends it to Sends it to <HandleCallbackList> with
-    // the <responseCallbacks> dictionary if there is one.
-    CheckForResponse() {
-        const response = this.responseQueue.shift();
-        if (response) {
-            const responseResult = MessageReceiver.HandleCallbackList(response, this.responseCallbacks);
+}
+exports.ConfigStateMessageReceiver = ConfigStateMessageReceiver;
+
+
+/***/ }),
+
+/***/ 9659:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.HandDataHandler = void 0;
+const HandDataManager_1 = __webpack_require__(3500);
+/**
+ * Receives hand data messages from the service and distributes them
+ *
+ * @internal
+ */
+class HandDataHandler {
+    constructor() {
+        /**
+         * How many times per second to check {@link latestHandDataItem}
+         */
+        this.updateRate = 60;
+        /**
+         * Duration (in seconds) of update interval - inverse of {@link updateRate}
+         */
+        this.updateDuration = (1 / this.updateRate) * 1000;
+        /**
+         * The latest `HandFrame` that has been received from the Service.
+         */
+        this.latestHandDataItem = undefined;
+        /**
+         * Checks {@link latestHandDataItem} and if the `HandFrame` is not undefined sends it to
+         * {@link HandDataManager} to handle the frame.
+         */
+        this.checkForHandData = () => {
+            const handFrame = this.latestHandDataItem;
+            if (!handFrame)
+                return;
+            this.latestHandDataItem = undefined;
+            // Wrapping the function in a timeout of 0 seconds allows the dispatch to be asynchronous
+            setTimeout(() => {
+                HandDataManager_1.HandDataManager.handleHandFrame(handFrame);
+            });
+        };
+        setInterval(this.checkForHandData, this.updateDuration);
+    }
+}
+exports.HandDataHandler = HandDataHandler;
+
+
+/***/ }),
+
+/***/ 4799:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.HandPresenceMessageReceiver = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const ConnectionTypes_1 = __webpack_require__(2630);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives hand presence messages from the service and distributes them
+ *
+ * @internal
+ */
+class HandPresenceMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming hand presence messages and sending them to the {@link ConnectionManager}
+     */
+    constructor(callback) {
+        super(false);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [ActionCode_1.ActionCode.HAND_PRESENCE_EVENT];
+        /**
+         * Checks the latest message and processes it if it has not been processed yet
+         */
+        this.checkForState = (callback) => {
+            var _a, _b;
+            if (((_a = this.lastItem) === null || _a === void 0 ? void 0 : _a.state) !== undefined && ((_b = this.lastItem) === null || _b === void 0 ? void 0 : _b.state) !== ConnectionTypes_1.HandPresenceState.PROCESSED) {
+                callback(this.lastItem.state);
+                this.lastItem.state = ConnectionTypes_1.HandPresenceState.PROCESSED;
+            }
+        };
+        this.setup(() => this.checkForState(callback));
+    }
+}
+exports.HandPresenceMessageReceiver = HandPresenceMessageReceiver;
+
+
+/***/ }),
+
+/***/ 7168:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InputActionMessageReceiver = void 0;
+const InputAction_1 = __webpack_require__(1614);
+const InputActionManager_1 = __webpack_require__(1751);
+const ActionCode_1 = __webpack_require__(1962);
+const WebsocketInputAction_1 = __webpack_require__(2048);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives input action messages from the service and distributes them
+ *
+ * @internal
+ */
+class InputActionMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming messages from the queue and passing them to the {@link InputActionManager}
+     */
+    constructor() {
+        super(true);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [ActionCode_1.ActionCode.INPUT_ACTION];
+        /**
+         * How many non-essential {@link TouchFreeInputAction}s should the {@link queue}
+         * be trimmed *to* per frame. This is used to ensure the Tooling can keep up with the
+         * Events sent over the WebSocket.
+         */
+        this.actionCullToCount = 2;
+        /**
+         * Used to ensure UP events are sent at the correct position relative to the previous MOVE event.
+         * This is required due to the culling of events from the {@link actionQueue} in {@link CheckForAction}.
+         */
+        this.lastKnownCursorPosition = [0, 0];
+        /**
+         * Checks {@link queue} for a single {@link TouchFreeInputAction} and handles it.
+         *
+         * @remarks
+         * If there are too many in the queue, clears out non-essential {@link TouchFreeInputAction}
+         * down to the number specified by {@link actionCullToCount}.
+         * If any remain, sends the oldest {@link TouchFreeInputAction} to {@link InputActionManager}
+         * to handle the action. Actions with UP {@link InputType} have their positions set to
+         * {@link lastKnownCursorPosition} to ensure input events trigger correctly.
+         */
+        this.checkForState = () => {
+            while (this.queue.length > this.actionCullToCount) {
+                if (this.queue[0] !== undefined) {
+                    // Stop shrinking the queue if we have a 'key' input event
+                    if (this.queue[0].InteractionFlags & WebsocketInputAction_1.BitmaskFlags.MOVE ||
+                        this.queue[0].InteractionFlags & WebsocketInputAction_1.BitmaskFlags.NONE_INPUT) {
+                        // We want to ignore non-move results
+                        this.queue.shift();
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }
+            const action = this.queue.shift();
+            if (action !== undefined) {
+                // Parse newly received messages & distribute them
+                const converted = (0, WebsocketInputAction_1.convertInputAction)(action);
+                //Cache or use the lastKnownCursorPosition. Copy the array to ensure it is not a reference
+                if (converted.InputType !== InputAction_1.InputType.UP) {
+                    this.lastKnownCursorPosition = [...converted.CursorPosition];
+                }
+                else {
+                    converted.CursorPosition = [...this.lastKnownCursorPosition];
+                }
+                // Wrapping the function in a timeout of 0 seconds allows the dispatch to be asynchronous
+                setTimeout(() => {
+                    InputActionManager_1.InputActionManager.handleInputAction(converted);
+                });
+            }
+        };
+        this.setup(() => this.checkForState());
+    }
+}
+exports.InputActionMessageReceiver = InputActionMessageReceiver;
+
+
+/***/ }),
+
+/***/ 9605:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InteractionZoneMessageReceiver = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives interaction zone messages from the service and distributes them
+ *
+ * @internal
+ */
+class InteractionZoneMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming interaction zone messages and sending them to the {@link ConnectionManager}
+     */
+    constructor(callback) {
+        super(false);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [ActionCode_1.ActionCode.INTERACTION_ZONE_EVENT];
+        /**
+         * Handles processing the message from the service into a consumable format
+         *
+         * @param message - The message received from the Service
+         */
+        this.receiveMessage = (message) => {
+            const { state } = message.content;
+            this.lastItem = { status: 'UNPROCESSED', state: state };
+        };
+        /**
+         * Checks the latest message and processes it if it has not been processed yet
+         */
+        this.checkForState = (callback) => {
+            var _a;
+            if (((_a = this.lastItem) === null || _a === void 0 ? void 0 : _a.status) === 'UNPROCESSED') {
+                callback(this.lastItem.state);
+                this.lastItem.status = 'PROCESSED';
+            }
+        };
+        this.setup(() => this.checkForState(callback));
+    }
+}
+exports.InteractionZoneMessageReceiver = InteractionZoneMessageReceiver;
+
+
+/***/ }),
+
+/***/ 5561:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ResponseMessageReceiver = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives response messages from the service and distributes them
+ *
+ * @internal
+ */
+class ResponseMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming messages from a queue and passing them to the callbacks
+     */
+    constructor(callbackList) {
+        super(true);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [
+            ActionCode_1.ActionCode.CONFIGURATION_RESPONSE,
+            ActionCode_1.ActionCode.SERVICE_STATUS_RESPONSE,
+            ActionCode_1.ActionCode.CONFIGURATION_FILE_CHANGE_RESPONSE,
+            ActionCode_1.ActionCode.QUICK_SETUP_RESPONSE,
+        ];
+        /**
+         * Used to check the {@link queue} for a {@link WebSocketResponse}.
+         * Sends it to {@link HandleCallbackList} with the {@link responseCallbacks} dictionary if there is one.
+         */
+        this.checkForState = (callbackList) => {
+            const response = this.queue.shift();
+            if (!response)
+                return;
+            const responseResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(response, callbackList);
             switch (responseResult) {
                 case 'NoCallbacksFound':
-                    this.LogNoCallbacksWarning(response);
+                    BaseMessageReceiver_1.BaseMessageReceiver.logNoCallbacksWarning(response);
                     break;
                 case 'Success':
                     if (response.message) {
@@ -467,820 +1154,910 @@ class MessageReceiver {
                     }
                     break;
             }
-        }
-    }
-    // Function: CheckForConfigState
-    // Used to check the <configStateQueue> for a <ConfigState>. Sends it to <HandleCallbackList> with
-    // the <configStateCallbacks> dictionary if there is one.
-    CheckForConfigState() {
-        const configState = this.configStateQueue.shift();
-        if (configState) {
-            const configResult = MessageReceiver.HandleCallbackList(configState, this.configStateCallbacks);
-            switch (configResult) {
-                case 'NoCallbacksFound':
-                    console.warn('Received a ConfigState message that did not match a callback.');
-                    break;
-                case 'Success':
-                    // no-op
-                    break;
-            }
-        }
-    }
-    // Function: HandleCallbackList
-    // Checks the dictionary of <callbacks> for a matching request ID. If there is a
-    // match, calls the callback action in the matching <TouchFreeRequestCallback>.
-    // Returns true if it was able to find a callback, returns false if not
-    static HandleCallbackList(callbackResult, callbacks) {
-        for (const key in callbacks) {
-            if (key === callbackResult.requestID) {
-                callbacks[key].callback(callbackResult);
-                delete callbacks[key];
-                return 'Success';
-            }
-        }
-        return 'NoCallbacksFound';
-    }
-    // Function: CheckForServiceStatus
-    // Used to check the <serviceStatusQueue> for a <ServiceStatus>. Sends it to <HandleCallbackList> with
-    // the <serviceStatusCallbacks> dictionary if there is one.
-    CheckForServiceStatus() {
-        const serviceStatus = this.serviceStatusQueue.shift();
-        if (serviceStatus) {
-            const callbackResult = MessageReceiver.HandleCallbackList(serviceStatus, this.serviceStatusCallbacks);
-            switch (callbackResult) {
-                // If callback didn't happen for known reasons, we can be sure it's an independent status event rather
-                // than a request response
-                // TODO: Send/handle this request from service differently from normal response so
-                // we can be sure it's an independent event
-                case 'NoCallbacksFound':
-                    // If service state is null we didn't get info about it from this message
-                    if (serviceStatus.trackingServiceState !== null) {
-                        TouchFree_1.default.DispatchEvent('OnTrackingServiceStateChange', serviceStatus.trackingServiceState);
-                    }
-                    TouchFree_1.default.DispatchEvent('OnServiceStatusChange', serviceStatus);
-                    break;
-                case 'Success':
-                    // no-op
-                    break;
-            }
-        }
-    }
-    // Function: CheckForTrackingStateResponse
-    // Used to check the <trackingStateQueue> for a <TrackingStateResponse>.
-    // Sends it to <HandleTrackingStateResponse> if there is one.
-    CheckForTrackingStateResponse() {
-        const trackingStateResponse = this.trackingStateQueue.shift();
-        if (trackingStateResponse) {
-            this.HandleTrackingStateResponse(trackingStateResponse);
-        }
-    }
-    // Function: HandleTrackingStateResponse
-    // Checks the dictionary of <trackingStateCallbacks> for a matching request ID. If there is a
-    // match, calls the callback action in the matching <TrackingStateCallback>.
-    HandleTrackingStateResponse(trackingStateResponse) {
-        if (this.trackingStateCallbacks !== undefined) {
-            for (const key in this.trackingStateCallbacks) {
-                if (key === trackingStateResponse.requestID) {
-                    this.trackingStateCallbacks[key].callback(trackingStateResponse);
-                    delete this.trackingStateCallbacks[key];
-                    return;
-                }
-            }
-        }
-    }
-    // Function: CheckForAction
-    // Checks <actionQueue> for valid <TouchFreeInputActions>. If there are too many in the queue,
-    // clears out non-essential <TouchFreeInputActions> down to the number specified by
-    // <actionCullToCount>. If any remain, sends the oldest <TouchFreeInputAction> to
-    // <InputActionManager> to handle the action.
-    // UP <InputType>s have their positions set to the last known position to ensure
-    // input events trigger correctly.
-    CheckForAction() {
-        while (this.actionQueue.length > this.actionCullToCount) {
-            if (this.actionQueue[0] !== undefined) {
-                // Stop shrinking the queue if we have a 'key' input event
-                if (this.actionQueue[0].InteractionFlags & TouchFreeToolingTypes_1.BitmaskFlags.MOVE ||
-                    this.actionQueue[0].InteractionFlags & TouchFreeToolingTypes_1.BitmaskFlags.NONE_INPUT) {
-                    // We want to ignore non-move results
-                    this.actionQueue.shift();
-                }
-                else {
-                    break;
-                }
-            }
-        }
-        const action = this.actionQueue.shift();
-        if (action !== undefined) {
-            // Parse newly received messages & distribute them
-            const converted = (0, TouchFreeToolingTypes_1.ConvertInputAction)(action);
-            //Cache or use the lastKnownCursorPosition. Copy the array to ensure it is not a reference
-            if (converted.InputType !== TouchFreeToolingTypes_1.InputType.UP) {
-                this.lastKnownCursorPosition = Array.from(converted.CursorPosition);
-            }
-            else {
-                converted.CursorPosition = Array.from(this.lastKnownCursorPosition);
-            }
-            // Wrapping the function in a timeout of 0 seconds allows the dispatch to be asynchronous
-            setTimeout(() => {
-                InputActionManager_1.InputActionManager.HandleInputAction(converted);
-            });
-        }
-        if (this.lastStateUpdate !== TouchFreeServiceTypes_1.HandPresenceState.PROCESSED) {
-            ConnectionManager_1.ConnectionManager.HandleHandPresenceEvent(this.lastStateUpdate);
-            this.lastStateUpdate = TouchFreeServiceTypes_1.HandPresenceState.PROCESSED;
-        }
-        if (this.lastInteractionZoneUpdate.status === 'UNPROCESSED') {
-            ConnectionManager_1.ConnectionManager.HandleInteractionZoneEvent(this.lastInteractionZoneUpdate.state);
-            this.lastInteractionZoneUpdate.status = 'PROCESSED';
-        }
-    }
-    // Function: CheckForHandData
-    // Checks <latestHandDataItem> and if the <HandFrame> is not undefined sends it to
-    // <HandDataManager> to handle the frame.
-    CheckForHandData() {
-        const handFrame = this.latestHandDataItem;
-        if (handFrame) {
-            this.latestHandDataItem = undefined;
-            // Wrapping the function in a timeout of 0 seconds allows the dispatch to be asynchronous
-            setTimeout(() => {
-                HandDataManager_1.HandDataManager.HandleHandFrame(handFrame);
-            });
-        }
-    }
-    // Function: ClearUnresponsiveCallbacks
-    // Waits for <callbackClearTimer> seconds and clears all <ResponseCallbacks> that are
-    // expired from <responseCallbacks>.
-    ClearUnresponsivePromises() {
-        const lastClearTime = Date.now();
-        MessageReceiver.ClearUnresponsiveItems(lastClearTime, this.responseCallbacks);
-        MessageReceiver.ClearUnresponsiveItems(lastClearTime, this.handshakeCallbacks);
-        MessageReceiver.ClearUnresponsiveItems(lastClearTime, this.configStateCallbacks);
-        MessageReceiver.ClearUnresponsiveItems(lastClearTime, this.serviceStatusCallbacks);
-        MessageReceiver.ClearUnresponsiveItems(lastClearTime, this.trackingStateCallbacks);
-    }
-    static ClearUnresponsiveItems(lastClearTime, callbacks) {
-        if (callbacks !== undefined) {
-            for (const key in callbacks) {
-                if (callbacks[key].timestamp < lastClearTime) {
-                    delete callbacks[key];
-                }
-                else {
-                    break;
-                }
-            }
-        }
+        };
+        this.setup(() => this.checkForState(callbackList));
     }
 }
-exports.MessageReceiver = MessageReceiver;
+exports.ResponseMessageReceiver = ResponseMessageReceiver;
 
 
 /***/ }),
 
-/***/ 636:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 1451:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ServiceStateMessageReceiver = void 0;
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const ActionCode_1 = __webpack_require__(1962);
+const RequestTypes_1 = __webpack_require__(6735);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives service state messages from the service and distributes them
+ *
+ * @internal
+ */
+class ServiceStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming messages from a queue and passing them to the callbacks
+     */
+    constructor(callbackList) {
+        super(true);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [ActionCode_1.ActionCode.SERVICE_STATUS];
+        /**
+         * Checks {@link queue} for a single {@link ServiceStateResponse} and handles it.
+         */
+        this.checkForState = (callbackList) => {
+            const serviceStatus = this.queue.shift();
+            if (serviceStatus) {
+                const callbackResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(serviceStatus, callbackList);
+                switch (callbackResult) {
+                    // If callback didn't happen for known reasons, we can be sure it's an independent status event rather
+                    // than a request response
+                    // TODO: Send/handle this request from service differently from normal response so
+                    // we can be sure it's an independent event
+                    case 'NoCallbacksFound':
+                        // If service state is null we didn't get info about it from this message
+                        if (serviceStatus.trackingServiceState !== null) {
+                            (0, TouchFreeEvents_1.dispatchEventCallback)('onTrackingServiceStateChange', serviceStatus.trackingServiceState);
+                        }
+                        (0, TouchFreeEvents_1.dispatchEventCallback)('onServiceStatusChange', (0, RequestTypes_1.convertResponseToServiceState)(serviceStatus));
+                        break;
+                    case 'Success':
+                        // no-op
+                        break;
+                }
+            }
+        };
+        this.setup(() => this.checkForState(callbackList));
+    }
+}
+exports.ServiceStateMessageReceiver = ServiceStateMessageReceiver;
+
+
+/***/ }),
+
+/***/ 7892:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.TrackingStateMessageReceiver = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives tracking state messages from the service and distributes them
+ *
+ * @internal
+ */
+class TrackingStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming messages from a queue and passing them to the callbacks
+     */
+    constructor(callbackList) {
+        super(true);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [ActionCode_1.ActionCode.TRACKING_STATE];
+        this.setup(() => this.checkQueue(this.queue, callbackList));
+    }
+}
+exports.TrackingStateMessageReceiver = TrackingStateMessageReceiver;
+
+
+/***/ }),
+
+/***/ 3744:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.VersionHandshakeMessageReceiver = void 0;
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
+/**
+ * Receives handshake messages from the service and distributes them
+ *
+ * @internal
+ */
+class VersionHandshakeMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver {
+    /**
+     * Sets up consuming messages from a queue and passing them to the callbacks
+     */
+    constructor(callbackList) {
+        super(true);
+        /**
+         * The {@link ActionCode | ActionCodes} that are handled by this message receiver
+         */
+        this.actionCode = [ActionCode_1.ActionCode.VERSION_HANDSHAKE_RESPONSE];
+        /**
+         * Checks {@link queue} for a single {@link WebSocketResponse} and handles it.
+         */
+        this.checkForState = (callbackList) => {
+            const response = this.queue.shift();
+            if (response) {
+                const responseResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(response, callbackList);
+                const configStateError = response === null || response === void 0 ? void 0 : response.configurationStateError;
+                switch (responseResult) {
+                    case 'NoCallbacksFound':
+                        BaseMessageReceiver_1.BaseMessageReceiver.logNoCallbacksWarning(response);
+                        break;
+                    case 'Success':
+                        if (response.message && response.status === 'Success') {
+                            if (response.message.indexOf('Handshake Warning') >= 0) {
+                                console.warn('Received Handshake Warning from TouchFree:\n' + response.message);
+                            }
+                            else {
+                                console.log('Received Handshake Success from TouchFree:\n' + response.message);
+                            }
+                        }
+                        else {
+                            console.error('Received Handshake Error from TouchFree:\n' + response.message);
+                        }
+                        if (configStateError) {
+                            if (configStateError === 'ERROR') {
+                                console.error('Received Configuration State Error from TouchFree. ' +
+                                    'Error loading configuration files.');
+                            }
+                            else if (configStateError === 'DEFAULT') {
+                                console.warn('Received Configuration State Warning from TouchFree. ' +
+                                    'Configuration is default, perform a setup to resolve');
+                            }
+                        }
+                        break;
+                }
+            }
+        };
+        this.setup(() => this.checkForState(callbackList));
+    }
+}
+exports.VersionHandshakeMessageReceiver = VersionHandshakeMessageReceiver;
+
+
+/***/ }),
+
+/***/ 6735:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.convertResponseToServiceState = void 0;
+/**
+ * Converts a response type to {@link ServiceState}
+ * @param response - Response object from the service
+ * @returns Converted ServiceState
+ * @internal
+ */
+function convertResponseToServiceState(response) {
+    return {
+        cameraFirmwareVersion: response.cameraFirmwareVersion,
+        cameraSerial: response.cameraSerial,
+        configurationState: response.configurationState,
+        touchFreeServiceVersion: response.serviceVersion,
+        trackingServiceState: response.trackingServiceState,
+        trackingServiceVersion: response.trackingVersion,
+    };
+}
+exports.convertResponseToServiceState = convertResponseToServiceState;
+
+
+/***/ }),
+
+/***/ 7051:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ServiceConnection = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const TouchFreeToolingTypes_1 = __webpack_require__(579);
-const ConnectionManager_1 = __webpack_require__(597);
-const TouchFreeServiceTypes_1 = __webpack_require__(5);
-const uuid_1 = __webpack_require__(982);
-// Class: ServiceConnection
-// This represents a connection to a TouchFree Service. It should be created by a
-// <ConnectionManager> to ensure there is only one active connection at a time. The sending
-// and receiving of data to the Tooling is handled here as well as the creation of a
-// <MessageReceiver> to ensure the data is handled properly.
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const ActionCode_1 = __webpack_require__(1962);
+const CallbackLists_1 = __webpack_require__(4025);
+const ConnectionTypes_1 = __webpack_require__(2630);
+const AnalyticsMessageReceiver_1 = __webpack_require__(3338);
+const ConfigStateMessageReceiver_1 = __webpack_require__(8066);
+const HandDataHandler_1 = __webpack_require__(9659);
+const HandPresenceMessageReceiver_1 = __webpack_require__(4799);
+const InputActionMessageReceiver_1 = __webpack_require__(7168);
+const InteractionZoneMessageReceiver_1 = __webpack_require__(9605);
+const ResponseMessageReceiver_1 = __webpack_require__(5561);
+const ServiceStateMessageReceiver_1 = __webpack_require__(1451);
+const TrackingStateMessageReceiver_1 = __webpack_require__(7892);
+const VersionHandshakeMessageReceiver_1 = __webpack_require__(3744);
+const ServiceTypes_1 = __webpack_require__(5381);
+const uuid_1 = __webpack_require__(7429);
+const createMessageReceivers = (serviceConnection) => {
+    const callbacks = serviceConnection.getCallbackLists();
+    return [
+        new AnalyticsMessageReceiver_1.AnalyticsMessageReceiver(callbacks.analyticsRequestCallbacks),
+        new ConfigStateMessageReceiver_1.ConfigStateMessageReceiver(callbacks.configStateCallbacks),
+        // Passing wrapped callbacks so that the method is not copied and can be replaced in tests
+        new HandPresenceMessageReceiver_1.HandPresenceMessageReceiver((state) => serviceConnection.handleHandPresenceEvent(state)),
+        new InputActionMessageReceiver_1.InputActionMessageReceiver(),
+        new InteractionZoneMessageReceiver_1.InteractionZoneMessageReceiver((state) => serviceConnection.handleInteractionZoneEvent(state)),
+        new ResponseMessageReceiver_1.ResponseMessageReceiver(callbacks.responseCallbacks),
+        new ServiceStateMessageReceiver_1.ServiceStateMessageReceiver(callbacks.serviceStatusCallbacks),
+        new TrackingStateMessageReceiver_1.TrackingStateMessageReceiver(callbacks.trackingStateCallbacks),
+        new VersionHandshakeMessageReceiver_1.VersionHandshakeMessageReceiver(callbacks.handshakeCallbacks),
+    ];
+};
+/**
+ * Represents a connection to the TouchFree Service.
+ *
+ * @internal
+ */
 class ServiceConnection {
-    // Variable: touchFreeVersion
-    // The version of the connected TouchFree Service
+    /**
+     * The version of the connected TouchFree Service
+     */
     get touchFreeVersion() {
-        return this._touchFreeVersion;
+        return this.internalTouchFreeVersion;
     }
+    /**
+     * Get current presence state of the hand.
+     */
+    getCurrentHandPresence() {
+        return this.currentHandPresence;
+    }
+    /**
+     * Get current interaction zone state
+     */
+    getCurrentInteractionZoneState() {
+        return this.currentInteractionZoneState;
+    }
+    /**
+     * Has the websocket connection handshake completed?
+     */
     get handshakeComplete() {
         return this.handshakeCompleted;
     }
-    // Group: Functions
-    // Function: constructor
-    // The constructor for <ServiceConnection> that can be given a different IP Address and Port
-    // to connect to on construction. This constructor also sets up the redirects of incoming
-    // messages to <OnMessage>. Puts a listener on the websocket so that once it opens, a handshake
-    // request is sent with this Tooling's API version number. The service will not send data over
-    // an open connection until this handshake is completed successfully.
-    constructor(_ip = '127.0.0.1', _port = '9739') {
-        this._touchFreeVersion = '';
-        // Function: Disconnect
-        // Can be used to force the connection to the <webSocket> to be closed.
-        this.Disconnect = () => {
+    /**
+     * Get callback lists object
+     */
+    getCallbackLists() {
+        return this.callbackLists;
+    }
+    /**
+     * Sets up {@link WebSocket} connection and adds appropriate listeners for incoming messages.
+     *
+     * @remarks
+     * Sets up a listener to request a handshake once the websocket has successfully opened.
+     * No data will be sent over an open connection until a successful handshake has completed.
+     *
+     * @param address - Address to connect to websocket on
+     */
+    constructor(address) {
+        this.internalTouchFreeVersion = '';
+        this.currentHandPresence = ConnectionTypes_1.HandPresenceState.HANDS_LOST;
+        this.currentInteractionZoneState = ConnectionTypes_1.InteractionZoneState.HAND_EXITED;
+        /**
+         * Force close the websocket connection
+         */
+        this.disconnect = () => {
             if (this.webSocket !== null) {
                 this.webSocket.close();
             }
         };
-        this.RequestHandshake = () => {
+        this.requestHandshake = () => {
             if (!this.handshakeCompleted) {
                 const guid = (0, uuid_1.v4)();
                 // construct message
                 const handshakeRequest = {
-                    action: TouchFreeServiceTypes_1.ActionCode.VERSION_HANDSHAKE,
+                    action: ActionCode_1.ActionCode.VERSION_HANDSHAKE,
                     content: {
                         requestID: guid,
+                        [ServiceTypes_1.VERSION_INFO.API_HEADER_NAME]: ServiceTypes_1.VERSION_INFO.API_VERSION,
                     },
                 };
-                handshakeRequest.content[TouchFreeToolingTypes_1.VersionInfo.API_HEADER_NAME] = TouchFreeToolingTypes_1.VersionInfo.ApiVersion;
                 if (!this.handshakeRequested) {
                     this.handshakeRequested = true;
                     // send message
-                    this.sendMessageWithSimpleResponse(JSON.stringify(handshakeRequest), guid, this.ConnectionResultCallback, ConnectionManager_1.ConnectionManager.messageReceiver.handshakeCallbacks);
+                    this.sendMessageWithSimpleResponse(JSON.stringify(handshakeRequest), guid, this.connectionResultCallback, this.callbackLists.handshakeCallbacks);
                 }
             }
         };
-        // Function: ConnectionResultCallback
-        // Passed into <SendMessage> as part of connecting to TouchFree Service, handles the
-        // result of the Version Checking handshake.
-        this.ConnectionResultCallback = (response) => {
+        /**
+         * Passed into {@link sendMessage} as part of connecting to TouchFree Service, handles the
+         * result of the Version Checking handshake.
+         *
+         * @remarks
+         * Dispatches `"onConnected"` event via {@link dispatchEventCallback} upon successful handshake response
+         *
+         * @param response - VersionHandshakeResponse if connection was successful or another websocket response otherwise
+         */
+        this.connectionResultCallback = (response) => {
             if (response.status === 'Success') {
                 console.log('Successful Connection');
                 const handshakeResponse = response;
                 if (handshakeResponse) {
-                    this._touchFreeVersion = handshakeResponse.touchFreeVersion;
+                    this.internalTouchFreeVersion = handshakeResponse.touchFreeVersion;
                 }
                 this.handshakeCompleted = true;
-                TouchFree_1.default.DispatchEvent('OnConnected');
+                (0, TouchFreeEvents_1.dispatchEventCallback)('onConnected');
             }
             else {
                 console.error(`Connection to Service failed. Details:\n${response.message}`);
             }
         };
-        // Function: OnMessage
-        // The first point of contact for new messages received, these are sorted into appropriate
-        // types based on their <ActionCode> and added to queues on the <ConnectionManager's>
-        // <MessageReceiver>.
-        this.OnMessage = (_message) => {
-            if (typeof _message.data !== 'string') {
-                const buffer = _message.data;
+        /**
+         * The first point of contact for new messages received. Messages are passed to a
+         * message receiver depending on their {@link ActionCode}.
+         *
+         * @param message - Message to handle
+         */
+        this.onMessage = (message) => {
+            if (typeof message.data !== 'string') {
+                const buffer = message.data;
                 const binaryDataType = new Int32Array(buffer, 0, 4)[0];
-                if (binaryDataType === ServiceBinaryDataTypes.HandRenderData) {
-                    ConnectionManager_1.ConnectionManager.messageReceiver.latestHandDataItem = buffer;
+                if (binaryDataType === ServiceBinaryDataTypes.HAND_RENDER_DATA) {
+                    this.handDataHandler.latestHandDataItem = buffer;
                 }
                 return;
             }
-            const looseData = JSON.parse(_message.data);
-            switch (looseData.action) {
-                case TouchFreeServiceTypes_1.ActionCode.INPUT_ACTION: {
-                    const wsInput = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.actionQueue.push(wsInput);
-                    break;
-                }
-                case TouchFreeServiceTypes_1.ActionCode.HAND_PRESENCE_EVENT: {
-                    const handEvent = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.lastStateUpdate = handEvent.state;
-                    break;
-                }
-                case TouchFreeServiceTypes_1.ActionCode.SERVICE_STATUS: {
-                    const serviceStatus = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.serviceStatusQueue.push(serviceStatus);
-                    break;
-                }
-                case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_STATE:
-                case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_FILE_STATE:
-                case TouchFreeServiceTypes_1.ActionCode.QUICK_SETUP_CONFIG: {
-                    const configFileState = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.configStateQueue.push(configFileState);
-                    break;
-                }
-                case TouchFreeServiceTypes_1.ActionCode.VERSION_HANDSHAKE_RESPONSE: {
-                    const response = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.handshakeQueue.push(response);
-                    break;
-                }
-                case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_RESPONSE:
-                case TouchFreeServiceTypes_1.ActionCode.SERVICE_STATUS_RESPONSE:
-                case TouchFreeServiceTypes_1.ActionCode.CONFIGURATION_FILE_RESPONSE:
-                case TouchFreeServiceTypes_1.ActionCode.QUICK_SETUP_RESPONSE: {
-                    const response = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.responseQueue.push(response);
-                    break;
-                }
-                case TouchFreeServiceTypes_1.ActionCode.TRACKING_STATE: {
-                    const trackingResponse = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.trackingStateQueue.push(trackingResponse);
-                    break;
-                }
-                case TouchFreeServiceTypes_1.ActionCode.INTERACTION_ZONE_EVENT: {
-                    const { state } = looseData.content;
-                    ConnectionManager_1.ConnectionManager.messageReceiver.lastInteractionZoneUpdate = { status: 'UNPROCESSED', state: state };
-                    break;
-                }
-            }
+            const looseData = JSON.parse(message.data);
+            // Get the first message receiver with a matching action code
+            const receiver = this.messageReceivers.find((x) => x.actionCode.find((a) => a === looseData.action));
+            receiver === null || receiver === void 0 ? void 0 : receiver.receiveMessage(looseData);
         };
-        // Function: SendMessage
-        // Used internally to send or request information from the Service via the <webSocket>. To
-        // be given a pre-made _message and _requestID. Provides an asynchronous <WebSocketResponse>
-        // via the _callback parameter.
-        //
-        // If your _callback requires context it should be bound to that context via .bind()
-        this.SendMessage = (_message, _requestID, _callback) => {
-            this.sendMessageWithSimpleResponse(_message, _requestID, _callback, ConnectionManager_1.ConnectionManager.messageReceiver.responseCallbacks);
+        /**
+         * Send or request information from the TouchFree Service via the WebSocket.
+         *
+         * @param message - Content of message
+         * @param requestID - A request ID to identify the response from the Service
+         * @param callback - Callback to handle the response
+         */
+        this.sendMessage = (message, requestID, callback) => {
+            this.sendMessageWithSimpleResponse(message, requestID, callback, this.callbackLists.responseCallbacks);
         };
-        this.sendMessageWithSimpleResponse = (_message, _requestID, _callback, _callbacksStore) => {
-            if (!_requestID) {
-                if (_callback) {
-                    const response = new TouchFreeServiceTypes_1.WebSocketResponse('', 'Failure', 'Request failed. This is due to a missing or invalid requestID', _message);
-                    _callback(response);
+        this.sendMessageWithSimpleResponse = (message, requestID, callback, callbacksStore) => {
+            if (!requestID) {
+                if (callback) {
+                    callback({
+                        requestID: '',
+                        status: 'Failure',
+                        message: 'Request failed. This is due to a missing or invalid requestID',
+                        originalRequest: message,
+                    });
                 }
                 console.error('Request failed. This is due to a missing or invalid requestID');
                 return;
             }
-            if (_callback) {
-                _callbacksStore[_requestID] = new TouchFreeServiceTypes_1.ResponseCallback(Date.now(), _callback);
+            if (callback && callbacksStore) {
+                callbacksStore[requestID] = { timestamp: Date.now(), callback };
             }
-            this.webSocket.send(_message);
+            this.webSocket.send(message);
         };
-        // Function: RequestConfigState
-        // Used internally to request information from the Service via the <webSocket>.
-        // Provides an asynchronous <ConfigState> via the _callback parameter.
-        //
-        // If your _callback requires context it should be bound to that context via .bind()
-        this.RequestConfigState = (_callback) => {
-            if (_callback === null) {
-                console.error('Request for config state failed. This is due to a missing callback');
+        /**
+         * Request updated {@link ConfigState | ConfigState} from the Service
+         *
+         * @param callback - Callback to handle the response from the service
+         */
+        this.requestConfigState = (callback) => {
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_CONFIGURATION_STATE, 'config state', callback, this.callbackLists.configStateCallbacks);
+        };
+        /**
+         * Request Service to reset the Interaction Config File to its default state
+         *
+         * @param callback - Callback to handle the response from the service
+         */
+        this.resetInteractionConfigFile = (callback) => {
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.RESET_INTERACTION_CONFIG_FILE, 'config state', callback, this.callbackLists.configStateCallbacks);
+        };
+        /**
+         * Request service status from the Service.
+         *
+         * @param callback - Callback to handle the response from the service
+         */
+        this.requestServiceStatus = (callback) => {
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_SERVICE_STATUS, 'service status', callback, this.callbackLists.serviceStatusCallbacks);
+        };
+        /**
+         * Request config state of the config files from the Service
+         *
+         * @param callback - Callback to handle the response from the service
+         */
+        this.requestConfigFile = (callback) => {
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_CONFIGURATION_FILE, 'config file', callback, this.callbackLists.configStateCallbacks);
+        };
+        /**
+         * Request a quick setup on the Service
+         *
+         * @param atTopTarget - Which quick setup target is being used
+         * @param callback - Callback to handle the response from the service
+         * @param configurationCallback - Callback to handle a response from the service with updated configuration
+         */
+        this.quickSetupRequest = (atTopTarget, callback, configurationCallback) => {
+            this.baseRequestWithMultipleCallbacks({
+                position: atTopTarget ? 'Top' : 'Bottom',
+            }, ActionCode_1.ActionCode.QUICK_SETUP, this.callbackLists.responseCallbacks, callback, this.callbackLists.configStateCallbacks, configurationCallback);
+        };
+        /**
+         * Request tracking state update from the Service
+         *
+         * @param callback - Callback to handle the response from the service
+         */
+        this.requestTrackingState = (callback) => {
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.GET_TRACKING_STATE, 'tracking state', callback, this.callbackLists.trackingStateCallbacks);
+        };
+        /**
+         * Request a change to tracking state on the Service
+         *
+         * @param state - State change to request. Undefined props are not sent
+         * @param callback - Callback to handle the response from the service
+         */
+        this.requestTrackingChange = (state, callback) => {
+            const requestContent = {};
+            if (state.mask !== undefined) {
+                requestContent.mask = state.mask;
+            }
+            if (state.allowImages !== undefined) {
+                requestContent.allowImages = state.allowImages;
+            }
+            if (state.cameraReversed !== undefined) {
+                requestContent.cameraReversed = state.cameraReversed;
+            }
+            if (state.analyticsEnabled !== undefined) {
+                requestContent.analyticsEnabled = state.analyticsEnabled;
+            }
+            this.baseRequest(requestContent, ActionCode_1.ActionCode.SET_TRACKING_STATE, this.callbackLists.trackingStateCallbacks, callback);
+        };
+        /**
+         * Base functionality for sending a request to the Service
+         * @param fields - Object containing the content to send to the Service.
+         * @param actionCode - {@link ActionCode} for the analytics request
+         * @param callback - A callback to handle the response from the service.
+         * @param callbackList - The list of pending callbacks to add the callback to
+         */
+        this.baseRequestWithRequiredCallback = (actionCode, noCallbackError, callback, callbackList) => {
+            if (!callback || !callbackList) {
+                console.error(`Request for ${noCallbackError} failed. This is due to a missing callback`);
                 return;
             }
-            const guid = (0, uuid_1.v4)();
-            const request = new TouchFreeServiceTypes_1.ConfigChangeRequest(guid);
-            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.REQUEST_CONFIGURATION_STATE, request);
-            const message = JSON.stringify(wrapper);
-            ConnectionManager_1.ConnectionManager.messageReceiver.configStateCallbacks[guid] = new TouchFreeServiceTypes_1.ConfigStateCallback(Date.now(), _callback);
-            this.webSocket.send(message);
+            this.baseRequest({}, actionCode, callbackList, callback);
         };
-        // Function: RequestServiceStatus
-        // Used internally to request information from the Service via the <webSocket>.
-        // Provides an asynchronous <ServiceStatus> via the _callback parameter.
-        //
-        // If your _callback requires context it should be bound to that context via .bind()
-        this.RequestServiceStatus = (_callback) => {
-            if (_callback === null) {
-                console.error('Request for service status failed. This is due to a missing callback');
-                return;
-            }
-            const guid = (0, uuid_1.v4)();
-            const request = new TouchFreeServiceTypes_1.ServiceStatusRequest(guid);
-            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.REQUEST_SERVICE_STATUS, request);
-            const message = JSON.stringify(wrapper);
-            ConnectionManager_1.ConnectionManager.messageReceiver.serviceStatusCallbacks[guid] = new TouchFreeServiceTypes_1.ServiceStatusCallback(Date.now(), _callback);
-            this.webSocket.send(message);
+        /**
+         * Base functionality for sending a request to the Service
+         * @param fields - Object containing the content to send to the Service.
+         * @param actionCode - {@link ActionCode} for the analytics request
+         * @param callbackList - The list of pending callbacks to add the callback to
+         * @param callback - Optional callback to handle the response from the service
+         */
+        this.baseRequest = (fields, actionCode, callbackList, callback) => {
+            this.baseRequestWithMultipleCallbacks(fields, actionCode, callbackList, callback);
         };
-        // Function: RequestConfigFile
-        // Used internally to request information from the Service via the <webSocket>.
-        // Provides an asynchronous <ConfigState> via the _callback parameter.
-        //
-        // If your _callback requires context it should be bound to that context via .bind()
-        this.RequestConfigFile = (_callback) => {
-            if (_callback === null) {
-                console.error('Request for config file failed. This is due to a missing callback');
-                return;
-            }
-            const guid = (0, uuid_1.v4)();
-            const request = new TouchFreeServiceTypes_1.ConfigChangeRequest(guid);
-            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.REQUEST_CONFIGURATION_FILE, request);
-            const message = JSON.stringify(wrapper);
-            ConnectionManager_1.ConnectionManager.messageReceiver.configStateCallbacks[guid] = new TouchFreeServiceTypes_1.ConfigStateCallback(Date.now(), _callback);
-            this.webSocket.send(message);
-        };
-        // Function: QuickSetupRequest
-        // Used internally to pass information to the Service about performing a QuickSetup
-        // via the <webSocket>.
-        // Provides an asynchronous <WebSocketResponse> via the _callback parameter.
-        // Provides an asynchronous <ConfigState> via the _configurationCallback parameter.
-        //
-        // If your _callback requires context it should be bound to that context via .bind()
-        // If your _configurationCallback requires context it should be bound to that context via .bind()
-        this.QuickSetupRequest = (atTopTarget, _callback, _configurationCallback) => {
-            const position = atTopTarget ? 'Top' : 'Bottom';
-            const guid = (0, uuid_1.v4)();
-            const request = {
-                requestID: guid,
-                position,
-            };
-            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.QUICK_SETUP, request);
-            const message = JSON.stringify(wrapper);
-            if (_callback !== null) {
-                ConnectionManager_1.ConnectionManager.messageReceiver.responseCallbacks[guid] = new TouchFreeServiceTypes_1.ResponseCallback(Date.now(), _callback);
-            }
-            if (_configurationCallback !== null) {
-                ConnectionManager_1.ConnectionManager.messageReceiver.configStateCallbacks[guid] = new TouchFreeServiceTypes_1.ConfigStateCallback(Date.now(), _configurationCallback);
-            }
-            this.webSocket.send(message);
-        };
-        // Function: RequestTrackingState
-        // Used internally to request information from the Service via the <webSocket>.
-        // Provides an asynchronous <TrackingStateResponse> via the _callback parameter.
-        //
-        // If your _callback requires context it should be bound to that context via .bind()
-        this.RequestTrackingState = (_callback) => {
-            if (!_callback) {
-                console.error('Request for tracking state failed. This is due to a missing callback');
-                return;
-            }
-            const guid = (0, uuid_1.v4)();
-            const request = new TouchFreeServiceTypes_1.SimpleRequest(guid);
-            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.GET_TRACKING_STATE, request);
-            const message = JSON.stringify(wrapper);
-            ConnectionManager_1.ConnectionManager.messageReceiver.trackingStateCallbacks[guid] = new TouchFreeServiceTypes_1.TrackingStateCallback(Date.now(), _callback);
-            this.webSocket.send(message);
-        };
-        // Function: RequestTrackingChange
-        // Used internally to update the configuration of the Tracking via the <webSocket>.
-        // Provides an asynchronous <TrackingStateResponse> via the _callback parameter.
-        //
-        // If your _callback requires context it should be bound to that context via .bind()
-        this.RequestTrackingChange = (_state, _callback) => {
+        /**
+         * Base functionality for sending a request to the Service
+         * @param fields - Object containing the content to send to the Service.
+         * @param actionCode - {@link ActionCode} for the analytics request
+         * @param callbackList - The list of pending callbacks to add the callback to
+         * @param callback - Optional callback to handle the response from the service
+         * @param secondCallbackList - Optional second list of pending callbacks to add the seconds callback to
+         * @param secondCallback - Optional second callback to handle the response from the service
+         */
+        this.baseRequestWithMultipleCallbacks = (fields, actionCode, callbackList, callback, secondCallbackList, secondCallback) => {
             const requestID = (0, uuid_1.v4)();
-            const requestContent = {
-                requestID,
-            };
-            if (_state.mask !== undefined) {
-                requestContent.mask = _state.mask;
-            }
-            if (_state.allowImages !== undefined) {
-                requestContent.allowImages = _state.allowImages;
-            }
-            if (_state.cameraReversed !== undefined) {
-                requestContent.cameraReversed = _state.cameraReversed;
-            }
-            if (_state.analyticsEnabled !== undefined) {
-                requestContent.analyticsEnabled = _state.analyticsEnabled;
-            }
-            const wrapper = new TouchFreeServiceTypes_1.CommunicationWrapper(TouchFreeServiceTypes_1.ActionCode.SET_TRACKING_STATE, requestContent);
+            const content = Object.assign(Object.assign({}, fields), { requestID });
+            const wrapper = { action: actionCode, content };
             const message = JSON.stringify(wrapper);
-            if (_callback !== null) {
-                ConnectionManager_1.ConnectionManager.messageReceiver.trackingStateCallbacks[requestID] = new TouchFreeServiceTypes_1.TrackingStateCallback(Date.now(), _callback);
+            if (callback && callbackList) {
+                callbackList[requestID] = {
+                    timestamp: Date.now(),
+                    callback,
+                };
+            }
+            if (secondCallback && secondCallbackList) {
+                secondCallbackList[requestID] = {
+                    timestamp: Date.now(),
+                    callback: secondCallback,
+                };
             }
             this.webSocket.send(message);
         };
-        this.webSocket = new WebSocket(`ws://${_ip}:${_port}/connect`);
+        /**
+         * Used to either start a new analytics session, or stop the current session.
+         *
+         * @param requestType - Type of Analytics Session request. See {@link AnalyticsSessionRequestType}
+         * @param sessionID - Session ID
+         * @param callback - Optional callback to handle the response from the service
+         */
+        this.analyticsSessionRequest = (requestType, sessionID, callback) => this.baseRequest({ sessionID, requestType }, ActionCode_1.ActionCode.ANALYTICS_SESSION_REQUEST, this.callbackLists.analyticsRequestCallbacks, callback);
+        /**
+         * Used to send a request to update the analytic session's events stored in the Service
+         * @param sessionID - ID of the session
+         * @param events - Analytics events to send
+         * @param callback - Optional callback to handle the response from the service
+         */
+        this.updateAnalyticSessionEvents = (sessionID, events, callback) => this.baseRequest({ sessionID, sessionEvents: events }, ActionCode_1.ActionCode.ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST, this.callbackLists.analyticsRequestCallbacks, callback);
+        /**
+         * Handles HandPresence events from the service and dispatches
+         * the `handFound` and `handsLost` events on this class
+         * @param state - Hand state
+         */
+        this.handleHandPresenceEvent = (state) => {
+            this.currentHandPresence = state;
+            if (state === ConnectionTypes_1.HandPresenceState.HAND_FOUND) {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handFound');
+            }
+            else {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handsLost');
+            }
+        };
+        /**
+         * Handle an InteractionZone event by dispatching
+         * `handEntered` and `handExited` events on this class
+         */
+        this.handleInteractionZoneEvent = (state) => {
+            this.currentInteractionZoneState = state;
+            if (state === ConnectionTypes_1.InteractionZoneState.HAND_ENTERED) {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handEntered');
+            }
+            else {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handExited');
+            }
+        };
+        this.callbackLists = (0, CallbackLists_1.createDefaultCallbackLists)();
+        this.handDataHandler = new HandDataHandler_1.HandDataHandler();
+        this.messageReceivers = createMessageReceivers(this);
+        (0, CallbackLists_1.setClearCallbacksInterval)(300, 300, this.callbackLists);
+        this.webSocket = new WebSocket(`ws://${address.ip}:${address.port}/connect`);
         this.webSocket.binaryType = 'arraybuffer';
-        this.webSocket.addEventListener('message', this.OnMessage);
+        this.webSocket.addEventListener('message', this.onMessage);
         this.handshakeRequested = false;
         this.handshakeCompleted = false;
-        this.webSocket.addEventListener('open', this.RequestHandshake, { once: true });
+        this.webSocket.addEventListener('open', this.requestHandshake, { once: true });
     }
 }
 exports.ServiceConnection = ServiceConnection;
 var ServiceBinaryDataTypes;
 (function (ServiceBinaryDataTypes) {
-    ServiceBinaryDataTypes[ServiceBinaryDataTypes["HandRenderData"] = 1] = "HandRenderData";
+    ServiceBinaryDataTypes[ServiceBinaryDataTypes["HAND_RENDER_DATA"] = 1] = "HAND_RENDER_DATA";
 })(ServiceBinaryDataTypes || (ServiceBinaryDataTypes = {}));
 
 
 /***/ }),
 
-/***/ 5:
+/***/ 5381:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TrackingStateCallback = exports.SimpleRequest = exports.TrackingStateRequest = exports.CommunicationWrapper = exports.ResponseCallback = exports.VersionHandshakeResponse = exports.WebSocketResponse = exports.ServiceStatusCallback = exports.ServiceStatusRequest = exports.ServiceStatus = exports.ConfigStateCallback = exports.HandRenderDataStateRequest = exports.ConfigChangeRequest = exports.ConfigState = exports.PartialConfigState = exports.TouchFreeRequest = exports.TouchFreeRequestCallback = exports.HandPresenceEvent = exports.Compatibility = exports.InteractionZoneState = exports.HandPresenceState = exports.ActionCode = void 0;
-// Enum: ActionCode
-// INPUT_ACTION - Represents standard interaction data
-// CONFIGURATION_STATE - Represents a collection of configurations from the Service
-// CONFIGURATION_RESPONSE - Represents a Success/Failure response from a SET_CONFIGURATION_STATE
-// SET_CONFIGURATION_STATE - Represents a request to set new configuration files on the Service
-// REQUEST_CONFIGURATION_STATE - Represents a request to receive a current CONFIGURATION_STATE from the Service
-// VERSION_HANDSHAKE - Represents an outgoing message from Tooling to Service,
-//                     attempting to compare API versions for compatibility
-// HAND_PRESENCE_EVENT - Represents the result coming in from the Service
-// REQUEST_SERVICE_STATUS - Represents a request to receive a current SERVICE_STATUS from the Service
-// SERVICE_STATUS_RESPONSE - Represents a Failure response from a REQUEST_SERVICE_STATUS
-// SERVICE_STATUS - Represents information about the current state of the Service
-// QUICK_SETUP - Represents a request for performing a quick setup of the Service
-// QUICK_SETUP_CONFIG - Represents a response from the Service after a QUICK_SETUP request
-//                      where the configuration was updated as the quick setup was successfully completed.
-// QUICK_SETUP_RESPONSE - Represents a response from the Service after a QUICK_SETUP request
-//                        where the configuration was not updated.
-// GET_TRACKING_STATE - Represents a request to receive the current state of the tracking settings
-// SET_TRACKING_STATE - Represents a request to set the current state of the tracking settings
-// TRACKING_STATE - Represents a response from the Service with the current state of the tracking settings,
-//                  received following either a GET_TRACKING_STATE or a SET_TRACKING_STATE
-// HAND_DATA - Represents more complete hand data sent from the service.
-// SET_HAND_DATA_STREAM_STATE - Represents a request to the Service to enable/disable
-//                              the HAND_DATA stream or change the lens to have the hand position relative to.
-// INTERACTION_ZONE_EVENT - Represents the interaction zone state received from the Service
-var ActionCode;
-(function (ActionCode) {
-    ActionCode["INPUT_ACTION"] = "INPUT_ACTION";
-    ActionCode["CONFIGURATION_STATE"] = "CONFIGURATION_STATE";
-    ActionCode["CONFIGURATION_RESPONSE"] = "CONFIGURATION_RESPONSE";
-    ActionCode["SET_CONFIGURATION_STATE"] = "SET_CONFIGURATION_STATE";
-    ActionCode["REQUEST_CONFIGURATION_STATE"] = "REQUEST_CONFIGURATION_STATE";
-    ActionCode["VERSION_HANDSHAKE"] = "VERSION_HANDSHAKE";
-    ActionCode["VERSION_HANDSHAKE_RESPONSE"] = "VERSION_HANDSHAKE_RESPONSE";
-    ActionCode["HAND_PRESENCE_EVENT"] = "HAND_PRESENCE_EVENT";
-    ActionCode["REQUEST_SERVICE_STATUS"] = "REQUEST_SERVICE_STATUS";
-    ActionCode["SERVICE_STATUS_RESPONSE"] = "SERVICE_STATUS_RESPONSE";
-    ActionCode["SERVICE_STATUS"] = "SERVICE_STATUS";
-    ActionCode["REQUEST_CONFIGURATION_FILE"] = "REQUEST_CONFIGURATION_FILE";
-    ActionCode["CONFIGURATION_FILE_STATE"] = "CONFIGURATION_FILE_STATE";
-    ActionCode["SET_CONFIGURATION_FILE"] = "SET_CONFIGURATION_FILE";
-    ActionCode["CONFIGURATION_FILE_RESPONSE"] = "CONFIGURATION_FILE_RESPONSE";
-    ActionCode["QUICK_SETUP"] = "QUICK_SETUP";
-    ActionCode["QUICK_SETUP_CONFIG"] = "QUICK_SETUP_CONFIG";
-    ActionCode["QUICK_SETUP_RESPONSE"] = "QUICK_SETUP_RESPONSE";
-    ActionCode["GET_TRACKING_STATE"] = "GET_TRACKING_STATE";
-    ActionCode["SET_TRACKING_STATE"] = "SET_TRACKING_STATE";
-    ActionCode["TRACKING_STATE"] = "TRACKING_STATE";
-    ActionCode["HAND_DATA"] = "HAND_DATA";
-    ActionCode["SET_HAND_DATA_STREAM_STATE"] = "SET_HAND_DATA_STREAM_STATE";
-    ActionCode["INTERACTION_ZONE_EVENT"] = "INTERACTION_ZONE_EVENT";
-})(ActionCode = exports.ActionCode || (exports.ActionCode = {}));
-// Enum: HandPresenceState
-// HAND_FOUND - Sent when the first hand is found when no hand has been present for a moment
-// HANDS_LOST - Sent when the last observed hand is lost, meaning no more hands are observed
-// PROCESSED - Used locally to indicate that no change in state is awaiting processing. See its
-//             use in <MessageReceiver> for more details.
-var HandPresenceState;
-(function (HandPresenceState) {
-    HandPresenceState[HandPresenceState["HAND_FOUND"] = 0] = "HAND_FOUND";
-    HandPresenceState[HandPresenceState["HANDS_LOST"] = 1] = "HANDS_LOST";
-    HandPresenceState[HandPresenceState["PROCESSED"] = 2] = "PROCESSED";
-})(HandPresenceState = exports.HandPresenceState || (exports.HandPresenceState = {}));
-// Enum: InteractionZoneState
-// HAND_ENTERED - Sent when the "active" hand enters the interaction zone
-// HAND_EXITED - Sent when the "active" hand leaves the interaction zone
-var InteractionZoneState;
-(function (InteractionZoneState) {
-    InteractionZoneState[InteractionZoneState["HAND_ENTERED"] = 0] = "HAND_ENTERED";
-    InteractionZoneState[InteractionZoneState["HAND_EXITED"] = 1] = "HAND_EXITED";
-})(InteractionZoneState = exports.InteractionZoneState || (exports.InteractionZoneState = {}));
-// Enum: Compatibility
-// COMPATIBLE - The API versions are considered compatible
-// SERVICE_OUTDATED - The API versions are considered incompatible as Service is older than Tooling
-// TOOLING_OUTDATED - The API versions are considered incompatible as Tooling is older than Service
-var Compatibility;
-(function (Compatibility) {
-    Compatibility[Compatibility["COMPATIBLE"] = 0] = "COMPATIBLE";
-    Compatibility[Compatibility["SERVICE_OUTDATED"] = 1] = "SERVICE_OUTDATED";
-    Compatibility[Compatibility["TOOLING_OUTDATED"] = 2] = "TOOLING_OUTDATED";
-})(Compatibility = exports.Compatibility || (exports.Compatibility = {}));
-// Class: HandPresenceEvent
-// This data structure is used to receive hand presence requests
-class HandPresenceEvent {
-    constructor(_state) {
-        this.state = _state;
-    }
-}
-exports.HandPresenceEvent = HandPresenceEvent;
-// Class: TouchFreeRequestCallback
-// This data structure is used to hold request callbacks
-class TouchFreeRequestCallback {
-    constructor(_timestamp, _callback) {
-        this.timestamp = _timestamp;
-        this.callback = _callback;
-    }
-}
-exports.TouchFreeRequestCallback = TouchFreeRequestCallback;
-// Class: TouchFreeRequest
-// This data structure is used as a base for requests to the TouchFree service.
-class TouchFreeRequest {
-    constructor(_requestID) {
-        this.requestID = _requestID;
-    }
-}
-exports.TouchFreeRequest = TouchFreeRequest;
-// Class: PartialConfigState
-// This data structure is used to send requests for changes to configuration or to configuration files.
-//
-// When sending a configuration to the Service the structure can be comprised of either partial or complete objects.
-class PartialConfigState extends TouchFreeRequest {
-    constructor(_id, _interaction, _physical) {
-        super(_id);
-        this.interaction = _interaction;
-        this.physical = _physical;
-    }
-}
-exports.PartialConfigState = PartialConfigState;
-// Class: ConfigState
-// This data structure is used when receiving configuration data representing the state of the service
-// or its config files.
-//
-// When receiving a configuration from the Service this structure contains ALL configuration data
-class ConfigState extends TouchFreeRequest {
-    constructor(_id, _interaction, _physical) {
-        super(_id);
-        this.interaction = _interaction;
-        this.physical = _physical;
-    }
-}
-exports.ConfigState = ConfigState;
-// class: ConfigChangeRequest
-// Used to request the current state of the configuration on the Service. This is received as
-// a <ConfigState> which should be linked to a <ConfigStateCallback> via requestID to make
-// use of the data received.
-class ConfigChangeRequest extends TouchFreeRequest {
-}
-exports.ConfigChangeRequest = ConfigChangeRequest;
-// class: HandRenderDataStateRequest
-// Used to set the state of the Hand Render Data stream.
-class HandRenderDataStateRequest extends TouchFreeRequest {
-    constructor(_id, enabled, lens) {
-        super(_id);
-        this.enabled = enabled;
-        this.lens = lens;
-    }
-}
-exports.HandRenderDataStateRequest = HandRenderDataStateRequest;
-// Class: ConfigStateCallback
-// Used by <MessageReceiver> to wait for a <ConfigState> from the Service. Owns a callback
-// with a <ConfigState> as a parameter to allow users to make use of the new
-// <ConfigStateResponse>. Stores a timestamp of its creation so the response has the ability to
-// timeout if not seen within a reasonable timeframe.
-class ConfigStateCallback extends TouchFreeRequestCallback {
-}
-exports.ConfigStateCallback = ConfigStateCallback;
-// Class: ServiceStatus
-// This data structure is used to receive service status.
-//
-// When receiving a configuration from the Service this structure contains ALL status data
-class ServiceStatus extends TouchFreeRequest {
-    constructor(_id, _trackingServiceState, _configurationState, _serviceVersion, _trackingVersion, _cameraSerial, _cameraFirmwareVersion) {
-        super(_id);
-        this.trackingServiceState = _trackingServiceState;
-        this.configurationState = _configurationState;
-        this.serviceVersion = _serviceVersion;
-        this.trackingVersion = _trackingVersion;
-        this.cameraSerial = _cameraSerial;
-        this.cameraFirmwareVersion = _cameraFirmwareVersion;
-    }
-}
-exports.ServiceStatus = ServiceStatus;
-// class: ServiceStatusRequest
-// Used to request the current state of the status of the Service. This is received as
-// a <ServiceStatus> which should be linked to a <ServiceStatusCallback> via requestID to make
-// use of the data received.
-class ServiceStatusRequest extends TouchFreeRequest {
-}
-exports.ServiceStatusRequest = ServiceStatusRequest;
-// Class: ServiceStatusCallback
-// Used by <MessageReceiver> to wait for a <ServiceStatus> from the Service. Owns a callback
-// with a <ServiceStatus> as a parameter to allow users to make use of the new
-// <ServiceStatusResponse>. Stores a timestamp of its creation so the response has the ability to
-// timeout if not seen within a reasonable timeframe.
-class ServiceStatusCallback extends TouchFreeRequestCallback {
-}
-exports.ServiceStatusCallback = ServiceStatusCallback;
-// Class: WebSocketResponse
-// The structure seen when the Service responds to a request. This is to verify whether it was
-// successful or not and will include the original request if it fails, to allow for
-// troubleshooting.
-class WebSocketResponse extends TouchFreeRequest {
-    constructor(_id, _status, _msg, _request) {
-        super(_id);
-        this.status = _status;
-        this.message = _msg;
-        this.originalRequest = _request;
-    }
-}
-exports.WebSocketResponse = WebSocketResponse;
-// Class: VersionHandshakeResponse
-// The structure seen when the Service responds to a Version Handshake request.
-class VersionHandshakeResponse extends WebSocketResponse {
-    constructor(_id, _status, _msg, _request, _touchFreeVersion, _apiVersion) {
-        super(_id, _status, _msg, _request);
-        this.touchFreeVersion = _touchFreeVersion;
-        this.apiVersion = _apiVersion;
-    }
-}
-exports.VersionHandshakeResponse = VersionHandshakeResponse;
-// Class: ResponseCallback
-// Used by <MessageReceiver> to wait for a <WebSocketResponse> from the Service. Owns a callback
-// with a <WebSocketResponse> as a parameter to allow users to deal with failed
-// <WebSocketResponses>. Stores a timestamp of its creation so the response has the ability to
-// timeout if not seen within a reasonable timeframe.
-class ResponseCallback extends TouchFreeRequestCallback {
-}
-exports.ResponseCallback = ResponseCallback;
-// Class: CommunicationWrapper
-// A container structure used by <ServiceConnection> to interpret incoming data to its appropriate
-// subtypes based on the <action> and pass the <content> on to the appropriate handler.
-class CommunicationWrapper {
-    constructor(_actionCode, _content) {
-        this.action = _actionCode;
-        this.content = _content;
-    }
-}
-exports.CommunicationWrapper = CommunicationWrapper;
-// Class: TrackingStateRequest
-// Used to construct a SET_TRACKING_STATE request.
-class TrackingStateRequest {
-    constructor(_id, _mask, _cameraReversed, _allowImages, _analyticsEnabled) {
-        this.requestID = _id;
-        this.mask = _mask;
-        this.cameraReversed = _cameraReversed;
-        this.allowImages = _allowImages;
-        this.analyticsEnabled = _analyticsEnabled;
-    }
-}
-exports.TrackingStateRequest = TrackingStateRequest;
-// Class: SimpleRequest
-// Used to make a basic request to the service. To be used with <CommunicationWrapper> to create a more complex request.
-class SimpleRequest {
-    constructor(_id) {
-        this.requestID = _id;
-    }
-}
-exports.SimpleRequest = SimpleRequest;
-// Class: TrackingStateCallback
-// Used by <MessageReceiver> to wait for a <TrackingStateResponse> from the Service. Owns a callback with a
-// <TrackingStateResponse> as a parameter. Stores a timestamp of its creation so the response has the ability to
-// timeout if not seen within a reasonable timeframe.
-class TrackingStateCallback {
-    constructor(_timestamp, _callback) {
-        this.timestamp = _timestamp;
-        this.callback = _callback;
-    }
-}
-exports.TrackingStateCallback = TrackingStateCallback;
+exports.VERSION_INFO = void 0;
+/**
+ * Object with versions for comparing the {@link VERSION_INFO.API_VERSION} of the Tooling and the Service.
+ *
+ * @internal
+ */
+exports.VERSION_INFO = {
+    /**
+     * The current version of communication API used between Tooling and the TouchFree Service
+     */
+    API_VERSION: '1.5.0',
+    /**
+     * The name of the header we wish the Service to compare our version with.
+     */
+    API_HEADER_NAME: 'TfApiVersion',
+};
 
 
 /***/ }),
 
-/***/ 810:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 2048:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const ConnectionManager_1 = __webpack_require__(597);
-const MessageReceiver_1 = __webpack_require__(184);
-const ServiceConnection_1 = __webpack_require__(636);
-const TouchFreeServiceTypes = __importStar(__webpack_require__(5));
-module.exports = {
-    ConnectionManager: ConnectionManager_1.ConnectionManager,
-    MessageReceiver: MessageReceiver_1.MessageReceiver,
-    TouchFreeServiceTypes: TouchFreeServiceTypes,
-    ServiceConnection: ServiceConnection_1.ServiceConnection,
-};
+exports.getInteractionTypeFromFlags = exports.getInputTypeFromFlags = exports.getHandTypeFromFlags = exports.getChiralityFromFlags = exports.getInteractionFlags = exports.convertInputAction = exports.BitmaskFlags = void 0;
+const InputAction_1 = __webpack_require__(1614);
+/**
+ * Used to request a combination of the {@link HandChirality}, {@link HandType},
+ * {@link InputType}, and {@link InteractionType} flags from the Service at once.
+ * @internal
+ */
+var BitmaskFlags;
+(function (BitmaskFlags) {
+    /** No flags */
+    BitmaskFlags[BitmaskFlags["NONE"] = 0] = "NONE";
+    /** Left hand flag */
+    BitmaskFlags[BitmaskFlags["LEFT"] = 1] = "LEFT";
+    /** Right hand flag */
+    BitmaskFlags[BitmaskFlags["RIGHT"] = 2] = "RIGHT";
+    /** Primary hand flag */
+    BitmaskFlags[BitmaskFlags["PRIMARY"] = 4] = "PRIMARY";
+    /** Secondary hand flag */
+    BitmaskFlags[BitmaskFlags["SECONDARY"] = 8] = "SECONDARY";
+    /** No input flag */
+    BitmaskFlags[BitmaskFlags["NONE_INPUT"] = 16] = "NONE_INPUT";
+    /** Cancel input flag */
+    BitmaskFlags[BitmaskFlags["CANCEL"] = 32] = "CANCEL";
+    /** Down input flag */
+    BitmaskFlags[BitmaskFlags["DOWN"] = 64] = "DOWN";
+    /** Move input flag */
+    BitmaskFlags[BitmaskFlags["MOVE"] = 128] = "MOVE";
+    /** Up input flag */
+    BitmaskFlags[BitmaskFlags["UP"] = 256] = "UP";
+    /**
+     * Grab interaction flag
+     * @internal
+     */
+    BitmaskFlags[BitmaskFlags["GRAB"] = 512] = "GRAB";
+    /** Hover interaction flag */
+    BitmaskFlags[BitmaskFlags["HOVER"] = 1024] = "HOVER";
+    /** Push interaction flag */
+    BitmaskFlags[BitmaskFlags["PUSH"] = 2048] = "PUSH";
+    /** TouchPlane interaction flag */
+    BitmaskFlags[BitmaskFlags["TOUCHPLANE"] = 4096] = "TOUCHPLANE";
+    /**
+     * VelocitySwipe interaction flag
+     * @internal
+     * */
+    BitmaskFlags[BitmaskFlags["VELOCITYSWIPE"] = 8192] = "VELOCITYSWIPE";
+    // Adding elements to this list is a breaking change, and should cause at
+    // least a minor iteration of the API version UNLESS adding them at the end
+})(BitmaskFlags = exports.BitmaskFlags || (exports.BitmaskFlags = {}));
+/**
+ * Converts a {@link WebsocketInputAction} into the Tooling-friendly {@link TouchFreeInputAction}.
+ *
+ * @param wsInput - Raw input action received by the WebSocket
+ * @returns User friendly conversion of the inputAction - {@link TouchFreeInputAction}
+ *
+ * @internal
+ */
+function convertInputAction(wsInput) {
+    const yPosition = window.innerHeight - wsInput.CursorPosition.y / window.devicePixelRatio;
+    const xPosition = wsInput.CursorPosition.x / window.devicePixelRatio;
+    return {
+        Timestamp: wsInput.Timestamp,
+        InteractionType: getInteractionTypeFromFlags(wsInput.InteractionFlags),
+        HandType: getHandTypeFromFlags(wsInput.InteractionFlags),
+        Chirality: getChiralityFromFlags(wsInput.InteractionFlags),
+        InputType: getInputTypeFromFlags(wsInput.InteractionFlags),
+        CursorPosition: [xPosition, yPosition],
+        DistanceFromScreen: wsInput.DistanceFromScreen,
+        ProgressToClick: wsInput.ProgressToClick,
+    };
+}
+exports.convertInputAction = convertInputAction;
+/**
+ * Convert a collection of interaction enums to BitmaskFlags for sending to the Service
+ *
+ * @internal
+ */
+function getInteractionFlags(interactionType, handType, chirality, inputType) {
+    let returnVal = BitmaskFlags.NONE;
+    switch (handType) {
+        case InputAction_1.HandType.PRIMARY:
+            returnVal ^= BitmaskFlags.PRIMARY;
+            break;
+        case InputAction_1.HandType.SECONDARY:
+            returnVal ^= BitmaskFlags.SECONDARY;
+            break;
+    }
+    switch (chirality) {
+        case InputAction_1.HandChirality.LEFT:
+            returnVal ^= BitmaskFlags.LEFT;
+            break;
+        case InputAction_1.HandChirality.RIGHT:
+            returnVal ^= BitmaskFlags.RIGHT;
+            break;
+    }
+    switch (inputType) {
+        case InputAction_1.InputType.NONE:
+            returnVal ^= BitmaskFlags.NONE_INPUT;
+            break;
+        case InputAction_1.InputType.CANCEL:
+            returnVal ^= BitmaskFlags.CANCEL;
+            break;
+        case InputAction_1.InputType.MOVE:
+            returnVal ^= BitmaskFlags.MOVE;
+            break;
+        case InputAction_1.InputType.UP:
+            returnVal ^= BitmaskFlags.UP;
+            break;
+        case InputAction_1.InputType.DOWN:
+            returnVal ^= BitmaskFlags.DOWN;
+            break;
+    }
+    switch (interactionType) {
+        case InputAction_1.InteractionType.PUSH:
+            returnVal ^= BitmaskFlags.PUSH;
+            break;
+        case InputAction_1.InteractionType.HOVER:
+            returnVal ^= BitmaskFlags.HOVER;
+            break;
+        case InputAction_1.InteractionType.GRAB:
+            returnVal ^= BitmaskFlags.GRAB;
+            break;
+        case InputAction_1.InteractionType.TOUCHPLANE:
+            returnVal ^= BitmaskFlags.TOUCHPLANE;
+            break;
+        case InputAction_1.InteractionType.VELOCITYSWIPE:
+            returnVal ^= BitmaskFlags.VELOCITYSWIPE;
+            break;
+    }
+    return returnVal;
+}
+exports.getInteractionFlags = getInteractionFlags;
+/**
+ * Extract HandChirality from a BitmaskFlags
+ * @remarks Favours RIGHT if none or both are found
+ * @param flags - BitmaskFlags to extract from
+ * @returns Extracted chirality
+ *
+ * @internal
+ */
+function getChiralityFromFlags(flags) {
+    let chirality = InputAction_1.HandChirality.RIGHT;
+    if (flags & BitmaskFlags.RIGHT) {
+        chirality = InputAction_1.HandChirality.RIGHT;
+    }
+    else if (flags & BitmaskFlags.LEFT) {
+        chirality = InputAction_1.HandChirality.LEFT;
+    }
+    else {
+        console.error("InputActionData missing: No Chirality found. Defaulting to 'RIGHT'");
+    }
+    return chirality;
+}
+exports.getChiralityFromFlags = getChiralityFromFlags;
+/**
+ * Extract HandType from a BitmaskFlags
+ * @remarks Favours PRIMARY if none or both are found
+ * @param flags - BitmaskFlags to extract from
+ * @returns Extracted hand type
+ *
+ * @internal
+ */
+function getHandTypeFromFlags(flags) {
+    let handType = InputAction_1.HandType.PRIMARY;
+    if (flags & BitmaskFlags.PRIMARY) {
+        handType = InputAction_1.HandType.PRIMARY;
+    }
+    else if (flags & BitmaskFlags.SECONDARY) {
+        handType = InputAction_1.HandType.SECONDARY;
+    }
+    else {
+        console.error("InputActionData missing: No HandData found. Defaulting to 'PRIMARY'");
+    }
+    return handType;
+}
+exports.getHandTypeFromFlags = getHandTypeFromFlags;
+/**
+ * Extract InputType from a BitmaskFlags
+ * @remarks Favours NONE if none are found
+ * @param flags - BitmaskFlags to extract from
+ * @returns Extracted input type
+ *
+ * @internal
+ */
+function getInputTypeFromFlags(flags) {
+    let inputType = InputAction_1.InputType.NONE;
+    if (flags & BitmaskFlags.NONE_INPUT) {
+        inputType = InputAction_1.InputType.NONE;
+    }
+    else if (flags & BitmaskFlags.CANCEL) {
+        inputType = InputAction_1.InputType.CANCEL;
+    }
+    else if (flags & BitmaskFlags.UP) {
+        inputType = InputAction_1.InputType.UP;
+    }
+    else if (flags & BitmaskFlags.DOWN) {
+        inputType = InputAction_1.InputType.DOWN;
+    }
+    else if (flags & BitmaskFlags.MOVE) {
+        inputType = InputAction_1.InputType.MOVE;
+    }
+    else {
+        console.error("InputActionData missing: No InputType found. Defaulting to 'NONE'");
+    }
+    return inputType;
+}
+exports.getInputTypeFromFlags = getInputTypeFromFlags;
+/**
+ * Extract InteractionType from a BitmaskFlags
+ * @remarks Favours PUSH if none are found
+ * @param flags - BitmaskFlags to extract from
+ * @returns Extracted interaction type
+ *
+ * @internal
+ */
+function getInteractionTypeFromFlags(flags) {
+    let interactionType = InputAction_1.InteractionType.PUSH;
+    if (flags & BitmaskFlags.PUSH) {
+        interactionType = InputAction_1.InteractionType.PUSH;
+    }
+    else if (flags & BitmaskFlags.HOVER) {
+        interactionType = InputAction_1.InteractionType.HOVER;
+    }
+    else if (flags & BitmaskFlags.GRAB) {
+        interactionType = InputAction_1.InteractionType.GRAB;
+    }
+    else if (flags & BitmaskFlags.TOUCHPLANE) {
+        interactionType = InputAction_1.InteractionType.TOUCHPLANE;
+    }
+    else if (flags & BitmaskFlags.VELOCITYSWIPE) {
+        interactionType = InputAction_1.InteractionType.VELOCITYSWIPE;
+    }
+    else {
+        console.error("InputActionData missing: No InteractionType found. Defaulting to 'PUSH'");
+    }
+    return interactionType;
+}
+exports.getInteractionTypeFromFlags = getInteractionTypeFromFlags;
 
 
 /***/ }),
 
-/***/ 508:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 1429:
+/***/ ((__unused_webpack_module, exports) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.setCurrentCursor = exports.getCurrentCursor = void 0;
+/**
+ * Global cursor initialized by {@link init}
+ * @public
+ */
+let currentCursor;
+/**
+ * @returns The Cursor currently used by TouchFree
+ * @public
+ */
+const getCurrentCursor = () => currentCursor;
+exports.getCurrentCursor = getCurrentCursor;
+/**
+ * Sets the cursor to be used by TouchFree
+ * @param cursor - The cursor to be used. Can be `undefined` to unset.
+ * @public
+ */
+const setCurrentCursor = (cursor) => (currentCursor = cursor);
+exports.setCurrentCursor = setCurrentCursor;
+
+
+/***/ }),
+
+/***/ 1282:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DotCursor = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const TouchFreeToolingTypes_1 = __webpack_require__(579);
-const Utilities_1 = __webpack_require__(26);
-const TouchlessCursor_1 = __webpack_require__(257);
-// Class: DotCursor
-// This is an example Touchless Cursor which positions a dot on the screen at the hand location,
-// and reacts to the current ProgressToClick of the action (what determines this depends on the
-// currently active interaction).
+const InputAction_1 = __webpack_require__(1614);
+const Utilities_1 = __webpack_require__(245);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const TouchlessCursor_1 = __webpack_require__(3084);
+/**
+ * {@link TouchlessCursor} which positions a dot on the screen at the hand location,
+ * reacting to the current {@link TouchFreeInputAction.ProgressToClick}.
+ *
+ * @remarks
+ * {@link TouchFreeInputAction.ProgressToClick} behaviour depends on the active interaction.
+ *
+ * @public
+ */
 class DotCursor extends TouchlessCursor_1.TouchlessCursor {
-    // Group: Functions
-    // Function: constructor
-    // Constructs a new cursor consisting of a central cursor and a ring.
-    // Optionally provide an animationDuration to change the time it takes for the 'squeeze'
-    // confirmation animation to be performed. Optionally provide a ringSizeMultiplier to change
-    // the size that the <cursorRing> is relative to the cursor.
-    //
-    // If you intend to make use of the <WebInputController>, make sure that both cursor and
-    // cursorRing have the "touchfree-cursor" class. This prevents them blocking other elements
-    // from receiving events.
+    /**
+     * Constructs a new cursor consisting of a central cursor and a ring.
+     * @remarks
+     * If you intend to make use of `WebInputController`, make sure both `cursor` and `cursorRing`
+     * elements have the `touchfree-cursor` class. This prevents them from blocking other elements from
+     * receiving events.
+     * @param cursor - Cursor HTML element
+     * @param cursorRing - Cursor ring HTML element
+     * @param animationDuration -
+     * Optional duration changing the time it takes for 'squeeze'
+     * confirmation animation to be performed.
+     * @param ringSizeMultiplier - Optional multiplier to the size the ring can be relative to the main cursor element.
+     */
     constructor(cursor, cursorRing, animationDuration = 0.2, ringSizeMultiplier = 2) {
         super(cursor);
-        // Set the update rate of the animation to 30fps.
+        /**
+         * Update duration (in milliseconds) of the animation
+         * @defaultValue 30fps (33.33ms)
+         */
         this.animationUpdateDuration = (1 / 30) * 1000;
         this.animationSpeed = [0, 0];
         this.currentAnimationInterval = -1;
@@ -1289,114 +2066,125 @@ class DotCursor extends TouchlessCursor_1.TouchlessCursor {
         this.dotCursorElement = cursor;
         this.cursorRing = cursorRing;
         this.ringSizeMultiplier = ringSizeMultiplier;
-        this.cursorStartSize = this.GetDimensions(this.dotCursorElement);
+        this.cursorStartSize = this.getDimensions(this.dotCursorElement);
         this.animationSpeed[0] = this.cursorStartSize[0] / 2 / (animationDuration * 30);
         this.animationSpeed[1] = this.cursorStartSize[1] / 2 / (animationDuration * 30);
-        TouchFree_1.default.RegisterEventCallback('HandFound', this.ShowCursor.bind(this));
-        TouchFree_1.default.RegisterEventCallback('HandsLost', this.HideCursor.bind(this));
-        TouchFree_1.default.RegisterEventCallback('HandEntered', this.ShowCursor.bind(this));
-        TouchFree_1.default.RegisterEventCallback('HandExited', this.HideCursor.bind(this));
+        (0, TouchFreeEvents_1.registerEventCallback)('handFound', this.showCursor.bind(this));
+        (0, TouchFreeEvents_1.registerEventCallback)('handsLost', this.hideCursor.bind(this));
+        (0, TouchFreeEvents_1.registerEventCallback)('handEntered', this.showCursor.bind(this));
+        (0, TouchFreeEvents_1.registerEventCallback)('handExited', this.hideCursor.bind(this));
     }
-    // Function: UpdateCursor
-    // Used to update the cursor when recieving a "MOVE" <ClientInputAction>. Updates the
-    // cursor's position, as well as the size of the ring based on the current ProgressToClick.
-    UpdateCursor(inputAction) {
+    /**
+     * Updates the cursor position as well as the size of the ring based on {@link TouchFreeInputAction.ProgressToClick}
+     * @param inputAction - Input action to use when updating cursor
+     * @see {@link TouchlessCursor.updateCursor}
+     * @internal
+     */
+    updateCursor(inputAction) {
         if (!this.enabled)
             return;
         //progressToClick is between 0 and 1. Click triggered at progressToClick = 1
-        const ringScaler = (0, Utilities_1.MapRangeToRange)(inputAction.ProgressToClick, 0, 1, this.ringSizeMultiplier, 1);
+        const ringScaler = (0, Utilities_1.mapRangeToRange)(inputAction.ProgressToClick, 0, 1, this.ringSizeMultiplier, 1);
         this.cursorRing.style.opacity = inputAction.ProgressToClick.toString();
-        const [cursorWidth, cursorHeight] = this.GetDimensions(this.dotCursorElement);
+        const [cursorWidth, cursorHeight] = this.getDimensions(this.dotCursorElement);
         this.cursorRing.style.width = cursorWidth * ringScaler + 'px';
         this.cursorRing.style.height = cursorHeight * ringScaler + 'px';
-        const [cursorRingWidth, cursorRingHeight] = this.GetDimensions(this.cursorRing);
+        const [cursorRingWidth, cursorRingHeight] = this.getDimensions(this.cursorRing);
         this.cursorRing.style.left = inputAction.CursorPosition[0] - cursorRingWidth / 2 + 'px';
         this.cursorRing.style.top = inputAction.CursorPosition[1] - cursorRingHeight / 2 + 'px';
-        super.UpdateCursor(inputAction);
+        super.updateCursor(inputAction);
     }
-    // Function: HandleInputAction
-    // This override replaces the basic functionality of the <TouchlessCursor>, making the
-    // cursor's ring scale dynamically with the current ProgressToClick and creating a
-    // "shrink" animation when a "DOWN" event is received, and a "grow" animation when an "UP"
-    // is received.
-    //
-    // When a "CANCEL" event is received, the cursor is hidden as it suggests the hand has been lost.
-    // When any other event is received and the cursor is hidden, the cursor is shown again.
-    HandleInputAction(inputData) {
+    /**
+     * Replaces the basic functionality of {@link TouchlessCursor}
+     *
+     * @remarks
+     * Makes the cursor ring scale dynamically with {@link TouchFreeInputAction.ProgressToClick};
+     * creates a 'shrink' animation when a {@link InputType.DOWN} event is received;
+     * creates a 'grow' animation when a {@link InputType.UP} event is received.
+     *
+     * When a {@link InputType.CANCEL} event is received the cursor is hidden as it suggests the hand
+     * has been lost. When hidden and any other event is received, the cursor is shown again.
+     * @param inputData - Input action to handle this update
+     * @internal
+     */
+    handleInputAction(inputData) {
         switch (inputData.InputType) {
-            case TouchFreeToolingTypes_1.InputType.MOVE:
-                this.UpdateCursor(inputData);
+            case InputAction_1.InputType.MOVE:
+                this.updateCursor(inputData);
                 break;
-            case TouchFreeToolingTypes_1.InputType.DOWN:
-                this.SetCursorSize(0, 0, this.cursorRing);
+            case InputAction_1.InputType.DOWN:
+                this.setCursorSize(0, 0, this.cursorRing);
                 if (this.currentAnimationInterval !== -1) {
                     clearInterval(this.currentAnimationInterval);
                 }
-                this.currentAnimationInterval = setInterval(this.ShrinkCursor.bind(this), this.animationUpdateDuration);
+                this.currentAnimationInterval = setInterval(this.shrinkCursor.bind(this), this.animationUpdateDuration);
                 break;
-            case TouchFreeToolingTypes_1.InputType.UP:
+            case InputAction_1.InputType.UP:
                 if (this.currentAnimationInterval !== -1) {
                     this.growQueued = true;
                 }
                 else {
                     this.growQueued = false;
-                    this.currentAnimationInterval = setInterval(this.GrowCursor.bind(this), this.animationUpdateDuration);
+                    this.currentAnimationInterval = setInterval(this.growCursor.bind(this), this.animationUpdateDuration);
                 }
                 break;
-            case TouchFreeToolingTypes_1.InputType.CANCEL:
+            case InputAction_1.InputType.CANCEL:
                 break;
         }
     }
-    // Function: ShrinkCursor
-    // Shrinks the cursor to half of its original size.
-    // This is performed over a duration set in the <constructor>.
-    ShrinkCursor() {
+    /**
+     * Shrinks the cursor to half of its original size over the animation duration set in the `constructor`.
+     * @internal
+     */
+    shrinkCursor() {
         if (!this.enabled)
             return;
-        let [newWidth, newHeight] = this.GetDimensions(this.dotCursorElement);
+        let [newWidth, newHeight] = this.getDimensions(this.dotCursorElement);
         if (newWidth > this.cursorStartSize[0] / 2) {
             newWidth -= this.animationSpeed[0];
         }
         if (newHeight > this.cursorStartSize[1] / 2) {
             newHeight -= this.animationSpeed[1];
         }
-        this.SetCursorSize(newWidth, newHeight, this.dotCursorElement);
+        this.setCursorSize(newWidth, newHeight, this.dotCursorElement);
         if (newWidth <= this.cursorStartSize[0] / 2 && newHeight <= this.cursorStartSize[1] / 2) {
             clearInterval(this.currentAnimationInterval);
             newWidth = this.cursorStartSize[0] / 2;
             newHeight = this.cursorStartSize[1] / 2;
-            this.SetCursorSize(newWidth, newHeight, this.dotCursorElement);
+            this.setCursorSize(newWidth, newHeight, this.dotCursorElement);
             if (this.growQueued) {
                 this.growQueued = false;
-                this.currentAnimationInterval = setInterval(this.GrowCursor.bind(this), this.animationUpdateDuration);
+                this.currentAnimationInterval = setInterval(this.growCursor.bind(this), this.animationUpdateDuration);
             }
             else {
                 this.currentAnimationInterval = -1;
             }
         }
     }
-    // Function: GrowCursor
-    // Grows the cursor to its original size over time set via the <constructor>.
-    GrowCursor() {
+    /**
+     * Grows the cursor to its original size the animation duration set in the `constructor`.
+     * @internal
+     */
+    growCursor() {
         if (!this.enabled)
             return;
-        let [newWidth, newHeight] = this.GetDimensions(this.dotCursorElement);
+        let [newWidth, newHeight] = this.getDimensions(this.dotCursorElement);
         if (newWidth < this.cursorStartSize[0]) {
             newWidth += this.animationSpeed[0];
         }
         if (newHeight < this.cursorStartSize[1]) {
             newHeight += this.animationSpeed[1];
         }
-        this.SetCursorSize(newWidth, newHeight, this.dotCursorElement);
+        this.setCursorSize(newWidth, newHeight, this.dotCursorElement);
         if (newWidth >= this.cursorStartSize[0] && newHeight >= this.cursorStartSize[1]) {
             clearInterval(this.currentAnimationInterval);
-            this.SetCursorSize(this.cursorStartSize[0], this.cursorStartSize[1], this.dotCursorElement);
+            this.setCursorSize(this.cursorStartSize[0], this.cursorStartSize[1], this.dotCursorElement);
             this.currentAnimationInterval = -1;
             this.growQueued = false;
         }
     }
-    SetCursorSize(newWidth, newHeight, cursorToChange) {
-        const [width, height] = this.GetDimensions(cursorToChange);
+    setCursorSize(newWidth, newHeight, cursorToChange) {
+        const [width, height] = this.getDimensions(cursorToChange);
         const deltaX = Math.round((width - newWidth) * 5) / 10;
         const deltaY = Math.round((height - newHeight) * 5) / 10;
         const cursorPosX = cursorToChange.offsetLeft + deltaX;
@@ -1406,25 +2194,27 @@ class DotCursor extends TouchlessCursor_1.TouchlessCursor {
         cursorToChange.style.height = newHeight + 'px';
         cursorToChange.style.top = cursorPosY + 'px';
     }
-    // Function: ShowCursor
-    // Used to make the cursor visible, fades over time
-    ShowCursor() {
+    /**
+     * Make the cursor visible. Fades over time.
+     */
+    showCursor() {
         this.shouldShow = true;
         if (!this.enabled)
             return;
         clearInterval(this.currentFadingInterval);
-        this.currentFadingInterval = setInterval(this.FadeCursorIn.bind(this), this.animationUpdateDuration);
+        this.currentFadingInterval = setInterval(this.fadeCursorIn.bind(this), this.animationUpdateDuration);
     }
-    // Function: HideCursor
-    // Used to make the cursor invisible, fades over time
-    HideCursor() {
+    /**
+     * Make the cursor invisible. Fades over time.
+     */
+    hideCursor() {
         this.shouldShow = false;
         if (parseFloat(this.dotCursorElement.style.opacity) !== 0) {
             clearInterval(this.currentFadingInterval);
-            this.currentFadingInterval = setInterval(this.FadeCursorOut.bind(this), this.animationUpdateDuration);
+            this.currentFadingInterval = setInterval(this.fadeCursorOut.bind(this), this.animationUpdateDuration);
         }
     }
-    FadeCursorIn() {
+    fadeCursorIn() {
         let currentOpacity = parseFloat(this.dotCursorElement.style.opacity);
         currentOpacity = currentOpacity ? currentOpacity : 0;
         currentOpacity += 0.05;
@@ -1435,7 +2225,7 @@ class DotCursor extends TouchlessCursor_1.TouchlessCursor {
             this.currentFadingInterval = -1;
         }
     }
-    FadeCursorOut() {
+    fadeCursorOut() {
         let currentOpacity = parseFloat(this.dotCursorElement.style.opacity);
         currentOpacity = currentOpacity ? currentOpacity : 1;
         currentOpacity -= 0.05;
@@ -1455,32 +2245,35 @@ exports.DotCursor = DotCursor;
 
 /***/ }),
 
-/***/ 429:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 3320:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SVGCursor = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const TouchFreeToolingTypes_1 = __webpack_require__(579);
-const Utilities_1 = __webpack_require__(26);
-const TouchlessCursor_1 = __webpack_require__(257);
+const InputAction_1 = __webpack_require__(1614);
+const Utilities_1 = __webpack_require__(245);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const TouchlessCursor_1 = __webpack_require__(3084);
+/**
+ * {@link TouchlessCursor} created with SVG elements.
+ * @public
+ */
 class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
-    // Group: Functions
-    // Function: constructor
-    // Constructs a new cursor consisting of a central cursor and a ring.
-    // Optionally provide a ringSizeMultiplier to change the size that the <cursorRing> is relative to the _cursor.
-    // Optionally provide a darkCursor to change the cursor to be dark to provide better contrast on light colored
-    // UIs.
+    /**
+     * Constructs a new cursor consisting of a central cursor and a ring.
+     * @param ringSizeMultiplier - Optional multiplier to change the size of the cursor ring.
+     * @param darkCursor - Optionally darken the cursor to provide better contrast on light colored UIs.
+     */
     constructor(ringSizeMultiplier = 2, darkCursor = false) {
         super(undefined);
         this.xPositionAttribute = 'cx';
         this.yPositionAttribute = 'cy';
         this.isDarkCursor = false;
         this.cursorShowing = false;
+        this.baseRadius = 15;
+        this.baseDotBorderThickness = 2;
+        this.baseRingThickness = 5;
         this.isDarkCursor = darkCursor;
         const documentBody = document.querySelector('body');
         const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1494,14 +2287,13 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         svgElement.style.transition = 'opacity 0.5s linear';
         svgElement.setAttribute('width', '100%');
         svgElement.setAttribute('height', '100%');
-        svgElement.setAttribute('shape-rendering', 'optimizeSpeed');
         svgElement.id = 'svg-cursor';
         documentBody === null || documentBody === void 0 ? void 0 : documentBody.appendChild(svgElement);
         const svgRingElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         svgRingElement.classList.add('touchfree-cursor');
-        svgRingElement.setAttribute('r', '15');
+        svgRingElement.setAttribute('r', this.baseRadius.toString());
         svgRingElement.setAttribute('fill-opacity', '0');
-        svgRingElement.setAttribute('stroke-width', '5');
+        svgRingElement.setAttribute('stroke-width', this.baseRingThickness.toString());
         svgRingElement.setAttribute(this.xPositionAttribute, '100');
         svgRingElement.setAttribute(this.yPositionAttribute, '100');
         svgRingElement.style.filter = 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.7))';
@@ -1510,10 +2302,11 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         this.cursorRing = svgRingElement;
         const svgDotElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         svgDotElement.classList.add('touchfree-cursor');
-        svgDotElement.setAttribute('r', '15');
+        svgDotElement.setAttribute('r', this.baseRadius.toString());
         svgDotElement.setAttribute(this.xPositionAttribute, '100');
         svgDotElement.setAttribute(this.yPositionAttribute, '100');
         svgDotElement.setAttribute('opacity', '1');
+        svgDotElement.setAttribute('stroke-width', this.baseDotBorderThickness.toString());
         svgDotElement.style.transformBox = 'fill-box';
         svgDotElement.style.transformOrigin = 'center';
         svgDotElement.style.transform = 'scale(1)';
@@ -1528,29 +2321,33 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
         }
         this.cursor = svgDotElement;
         this.cursorCanvas = svgElement;
-        this.ResetToDefaultColors();
+        this.resetToDefaultColors();
         this.ringSizeMultiplier = ringSizeMultiplier;
-        TouchFree_1.default.RegisterEventCallback('HandFound', this.ShowCursor.bind(this));
-        TouchFree_1.default.RegisterEventCallback('HandsLost', this.HideCursor.bind(this));
-        TouchFree_1.default.RegisterEventCallback('HandEntered', this.ShowCursor.bind(this));
-        TouchFree_1.default.RegisterEventCallback('HandExited', this.HideCursor.bind(this));
+        this.baseRingSizeMultiplier = ringSizeMultiplier;
+        (0, TouchFreeEvents_1.registerEventCallback)('handFound', this.showCursor.bind(this));
+        (0, TouchFreeEvents_1.registerEventCallback)('handsLost', this.hideCursor.bind(this));
+        (0, TouchFreeEvents_1.registerEventCallback)('handEntered', this.showCursor.bind(this));
+        (0, TouchFreeEvents_1.registerEventCallback)('handExited', this.hideCursor.bind(this));
     }
-    // Function: UpdateCursor
-    // Used to update the cursor when receiving a "MOVE" <ClientInputAction>. Updates the
-    // cursor's position, as well as the size of the ring based on the current ProgressToClick.
-    UpdateCursor(inputAction) {
+    /**
+     * Update the cursor position as well as the size of the ring based on {@link TouchFreeInputAction.ProgressToClick}.
+     * @param inputAction - Input action to use when updating cursor
+     * @internal
+     */
+    updateCursor(inputAction) {
         if (!this.shouldShow) {
-            this.HideCursor();
+            this.hideCursor();
             return;
         }
-        const ringScaler = (0, Utilities_1.MapRangeToRange)(inputAction.ProgressToClick, 0, 1, this.ringSizeMultiplier, 1);
+        const ringScaler = (0, Utilities_1.mapRangeToRange)(inputAction.ProgressToClick, 0, 1, this.ringSizeMultiplier, 1);
         this.cursorRing.setAttribute('opacity', inputAction.ProgressToClick.toString());
-        this.cursorRing.setAttribute('r', Math.round(this.GetCurrentCursorRadius() * ringScaler).toString());
+        const radius = Math.round(this.getCurrentCursorRadius() * ringScaler + this.getCurrentCursorRingWidth() / 2);
+        this.cursorRing.setAttribute('r', radius.toString());
         let position = inputAction.CursorPosition;
         if (position) {
             position = [Math.round(position[0]), Math.round(position[1])];
             if (!this.cursorShowing && this.enabled) {
-                this.ShowCursor();
+                this.showCursor();
             }
             this.cursorRing.setAttribute(this.xPositionAttribute, position[0].toString());
             this.cursorRing.setAttribute(this.yPositionAttribute, position[1].toString());
@@ -1560,91 +2357,139 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
             }
         }
         else {
-            this.HideCursor();
+            this.hideCursor();
         }
     }
-    // Function: HandleInputAction
-    // This override replaces the basic functionality of the <TouchlessCursor>, making the
-    // cursor's ring scale dynamically with the current ProgressToClick and creating a
-    // "shrink" animation when a "DOWN" event is received, and a "grow" animation when an "UP"
-    // is received.
-    //
-    // When a "CANCEL" event is received, the cursor is hidden as it suggests the hand has been lost.
-    // When any other event is received and the cursor is hidden, the cursor is shown again.
-    HandleInputAction(inputData) {
+    /**
+     * Replaces the basic functionality of {@link TouchlessCursor}
+     *
+     * @remarks
+     * Makes the cursor ring scale dynamically with {@link TouchFreeInputAction.ProgressToClick};
+     * creates a 'shrink' animation when a {@link InputType.DOWN} event is received;
+     * creates a 'grow' animation when a {@link InputType.UP} event is received.
+     *
+     * When a {@link InputType.CANCEL} event is received the cursor is hidden as it suggests the hand
+     * has been lost. When hidden and any other event is received, the cursor is shown again.
+     * @param inputData - Input action to handle this update
+     * @internal
+     */
+    handleInputAction(inputData) {
         if (this.cursor) {
             switch (inputData.InputType) {
-                case TouchFreeToolingTypes_1.InputType.MOVE:
-                    this.UpdateCursor(inputData);
+                case InputAction_1.InputType.MOVE:
+                    this.updateCursor(inputData);
                     break;
-                case TouchFreeToolingTypes_1.InputType.DOWN:
-                    this.SetCursorSize(0, this.cursorRing);
+                case InputAction_1.InputType.DOWN:
+                    this.setCursorSize(0, this.cursorRing);
                     this.cursor.style.transform = 'scale(0.5)';
                     break;
-                case TouchFreeToolingTypes_1.InputType.UP:
+                case InputAction_1.InputType.UP:
                     this.cursor.style.transform = 'scale(1)';
                     break;
-                case TouchFreeToolingTypes_1.InputType.CANCEL:
+                case InputAction_1.InputType.CANCEL:
                     break;
             }
         }
     }
-    SetCursorSize(newWidth, cursorToChange) {
+    setCursorSize(newWidth, cursorToChange) {
         cursorToChange === null || cursorToChange === void 0 ? void 0 : cursorToChange.setAttribute('r', Math.round(newWidth).toString());
     }
-    // Function: ShowCursor
-    // Used to make the cursor visible, fades over time
-    ShowCursor() {
+    /**
+     * Used to set the scale of the cursor
+     * @param scale - Multiplier value
+     */
+    setCursorScale(scale) {
+        const cursor = this.cursor;
+        this.setCursorSize(this.baseRadius * scale, cursor);
+        this.ringSizeMultiplier = this.baseRingSizeMultiplier + (scale - 1);
+        cursor.setAttribute('stroke-width', Math.round(this.baseDotBorderThickness * scale).toString());
+    }
+    /**
+     * Used to set the scale of the cursor's ring thickness
+     * @param scale - Multiplier value
+     */
+    setRingThicknessScale(scale) {
+        this.cursorRing.setAttribute('stroke-width', Math.round(this.baseRingThickness * scale).toString());
+    }
+    /**
+     * Make the cursor visible. Fades over time.
+     */
+    showCursor() {
         this.shouldShow = true;
         if (this.enabled && !this.cursorShowing) {
             this.cursorShowing = true;
-            this.SetCursorOpacity(this.opacityOnHandsLost);
+            this.setCursorOpacity(this.opacityOnHandsLost);
         }
     }
-    // Function: HideCursor
-    // Used to make the cursor invisible, fades over time
-    HideCursor() {
+    /**
+     * Make the cursor invisible. Fades over time.
+     */
+    hideCursor() {
         if (this.shouldShow) {
             // If opacity is NaN or 0 then set it to be 1
             this.opacityOnHandsLost = Number(this.cursorCanvas.style.opacity) || 1;
         }
         this.shouldShow = false;
         this.cursorShowing = false;
-        this.SetCursorOpacity(0);
+        this.setCursorOpacity(0);
         if (this.cursor) {
             this.cursor.style.transform = 'scale(1)';
         }
     }
-    // Function: SetCursorOpacity
-    // Used to set the opacity of the cursor
-    SetCursorOpacity(opacity) {
+    /**
+     * Used to set the opacity of the cursor
+     */
+    setCursorOpacity(opacity) {
         this.cursorCanvas.style.opacity = opacity.toString();
     }
-    GetCurrentCursorRadius() {
-        if (this.cursor) {
-            const radius = this.cursor.getAttribute('r');
-            if (!radius) {
-                return 0;
-            }
-            const radiusAsNumber = parseFloat(radius);
-            return radiusAsNumber;
-        }
-        return 0;
+    /**
+     * Used to set the rendering mode of the SVGCursor
+     * @param optimise - set true to optimise for speed (will appear more aliased)
+     */
+    setCursorOptimise(optimise) {
+        this.cursorCanvas.setAttribute('shape-rendering', optimise ? 'optimizeSpeed' : 'auto');
     }
-    // Function: SetDefaultColors
-    // Used to reset the SVGCursor to it's default styling
-    ResetToDefaultColors() {
-        var _a, _b, _c;
+    /**
+     * Used to set the radius of the cursor
+     */
+    getCurrentCursorRadius() {
+        var _a;
+        const radius = (_a = this.cursor) === null || _a === void 0 ? void 0 : _a.getAttribute('r');
+        return !radius ? 0 : parseFloat(radius);
+    }
+    /**
+     * Used to set the width of the cursor ring
+     */
+    getCurrentCursorRingWidth() {
+        const width = this.cursorRing.getAttribute('stroke-width');
+        return !width ? 0 : parseFloat(width);
+    }
+    /**
+     * Used to reset the SVGCursor to it's default styling
+     */
+    resetToDefaultColors() {
+        var _a, _b;
         (_a = this.cursor) === null || _a === void 0 ? void 0 : _a.setAttribute('fill', this.isDarkCursor ? 'black' : 'white');
-        (_b = this.cursor) === null || _b === void 0 ? void 0 : _b.removeAttribute('stroke-width');
-        (_c = this.cursor) === null || _c === void 0 ? void 0 : _c.removeAttribute('stroke');
+        (_b = this.cursor) === null || _b === void 0 ? void 0 : _b.removeAttribute('stroke');
         this.cursorRing.setAttribute('stroke', this.isDarkCursor ? 'black' : 'white');
     }
-    // Function: SetColor
-    // Used to set a part of the SVGCursor to a specific color
-    // Takes a CursorPart enum to select which part of the cursor to color and a color represented by a string
-    SetColor(cursorPart, color) {
-        var _a, _b, _c;
+    /**
+     * Used to reset the SVGCursor to it's default scale
+     */
+    resetToDefaultScale() {
+        const cursor = this.cursor;
+        this.setCursorSize(this.baseRadius, cursor);
+        this.ringSizeMultiplier = this.baseRingSizeMultiplier;
+        cursor.setAttribute('stroke-width', this.baseDotBorderThickness.toString());
+        this.cursorRing.setAttribute('stroke-width', this.baseRingThickness.toString());
+    }
+    /**
+     * Used to set a part of the SVGCursor to a specific color
+     * @param cursorPart - enum to select which part of the cursor to color
+     * @param color - color represented by a string
+     */
+    setColor(cursorPart, color) {
+        var _a, _b;
         switch (cursorPart) {
             case 0 /* CursorPart.CENTER_FILL */:
                 (_a = this.cursor) === null || _a === void 0 ? void 0 : _a.setAttribute('fill', color);
@@ -1654,7 +2499,6 @@ class SVGCursor extends TouchlessCursor_1.TouchlessCursor {
                 return;
             case 2 /* CursorPart.CENTER_BORDER */:
                 (_b = this.cursor) === null || _b === void 0 ? void 0 : _b.setAttribute('stroke', color);
-                (_c = this.cursor) === null || _c === void 0 ? void 0 : _c.setAttribute('stroke-width', '2');
                 return;
         }
     }
@@ -1664,52 +2508,61 @@ exports.SVGCursor = SVGCursor;
 
 /***/ }),
 
-/***/ 257:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 3084:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TouchlessCursor = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-// Class: TouchlessCursor
-// This class is a base class for creating custom Touchless cursors for use with TouchFree Tooling.
-//
-// Override <HandleInputAction> to react to <TouchFreeInputActions> as they are recieved.
-//
-// For an example of a reactive cursor, see <DotCursor>.
+const TouchFreeEvents_1 = __webpack_require__(1539);
+/**
+ * Base class for creating touchless cursors.
+ *
+ * @remarks
+ * Override `handleInputAction` to react to {@link TouchFreeInputAction}s
+ * @public
+ */
 class TouchlessCursor {
-    // Group: Functions
-    // Function: constructor
-    // Registers the Cursor for updates from the <InputActionManager>
-    //
-    // If you intend to make use of the <WebInputController>, make sure that _cursor has the
-    // "touchfree-cursor" class. This prevents it blocking other elements from recieving events.
-    constructor(_cursor) {
-        // Variable: opacityOnHandsLost
-        // The opacity of the cursor when hands are lost
+    /**
+     * Registers the Cursor for updates via the `'transmitInputAction'` TouchFree event
+     *
+     * @remarks
+     * If you intend to make use of `WebInputController`, make sure `cursor` has
+     * the `touchfree-cursor` class. This prevents them from blocking other elements from
+     * receiving events.
+     * @param cursor - Cursor element
+     */
+    constructor(cursor) {
+        /**
+         * The opacity of the cursor when hands are lost
+         */
         this.opacityOnHandsLost = 1;
-        TouchFree_1.default.RegisterEventCallback('TransmitInputAction', this.HandleInputAction.bind(this));
-        this.cursor = _cursor;
+        (0, TouchFreeEvents_1.registerEventCallback)('transmitInputAction', this.handleInputAction.bind(this));
+        this.cursor = cursor;
         this.enabled = true;
         this.shouldShow = true;
     }
-    // Function: UpdateCursor
-    // Sets the position of the cursor, should be run after <HandleInputAction>.
-    UpdateCursor(_inputAction) {
+    /**
+     * Sets the position of the cursor, should be run after `handleInputAction`.
+     * @param inputAction - Input action to use when updating cursor
+     */
+    updateCursor(inputAction) {
         if (this.cursor) {
             let width = this.cursor.clientWidth;
             let height = this.cursor.clientHeight;
             if (this.cursor instanceof HTMLElement) {
-                [width, height] = this.GetDimensions(this.cursor);
+                [width, height] = this.getDimensions(this.cursor);
             }
-            this.cursor.style.left = _inputAction.CursorPosition[0] - width / 2 + 'px';
-            this.cursor.style.top = _inputAction.CursorPosition[1] - height / 2 + 'px';
+            this.cursor.style.left = inputAction.CursorPosition[0] - width / 2 + 'px';
+            this.cursor.style.top = inputAction.CursorPosition[1] - height / 2 + 'px';
         }
     }
-    GetDimensions(cursor) {
+    /**
+     * Returns the height and width of the cursor in px
+     * @param cursor - cursor to get height off
+     * @returns [cursor width, cursor height]
+     */
+    getDimensions(cursor) {
         if (cursor.style.width && cursor.style.height) {
             const getFloat = (dimension) => parseFloat(dimension.replace('px', ''));
             return [getFloat(cursor.style.width), getFloat(cursor.style.height)];
@@ -1717,56 +2570,60 @@ class TouchlessCursor {
         const newCursor = cursor;
         return [newCursor.width, newCursor.height];
     }
-    // Function: HandleInputAction
-    // The core of the logic for Cursors, this is invoked with each <TouchFreeInputAction> as
-    // they are received. Override this function to implement cursor behaviour in response.
-    //
-    // Parameters:
-    //    _inputAction - The latest input action received from TouchFree Service.
-    HandleInputAction(_inputAction) {
-        this.UpdateCursor(_inputAction);
+    /**
+     * Invoked when new {@link TouchFreeInputAction}s are received.
+     * Override to implement cursor behaviour.
+     * @param inputAction - The latest input action received from TouchFree Service.
+     */
+    handleInputAction(inputAction) {
+        this.updateCursor(inputAction);
     }
-    // Function: ShowCursor
-    // Used to make the cursor visible
-    ShowCursor() {
+    /**
+     * Make the cursor visible. Fades over time.
+     */
+    showCursor() {
         this.shouldShow = true;
         if (this.enabled) {
-            this.SetCursorOpacity(this.opacityOnHandsLost);
+            this.setCursorOpacity(this.opacityOnHandsLost);
         }
     }
-    // Function: HideCursor
-    // Used to make the cursor invisible
-    HideCursor() {
+    /**
+     * Make the cursor invisible. Fades over time.
+     */
+    hideCursor() {
         var _a;
         if (this.shouldShow) {
             // If opacity is NaN or 0 then set it to be 1
             this.opacityOnHandsLost = Number((_a = this.cursor) === null || _a === void 0 ? void 0 : _a.style.opacity) || 1;
         }
         this.shouldShow = false;
-        this.SetCursorOpacity(0);
+        this.setCursorOpacity(0);
     }
-    // Function: EnableCursor
-    // Used to enable the cursor so that it will show if hands are present
-    EnableCursor() {
+    /**
+     * Used to enable the cursor so that it will show if hands are present
+     */
+    enableCursor() {
         this.enabled = true;
         if (this.shouldShow) {
             this.opacityOnHandsLost = 1;
-            this.ShowCursor();
+            this.showCursor();
         }
     }
-    // Function: DisableCursor
-    // Used to disable the cursor so that it will never show
-    DisableCursor() {
+    /**
+     * Used to disable the cursor so that it will never show
+     */
+    disableCursor() {
         this.enabled = false;
         const shouldShowOnEnable = this.shouldShow;
         if (shouldShowOnEnable) {
-            this.HideCursor();
+            this.hideCursor();
         }
         this.shouldShow = shouldShowOnEnable;
     }
-    // Function: SetCursorOpacity
-    // Used to set the opacity of the cursor
-    SetCursorOpacity(opacity) {
+    /**
+     * Used to set the opacity of the cursor
+     */
+    setCursorOpacity(opacity) {
         if (this.cursor) {
             this.cursor.style.opacity = opacity.toString();
         }
@@ -1777,117 +2634,476 @@ exports.TouchlessCursor = TouchlessCursor;
 
 /***/ }),
 
-/***/ 741:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ 3500:
+/***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const DotCursor_1 = __webpack_require__(508);
-const SvgCursor_1 = __webpack_require__(429);
-const TouchlessCursor_1 = __webpack_require__(257);
-module.exports = {
-    TouchlessCursor: TouchlessCursor_1.TouchlessCursor,
-    DotCursor: DotCursor_1.DotCursor,
-    SVGCursor: SvgCursor_1.SVGCursor,
-};
+exports.HandDataManager = void 0;
+/**
+ * Handles dispatching `"transmitHandData"` events from received hand frame messages
+ *
+ * @internal
+ */
+class HandDataManager extends EventTarget {
+    /**
+     * Getter for the global instance. Will initialize if not initialized already.
+     */
+    static get instance() {
+        if (HandDataManager.internalInstance === undefined) {
+            HandDataManager.internalInstance = new HandDataManager();
+        }
+        return HandDataManager.internalInstance;
+    }
+    /**
+     * Handles a buffer on hand frame data and dispatches a `"transmitHandData"` event
+     * @param data - Buffer of hand frame data
+     */
+    static handleHandFrame(data) {
+        const currentTimeStamp = Date.now();
+        if (!HandDataManager.lastFrame ||
+            HandDataManager.lastFrame + HandDataManager.maximumFrameFrequencyMs < currentTimeStamp) {
+            const rawHandsEvent = new CustomEvent('transmitHandData', {
+                detail: data,
+            });
+            HandDataManager.instance.dispatchEvent(rawHandsEvent);
+            HandDataManager.lastFrame = currentTimeStamp;
+        }
+    }
+}
+exports.HandDataManager = HandDataManager;
+/** Global static for limiting how many frames are handled */
+HandDataManager.maximumFrameFrequencyMs = 50;
+/** Global state for timestamp of last handled hand frame */
+HandDataManager.lastFrame = undefined;
 
 
 /***/ }),
 
-/***/ 529:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 3759:
+/***/ ((__unused_webpack_module, exports) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.RawBone = exports.FingerType = exports.RawFinger = exports.RawHand = exports.HandFrame = void 0;
+/**
+ * A frame of hand data
+ * @internal
+ */
+class HandFrame {
+    constructor() {
+        /** Array of {@link RawHand | hand data} */
+        this.Hands = [];
+    }
+}
+exports.HandFrame = HandFrame;
+/**
+ * The raw position data for a hand
+ * @internal
+ */
+class RawHand {
+    constructor() {
+        /** Flag representing if hand is the current primary hand */
+        this.CurrentPrimary = false;
+        /** Array of {@link RawFinger | fingers} */
+        this.Fingers = [];
+        /** Width of wrist */
+        this.WristWidth = 0;
+        /** Position of wrist */
+        this.WristPosition = { X: 0, Y: 0, Z: 0 };
+    }
+}
+exports.RawHand = RawHand;
+/**
+ * The raw position data for a finger of a hand
+ * @internal
+ */
+class RawFinger {
+    constructor() {
+        /** Array of {@link RawBone | Bones}  */
+        this.Bones = [];
+        /** Type of finger. See {@link FingerType} */
+        this.Type = FingerType.TYPE_UNKNOWN;
+    }
+}
+exports.RawFinger = RawFinger;
+/**
+ * Enumeration of fingers on a hand
+ * @internal
+ */
+var FingerType;
+(function (FingerType) {
+    /** Thumb */
+    FingerType[FingerType["TYPE_THUMB"] = 0] = "TYPE_THUMB";
+    /** Index Finger */
+    FingerType[FingerType["TYPE_INDEX"] = 1] = "TYPE_INDEX";
+    /** Middle Finger */
+    FingerType[FingerType["TYPE_MIDDLE"] = 2] = "TYPE_MIDDLE";
+    /** Ring Finger */
+    FingerType[FingerType["TYPE_RING"] = 3] = "TYPE_RING";
+    /** Pinky Finger */
+    FingerType[FingerType["TYPE_PINKY"] = 4] = "TYPE_PINKY";
+    /** Unknown Finger */
+    FingerType[FingerType["TYPE_UNKNOWN"] = -1] = "TYPE_UNKNOWN";
+})(FingerType = exports.FingerType || (exports.FingerType = {}));
+/**
+ * The raw position data for a bone in a finger
+ * @internal
+ */
+class RawBone {
+    constructor() {
+        /** Start joint position of the finger bone */
+        this.PrevJoint = { X: 0, Y: 0, Z: 0 };
+        /** End joint position of the finger bone */
+        this.NextJoint = { X: 0, Y: 0, Z: 0 };
+    }
+}
+exports.RawBone = RawBone;
+
+
+/***/ }),
+
+/***/ 7110:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.init = void 0;
+const ConnectionApi_1 = __webpack_require__(3770);
+const CurrentCursor_1 = __webpack_require__(1429);
+const SvgCursor_1 = __webpack_require__(3320);
+const CurrentInputController_1 = __webpack_require__(7029);
+const WebInputController_1 = __webpack_require__(2353);
+/**
+ * Initializes TouchFree - must be called before any functionality requiring a TouchFree service connection.
+ *
+ * @param tfInitParams - Optional extra initialization parameters
+ * @public
+ */
+function init(tfInitParams) {
+    (0, ConnectionApi_1.connect)(tfInitParams === null || tfInitParams === void 0 ? void 0 : tfInitParams.address);
+    (0, CurrentInputController_1.setInputController)(new WebInputController_1.WebInputController());
+    if (tfInitParams === undefined) {
+        (0, CurrentCursor_1.setCurrentCursor)(new SvgCursor_1.SVGCursor());
+    }
+    else {
+        if (tfInitParams.initialiseCursor === undefined || tfInitParams.initialiseCursor === true) {
+            (0, CurrentCursor_1.setCurrentCursor)(new SvgCursor_1.SVGCursor());
+        }
+    }
+}
+exports.init = init;
+
+
+/***/ }),
+
+/***/ 1614:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InteractionType = exports.InputType = exports.HandType = exports.HandChirality = void 0;
+/**
+ * a.k.a. Handedness
+ * @public
+ */
+var HandChirality;
+(function (HandChirality) {
+    /** Left hand */
+    HandChirality[HandChirality["LEFT"] = 0] = "LEFT";
+    /** Right hand */
+    HandChirality[HandChirality["RIGHT"] = 1] = "RIGHT";
+})(HandChirality = exports.HandChirality || (exports.HandChirality = {}));
+/**
+ * Type of hand in order they were recognized
+ * @public
+ */
+var HandType;
+(function (HandType) {
+    /** First hand that was found */
+    HandType[HandType["PRIMARY"] = 0] = "PRIMARY";
+    /** Second hand that was found */
+    HandType[HandType["SECONDARY"] = 1] = "SECONDARY";
+})(HandType = exports.HandType || (exports.HandType = {}));
+/**
+ * Type of an inputAction
+ * @public
+ */
+var InputType;
+(function (InputType) {
+    /** Used to be ignored by the input system but to still receive information such as distance to screen */
+    InputType[InputType["NONE"] = 0] = "NONE";
+    /** Used to cancel the current input if an issue occurs. Particularly when a DOWN has happened before an UP */
+    InputType[InputType["CANCEL"] = 1] = "CANCEL";
+    /** Used to begin a 'Touch' or a 'Drag' */
+    InputType[InputType["DOWN"] = 2] = "DOWN";
+    /** Used to move a cursor or to perform a 'Drag' after a DOWN */
+    InputType[InputType["MOVE"] = 3] = "MOVE";
+    /** Used to complete a 'Touch' or a 'Drag' */
+    InputType[InputType["UP"] = 4] = "UP";
+})(InputType = exports.InputType || (exports.InputType = {}));
+/**
+ * TouchFree interaction type
+ * @public
+ */
+var InteractionType;
+(function (InteractionType) {
+    /**
+     * The user must perform a GRAB gesture to 'Touch' by making a fist
+     * @internal
+     */
+    InteractionType[InteractionType["GRAB"] = 0] = "GRAB";
+    /** The user must perform a HOVER gesture to 'Touch' by holding their hand still for a fixed time */
+    InteractionType[InteractionType["HOVER"] = 1] = "HOVER";
+    /** The user must perform a PUSH gesture to 'Touch' by pushing their hand toward the screen */
+    InteractionType[InteractionType["PUSH"] = 2] = "PUSH";
+    /** The user must perform a move past a plane in space to 'Touch' */
+    InteractionType[InteractionType["TOUCHPLANE"] = 3] = "TOUCHPLANE";
+    /**
+     * The user must perform a SWIPE gesture to 'Touch' by moving their hand quickly up, down, left or right
+     * @internal
+     */
+    InteractionType[InteractionType["VELOCITYSWIPE"] = 4] = "VELOCITYSWIPE";
+})(InteractionType = exports.InteractionType || (exports.InteractionType = {}));
+
+
+/***/ }),
+
+/***/ 1751:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InputActionManager = void 0;
+const TouchFreeEvents_1 = __webpack_require__(1539);
+/**
+ * Manages all `TouchFreeInputAction` events, dispatching a `transmitInputAction` event for each action received.
+ * @remarks
+ * Runs `inputAction` data through all `InputActionPlugins` before dispatching.
+ * Also dispatches a `transmitInputActionRaw` event with the `inputAction` data unmodified by any plugins.
+ * @internal
+ */
+class InputActionManager extends EventTarget {
+    /**
+     * Getter for the global instance. Will initialize if not initialized already.
+     */
+    static get instance() {
+        if (InputActionManager.internalInstance === undefined) {
+            InputActionManager.internalInstance = new InputActionManager();
+        }
+        return InputActionManager.internalInstance;
+    }
+    /**
+     * Overwrites all plugins with a new array. Plugins will be run in order of the array.
+     * @param plugins - Plugin array to assign
+     */
+    static setPlugins(plugins) {
+        this.plugins = plugins;
+    }
+    /**
+     * Handles an `inputAction`, running it through all plugins and dispatching a `"transmitInputAction"` event
+     * @param action - inputAction to handle
+     * @internal
+     */
+    static handleInputAction(action) {
+        (0, TouchFreeEvents_1.dispatchEventCallback)('transmitInputActionRaw', action);
+        let newAction = action;
+        if (this.plugins !== null) {
+            for (let i = 0; i < this.plugins.length; i++) {
+                const modifiedAction = this.plugins[i].runPlugin(action);
+                if (modifiedAction !== null) {
+                    newAction = modifiedAction;
+                }
+                else {
+                    // The plugin has cancelled the inputAction entirely
+                    return;
+                }
+            }
+        }
+        // Wrapping the function in a timeout of 0 seconds allows the dispatch to be asynchronous
+        setTimeout(() => {
+            (0, TouchFreeEvents_1.dispatchEventCallback)('transmitInputAction', newAction);
+        }, 0);
+    }
+}
+exports.InputActionManager = InputActionManager;
+/**
+ * Static global array of `InputActionPlugin`
+ */
+InputActionManager.plugins = null;
+
+
+/***/ }),
+
+/***/ 8236:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InputActionPlugin = void 0;
+/**
+ * Base class for input action plugins
+ * @remarks
+ * The `InputActionManager` runs each plugin upon receiving a message
+ * from the service before dispatching an inputAction event.
+ * Input action plugins invoke a `"inputActionOutput"` event on themselves
+ * for subscribers to listen to if the results of a specific plugin is required.
+ * @internal
+ */
+class InputActionPlugin extends EventTarget {
+    /**
+     * Run this plugin, modifying the `inputAction` and dispatching an `"inputActionOutput"` event from this plugin
+     * @param inputAction - Input action input
+     * @returns Modified input action
+     */
+    runPlugin(inputAction) {
+        const modifiedInputAction = this.modifyInputAction(inputAction);
+        if (modifiedInputAction != null) {
+            this.transmitInputAction(modifiedInputAction);
+        }
+        return modifiedInputAction;
+    }
+    /**
+     * Proxy function for derived classes to modify input actions before they are dispatched.
+     *
+     * @internal
+     */
+    modifyInputAction(inputAction) {
+        return inputAction;
+    }
+    /**
+     * For derived classes to invoke the `inputActionOutput` event.
+     * @param inputAction - inputAction state to dispatch event with
+     *
+     * @internal
+     */
+    transmitInputAction(inputAction) {
+        const inputActionEvent = new CustomEvent('inputActionOutput', { detail: inputAction });
+        this.dispatchEvent(inputActionEvent);
+    }
+}
+exports.InputActionPlugin = InputActionPlugin;
+
+
+/***/ }),
+
+/***/ 9230:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.BaseInputController = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const TouchFreeToolingTypes_1 = __webpack_require__(579);
-// Class: InputController
-// InputControllers convert <TouchFreeInputActions> as recieved from the service into appropriate
-// inputs for the given environment. This abstract handles connection and should be inherited from
-// to develop any further InputControllers.
-//
-// Override <HandleInputAction> to react to TouchFreeInputActions as they are recieved.
-//
-// For an example InputController, see <WebInputController>.
+const InputAction_1 = __webpack_require__(1614);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+/**
+ * Converts {@link TouchFreeInputAction | TouchFreeInputActions} into inputs for specific environments.
+ *
+ * @remarks
+ * This base class handles subscribing to the TouchFree `'transmitInputAction'` event.
+ * Override {@link handleInputAction} in subclasses to implement specific behaviour.
+ * @internal
+ */
 class BaseInputController {
-    // Function: constructor
-    // Adds a listener to <InputActionManager> to invoke <HandleInputAction> with <TouchFreeInputActions> as they
-    // are received.
+    /**
+     * Subscribes to the TouchFree `'transmitInputAction'` event, invoke {@link handleInputAction}
+     * with {@link TouchFreeInputAction | TouchFreeInputActions} as they are received.
+     *
+     * @remarks
+     * Calling this constructor more than once without {@link disconnect}ing the previous
+     * is a no-op - only one `InputController` can be initialized at one time.
+     */
     constructor() {
-        if (!BaseInputController.Instantiated) {
-            BaseInputController.Instantiated = true;
-            this.HandleInputActionCallback = TouchFree_1.default.RegisterEventCallback('TransmitInputAction', this.HandleInputAction.bind(this));
+        if (!BaseInputController.instantiated) {
+            BaseInputController.instantiated = true;
+            this.handleInputActionCallback = (0, TouchFreeEvents_1.registerEventCallback)('transmitInputAction', this.handleInputAction.bind(this));
         }
     }
-    // Functions:
-    // Function: HandleInputAction
-    // This method is the core of the functionality of this class. It will be invoked with
-    // the <TouchFreeInputAction> as they are provided to the Tooling from the TouchFree Service.
-    //
-    // Override this function to implement any custom input handling functionality you wish to see.
-    //
-    // Parameters:
-    //     _inputData - The latest input action received from TouchFree Service.
-    HandleInputAction(_inputData) {
-        switch (_inputData.InputType) {
-            case TouchFreeToolingTypes_1.InputType.MOVE:
+    /**
+     * Override to implement InputController specific behaviour for
+     * {@link TouchFreeInputAction  | TouchFreeInputActions}
+     * @param inputData - The latest input action received from TouchFree Service.
+     */
+    handleInputAction(inputData) {
+        switch (inputData.InputType) {
+            case InputAction_1.InputType.MOVE:
                 break;
-            case TouchFreeToolingTypes_1.InputType.DOWN:
+            case InputAction_1.InputType.DOWN:
                 break;
-            case TouchFreeToolingTypes_1.InputType.UP:
+            case InputAction_1.InputType.UP:
                 break;
-            case TouchFreeToolingTypes_1.InputType.CANCEL:
+            case InputAction_1.InputType.CANCEL:
                 break;
         }
     }
+    /**
+     * Un-registers the event callback and resets initialization state.
+     *
+     * @remarks
+     * Must be called before constructing another `InputController` when
+     * switching. Only one can be active at a time.
+     */
     disconnect() {
         var _a;
-        (_a = this.HandleInputActionCallback) === null || _a === void 0 ? void 0 : _a.UnregisterEventCallback();
-        BaseInputController.Instantiated = false;
+        (_a = this.handleInputActionCallback) === null || _a === void 0 ? void 0 : _a.unregisterEventCallback();
+        BaseInputController.instantiated = false;
     }
 }
 exports.BaseInputController = BaseInputController;
-// Group: MonoBehaviour Overrides
-BaseInputController.Instantiated = false;
+BaseInputController.instantiated = false;
 
 
 /***/ }),
 
-/***/ 52:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ 7029:
+/***/ ((__unused_webpack_module, exports) => {
 
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.setInputController = exports.getInputController = void 0;
+/**
+ * Global input controller initialized by {@link init}
+ */
+let globalInputController;
+/** @internal */
+const getInputController = () => globalInputController;
+exports.getInputController = getInputController;
+/** @internal */
+const setInputController = (inputController) => (globalInputController = inputController);
+exports.setInputController = setInputController;
+
+
+/***/ }),
+
+/***/ 2353:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.WebInputController = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const TouchFreeToolingTypes_1 = __webpack_require__(579);
-const BaseInputController_1 = __webpack_require__(529);
-// Class: WebInputController
-// Provides web PointerEvents based on the incoming data from TouchFree Service via a
-// <ServiceConnection>.
-//
-// If you are using cursors with this InputController, ensure they have the "touchfree-cursor"
-// class. This allows this class to ignore them when determining which elements should receive
-// new pointer events. If you don't do this, none of the events transmitted here are guaranteed
-// to make it to their intended targets, as they will be captured by the cursor.
+const InputAction_1 = __webpack_require__(1614);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const BaseInputController_1 = __webpack_require__(9230);
+/**
+ * Provides web PointerEvents from incoming {@link TouchFreeInputAction}s.
+ *
+ * @remarks
+ * If you are using cursors with this InputController, ensure they have the "touchfree-cursor"
+ * class. This allows this class to ignore them when determining which elements should receive
+ * new pointer events. If you don't do this, none of the events transmitted here are guaranteed
+ * to make it to their intended targets, as they will be captured by the cursor.
+ * @internal
+ */
 class WebInputController extends BaseInputController_1.BaseInputController {
-    // Group: Methods
-    // Function: constructor
-    // Sets up the basic event properties for all events transmitted from this InputController.
+    /**
+     * Sets up the basic event properties for all events transmitted from this InputController.
+     */
     constructor() {
         super();
-        // Group: Variables
-        // Variable: enterLeaveEnabled
-        // Can be used to enable/disable the transmission of "pointerenter"/"pointerleave" events
-        // Disable this for a minor performance boost, at the cost of no longer sending those events
-        // to the UI.
+        /**
+         * Can be used to enable/disable the transmission of "pointerenter"/"pointerleave" events
+         * Disable this for a minor performance boost, at the cost of no longer sending those events
+         * to the UI.
+         */
         this.enterLeaveEnabled = true;
         this.lastHoveredElement = null;
         this.pointerId = 0;
@@ -1896,14 +3112,19 @@ class WebInputController extends BaseInputController_1.BaseInputController {
         this.lastPosition = null;
         this.scrollDirection = undefined;
         this.elementToScroll = undefined;
-        // Constant: noScrollClassName
-        // Any element with this class name in its css class list will be ignored when trying to find
-        // the correct element for the WebInputController to scroll
-        this.noScrollClassName = 'touchfree-no-scroll';
-        // Gets the element that should have scrolling applied to it.
-        // Any elements with the class name listed as noScrollClassName applied will be ignored when
-        // finding which element to scroll
-        this.GetElementToScroll = (scrollValidation, parentScrollValidation) => {
+        /**
+         *  Any element with this class name in its css class list will be ignored when trying to find
+         * the correct element for the WebInputController to scroll
+         */
+        this.NO_SCROLL_CLASS_NAME = 'touchfree-no-scroll';
+        /**
+         * Gets the element that should have scrolling applied to it
+         *
+         * @remarks
+         * Any elements with the {@link noScrollClassName} class applied will be ignored when
+         * finding which element to scroll
+         */
+        this.getElementToScroll = (scrollValidation, parentScrollValidation) => {
             if (this.elementToScroll)
                 return this.elementToScroll;
             if (!this.scrollElementsOnDown)
@@ -1915,8 +3136,8 @@ class WebInputController extends BaseInputController_1.BaseInputController {
                 let parentSelected = false;
                 let parentAsHtmlElement = elementToCheckScroll.parentElement;
                 while (parentAsHtmlElement) {
-                    const parentIsNoScroll = parentAsHtmlElement.classList.contains(this.noScrollClassName);
-                    const elementIsNoScroll = elementToCheckScroll.classList.contains(this.noScrollClassName);
+                    const parentIsNoScroll = parentAsHtmlElement.classList.contains(this.NO_SCROLL_CLASS_NAME);
+                    const elementIsNoScroll = elementToCheckScroll.classList.contains(this.NO_SCROLL_CLASS_NAME);
                     const parentScrollValid = parentScrollValidation(elementToCheckScroll, parentAsHtmlElement);
                     if (!parentIsNoScroll && !elementIsNoScroll && !parentScrollValid) {
                         break;
@@ -1947,17 +3168,17 @@ class WebInputController extends BaseInputController_1.BaseInputController {
         };
         this.activeEventProps = this.baseEventProps;
     }
-    // Function: HandleMove
-    // Handles the transmission of "pointerout"/"pointerover"/"pointermove" events to appropriate
-    // elements, based on the element being hovered over this frame (_element), and the element
-    // hovered last frame.
-    // Will also optionally send "pointerenter"/"pointerleave" events if enabled via
-    // <enterLeaveEnabled>
-    //
-    // Parameters:
-    //     _element - The DOM element under the cursor this frame
-    HandleMove(_element) {
-        if (_element !== this.lastHoveredElement) {
+    /**
+     * Handles the transmission of "pointerout"/"pointerover"/"pointermove" events to appropriate
+     * elements, based on the {@link element} being hovered over this frame, and the element
+     * hovered last frame.
+     * Will also optionally send "pointerenter"/"pointerleave" events if enabled via
+     * {@link enterLeaveEnabled}
+     * @param element - The DOM element under the cursor this frame
+     * @internal
+     */
+    handleMove(element) {
+        if (element !== this.lastHoveredElement) {
             // Handle sending pointerover/pointerout to the individual elements
             // These events bubble, so we only have to dispatch them to the element directly under
             // the cursor
@@ -1965,61 +3186,63 @@ class WebInputController extends BaseInputController_1.BaseInputController {
                 const outEvent = new PointerEvent('pointerout', this.activeEventProps);
                 this.lastHoveredElement.dispatchEvent(outEvent);
             }
-            if (_element !== null) {
+            if (element !== null) {
                 const overEvent = new PointerEvent('pointerover', this.activeEventProps);
-                _element.dispatchEvent(overEvent);
+                element.dispatchEvent(overEvent);
             }
             if (this.enterLeaveEnabled) {
-                this.HandleEnterLeaveBehaviour(_element);
+                this.handleEnterLeaveBehaviour(element);
             }
         }
         const moveEvent = new PointerEvent('pointermove', this.activeEventProps);
-        _element === null || _element === void 0 ? void 0 : _element.dispatchEvent(moveEvent);
-        this.lastHoveredElement = _element;
+        element === null || element === void 0 ? void 0 : element.dispatchEvent(moveEvent);
+        this.lastHoveredElement = element;
     }
-    // Function: HandleInputAction
-    // Called with each <TouchFreeInputAction> as it comes into the <ServiceConnection>. Emits Pointer
-    // events (e.g. pointermove/pointerdown) to the objects at the location. Which events are
-    // emitted is affected by <enterLeaveEnabled>.
-    //
-    // Sends the following events by default:
-    //
-    //     - pointermove
-    //     - pointerdown
-    //     - pointerup
-    //     - pointerover
-    //     - pointerout
-    //     - pointerenter
-    //     - pointerleave
-    //
-    // Parameters:
-    //     _inputData - The latest Action to arrive via the <ServiceConnection>.
-    HandleInputAction(_inputData) {
+    /**
+     * Emits Pointer events (e.g. pointermove/pointerdown) to the objects at a {@link TouchFreeInputAction}s location.
+     *
+     * @remarks
+     * Which events are emitted is affected by {@link enterLeaveEnabled}.
+     *
+     * Sends the following events by default:
+     *
+     *     - pointermove
+     *     - pointerdown
+     *     - pointerup
+     *     - pointerover
+     *     - pointerout
+     *     - pointerenter
+     *     - pointerleave
+     * @param inputData - The latest {@link TouchFreeInputAction} from the Service
+     * @internal
+     */
+    handleInputAction(inputData) {
         var _a;
-        super.HandleInputAction(_inputData);
-        const elementsAtPoint = document.elementsFromPoint(_inputData.CursorPosition[0], _inputData.CursorPosition[1]);
-        const elementAtPos = this.GetTopNonCursorElement(elementsAtPoint);
-        this.activeEventProps.clientX = _inputData.CursorPosition[0];
-        this.activeEventProps.clientY = _inputData.CursorPosition[1];
+        super.handleInputAction(inputData);
+        const elementsAtPoint = document.elementsFromPoint(inputData.CursorPosition[0], inputData.CursorPosition[1]);
+        const elementAtPos = this.getTopNonCursorElement(elementsAtPoint);
+        this.activeEventProps.clientX = inputData.CursorPosition[0];
+        this.activeEventProps.clientY = inputData.CursorPosition[1];
         if (elementAtPos !== null) {
-            TouchFree_1.default.DispatchEvent('InputAction', _inputData);
+            (0, TouchFreeEvents_1.dispatchEventCallback)('inputAction', inputData);
         }
-        switch (_inputData.InputType) {
-            case TouchFreeToolingTypes_1.InputType.CANCEL: {
-                this.ResetScrollData();
+        switch (inputData.InputType) {
+            case InputAction_1.InputType.CANCEL: {
+                this.resetScrollData();
                 const cancelEvent = new PointerEvent('pointercancel', this.activeEventProps);
                 const outEvent = new PointerEvent('pointerout', this.activeEventProps);
-                if (this.lastHoveredElement !== null && this.lastHoveredElement !== elementAtPos) {
+                if (this.lastHoveredElement !== null) {
                     this.lastHoveredElement.dispatchEvent(cancelEvent);
                     this.lastHoveredElement.dispatchEvent(outEvent);
+                    this.lastHoveredElement = null;
                 }
-                const elementOnDown = this.GetTopNonCursorElement(this.elementsOnDown);
+                const elementOnDown = this.getTopNonCursorElement(this.elementsOnDown);
                 if (elementOnDown) {
                     elementOnDown.dispatchEvent(cancelEvent);
                     elementOnDown.dispatchEvent(outEvent);
                 }
                 if (elementAtPos !== null) {
-                    const parentTree = this.GetOrderedParents(elementAtPos);
+                    const parentTree = this.getOrderedParents(elementAtPos);
                     parentTree.forEach((parent) => {
                         if (parent !== null) {
                             parent.dispatchEvent(cancelEvent);
@@ -2029,20 +3252,20 @@ class WebInputController extends BaseInputController_1.BaseInputController {
                 }
                 break;
             }
-            case TouchFreeToolingTypes_1.InputType.MOVE:
-                this.HandleMove(elementAtPos);
-                this.HandleScroll(_inputData.CursorPosition);
+            case InputAction_1.InputType.MOVE:
+                this.handleMove(elementAtPos);
+                this.handleScroll(inputData.CursorPosition);
                 break;
-            case TouchFreeToolingTypes_1.InputType.DOWN: {
-                this.ResetScrollData();
+            case InputAction_1.InputType.DOWN: {
+                this.resetScrollData();
                 this.elementsOnDown = this.clickableElementsAtPosition(elementsAtPoint);
-                this.scrollElementsOnDown = this.elementsOnDown.filter((e) => !e.classList.contains(this.noScrollClassName));
-                this.lastPosition = _inputData.CursorPosition;
+                this.scrollElementsOnDown = this.elementsOnDown.filter((e) => !e.classList.contains(this.NO_SCROLL_CLASS_NAME));
+                this.lastPosition = inputData.CursorPosition;
                 const downEvent = new PointerEvent('pointerdown', this.activeEventProps);
-                this.DispatchToTarget(downEvent, elementAtPos);
+                this.dispatchToTarget(downEvent, elementAtPos);
                 break;
             }
-            case TouchFreeToolingTypes_1.InputType.UP: {
+            case InputAction_1.InputType.UP: {
                 const elementsOnUp = this.clickableElementsAtPosition(elementsAtPoint);
                 if ((elementsOnUp === null || elementsOnUp === void 0 ? void 0 : elementsOnUp.length) && ((_a = this.elementsOnDown) === null || _a === void 0 ? void 0 : _a.length)) {
                     for (const element of elementsOnUp) {
@@ -2053,9 +3276,9 @@ class WebInputController extends BaseInputController_1.BaseInputController {
                         }
                     }
                 }
-                this.ResetScrollData();
+                this.resetScrollData();
                 const upEvent = new PointerEvent('pointerup', this.activeEventProps);
-                this.DispatchToTarget(upEvent, elementAtPos);
+                this.dispatchToTarget(upEvent, elementAtPos);
                 break;
             }
         }
@@ -2065,53 +3288,53 @@ class WebInputController extends BaseInputController_1.BaseInputController {
             .map((e) => e)
             .filter((e) => e && !e.classList.contains('touchfreecursor') && !e.classList.contains('touchfree-cursor'));
     }
-    // Clears information about the current scroll
-    ResetScrollData() {
+    /** Clears information about the current scroll */
+    resetScrollData() {
         this.scrollElementsOnDown = null;
         this.scrollDirection = undefined;
         this.elementToScroll = undefined;
     }
-    // Applies scrolling to any elements that should be scrolled
-    HandleScroll(_position) {
+    /** Applies scrolling to any elements that should be scrolled */
+    handleScroll(position) {
         if (this.scrollElementsOnDown && this.lastPosition) {
-            const changeInPositionX = this.lastPosition[0] - _position[0];
-            const changeInPositionY = this.lastPosition[1] - _position[1];
+            const changeInPositionX = this.lastPosition[0] - position[0];
+            const changeInPositionY = this.lastPosition[1] - position[1];
             if (!this.scrollDirection && (Math.abs(changeInPositionX) > 5 || Math.abs(changeInPositionY) > 5)) {
                 if (Math.abs(changeInPositionX) > Math.abs(changeInPositionY)) {
-                    this.scrollDirection = changeInPositionX > 0 ? ScrollDirection.Right : ScrollDirection.Left;
+                    this.scrollDirection = changeInPositionX > 0 ? ScrollDirection.RIGHT : ScrollDirection.LEFT;
                 }
                 else {
-                    this.scrollDirection = changeInPositionY > 0 ? ScrollDirection.Down : ScrollDirection.Up;
+                    this.scrollDirection = changeInPositionY > 0 ? ScrollDirection.DOWN : ScrollDirection.UP;
                 }
             }
-            this.lastPosition = _position;
+            this.lastPosition = position;
             if (changeInPositionY > 0 &&
-                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.Down)) {
-                const element = this.GetElementToScroll((e) => e.scrollHeight > e.clientHeight && e.scrollTop + e.clientHeight < e.scrollHeight - 1, (e, p) => e.offsetHeight === p.offsetHeight && e.scrollHeight === p.scrollHeight);
+                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.DOWN)) {
+                const element = this.getElementToScroll((e) => e.scrollHeight > e.clientHeight && e.scrollTop + e.clientHeight < e.scrollHeight - 1, (e, p) => e.offsetHeight === p.offsetHeight && e.scrollHeight === p.scrollHeight);
                 if (element) {
                     this.elementToScroll = element;
                     element.scrollTop = Math.min(element.scrollHeight - element.clientHeight, element.scrollTop + changeInPositionY);
                 }
             }
             if (changeInPositionY < 0 &&
-                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.Up)) {
-                const element = this.GetElementToScroll((e) => e.scrollHeight > e.clientHeight && e.scrollTop > 0, (e, p) => e.offsetHeight === p.offsetHeight && e.scrollHeight === p.scrollHeight);
+                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.UP)) {
+                const element = this.getElementToScroll((e) => e.scrollHeight > e.clientHeight && e.scrollTop > 0, (e, p) => e.offsetHeight === p.offsetHeight && e.scrollHeight === p.scrollHeight);
                 if (element) {
                     this.elementToScroll = element;
                     element.scrollTop = Math.max(0, element.scrollTop + changeInPositionY);
                 }
             }
             if (changeInPositionX > 0 &&
-                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.Right)) {
-                const element = this.GetElementToScroll((e) => e.scrollWidth > e.clientWidth && e.scrollLeft + e.clientWidth < e.scrollWidth, (e, p) => e.offsetWidth === p.offsetWidth && e.scrollWidth === p.scrollWidth);
+                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.RIGHT)) {
+                const element = this.getElementToScroll((e) => e.scrollWidth > e.clientWidth && e.scrollLeft + e.clientWidth < e.scrollWidth, (e, p) => e.offsetWidth === p.offsetWidth && e.scrollWidth === p.scrollWidth);
                 if (element) {
                     this.elementToScroll = element;
                     element.scrollLeft = Math.min(element.scrollWidth - element.clientWidth, element.scrollLeft + changeInPositionX);
                 }
             }
             if (changeInPositionX < 0 &&
-                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.Left)) {
-                const element = this.GetElementToScroll((e) => e.scrollWidth > e.clientWidth && e.scrollLeft > 0, (e, p) => e.offsetWidth === p.offsetWidth && e.scrollWidth === p.scrollWidth);
+                (this.scrollDirection === undefined || this.scrollDirection === ScrollDirection.LEFT)) {
+                const element = this.getElementToScroll((e) => e.scrollWidth > e.clientWidth && e.scrollLeft > 0, (e, p) => e.offsetWidth === p.offsetWidth && e.scrollWidth === p.scrollWidth);
                 if (element) {
                     this.elementToScroll = element;
                     element.scrollLeft = Math.max(0, element.scrollLeft + changeInPositionX);
@@ -2119,9 +3342,13 @@ class WebInputController extends BaseInputController_1.BaseInputController {
             }
         }
     }
-    // Gets the stack of elements (topmost->bottommost) at this position and return the first non-
-    // cursor element. Depends on all cursor elements being branded with the "cursor" class.
-    GetTopNonCursorElement(elementsAtPos) {
+    /**
+     * Gets the stack of elements (topmost-bottommost) at this position and return the first non-
+     * cursor element. Depends on all cursor elements being branded with the "cursor" class.
+     * @param elementsAtPos - Elements at the position to check
+     * @returns First non-cursor element or null if none found
+     */
+    getTopNonCursorElement(elementsAtPos) {
         let elementAtPos = null;
         if (elementsAtPos !== null) {
             for (let i = 0; i < elementsAtPos.length; i++) {
@@ -2134,13 +3361,16 @@ class WebInputController extends BaseInputController_1.BaseInputController {
         }
         return elementAtPos;
     }
-    // Handle sending pointerleave/pointerenter events to the parent stacks
-    // These events do not bubble, in order to deliver expected behaviour we must consider
-    // the entire stack of elements above our current target in the document tree
-    HandleEnterLeaveBehaviour(_element) {
-        const oldParents = this.GetOrderedParents(this.lastHoveredElement);
-        const newParents = this.GetOrderedParents(_element);
-        const highestCommonIndex = this.GetCommonAncestorIndex(oldParents, newParents);
+    /**
+     * Handle sending pointerleave/pointerenter events to the parent stacks.
+     * These events do not bubble, in order to deliver expected behaviour we must consider
+     * the entire stack of elements above our current target in the document tree
+     * @param element - Element to handle
+     */
+    handleEnterLeaveBehaviour(element) {
+        const oldParents = this.getOrderedParents(this.lastHoveredElement);
+        const newParents = this.getOrderedParents(element);
+        const highestCommonIndex = this.getCommonAncestorIndex(oldParents, newParents);
         const leaveEvent = new PointerEvent('pointerleave', this.activeEventProps);
         const enterEvent = new PointerEvent('pointerenter', this.activeEventProps);
         if (highestCommonIndex === null) {
@@ -2160,18 +3390,27 @@ class WebInputController extends BaseInputController_1.BaseInputController {
             });
         }
     }
-    // Collects the stack of parent nodes, ordered from highest (document body) to lowest
-    // (the node provided)
-    GetOrderedParents(_node) {
-        const parentStack = [_node];
-        for (; _node; _node = _node.parentNode) {
-            parentStack.unshift(_node);
+    /**
+     * Collects the stack of parent nodes, ordered from highest (document body) to lowest
+     * (the node provided)
+     * @param node - Lowest node in the stack
+     * @returns Parent nodes until the provided node
+     */
+    getOrderedParents(node) {
+        const parentStack = [node];
+        for (; node; node = node.parentNode) {
+            parentStack.unshift(node);
         }
         return parentStack;
     }
-    // Takes two ordered arrays of Nodes (as produced by GetOrderedParents) and identifies the
-    // lowest common ancestor of the two sets. Used in HandleMove for identifying the events to send
-    GetCommonAncestorIndex(oldParents, newParents) {
+    /**
+     * Takes two ordered arrays of Nodes (as produced by {@link GetOrderedParents}) and identifies the
+     * lowest common ancestor of the two sets. Used in {@link handleMove} for identifying the events to send
+     * @param oldParents - First stack of parents
+     * @param newParents - Second stack of parents
+     * @returns Index of lowest common ancestor between the two stacks
+     */
+    getCommonAncestorIndex(oldParents, newParents) {
         if (oldParents[0] !== newParents[0]) {
             return null;
         }
@@ -2182,9 +3421,13 @@ class WebInputController extends BaseInputController_1.BaseInputController {
         }
         return null;
     }
-    // Checks if the target element is null and correctly dispatches the provided event to the
-    // element or document body appropriately
-    DispatchToTarget(event, target) {
+    /**
+     * Checks if the target element is null and correctly dispatches the provided event to the
+     * element or document body appropriately
+     * @param event - Event to dispatch
+     * @param target - Element to dispatch event on if not null
+     */
+    dispatchToTarget(event, target) {
         if (target !== null) {
             target.dispatchEvent(event);
         }
@@ -2194,382 +3437,104 @@ class WebInputController extends BaseInputController_1.BaseInputController {
     }
 }
 exports.WebInputController = WebInputController;
-// Enum: ScrollDirection
-// The directions that a scroll can be in
+/**
+ * The directions that a scroll can be in
+ * @internal
+ */
 var ScrollDirection;
 (function (ScrollDirection) {
-    ScrollDirection[ScrollDirection["Up"] = 0] = "Up";
-    ScrollDirection[ScrollDirection["Down"] = 1] = "Down";
-    ScrollDirection[ScrollDirection["Left"] = 2] = "Left";
-    ScrollDirection[ScrollDirection["Right"] = 3] = "Right";
+    ScrollDirection[ScrollDirection["UP"] = 0] = "UP";
+    ScrollDirection[ScrollDirection["DOWN"] = 1] = "DOWN";
+    ScrollDirection[ScrollDirection["LEFT"] = 2] = "LEFT";
+    ScrollDirection[ScrollDirection["RIGHT"] = 3] = "RIGHT";
 })(ScrollDirection || (ScrollDirection = {}));
 
 
 /***/ }),
 
-/***/ 275:
-/***/ ((module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const BaseInputController_1 = __webpack_require__(529);
-const WebInputController_1 = __webpack_require__(52);
-module.exports = {
-    BaseInputController: BaseInputController_1.BaseInputController,
-    WebInputController: WebInputController_1.WebInputController,
-};
-
-
-/***/ }),
-
-/***/ 333:
+/***/ 245:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.HandDataManager = void 0;
-// Class: HandDataManager
-// The manager for all <HandFrame> to be handled and distributed. This distributes the data
-// via the <TransmitHandData> event which should be listened to by any class hoping to make
-// use of incoming <HandFrame>s.
-class HandDataManager extends EventTarget {
-    static get instance() {
-        if (HandDataManager._instance === undefined) {
-            HandDataManager._instance = new HandDataManager();
-        }
-        return HandDataManager._instance;
+exports.mapRangeToRange = void 0;
+/**
+ * Map value from one range to the equivalent value within a new range
+ * @param value - Value to map
+ * @param oldMin - original range's minimum
+ * @param oldMax - original range's maximum
+ * @param newMin - new range's minimum
+ * @param newMax - new range's maximum
+ *
+ * @example
+ * ```
+ * mapRangeToRange(0.5, 0, 1, 0, 8) // returns 4
+ * ```
+ * @public
+ */
+function mapRangeToRange(value, oldMin, oldMax, newMin, newMax) {
+    const oldRange = oldMax - oldMin;
+    let newValue;
+    if (oldRange === 0) {
+        newValue = newMin;
     }
-    // Function: HandleHandFrame
-    // Called by the <messageReceiver> to relay a <HandFrame> that has been received to any
-    // listeners of <TransmitHandData>.
-    static HandleHandFrame(_data) {
-        const currentTimeStamp = Date.now();
-        if (!HandDataManager.lastFrame ||
-            HandDataManager.lastFrame + HandDataManager.maximumFrameFrequencyMs < currentTimeStamp) {
-            const rawHandsEvent = new CustomEvent('TransmitHandData', {
-                detail: _data,
-            });
-            HandDataManager.instance.dispatchEvent(rawHandsEvent);
-            HandDataManager.lastFrame = currentTimeStamp;
-        }
+    else {
+        const newRange = newMax - newMin;
+        newValue = ((value - oldMin) * newRange) / oldRange + newMin;
     }
+    return newValue;
 }
-exports.HandDataManager = HandDataManager;
-HandDataManager.maximumFrameFrequencyMs = 50;
-HandDataManager.lastFrame = undefined;
+exports.mapRangeToRange = mapRangeToRange;
 
 
 /***/ }),
 
-/***/ 53:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.InputActionManager = void 0;
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-// Class: InputActionManager
-// The manager for all <TouchFreeInputActions> to be handled and distributed. This runs the
-// received data through any <InputActionPlugins> given to it and finaly distributes the data
-// via the  <TransmitInputAction> event which should be listened to by any class hoping to make
-// use of incoming <TouchFreeInputActions>.
-class InputActionManager extends EventTarget {
-    static get instance() {
-        if (InputActionManager._instance === undefined) {
-            InputActionManager._instance = new InputActionManager();
-        }
-        return InputActionManager._instance;
-    }
-    // Function: SetPlugins
-    // Use this function to set the <InputActionPlugins> that the manager should use, as well as the order the
-    // <InputActionPlugins> should be used.
-    static SetPlugins(_plugins) {
-        this.plugins = _plugins;
-    }
-    // Function: HandleInputAction
-    // Called by the <messageReceiver> to relay a <TouchFreeInputAction> that has been received to any
-    // listeners of <TransmitInputAction>.
-    static HandleInputAction(_action) {
-        TouchFree_1.default.DispatchEvent('TransmitInputActionRaw', _action);
-        let action = _action;
-        if (this.plugins !== null) {
-            for (let i = 0; i < this.plugins.length; i++) {
-                const modifiedAction = this.plugins[i].RunPlugin(action);
-                if (modifiedAction !== null) {
-                    action = modifiedAction;
-                }
-                else {
-                    // The plugin has cancelled the InputAction entirely
-                    return;
-                }
-            }
-        }
-        // Wrapping the function in a timeout of 0 seconds allows the dispatch to be asynchronous
-        setTimeout(() => {
-            TouchFree_1.default.DispatchEvent('TransmitInputAction', action);
-        }, 0);
-    }
-}
-exports.InputActionManager = InputActionManager;
-InputActionManager.plugins = null;
-
-
-/***/ }),
-
-/***/ 988:
+/***/ 7503:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.InputActionPlugin = void 0;
-class InputActionPlugin extends EventTarget {
-    // Event: InputActionOutput
-    // An event for transmitting <TouchFreeInputActions> as they pass through this plugin.
-    // This can be used to access the data as it is used by a specific plugin, as to intercept
-    // the full cycle of plugins that the <InputActionManager> references.
-    // Function: RunPlugin
-    // Called from <InputActionManager> and provided a <TouchFreeInputAction> as a parameter.
-    // This function is a wrapper that guarantees that the results of <ModifyInputAction> are both
-    // returned to the <InputActionManager> and transmitted via <TransmitInputAction>.
-    RunPlugin(_inputAction) {
-        const modifiedInputAction = this.ModifyInputAction(_inputAction);
-        if (modifiedInputAction != null) {
-            this.TransmitInputAction(modifiedInputAction);
-        }
-        return modifiedInputAction;
-    }
-    // Function: ModifyInputAction
-    // Called from <RunPlugin> and provided a <InputAction> as a parameter.
-    // This function is used to manipulate the incoming <TouchFreeInputAction>
-    // data. Returns a <TouchFreeInputAction> which is then distributed via the <InputActionManager>.
-    ModifyInputAction(_inputAction) {
-        return _inputAction;
-    }
-    // Function: TransmitInputAction
-    // To be used to Invoke the InputActionOutput event from any child class of this base.
-    TransmitInputAction(_inputAction) {
-        const InputActionEvent = new CustomEvent('InputActionOutput', { detail: _inputAction });
-        this.dispatchEvent(InputActionEvent);
-    }
-}
-exports.InputActionPlugin = InputActionPlugin;
 
 
 /***/ }),
 
-/***/ 447:
-/***/ ((module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const InputActionManager_1 = __webpack_require__(53);
-const InputActionPlugin_1 = __webpack_require__(988);
-module.exports = {
-    InputActionManager: InputActionManager_1.InputActionManager,
-    InputActionPlugin: InputActionPlugin_1.InputActionPlugin,
-};
-
-
-/***/ }),
-
-/***/ 798:
+/***/ 1539:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const ConnectionManager_1 = __webpack_require__(597);
-const SvgCursor_1 = __webpack_require__(429);
-const WebInputController_1 = __webpack_require__(52);
-const HandDataManager_1 = __webpack_require__(333);
-const InputActionManager_1 = __webpack_require__(53);
-let InputController;
-let CurrentCursor;
-const GetCurrentCursor = () => CurrentCursor;
-const GetInputController = () => InputController;
-// Function: Init
-// Initializes TouchFree - must be called before any functionality requiring a TouchFree service connection.
-const Init = (tfInitParams) => {
-    var _a;
-    ConnectionManager_1.ConnectionManager.init((_a = { address: tfInitParams === null || tfInitParams === void 0 ? void 0 : tfInitParams.address }) !== null && _a !== void 0 ? _a : undefined);
-    ConnectionManager_1.ConnectionManager.AddConnectionListener(() => {
-        InputController = new WebInputController_1.WebInputController();
-        if (tfInitParams === undefined) {
-            CurrentCursor = new SvgCursor_1.SVGCursor();
-        }
-        else {
-            if (tfInitParams.initialiseCursor === undefined || tfInitParams.initialiseCursor === true) {
-                CurrentCursor = new SvgCursor_1.SVGCursor();
-            }
-        }
-    });
-};
-// Function: IsConnected
-// Are we connected to the TouchFree service?
-const IsConnected = () => ConnectionManager_1.ConnectionManager.IsConnected;
-// Turns a callback with an argument into a CustomEvent<T> Event Listener
-const MakeCustomEventWrapper = (callback) => {
-    return ((evt) => {
-        callback(evt.detail);
-    });
-};
-// Default implementation of RegisterEvent
-const DefaultRegisterEventFunc = (target, eventType, listener) => {
-    target.addEventListener(eventType, listener);
-    return { UnregisterEventCallback: () => target.removeEventListener(eventType, listener) };
-};
-// Backing field to cache object creation
-let EventImplementationsBackingField;
-// Implementation details for all events
-// Any new events added to TouchFreeEvent require a new entry here to function
-const EventImplementations = () => (EventImplementationsBackingField !== null && EventImplementationsBackingField !== void 0 ? EventImplementationsBackingField : (EventImplementationsBackingField = {
-    OnConnected: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: callback,
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    WhenConnected: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: callback,
-            RegisterEventFunc: (_target, _eventType, _listener) => {
-                // If we're already connected then run the callback
-                if (IsConnected()) {
-                    callback();
-                }
-                // Piggyback OnConnected
-                return RegisterEventCallback('OnConnected', callback);
-            },
-        }),
-    },
-    OnServiceStatusChange: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: MakeCustomEventWrapper(callback),
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    OnTrackingServiceStateChange: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: MakeCustomEventWrapper(callback),
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    HandFound: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: callback,
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    HandsLost: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: callback,
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    InputAction: {
-        Target: InputActionManager_1.InputActionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: MakeCustomEventWrapper(callback),
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    TransmitHandData: {
-        Target: HandDataManager_1.HandDataManager.instance,
-        WithCallback: (callback) => ({
-            Listener: MakeCustomEventWrapper(callback),
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    TransmitInputAction: {
-        Target: InputActionManager_1.InputActionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: MakeCustomEventWrapper(callback),
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    TransmitInputActionRaw: {
-        Target: InputActionManager_1.InputActionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: MakeCustomEventWrapper(callback),
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    HandEntered: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: callback,
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-    HandExited: {
-        Target: ConnectionManager_1.ConnectionManager.instance,
-        WithCallback: (callback) => ({
-            Listener: callback,
-            RegisterEventFunc: DefaultRegisterEventFunc,
-        }),
-    },
-}));
-// Function: RegisterEventCallback
-// Registers a callback function to be called when a specific event occurs
-// Returns an `EventHandle` that can be used to unregister the callback
-//
-// Events and expected callback signatures:
-//
-// OnConnected: () => void;
-// Event dispatched when connecting to the TouchFree service
-//
-// WhenConnected: () => void;
-// Same as OnConnected but calls callback when already connected.
-// Note this event piggybacks as an "OnConnected" event on event targets.
-//
-// OnServiceStatusChanged: (state: ServiceStatus) => void;
-// Event dispatched when TouchFree Service status changes.
-//
-// OnTrackingServiceStateChange: (state: TrackingServiceState) => void;
-// Event dispatched when the connection between TouchFreeService and Ultraleap Tracking Service changes
-//
-// HandFound: () => void;
-// Event dispatched when the first hand has started tracking
-//
-// HandsLost: () => void;
-// Event dispatched when the last hand has stopped tracking
-//
-// TransmitHandData: (data: HandFrame) => void;
-// Event dispatched when new hand data is available
-//
-// InputAction: (inputAction: TouchFreeInputAction) => void;
-// Event dispatched when any input action is received from the TouchFree service
-//
-// TransmitInputActionRaw: (inputAction: TouchFreeInputAction) => void;
-// Event dispatched directly from the <InputActionManager> without any proxying
-//
-// TransmitInputAction: (inputAction: TouchFreeInputAction) => void;
-// Event dispatched from the <InputActionManager> to each registered Plugin
-//
-// HandEntered: () => void;
-// Event dispatched when the active hand enters the interaction zone
-//
-// HandExited: () => void;
-// Event dispatched when the the active hand exits the interaction zone
-const RegisterEventCallback = (event, callback) => {
-    const eventImpl = EventImplementations()[event];
-    const target = eventImpl.Target;
-    const callbackImpl = eventImpl.WithCallback(callback);
-    const listener = callbackImpl.Listener;
-    return callbackImpl.RegisterEventFunc(target, event, listener);
-};
-// Function: DispatchEvent
-// Dispatches an event of the specific type with arguments if the event requires any.
-// For details of events and their expected arguments see comment above RegisterEventCallback.
-const DispatchEvent = (eventType, ...args) => {
+exports.dispatchEventCallback = exports.registerEventCallback = void 0;
+const ConnectionApi_1 = __webpack_require__(3770);
+const touchFreeEventTarget = new EventTarget();
+/**
+ * Registers a callback function to be called when a specific event occurs
+ *
+ * @param event - The event to register a callback to. See {@link TouchFreeEvent}
+ * @param callback - The callback to register. Callback signature depends on event being registered.
+ * See {@link TouchFreeEventSignatures}
+ * @returns An {@link TouchFreeEventHandle} that can be used to unregister the callback
+ *
+ * @public
+ */
+function registerEventCallback(event, callback) {
+    const eventImpl = eventImplementations()[event];
+    const callbackImpl = eventImpl.withCallback(callback);
+    const listener = callbackImpl.listener;
+    return callbackImpl.registerEventFunc(event, listener);
+}
+exports.registerEventCallback = registerEventCallback;
+/**
+ * Dispatches an event of the specific type with arguments if the event requires any.
+ *
+ * @remarks
+ * For details of events and their expected arguments see {@link registerEventCallback}
+ *
+ * @param eventType - The event to register a callback to. See {@link TouchFreeEvent}
+ * @param args - Arguments for the event. Depends on the event being dispatched. See {@link TouchFreeEventSignatures}
+ *
+ * @public
+ */
+function dispatchEventCallback(eventType, ...args) {
     let event;
     if (args.length === 0) {
         event = new Event(eventType);
@@ -2577,447 +3542,215 @@ const DispatchEvent = (eventType, ...args) => {
     else {
         event = new CustomEvent(eventType, { detail: args[0] });
     }
-    const target = EventImplementations()[eventType].Target;
-    target.dispatchEvent(event);
+    touchFreeEventTarget.dispatchEvent(event);
+}
+exports.dispatchEventCallback = dispatchEventCallback;
+/**
+ * Turns a callback with an argument into a {@link CustomEvent} Event Listener
+ *
+ * @param callback - The callback to wrap
+ * @returns EventListener with the wrapper callback
+ */
+function makeCustomEventWrapper(callback) {
+    return ((evt) => {
+        callback(evt.detail);
+    });
+}
+/**
+ * Default implementation of RegisterEvent
+ */
+const defaultRegisterEventFunc = (eventType, listener) => {
+    touchFreeEventTarget.addEventListener(eventType, listener);
+    return { unregisterEventCallback: () => touchFreeEventTarget.removeEventListener(eventType, listener) };
 };
-// Bundle all our exports into a default object
-// Benefit to this is IDE autocomplete for "TouchFree" will find this object
-exports["default"] = {
-    CurrentCursor,
-    GetCurrentCursor,
-    DispatchEvent,
-    Init,
-    InputController,
-    GetInputController,
-    IsConnected,
-    RegisterEventCallback,
-};
+/**
+ * Backing field to cache object creation
+ */
+let eventImplementationsBackingField;
+/**
+ * Implementation details for all events
+ *
+ * @remarks
+ * Any new events added to TouchFreeEvent require a new entry here to function
+ *
+ * @returns A function that returns all event implementations
+ */
+function eventImplementations() {
+    return (eventImplementationsBackingField !== null && eventImplementationsBackingField !== void 0 ? eventImplementationsBackingField : (eventImplementationsBackingField = {
+        onConnected: {
+            withCallback: (callback) => ({
+                listener: callback,
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        whenConnected: {
+            withCallback: (callback) => ({
+                listener: callback,
+                registerEventFunc: (_eventType, _listener) => {
+                    // If we're already connected then run the callback
+                    if ((0, ConnectionApi_1.isConnected)()) {
+                        callback();
+                    }
+                    // Piggyback onConnected
+                    return registerEventCallback('onConnected', callback);
+                },
+            }),
+        },
+        onServiceStatusChange: {
+            withCallback: (callback) => ({
+                listener: makeCustomEventWrapper(callback),
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        onTrackingServiceStateChange: {
+            withCallback: (callback) => ({
+                listener: makeCustomEventWrapper(callback),
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        handFound: {
+            withCallback: (callback) => ({
+                listener: callback,
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        handsLost: {
+            withCallback: (callback) => ({
+                listener: callback,
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        inputAction: {
+            withCallback: (callback) => ({
+                listener: makeCustomEventWrapper(callback),
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        transmitHandData: {
+            withCallback: (callback) => ({
+                listener: makeCustomEventWrapper(callback),
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        transmitInputAction: {
+            withCallback: (callback) => ({
+                listener: makeCustomEventWrapper(callback),
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        transmitInputActionRaw: {
+            withCallback: (callback) => ({
+                listener: makeCustomEventWrapper(callback),
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        handEntered: {
+            withCallback: (callback) => ({
+                listener: callback,
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+        handExited: {
+            withCallback: (callback) => ({
+                listener: callback,
+                registerEventFunc: defaultRegisterEventFunc,
+            }),
+        },
+    }));
+}
 
 
 /***/ }),
 
-/***/ 579:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.FlagUtilities = exports.RawBone = exports.FingerType = exports.RawFinger = exports.RawHand = exports.HandFrame = exports.WebsocketInputAction = exports.BitmaskFlags = exports.ConfigurationState = exports.TrackingServiceState = exports.InteractionType = exports.InputType = exports.HandType = exports.HandChirality = exports.ConvertInputAction = exports.TouchFreeInputAction = exports.VersionInfo = void 0;
-// Class: VersionInfo
-// This class is used when comparing the <ApiVersion> of the Tooling and the Service.
-class VersionInfo {
-}
-exports.VersionInfo = VersionInfo;
-// Group: Variables
-// Variable: ApiVersion
-// The current API version of the Tooling.
-VersionInfo.ApiVersion = '1.4.0';
-// Variable: API_HEADER_NAME
-// The name of the header we wish the Service to compare our version with.
-VersionInfo.API_HEADER_NAME = 'TfApiVersion';
-// Class: TouchFreeInputAction
-// A structure representing the Tooling version of an InputAction. This is used to pass
-// key information relating to an action that has happened on the Service.
-class TouchFreeInputAction {
-    constructor(_timestamp, _interactionType, _handType, _handChirality, _inputType, _cursorPosition, _distanceFromScreen, _progressToClick) {
-        this.Timestamp = _timestamp;
-        this.InteractionType = _interactionType;
-        this.HandType = _handType;
-        this.Chirality = _handChirality;
-        this.InputType = _inputType;
-        this.CursorPosition = _cursorPosition;
-        this.DistanceFromScreen = _distanceFromScreen;
-        this.ProgressToClick = _progressToClick;
-    }
-}
-exports.TouchFreeInputAction = TouchFreeInputAction;
-// Function: ConvertInputAction
-// Used to translate the raw actions that come across the websocket (<WebsocketInputActions>) and
-// convert them into the Tooling-friendly <TouchFreeInputAction> format.
-function ConvertInputAction(_wsInput) {
-    const yPosition = window.innerHeight - _wsInput.CursorPosition.y / window.devicePixelRatio;
-    const xPosition = _wsInput.CursorPosition.x / window.devicePixelRatio;
-    return new TouchFreeInputAction(_wsInput.Timestamp, FlagUtilities.GetInteractionTypeFromFlags(_wsInput.InteractionFlags), FlagUtilities.GetHandTypeFromFlags(_wsInput.InteractionFlags), FlagUtilities.GetChiralityFromFlags(_wsInput.InteractionFlags), FlagUtilities.GetInputTypeFromFlags(_wsInput.InteractionFlags), [xPosition, yPosition], _wsInput.DistanceFromScreen, _wsInput.ProgressToClick);
-}
-exports.ConvertInputAction = ConvertInputAction;
-// Enum: HandChirality
-// LEFT - The left hand
-// RIGHT - The right hand
-var HandChirality;
-(function (HandChirality) {
-    HandChirality[HandChirality["LEFT"] = 0] = "LEFT";
-    HandChirality[HandChirality["RIGHT"] = 1] = "RIGHT";
-})(HandChirality = exports.HandChirality || (exports.HandChirality = {}));
-// Enum: HandType
-// PRIMARY - The first hand found
-// SECONDARY - The second hand found
-var HandType;
-(function (HandType) {
-    HandType[HandType["PRIMARY"] = 0] = "PRIMARY";
-    HandType[HandType["SECONDARY"] = 1] = "SECONDARY";
-})(HandType = exports.HandType || (exports.HandType = {}));
-// Enum: InputType
-// NONE - Used to be ignored by the input system but to still receive information such as distance to screen
-// CANCEL - Used to cancel the current input if an issue occurs. Particularly when a DOWN has happened before an UP
-// DOWN - Used to begin a 'Touch' or a 'Drag'
-// MOVE - Used to move a cursor or to perform a 'Drag' after a DOWN
-// UP - Used to complete a 'Touch' or a 'Drag'
-var InputType;
-(function (InputType) {
-    InputType[InputType["NONE"] = 0] = "NONE";
-    InputType[InputType["CANCEL"] = 1] = "CANCEL";
-    InputType[InputType["DOWN"] = 2] = "DOWN";
-    InputType[InputType["MOVE"] = 3] = "MOVE";
-    InputType[InputType["UP"] = 4] = "UP";
-})(InputType = exports.InputType || (exports.InputType = {}));
-// Enum: InteractionType
-// GRAB - The user must perform a GRAB gesture to 'Touch' by bringing their fingers and thumb together
-// HOVER - The user must perform a HOVER gesture to 'Touch' by holding their hand still for a fixed time
-// PUSH - The user must perform a PUSH gesture to 'Touch' by pushing their hand toward the screen
-var InteractionType;
-(function (InteractionType) {
-    InteractionType[InteractionType["GRAB"] = 0] = "GRAB";
-    InteractionType[InteractionType["HOVER"] = 1] = "HOVER";
-    InteractionType[InteractionType["PUSH"] = 2] = "PUSH";
-    InteractionType[InteractionType["TOUCHPLANE"] = 3] = "TOUCHPLANE";
-    InteractionType[InteractionType["VELOCITYSWIPE"] = 4] = "VELOCITYSWIPE";
-})(InteractionType = exports.InteractionType || (exports.InteractionType = {}));
-// Enum: TrackingServiceState
-// UNAVAILABLE - The TouchFree service is not connected to the tracking service
-// NO_CAMERA - The TouchFree service is connected to the tracking service but there is not a camera connected
-// CONNECTED - The TouchFree service is connected to the tracking service
-var TrackingServiceState;
-(function (TrackingServiceState) {
-    TrackingServiceState[TrackingServiceState["UNAVAILABLE"] = 0] = "UNAVAILABLE";
-    TrackingServiceState[TrackingServiceState["NO_CAMERA"] = 1] = "NO_CAMERA";
-    TrackingServiceState[TrackingServiceState["CONNECTED"] = 2] = "CONNECTED";
-})(TrackingServiceState = exports.TrackingServiceState || (exports.TrackingServiceState = {}));
-// Enum: ConfigurationState
-// NOT_LOADED - The TouchFree configuration has not been loaded
-// LOADED - The TouchFree configuration has successfully been loaded
-// ERRORED - The TouchFree configuration errored on load
-var ConfigurationState;
-(function (ConfigurationState) {
-    ConfigurationState[ConfigurationState["NOT_LOADED"] = 0] = "NOT_LOADED";
-    ConfigurationState[ConfigurationState["LOADED"] = 1] = "LOADED";
-    ConfigurationState[ConfigurationState["ERRORED"] = 2] = "ERRORED";
-})(ConfigurationState = exports.ConfigurationState || (exports.ConfigurationState = {}));
-// Enum: BitmaskFlags
-// This is used to request any combination of the <HandChiralities>, <HandTypes>, <InputTypes>,
-// and <InteractionTypes> flags from the Service at once.
-var BitmaskFlags;
-(function (BitmaskFlags) {
-    BitmaskFlags[BitmaskFlags["NONE"] = 0] = "NONE";
-    // HandChirality
-    BitmaskFlags[BitmaskFlags["LEFT"] = 1] = "LEFT";
-    BitmaskFlags[BitmaskFlags["RIGHT"] = 2] = "RIGHT";
-    // Hand Type
-    BitmaskFlags[BitmaskFlags["PRIMARY"] = 4] = "PRIMARY";
-    BitmaskFlags[BitmaskFlags["SECONDARY"] = 8] = "SECONDARY";
-    // Input Types
-    BitmaskFlags[BitmaskFlags["NONE_INPUT"] = 16] = "NONE_INPUT";
-    BitmaskFlags[BitmaskFlags["CANCEL"] = 32] = "CANCEL";
-    BitmaskFlags[BitmaskFlags["DOWN"] = 64] = "DOWN";
-    BitmaskFlags[BitmaskFlags["MOVE"] = 128] = "MOVE";
-    BitmaskFlags[BitmaskFlags["UP"] = 256] = "UP";
-    // Interaction Types
-    BitmaskFlags[BitmaskFlags["GRAB"] = 512] = "GRAB";
-    BitmaskFlags[BitmaskFlags["HOVER"] = 1024] = "HOVER";
-    BitmaskFlags[BitmaskFlags["PUSH"] = 2048] = "PUSH";
-    BitmaskFlags[BitmaskFlags["TOUCHPLANE"] = 4096] = "TOUCHPLANE";
-    BitmaskFlags[BitmaskFlags["VELOCITYSWIPE"] = 8192] = "VELOCITYSWIPE";
-    // Adding elements to this list is a breaking change, and should cause at
-    // least a minor iteration of the API version UNLESS adding them at the end
-})(BitmaskFlags = exports.BitmaskFlags || (exports.BitmaskFlags = {}));
-// Class: WebsocketInputAction
-// The version of an InputAction received via the WebSocket. This must be converted into a
-// <TouchFreeInputAction> to be used by the Tooling and can be done so via ConvertInputAction.
-class WebsocketInputAction {
-    constructor(_timestamp, _interactionFlags, _cursorPosition, _distanceFromScreen, _progressToClick) {
-        this.Timestamp = _timestamp;
-        this.InteractionFlags = _interactionFlags;
-        this.CursorPosition = _cursorPosition;
-        this.DistanceFromScreen = _distanceFromScreen;
-        this.ProgressToClick = _progressToClick;
-    }
-}
-exports.WebsocketInputAction = WebsocketInputAction;
-// Class: HandFrame
-// A frame of hand data
-class HandFrame {
-    constructor() {
-        this.Hands = [];
-    }
-}
-exports.HandFrame = HandFrame;
-// Class: RawHand
-// The raw position data for a hand
-class RawHand {
-    constructor() {
-        this.CurrentPrimary = false;
-        this.Fingers = [];
-        this.WristWidth = 0;
-        this.WristPosition = { X: 0, Y: 0, Z: 0 };
-    }
-}
-exports.RawHand = RawHand;
-// Class: RawFinger
-// The raw position data for a finger of a hand
-class RawFinger {
-    constructor() {
-        this.Bones = [];
-        this.Type = FingerType.TYPE_UNKNOWN;
-    }
-}
-exports.RawFinger = RawFinger;
-// Enum: FingerType
-// What finger on a hand a finger is.
-var FingerType;
-(function (FingerType) {
-    FingerType[FingerType["TYPE_THUMB"] = 0] = "TYPE_THUMB";
-    FingerType[FingerType["TYPE_INDEX"] = 1] = "TYPE_INDEX";
-    FingerType[FingerType["TYPE_MIDDLE"] = 2] = "TYPE_MIDDLE";
-    FingerType[FingerType["TYPE_RING"] = 3] = "TYPE_RING";
-    FingerType[FingerType["TYPE_PINKY"] = 4] = "TYPE_PINKY";
-    FingerType[FingerType["TYPE_UNKNOWN"] = -1] = "TYPE_UNKNOWN";
-})(FingerType = exports.FingerType || (exports.FingerType = {}));
-// Class: RawFinger
-// The raw position data for a bone in a finger
-class RawBone {
-    constructor() {
-        this.NextJoint = { X: 0, Y: 0, Z: 0 };
-        this.PrevJoint = { X: 0, Y: 0, Z: 0 };
-    }
-}
-exports.RawBone = RawBone;
-// Class: FlagUtilities
-// A collection of Utilities to be used when working with <BitmaskFlags>.
-class FlagUtilities {
-    // Group: Functions
-    // Function: GetInteractionFlags
-    // Used to convert a collection of interaction enums to flags for sending
-    // to the Service.
-    static GetInteractionFlags(_interactionType, _handType, _chirality, _inputType) {
-        let returnVal = BitmaskFlags.NONE;
-        switch (_handType) {
-            case HandType.PRIMARY:
-                returnVal ^= BitmaskFlags.PRIMARY;
-                break;
-            case HandType.SECONDARY:
-                returnVal ^= BitmaskFlags.SECONDARY;
-                break;
-        }
-        switch (_chirality) {
-            case HandChirality.LEFT:
-                returnVal ^= BitmaskFlags.LEFT;
-                break;
-            case HandChirality.RIGHT:
-                returnVal ^= BitmaskFlags.RIGHT;
-                break;
-        }
-        switch (_inputType) {
-            case InputType.NONE:
-                returnVal ^= BitmaskFlags.NONE_INPUT;
-                break;
-            case InputType.CANCEL:
-                returnVal ^= BitmaskFlags.CANCEL;
-                break;
-            case InputType.MOVE:
-                returnVal ^= BitmaskFlags.MOVE;
-                break;
-            case InputType.UP:
-                returnVal ^= BitmaskFlags.UP;
-                break;
-            case InputType.DOWN:
-                returnVal ^= BitmaskFlags.DOWN;
-                break;
-        }
-        switch (_interactionType) {
-            case InteractionType.PUSH:
-                returnVal ^= BitmaskFlags.PUSH;
-                break;
-            case InteractionType.HOVER:
-                returnVal ^= BitmaskFlags.HOVER;
-                break;
-            case InteractionType.GRAB:
-                returnVal ^= BitmaskFlags.GRAB;
-                break;
-            case InteractionType.TOUCHPLANE:
-                returnVal ^= BitmaskFlags.TOUCHPLANE;
-                break;
-            case InteractionType.VELOCITYSWIPE:
-                returnVal ^= BitmaskFlags.VELOCITYSWIPE;
-                break;
-        }
-        return returnVal;
-    }
-    // Function: GetChiralityFromFlags
-    // Used to find which <HandChirality> _flags contains. Favours RIGHT if none or both are found.
-    static GetChiralityFromFlags(_flags) {
-        let chirality = HandChirality.RIGHT;
-        if (_flags & BitmaskFlags.RIGHT) {
-            chirality = HandChirality.RIGHT;
-        }
-        else if (_flags & BitmaskFlags.LEFT) {
-            chirality = HandChirality.LEFT;
-        }
-        else {
-            console.error("InputActionData missing: No Chirality found. Defaulting to 'RIGHT'");
-        }
-        return chirality;
-    }
-    // Function: GetHandTypeFromFlags
-    // Used to find which <HandType> _flags contains. Favours PRIMARY if none or both are found.
-    static GetHandTypeFromFlags(_flags) {
-        let handType = HandType.PRIMARY;
-        if (_flags & BitmaskFlags.PRIMARY) {
-            handType = HandType.PRIMARY;
-        }
-        else if (_flags & BitmaskFlags.SECONDARY) {
-            handType = HandType.SECONDARY;
-        }
-        else {
-            console.error("InputActionData missing: No HandData found. Defaulting to 'PRIMARY'");
-        }
-        return handType;
-    }
-    // Function: GetInputTypeFromFlags
-    // Used to find which <InputType> _flags contains. Favours NONE if none are found.
-    static GetInputTypeFromFlags(_flags) {
-        let inputType = InputType.NONE;
-        if (_flags & BitmaskFlags.NONE_INPUT) {
-            inputType = InputType.NONE;
-        }
-        else if (_flags & BitmaskFlags.CANCEL) {
-            inputType = InputType.CANCEL;
-        }
-        else if (_flags & BitmaskFlags.UP) {
-            inputType = InputType.UP;
-        }
-        else if (_flags & BitmaskFlags.DOWN) {
-            inputType = InputType.DOWN;
-        }
-        else if (_flags & BitmaskFlags.MOVE) {
-            inputType = InputType.MOVE;
-        }
-        else {
-            console.error("InputActionData missing: No InputType found. Defaulting to 'NONE'");
-        }
-        return inputType;
-    }
-    // Function: GetInteractionTypeFromFlags
-    // Used to find which <InteractionType> _flags contains. Favours PUSH if none are found.
-    static GetInteractionTypeFromFlags(_flags) {
-        let interactionType = InteractionType.PUSH;
-        if (_flags & BitmaskFlags.PUSH) {
-            interactionType = InteractionType.PUSH;
-        }
-        else if (_flags & BitmaskFlags.HOVER) {
-            interactionType = InteractionType.HOVER;
-        }
-        else if (_flags & BitmaskFlags.GRAB) {
-            interactionType = InteractionType.GRAB;
-        }
-        else if (_flags & BitmaskFlags.TOUCHPLANE) {
-            interactionType = InteractionType.TOUCHPLANE;
-        }
-        else if (_flags & BitmaskFlags.VELOCITYSWIPE) {
-            interactionType = InteractionType.VELOCITYSWIPE;
-        }
-        else {
-            console.error("InputActionData missing: No InteractionType found. Defaulting to 'PUSH'");
-        }
-        return interactionType;
-    }
-}
-exports.FlagUtilities = FlagUtilities;
-
-
-/***/ }),
-
-/***/ 718:
+/***/ 2081:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TrackingManager = void 0;
-const ConnectionManager_1 = __webpack_require__(597);
-// class: TrackingManager
-// This class provides methods for getting and setting the settings of the tracking software.
-class TrackingManager {
-    // Function: RequestTrackingState
-    // Used to request a <TrackingState> representing the current state of the tracking software's settings via the
-    // WebSocket.
-    // Provides a <TrackingState> asynchronously via the _callback parameter.
-    //
-    // If your _callback requires context it should be bound to that context via .bind()
-    static RequestTrackingState(_callback) {
-        var _a;
-        if (!_callback) {
-            console.error('Config file state request failed. This call requires a callback.');
-            return;
-        }
-        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestTrackingState(_callback);
+exports.requestTrackingChange = exports.requestTrackingState = void 0;
+const ConnectionApi_1 = __webpack_require__(3770);
+/**
+ * Request a {@link TrackingState} representing the current state of the tracking software
+ * @remarks
+ * @param callback - Callback to call with {@link TrackingState}
+ *
+ * @internal
+ */
+function requestTrackingState(callback) {
+    var _a;
+    if (!callback) {
+        console.error('Config file state request failed. This call requires a callback.');
+        return;
     }
-    // Function: RequestTrackingChange
-    // Requests a modification to the tracking software's settings. Takes any of the following arguments representing
-    // the desired changes and sends them through the <ConnectionManager>.
-    // <MaskingConfig>, <CameraConfig>, and bools for if images are allowed and if analytics are enabled.
-    //
-    // Provide a _callback if you require confirmation that your settings were used correctly.
-    // If your _callback requires context it should be bound to that context via .bind().
-    static RequestTrackingChange(_state, _callback = null) {
-        var _a;
-        (_a = ConnectionManager_1.ConnectionManager.serviceConnection()) === null || _a === void 0 ? void 0 : _a.RequestTrackingChange(_state, _callback);
-    }
-    // Function: ConvertResponseToState
-    // Converts a TrackingStateResponse to a Partial<TrackingState> to make the response easier to consume.
-    static ConvertResponseToState(_response) {
-        const response = {};
-        if (_response.mask !== undefined && _response.mask !== null) {
-            response.mask = _response.mask.content;
-        }
-        if (_response.cameraReversed !== undefined && _response.cameraReversed !== null) {
-            response.cameraReversed = _response.cameraReversed.content;
-        }
-        if (_response.allowImages !== undefined && _response.allowImages !== null) {
-            response.allowImages = _response.allowImages.content;
-        }
-        if (_response.analyticsEnabled !== undefined && _response.analyticsEnabled !== null) {
-            response.analyticsEnabled = _response.analyticsEnabled.content;
-        }
-        return response;
-    }
+    (_a = (0, ConnectionApi_1.getServiceConnection)()) === null || _a === void 0 ? void 0 : _a.requestTrackingState((trackingState) => {
+        callback(convertResponseToState(trackingState));
+    });
 }
-exports.TrackingManager = TrackingManager;
+exports.requestTrackingState = requestTrackingState;
+/**
+ * Requests a modification to the tracking software's settings.
+ * @param state - State to request. Options not provided within the object will not be modified.
+ * @param callback - Optional callback if you require confirmation that settings were changed correctly.
+ *
+ * @internal
+ */
+function requestTrackingChange(state, callback) {
+    var _a;
+    (_a = (0, ConnectionApi_1.getServiceConnection)()) === null || _a === void 0 ? void 0 : _a.requestTrackingChange(state, (trackingState) => {
+        if (callback) {
+            callback(convertResponseToState(trackingState));
+        }
+    });
+}
+exports.requestTrackingChange = requestTrackingChange;
+/**
+ * Converts a {@link TrackingStateResponse} to a partial {@link TrackingState} to make the
+ * response easier to consume.
+ * @param response - Response to convert
+ * @returns Converted Partial {@link TrackingState}
+ */
+function convertResponseToState(response) {
+    const newResponse = {};
+    if (response.mask !== undefined && response.mask !== null) {
+        newResponse.mask = response.mask.content;
+    }
+    if (response.cameraReversed !== undefined && response.cameraReversed !== null) {
+        newResponse.cameraReversed = response.cameraReversed.content;
+    }
+    if (response.allowImages !== undefined && response.allowImages !== null) {
+        newResponse.allowImages = response.allowImages.content;
+    }
+    if (response.analyticsEnabled !== undefined && response.analyticsEnabled !== null) {
+        newResponse.analyticsEnabled = response.analyticsEnabled.content;
+    }
+    return newResponse;
+}
 
 
 /***/ }),
 
-/***/ 572:
+/***/ 7046:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TrackingState = void 0;
-// Class: TrackingState
-// Represents the settings available for modification in the Tracking API
-class TrackingState {
-    constructor(_mask, _cameraReversed, _allowImages, _analyticsEnabled) {
-        this.mask = _mask;
-        this.cameraReversed = _cameraReversed;
-        this.allowImages = _allowImages;
-        this.analyticsEnabled = _analyticsEnabled;
-    }
-}
-exports.TrackingState = TrackingState;
 
 
 /***/ }),
 
-/***/ 720:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 2721:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
+/**
+ * This index should include exports for everything in the library, including
+ * internal types and functions. This single module can be consumed for access
+ * to everything in the library.
+ *
+ * The whole library is in this internal folder to discourage direct usage of
+ * modules via package import - using internals is an explicit decision. The
+ * public API is controlled by the module in the directory above.
+ */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -3029,101 +3762,56 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const TrackingManager_1 = __webpack_require__(718);
-const TrackingTypes = __importStar(__webpack_require__(572));
-module.exports = {
-    TrackingManager: TrackingManager_1.TrackingManager,
-    TrackingTypes: TrackingTypes,
-};
+__exportStar(__webpack_require__(6661), exports);
+__exportStar(__webpack_require__(2160), exports);
+__exportStar(__webpack_require__(1893), exports);
+__exportStar(__webpack_require__(7265), exports);
+__exportStar(__webpack_require__(1962), exports);
+__exportStar(__webpack_require__(4025), exports);
+__exportStar(__webpack_require__(3770), exports);
+__exportStar(__webpack_require__(2630), exports);
+__exportStar(__webpack_require__(3338), exports);
+__exportStar(__webpack_require__(9079), exports);
+__exportStar(__webpack_require__(8066), exports);
+__exportStar(__webpack_require__(9659), exports);
+__exportStar(__webpack_require__(4799), exports);
+__exportStar(__webpack_require__(7168), exports);
+__exportStar(__webpack_require__(9605), exports);
+__exportStar(__webpack_require__(5561), exports);
+__exportStar(__webpack_require__(1451), exports);
+__exportStar(__webpack_require__(7892), exports);
+__exportStar(__webpack_require__(3744), exports);
+__exportStar(__webpack_require__(6735), exports);
+__exportStar(__webpack_require__(7051), exports);
+__exportStar(__webpack_require__(5381), exports);
+__exportStar(__webpack_require__(2048), exports);
+__exportStar(__webpack_require__(1429), exports);
+__exportStar(__webpack_require__(1282), exports);
+__exportStar(__webpack_require__(3320), exports);
+__exportStar(__webpack_require__(3084), exports);
+__exportStar(__webpack_require__(3500), exports);
+__exportStar(__webpack_require__(3759), exports);
+__exportStar(__webpack_require__(7110), exports);
+__exportStar(__webpack_require__(1614), exports);
+__exportStar(__webpack_require__(1751), exports);
+__exportStar(__webpack_require__(8236), exports);
+__exportStar(__webpack_require__(9230), exports);
+__exportStar(__webpack_require__(7029), exports);
+__exportStar(__webpack_require__(2353), exports);
+__exportStar(__webpack_require__(245), exports);
+__exportStar(__webpack_require__(7503), exports);
+__exportStar(__webpack_require__(1539), exports);
+__exportStar(__webpack_require__(2081), exports);
+__exportStar(__webpack_require__(7046), exports);
 
 
 /***/ }),
 
-/***/ 26:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.MapRangeToRange = void 0;
-// Function: MapRangeToRange
-// Map _value from a range of _oldMin to _oldMax to a new range of _newMin to _newMax.
-//
-// e.g. the result of MapRangeToRange(0.5, 0, 1, 0, 8) is 4.
-function MapRangeToRange(_value, _oldMin, _oldMax, _newMin, _newMax) {
-    const oldRange = _oldMax - _oldMin;
-    let newValue;
-    if (oldRange === 0) {
-        newValue = _newMin;
-    }
-    else {
-        const newRange = _newMax - _newMin;
-        newValue = ((_value - _oldMin) * newRange) / oldRange + _newMin;
-    }
-    return newValue;
-}
-exports.MapRangeToRange = MapRangeToRange;
-
-
-/***/ }),
-
-/***/ 607:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const Configuration = __importStar(__webpack_require__(490));
-const Connection = __importStar(__webpack_require__(810));
-const Cursors = __importStar(__webpack_require__(741));
-const InputControllers = __importStar(__webpack_require__(275));
-const Plugins = __importStar(__webpack_require__(447));
-const TouchFree_1 = __importDefault(__webpack_require__(798));
-const TouchFreeToolingTypes = __importStar(__webpack_require__(579));
-const Tracking = __importStar(__webpack_require__(720));
-module.exports = Object.assign(Object.assign({}, TouchFree_1.default), { Configuration: Configuration, Connection: Connection, Cursors: Cursors, InputControllers: InputControllers, Plugins: Plugins, TouchFreeToolingTypes: TouchFreeToolingTypes, Tracking: Tracking });
-
-
-/***/ }),
-
-/***/ 982:
+/***/ 7429:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -3186,29 +3874,29 @@ Object.defineProperty(exports, "version", ({
   }
 }));
 
-var _v = _interopRequireDefault(__webpack_require__(990));
+var _v = _interopRequireDefault(__webpack_require__(3990));
 
-var _v2 = _interopRequireDefault(__webpack_require__(237));
+var _v2 = _interopRequireDefault(__webpack_require__(8237));
 
-var _v3 = _interopRequireDefault(__webpack_require__(355));
+var _v3 = _interopRequireDefault(__webpack_require__(5355));
 
-var _v4 = _interopRequireDefault(__webpack_require__(764));
+var _v4 = _interopRequireDefault(__webpack_require__(3764));
 
-var _nil = _interopRequireDefault(__webpack_require__(314));
+var _nil = _interopRequireDefault(__webpack_require__(6314));
 
-var _version = _interopRequireDefault(__webpack_require__(464));
+var _version = _interopRequireDefault(__webpack_require__(8464));
 
-var _validate = _interopRequireDefault(__webpack_require__(435));
+var _validate = _interopRequireDefault(__webpack_require__(6435));
 
-var _stringify = _interopRequireDefault(__webpack_require__(8));
+var _stringify = _interopRequireDefault(__webpack_require__(4008));
 
-var _parse = _interopRequireDefault(__webpack_require__(222));
+var _parse = _interopRequireDefault(__webpack_require__(8222));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
 
-/***/ 163:
+/***/ 4163:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3437,7 +4125,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 790:
+/***/ 4790:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3454,7 +4142,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 314:
+/***/ 6314:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3468,7 +4156,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 222:
+/***/ 8222:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -3478,7 +4166,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 
-var _validate = _interopRequireDefault(__webpack_require__(435));
+var _validate = _interopRequireDefault(__webpack_require__(6435));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3533,7 +4221,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 319:
+/***/ 3319:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3564,7 +4252,7 @@ function rng() {
 
 /***/ }),
 
-/***/ 757:
+/***/ 3757:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3674,7 +4362,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 8:
+/***/ 4008:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -3685,7 +4373,7 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 exports.unsafeStringify = unsafeStringify;
 
-var _validate = _interopRequireDefault(__webpack_require__(435));
+var _validate = _interopRequireDefault(__webpack_require__(6435));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3724,7 +4412,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 990:
+/***/ 3990:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -3734,9 +4422,9 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 
-var _rng = _interopRequireDefault(__webpack_require__(319));
+var _rng = _interopRequireDefault(__webpack_require__(3319));
 
-var _stringify = __webpack_require__(8);
+var _stringify = __webpack_require__(4008);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3837,7 +4525,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 237:
+/***/ 8237:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -3847,9 +4535,9 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 
-var _v = _interopRequireDefault(__webpack_require__(925));
+var _v = _interopRequireDefault(__webpack_require__(7925));
 
-var _md = _interopRequireDefault(__webpack_require__(163));
+var _md = _interopRequireDefault(__webpack_require__(4163));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3859,7 +4547,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 925:
+/***/ 7925:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -3870,9 +4558,9 @@ Object.defineProperty(exports, "__esModule", ({
 exports.URL = exports.DNS = void 0;
 exports["default"] = v35;
 
-var _stringify = __webpack_require__(8);
+var _stringify = __webpack_require__(4008);
 
-var _parse = _interopRequireDefault(__webpack_require__(222));
+var _parse = _interopRequireDefault(__webpack_require__(8222));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3945,7 +4633,7 @@ function v35(name, version, hashfunc) {
 
 /***/ }),
 
-/***/ 355:
+/***/ 5355:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -3955,11 +4643,11 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 
-var _native = _interopRequireDefault(__webpack_require__(790));
+var _native = _interopRequireDefault(__webpack_require__(4790));
 
-var _rng = _interopRequireDefault(__webpack_require__(319));
+var _rng = _interopRequireDefault(__webpack_require__(3319));
 
-var _stringify = __webpack_require__(8);
+var _stringify = __webpack_require__(4008);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3994,7 +4682,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 764:
+/***/ 3764:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -4004,9 +4692,9 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 
-var _v = _interopRequireDefault(__webpack_require__(925));
+var _v = _interopRequireDefault(__webpack_require__(7925));
 
-var _sha = _interopRequireDefault(__webpack_require__(757));
+var _sha = _interopRequireDefault(__webpack_require__(3757));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4016,7 +4704,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 435:
+/***/ 6435:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -4039,7 +4727,7 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 464:
+/***/ 8464:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -4049,7 +4737,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 
-var _validate = _interopRequireDefault(__webpack_require__(435));
+var _validate = _interopRequireDefault(__webpack_require__(6435));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4191,7 +4879,7 @@ exports["default"] = _default;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(607);
+/******/ 	var __webpack_exports__ = __webpack_require__(7816);
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ 	return __webpack_exports__;
