@@ -12,7 +12,7 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 7816:
+/***/ 4571:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -44,13 +44,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.internal = void 0;
-__exportStar(__webpack_require__(1920), exports);
-exports.internal = __importStar(__webpack_require__(2721));
+__exportStar(__webpack_require__(3607), exports);
+exports.internal = __importStar(__webpack_require__(5004));
 
 
 /***/ }),
 
-/***/ 1920:
+/***/ 3607:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -69,7 +69,7 @@ exports.dispatchEventCallback = exports.registerEventCallback = exports.mapRange
  * internals are required then explicit usage of the internal
  * module is recommended.
  */
-var index_1 = __webpack_require__(2721);
+var index_1 = __webpack_require__(5004);
 /** Analytics - Record analytics data while running */
 Object.defineProperty(exports, "isAnalyticsActive", ({ enumerable: true, get: function () { return index_1.isAnalyticsActive; } }));
 Object.defineProperty(exports, "getRegisteredAnalyticEventKeys", ({ enumerable: true, get: function () { return index_1.getRegisteredAnalyticEventKeys; } }));
@@ -114,13 +114,13 @@ Object.defineProperty(exports, "dispatchEventCallback", ({ enumerable: true, get
 
 /***/ }),
 
-/***/ 6661:
+/***/ 605:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.stopAnalyticsSession = exports.startAnalyticsSession = exports.unregisterAnalyticEvents = exports.registerAnalyticEvents = exports.getRegisteredAnalyticEventKeys = exports.getAnalyticSessionEvents = exports.isAnalyticsActive = void 0;
-const ConnectionApi_1 = __webpack_require__(3770);
+const ConnectionApi_1 = __webpack_require__(2158);
 const uuid_1 = __webpack_require__(7429);
 let currentSessionId;
 let analyticsHeartbeat;
@@ -259,7 +259,7 @@ exports.stopAnalyticsSession = stopAnalyticsSession;
 
 /***/ }),
 
-/***/ 2160:
+/***/ 3829:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -268,14 +268,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 1893:
+/***/ 7764:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.resetInteractionConfigFileToDefault = exports.requestConfigFileState = exports.requestConfigFileChange = exports.requestConfigState = exports.requestConfigChange = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const ConnectionApi_1 = __webpack_require__(3770);
+const ActionCode_1 = __webpack_require__(6875);
+const ConnectionApi_1 = __webpack_require__(2158);
 const uuid_1 = __webpack_require__(7429);
 /**
  * Send updated configuration to the TouchFree Service
@@ -370,7 +370,7 @@ function baseConfigChangeRequest(action, interaction, physical, callback) {
 
 /***/ }),
 
-/***/ 7265:
+/***/ 73:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -395,7 +395,7 @@ var TrackedPosition;
 
 /***/ }),
 
-/***/ 1962:
+/***/ 6875:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -503,7 +503,7 @@ var ActionCode;
 
 /***/ }),
 
-/***/ 4025:
+/***/ 4841:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -541,14 +541,14 @@ exports.setClearCallbacksInterval = setClearCallbacksInterval;
 
 /***/ }),
 
-/***/ 3770:
+/***/ 2158:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.requestServiceStatus = exports.disconnect = exports.connect = exports.getServiceConnection = exports.getCurrentServiceAddress = exports.getDefaultServiceAddress = exports.isConnected = void 0;
-const RequestTypes_1 = __webpack_require__(6735);
-const ServiceConnection_1 = __webpack_require__(7051);
+const RequestTypes_1 = __webpack_require__(1275);
+const ServiceConnection_1 = __webpack_require__(8952);
 /** The private reference to the currently managed `ServiceConnection`. */
 let currentServiceConnection = null;
 /** Default address to connect to the service websocket */
@@ -631,7 +631,7 @@ exports.requestServiceStatus = requestServiceStatus;
 
 /***/ }),
 
-/***/ 2630:
+/***/ 7164:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -694,14 +694,14 @@ var InteractionZoneState;
 
 /***/ }),
 
-/***/ 3338:
+/***/ 5838:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AnalyticsMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const ActionCode_1 = __webpack_require__(6875);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives analytics messages from the service and distributes them
  *
@@ -728,7 +728,7 @@ exports.AnalyticsMessageReceiver = AnalyticsMessageReceiver;
 
 /***/ }),
 
-/***/ 9079:
+/***/ 1330:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -828,14 +828,14 @@ BaseMessageReceiver.logNoCallbacksWarning = (response) => {
 
 /***/ }),
 
-/***/ 8066:
+/***/ 9831:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ConfigStateMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const ActionCode_1 = __webpack_require__(6875);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives configuration state messages from the service and distributes them
  *
@@ -880,13 +880,13 @@ exports.ConfigStateMessageReceiver = ConfigStateMessageReceiver;
 
 /***/ }),
 
-/***/ 9659:
+/***/ 1091:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.HandDataHandler = void 0;
-const HandDataManager_1 = __webpack_require__(3500);
+const HandDataManager_1 = __webpack_require__(3241);
 /**
  * Receives hand data messages from the service and distributes them
  *
@@ -928,15 +928,15 @@ exports.HandDataHandler = HandDataHandler;
 
 /***/ }),
 
-/***/ 4799:
+/***/ 255:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.HandPresenceMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const ConnectionTypes_1 = __webpack_require__(2630);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const ActionCode_1 = __webpack_require__(6875);
+const ConnectionTypes_1 = __webpack_require__(7164);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives hand presence messages from the service and distributes them
  *
@@ -970,17 +970,17 @@ exports.HandPresenceMessageReceiver = HandPresenceMessageReceiver;
 
 /***/ }),
 
-/***/ 7168:
+/***/ 2574:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InputActionMessageReceiver = void 0;
-const InputAction_1 = __webpack_require__(1614);
-const InputActionManager_1 = __webpack_require__(1751);
-const ActionCode_1 = __webpack_require__(1962);
-const WebsocketInputAction_1 = __webpack_require__(2048);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const InputAction_1 = __webpack_require__(9403);
+const InputActionManager_1 = __webpack_require__(7483);
+const ActionCode_1 = __webpack_require__(6875);
+const WebsocketInputAction_1 = __webpack_require__(7596);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives input action messages from the service and distributes them
  *
@@ -1056,14 +1056,14 @@ exports.InputActionMessageReceiver = InputActionMessageReceiver;
 
 /***/ }),
 
-/***/ 9605:
+/***/ 1902:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InteractionZoneMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const ActionCode_1 = __webpack_require__(6875);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives interaction zone messages from the service and distributes them
  *
@@ -1106,14 +1106,14 @@ exports.InteractionZoneMessageReceiver = InteractionZoneMessageReceiver;
 
 /***/ }),
 
-/***/ 5561:
+/***/ 5643:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ResponseMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const ActionCode_1 = __webpack_require__(6875);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives response messages from the service and distributes them
  *
@@ -1163,16 +1163,16 @@ exports.ResponseMessageReceiver = ResponseMessageReceiver;
 
 /***/ }),
 
-/***/ 1451:
+/***/ 6167:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ServiceStateMessageReceiver = void 0;
-const TouchFreeEvents_1 = __webpack_require__(1539);
-const ActionCode_1 = __webpack_require__(1962);
-const RequestTypes_1 = __webpack_require__(6735);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const TouchFreeEvents_1 = __webpack_require__(5961);
+const ActionCode_1 = __webpack_require__(6875);
+const RequestTypes_1 = __webpack_require__(1275);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives service state messages from the service and distributes them
  *
@@ -1221,14 +1221,14 @@ exports.ServiceStateMessageReceiver = ServiceStateMessageReceiver;
 
 /***/ }),
 
-/***/ 7892:
+/***/ 940:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TrackingStateMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const ActionCode_1 = __webpack_require__(6875);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives tracking state messages from the service and distributes them
  *
@@ -1252,14 +1252,14 @@ exports.TrackingStateMessageReceiver = TrackingStateMessageReceiver;
 
 /***/ }),
 
-/***/ 3744:
+/***/ 206:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.VersionHandshakeMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(1962);
-const BaseMessageReceiver_1 = __webpack_require__(9079);
+const ActionCode_1 = __webpack_require__(6875);
+const BaseMessageReceiver_1 = __webpack_require__(1330);
 /**
  * Receives handshake messages from the service and distributes them
  *
@@ -1321,7 +1321,7 @@ exports.VersionHandshakeMessageReceiver = VersionHandshakeMessageReceiver;
 
 /***/ }),
 
-/***/ 6735:
+/***/ 1275:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -1348,27 +1348,27 @@ exports.convertResponseToServiceState = convertResponseToServiceState;
 
 /***/ }),
 
-/***/ 7051:
+/***/ 8952:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ServiceConnection = void 0;
-const TouchFreeEvents_1 = __webpack_require__(1539);
-const ActionCode_1 = __webpack_require__(1962);
-const CallbackLists_1 = __webpack_require__(4025);
-const ConnectionTypes_1 = __webpack_require__(2630);
-const AnalyticsMessageReceiver_1 = __webpack_require__(3338);
-const ConfigStateMessageReceiver_1 = __webpack_require__(8066);
-const HandDataHandler_1 = __webpack_require__(9659);
-const HandPresenceMessageReceiver_1 = __webpack_require__(4799);
-const InputActionMessageReceiver_1 = __webpack_require__(7168);
-const InteractionZoneMessageReceiver_1 = __webpack_require__(9605);
-const ResponseMessageReceiver_1 = __webpack_require__(5561);
-const ServiceStateMessageReceiver_1 = __webpack_require__(1451);
-const TrackingStateMessageReceiver_1 = __webpack_require__(7892);
-const VersionHandshakeMessageReceiver_1 = __webpack_require__(3744);
-const ServiceTypes_1 = __webpack_require__(5381);
+const TouchFreeEvents_1 = __webpack_require__(5961);
+const ActionCode_1 = __webpack_require__(6875);
+const CallbackLists_1 = __webpack_require__(4841);
+const ConnectionTypes_1 = __webpack_require__(7164);
+const AnalyticsMessageReceiver_1 = __webpack_require__(5838);
+const ConfigStateMessageReceiver_1 = __webpack_require__(9831);
+const HandDataHandler_1 = __webpack_require__(1091);
+const HandPresenceMessageReceiver_1 = __webpack_require__(255);
+const InputActionMessageReceiver_1 = __webpack_require__(2574);
+const InteractionZoneMessageReceiver_1 = __webpack_require__(1902);
+const ResponseMessageReceiver_1 = __webpack_require__(5643);
+const ServiceStateMessageReceiver_1 = __webpack_require__(6167);
+const TrackingStateMessageReceiver_1 = __webpack_require__(940);
+const VersionHandshakeMessageReceiver_1 = __webpack_require__(206);
+const ServiceTypes_1 = __webpack_require__(6252);
 const uuid_1 = __webpack_require__(7429);
 const createMessageReceivers = (serviceConnection) => {
     const callbacks = serviceConnection.getCallbackLists();
@@ -1720,7 +1720,7 @@ var ServiceBinaryDataTypes;
 
 /***/ }),
 
-/***/ 5381:
+/***/ 6252:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -1745,13 +1745,13 @@ exports.VERSION_INFO = {
 
 /***/ }),
 
-/***/ 2048:
+/***/ 7596:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getInteractionTypeFromFlags = exports.getInputTypeFromFlags = exports.getHandTypeFromFlags = exports.getChiralityFromFlags = exports.getInteractionFlags = exports.convertInputAction = exports.BitmaskFlags = void 0;
-const InputAction_1 = __webpack_require__(1614);
+const InputAction_1 = __webpack_require__(9403);
 /**
  * Used to request a combination of the {@link HandChirality}, {@link HandType},
  * {@link InputType}, and {@link InteractionType} flags from the Service at once.
@@ -1991,7 +1991,7 @@ exports.getInteractionTypeFromFlags = getInteractionTypeFromFlags;
 
 /***/ }),
 
-/***/ 1429:
+/***/ 4773:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2019,16 +2019,16 @@ exports.setCurrentCursor = setCurrentCursor;
 
 /***/ }),
 
-/***/ 1282:
+/***/ 4925:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DotCursor = void 0;
-const InputAction_1 = __webpack_require__(1614);
-const Utilities_1 = __webpack_require__(245);
-const TouchFreeEvents_1 = __webpack_require__(1539);
-const TouchlessCursor_1 = __webpack_require__(3084);
+const InputAction_1 = __webpack_require__(9403);
+const Utilities_1 = __webpack_require__(6593);
+const TouchFreeEvents_1 = __webpack_require__(5961);
+const TouchlessCursor_1 = __webpack_require__(1004);
 /**
  * {@link TouchlessCursor} which positions a dot on the screen at the hand location,
  * reacting to the current {@link TouchFreeInputAction.ProgressToClick}.
@@ -2245,16 +2245,16 @@ exports.DotCursor = DotCursor;
 
 /***/ }),
 
-/***/ 3320:
+/***/ 9080:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SVGCursor = void 0;
-const InputAction_1 = __webpack_require__(1614);
-const Utilities_1 = __webpack_require__(245);
-const TouchFreeEvents_1 = __webpack_require__(1539);
-const TouchlessCursor_1 = __webpack_require__(3084);
+const InputAction_1 = __webpack_require__(9403);
+const Utilities_1 = __webpack_require__(6593);
+const TouchFreeEvents_1 = __webpack_require__(5961);
+const TouchlessCursor_1 = __webpack_require__(1004);
 /**
  * {@link TouchlessCursor} created with SVG elements.
  * @public
@@ -2508,13 +2508,13 @@ exports.SVGCursor = SVGCursor;
 
 /***/ }),
 
-/***/ 3084:
+/***/ 1004:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TouchlessCursor = void 0;
-const TouchFreeEvents_1 = __webpack_require__(1539);
+const TouchFreeEvents_1 = __webpack_require__(5961);
 /**
  * Base class for creating touchless cursors.
  *
@@ -2634,7 +2634,7 @@ exports.TouchlessCursor = TouchlessCursor;
 
 /***/ }),
 
-/***/ 3500:
+/***/ 3241:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2680,7 +2680,7 @@ HandDataManager.lastFrame = undefined;
 
 /***/ }),
 
-/***/ 3759:
+/***/ 6828:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2763,17 +2763,17 @@ exports.RawBone = RawBone;
 
 /***/ }),
 
-/***/ 7110:
+/***/ 7607:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.init = void 0;
-const ConnectionApi_1 = __webpack_require__(3770);
-const CurrentCursor_1 = __webpack_require__(1429);
-const SvgCursor_1 = __webpack_require__(3320);
-const CurrentInputController_1 = __webpack_require__(7029);
-const WebInputController_1 = __webpack_require__(2353);
+const ConnectionApi_1 = __webpack_require__(2158);
+const CurrentCursor_1 = __webpack_require__(4773);
+const SvgCursor_1 = __webpack_require__(9080);
+const CurrentInputController_1 = __webpack_require__(4366);
+const WebInputController_1 = __webpack_require__(5570);
 /**
  * Initializes TouchFree - must be called before any functionality requiring a TouchFree service connection.
  *
@@ -2797,7 +2797,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 1614:
+/***/ 9403:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2869,13 +2869,13 @@ var InteractionType;
 
 /***/ }),
 
-/***/ 1751:
+/***/ 7483:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InputActionManager = void 0;
-const TouchFreeEvents_1 = __webpack_require__(1539);
+const TouchFreeEvents_1 = __webpack_require__(5961);
 /**
  * Manages all `TouchFreeInputAction` events, dispatching a `transmitInputAction` event for each action received.
  * @remarks
@@ -2935,7 +2935,7 @@ InputActionManager.plugins = null;
 
 /***/ }),
 
-/***/ 8236:
+/***/ 6649:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2987,14 +2987,14 @@ exports.InputActionPlugin = InputActionPlugin;
 
 /***/ }),
 
-/***/ 9230:
+/***/ 9775:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.BaseInputController = void 0;
-const InputAction_1 = __webpack_require__(1614);
-const TouchFreeEvents_1 = __webpack_require__(1539);
+const InputAction_1 = __webpack_require__(9403);
+const TouchFreeEvents_1 = __webpack_require__(5961);
 /**
  * Converts {@link TouchFreeInputAction | TouchFreeInputActions} into inputs for specific environments.
  *
@@ -3054,7 +3054,7 @@ BaseInputController.instantiated = false;
 
 /***/ }),
 
-/***/ 7029:
+/***/ 4366:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3074,15 +3074,15 @@ exports.setInputController = setInputController;
 
 /***/ }),
 
-/***/ 2353:
+/***/ 5570:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.WebInputController = void 0;
-const InputAction_1 = __webpack_require__(1614);
-const TouchFreeEvents_1 = __webpack_require__(1539);
-const BaseInputController_1 = __webpack_require__(9230);
+const InputAction_1 = __webpack_require__(9403);
+const TouchFreeEvents_1 = __webpack_require__(5961);
+const BaseInputController_1 = __webpack_require__(9775);
 /**
  * Provides web PointerEvents from incoming {@link TouchFreeInputAction}s.
  *
@@ -3452,7 +3452,7 @@ var ScrollDirection;
 
 /***/ }),
 
-/***/ 245:
+/***/ 6593:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3489,7 +3489,7 @@ exports.mapRangeToRange = mapRangeToRange;
 
 /***/ }),
 
-/***/ 7503:
+/***/ 1991:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3498,13 +3498,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 1539:
+/***/ 5961:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.dispatchEventCallback = exports.registerEventCallback = void 0;
-const ConnectionApi_1 = __webpack_require__(3770);
+const ConnectionApi_1 = __webpack_require__(2158);
 const touchFreeEventTarget = new EventTarget();
 /**
  * Registers a callback function to be called when a specific event occurs
@@ -3662,13 +3662,13 @@ function eventImplementations() {
 
 /***/ }),
 
-/***/ 2081:
+/***/ 2178:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.requestTrackingChange = exports.requestTrackingState = void 0;
-const ConnectionApi_1 = __webpack_require__(3770);
+const ConnectionApi_1 = __webpack_require__(2158);
 /**
  * Request a {@link TrackingState} representing the current state of the tracking software
  * @remarks
@@ -3729,7 +3729,7 @@ function convertResponseToState(response) {
 
 /***/ }),
 
-/***/ 7046:
+/***/ 5152:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3738,7 +3738,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 2721:
+/***/ 5004:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -3766,47 +3766,47 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-__exportStar(__webpack_require__(6661), exports);
-__exportStar(__webpack_require__(2160), exports);
-__exportStar(__webpack_require__(1893), exports);
-__exportStar(__webpack_require__(7265), exports);
-__exportStar(__webpack_require__(1962), exports);
-__exportStar(__webpack_require__(4025), exports);
-__exportStar(__webpack_require__(3770), exports);
-__exportStar(__webpack_require__(2630), exports);
-__exportStar(__webpack_require__(3338), exports);
-__exportStar(__webpack_require__(9079), exports);
-__exportStar(__webpack_require__(8066), exports);
-__exportStar(__webpack_require__(9659), exports);
-__exportStar(__webpack_require__(4799), exports);
-__exportStar(__webpack_require__(7168), exports);
-__exportStar(__webpack_require__(9605), exports);
-__exportStar(__webpack_require__(5561), exports);
-__exportStar(__webpack_require__(1451), exports);
-__exportStar(__webpack_require__(7892), exports);
-__exportStar(__webpack_require__(3744), exports);
-__exportStar(__webpack_require__(6735), exports);
-__exportStar(__webpack_require__(7051), exports);
-__exportStar(__webpack_require__(5381), exports);
-__exportStar(__webpack_require__(2048), exports);
-__exportStar(__webpack_require__(1429), exports);
-__exportStar(__webpack_require__(1282), exports);
-__exportStar(__webpack_require__(3320), exports);
-__exportStar(__webpack_require__(3084), exports);
-__exportStar(__webpack_require__(3500), exports);
-__exportStar(__webpack_require__(3759), exports);
-__exportStar(__webpack_require__(7110), exports);
-__exportStar(__webpack_require__(1614), exports);
-__exportStar(__webpack_require__(1751), exports);
-__exportStar(__webpack_require__(8236), exports);
-__exportStar(__webpack_require__(9230), exports);
-__exportStar(__webpack_require__(7029), exports);
-__exportStar(__webpack_require__(2353), exports);
-__exportStar(__webpack_require__(245), exports);
-__exportStar(__webpack_require__(7503), exports);
-__exportStar(__webpack_require__(1539), exports);
-__exportStar(__webpack_require__(2081), exports);
-__exportStar(__webpack_require__(7046), exports);
+__exportStar(__webpack_require__(605), exports);
+__exportStar(__webpack_require__(3829), exports);
+__exportStar(__webpack_require__(7764), exports);
+__exportStar(__webpack_require__(73), exports);
+__exportStar(__webpack_require__(6875), exports);
+__exportStar(__webpack_require__(4841), exports);
+__exportStar(__webpack_require__(2158), exports);
+__exportStar(__webpack_require__(7164), exports);
+__exportStar(__webpack_require__(5838), exports);
+__exportStar(__webpack_require__(1330), exports);
+__exportStar(__webpack_require__(9831), exports);
+__exportStar(__webpack_require__(1091), exports);
+__exportStar(__webpack_require__(255), exports);
+__exportStar(__webpack_require__(2574), exports);
+__exportStar(__webpack_require__(1902), exports);
+__exportStar(__webpack_require__(5643), exports);
+__exportStar(__webpack_require__(6167), exports);
+__exportStar(__webpack_require__(940), exports);
+__exportStar(__webpack_require__(206), exports);
+__exportStar(__webpack_require__(1275), exports);
+__exportStar(__webpack_require__(8952), exports);
+__exportStar(__webpack_require__(6252), exports);
+__exportStar(__webpack_require__(7596), exports);
+__exportStar(__webpack_require__(4773), exports);
+__exportStar(__webpack_require__(4925), exports);
+__exportStar(__webpack_require__(9080), exports);
+__exportStar(__webpack_require__(1004), exports);
+__exportStar(__webpack_require__(3241), exports);
+__exportStar(__webpack_require__(6828), exports);
+__exportStar(__webpack_require__(7607), exports);
+__exportStar(__webpack_require__(9403), exports);
+__exportStar(__webpack_require__(7483), exports);
+__exportStar(__webpack_require__(6649), exports);
+__exportStar(__webpack_require__(9775), exports);
+__exportStar(__webpack_require__(4366), exports);
+__exportStar(__webpack_require__(5570), exports);
+__exportStar(__webpack_require__(6593), exports);
+__exportStar(__webpack_require__(1991), exports);
+__exportStar(__webpack_require__(5961), exports);
+__exportStar(__webpack_require__(2178), exports);
+__exportStar(__webpack_require__(5152), exports);
 
 
 /***/ }),
@@ -4879,7 +4879,7 @@ exports["default"] = _default;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(7816);
+/******/ 	var __webpack_exports__ = __webpack_require__(4571);
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ 	return __webpack_exports__;
