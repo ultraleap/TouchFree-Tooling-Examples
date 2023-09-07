@@ -1,7 +1,7 @@
 import surferImg from "./Images/surfer.png";
 import InteractionButton from "./InteractionButton";
 import "./style.css";
-import { init, registerEventCallback, DotCursor, InputType, TouchFreeInputAction } from "TouchFree/src/index";
+import { init, registerEventCallback, DotCursor, InputType, TouchFreeInputAction } from "touchfree/src/index";
 import React, { useEffect, useRef } from "react";
 
 const colors: string[] = [
@@ -34,7 +34,7 @@ const App: React.FC = () => {
     );
 
     return () => {
-      inputHandler.UnregisterEventCallback();
+      inputHandler.unregisterEventCallback();
     };
   }, []);
 

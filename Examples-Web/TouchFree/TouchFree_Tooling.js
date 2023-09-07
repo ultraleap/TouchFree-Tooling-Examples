@@ -4,21 +4,123 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["TouchFree"] = factory();
+		exports["touchfree"] = factory();
 	else
-		root["TouchFree"] = factory();
+		root["touchfree"] = factory();
 })(self, () => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 605:
+/***/ 7816:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.internal = void 0;
+__exportStar(__webpack_require__(1920), exports);
+exports.internal = __importStar(__webpack_require__(2721));
+
+
+/***/ }),
+
+/***/ 1920:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+/**
+ * @packageDocumentation
+ * TouchFree is an ecosystem of software products for enabling
+ * touchless interfaces. This package is a client package
+ * for integrating TouchFree into web application.
+ * See https://docs.ultraleap.com/touchfree-user-manual/
+ */
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.dispatchEventCallback = exports.registerEventCallback = exports.mapRangeToRange = exports.InteractionType = exports.InputType = exports.HandType = exports.HandChirality = exports.init = exports.setCurrentCursor = exports.getCurrentCursor = exports.TouchlessCursor = exports.SVGCursor = exports.DotCursor = exports.InteractionZoneState = exports.HandPresenceState = exports.ConfigurationState = exports.TrackingServiceState = exports.requestServiceStatus = exports.getDefaultServiceAddress = exports.getCurrentServiceAddress = exports.disconnect = exports.connect = exports.isConnected = exports.TrackedPosition = exports.resetInteractionConfigFileToDefault = exports.requestConfigFileState = exports.requestConfigFileChange = exports.requestConfigState = exports.requestConfigChange = exports.stopAnalyticsSession = exports.startAnalyticsSession = exports.unregisterAnalyticEvents = exports.registerAnalyticEvents = exports.getRegisteredAnalyticEventKeys = exports.isAnalyticsActive = void 0;
+/**
+ * This file exports the public API surface of the library.
+ * Internals should not be leaked from this export, if any
+ * internals are required then explicit usage of the internal
+ * module is recommended.
+ */
+var index_1 = __webpack_require__(2721);
+/** Analytics - Record analytics data while running */
+Object.defineProperty(exports, "isAnalyticsActive", ({ enumerable: true, get: function () { return index_1.isAnalyticsActive; } }));
+Object.defineProperty(exports, "getRegisteredAnalyticEventKeys", ({ enumerable: true, get: function () { return index_1.getRegisteredAnalyticEventKeys; } }));
+Object.defineProperty(exports, "registerAnalyticEvents", ({ enumerable: true, get: function () { return index_1.registerAnalyticEvents; } }));
+Object.defineProperty(exports, "unregisterAnalyticEvents", ({ enumerable: true, get: function () { return index_1.unregisterAnalyticEvents; } }));
+Object.defineProperty(exports, "startAnalyticsSession", ({ enumerable: true, get: function () { return index_1.startAnalyticsSession; } }));
+Object.defineProperty(exports, "stopAnalyticsSession", ({ enumerable: true, get: function () { return index_1.stopAnalyticsSession; } }));
+/** Configuration - Change configuration of the TouchFree Service */
+Object.defineProperty(exports, "requestConfigChange", ({ enumerable: true, get: function () { return index_1.requestConfigChange; } }));
+Object.defineProperty(exports, "requestConfigState", ({ enumerable: true, get: function () { return index_1.requestConfigState; } }));
+Object.defineProperty(exports, "requestConfigFileChange", ({ enumerable: true, get: function () { return index_1.requestConfigFileChange; } }));
+Object.defineProperty(exports, "requestConfigFileState", ({ enumerable: true, get: function () { return index_1.requestConfigFileState; } }));
+Object.defineProperty(exports, "resetInteractionConfigFileToDefault", ({ enumerable: true, get: function () { return index_1.resetInteractionConfigFileToDefault; } }));
+Object.defineProperty(exports, "TrackedPosition", ({ enumerable: true, get: function () { return index_1.TrackedPosition; } }));
+/** Connection - Manage a connection to the TouchFree service and messages send or receive messages */
+Object.defineProperty(exports, "isConnected", ({ enumerable: true, get: function () { return index_1.isConnected; } }));
+Object.defineProperty(exports, "connect", ({ enumerable: true, get: function () { return index_1.connect; } }));
+Object.defineProperty(exports, "disconnect", ({ enumerable: true, get: function () { return index_1.disconnect; } }));
+Object.defineProperty(exports, "getCurrentServiceAddress", ({ enumerable: true, get: function () { return index_1.getCurrentServiceAddress; } }));
+Object.defineProperty(exports, "getDefaultServiceAddress", ({ enumerable: true, get: function () { return index_1.getDefaultServiceAddress; } }));
+Object.defineProperty(exports, "requestServiceStatus", ({ enumerable: true, get: function () { return index_1.requestServiceStatus; } }));
+Object.defineProperty(exports, "TrackingServiceState", ({ enumerable: true, get: function () { return index_1.TrackingServiceState; } }));
+Object.defineProperty(exports, "ConfigurationState", ({ enumerable: true, get: function () { return index_1.ConfigurationState; } }));
+Object.defineProperty(exports, "HandPresenceState", ({ enumerable: true, get: function () { return index_1.HandPresenceState; } }));
+Object.defineProperty(exports, "InteractionZoneState", ({ enumerable: true, get: function () { return index_1.InteractionZoneState; } }));
+/** Cursors - Multiple cursor styles/implementations and current cursor management */
+Object.defineProperty(exports, "DotCursor", ({ enumerable: true, get: function () { return index_1.DotCursor; } }));
+Object.defineProperty(exports, "SVGCursor", ({ enumerable: true, get: function () { return index_1.SVGCursor; } }));
+Object.defineProperty(exports, "TouchlessCursor", ({ enumerable: true, get: function () { return index_1.TouchlessCursor; } }));
+Object.defineProperty(exports, "getCurrentCursor", ({ enumerable: true, get: function () { return index_1.getCurrentCursor; } }));
+Object.defineProperty(exports, "setCurrentCursor", ({ enumerable: true, get: function () { return index_1.setCurrentCursor; } }));
+Object.defineProperty(exports, "init", ({ enumerable: true, get: function () { return index_1.init; } }));
+Object.defineProperty(exports, "HandChirality", ({ enumerable: true, get: function () { return index_1.HandChirality; } }));
+Object.defineProperty(exports, "HandType", ({ enumerable: true, get: function () { return index_1.HandType; } }));
+Object.defineProperty(exports, "InputType", ({ enumerable: true, get: function () { return index_1.InputType; } }));
+Object.defineProperty(exports, "InteractionType", ({ enumerable: true, get: function () { return index_1.InteractionType; } }));
+/** Math types and functions */
+Object.defineProperty(exports, "mapRangeToRange", ({ enumerable: true, get: function () { return index_1.mapRangeToRange; } }));
+Object.defineProperty(exports, "registerEventCallback", ({ enumerable: true, get: function () { return index_1.registerEventCallback; } }));
+Object.defineProperty(exports, "dispatchEventCallback", ({ enumerable: true, get: function () { return index_1.dispatchEventCallback; } }));
+
+
+/***/ }),
+
+/***/ 6661:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.stopAnalyticsSession = exports.startAnalyticsSession = exports.unregisterAnalyticEvents = exports.registerAnalyticEvents = exports.getRegisteredAnalyticEventKeys = exports.getAnalyticSessionEvents = exports.isAnalyticsActive = void 0;
-const ConnectionApi_1 = __webpack_require__(2158);
+const ConnectionApi_1 = __webpack_require__(3770);
 const uuid_1 = __webpack_require__(7429);
 let currentSessionId;
 let analyticsHeartbeat;
@@ -34,7 +136,7 @@ const isAnalyticsActive = () => currentSessionId !== undefined;
 exports.isAnalyticsActive = isAnalyticsActive;
 /**
  * Returns a copy of an indexed object detailing how many times each analytics event has been triggered
- * @public
+ * @internal
  */
 const getAnalyticSessionEvents = () => Object.assign({}, sessionEvents);
 exports.getAnalyticSessionEvents = getAnalyticSessionEvents;
@@ -157,7 +259,7 @@ exports.stopAnalyticsSession = stopAnalyticsSession;
 
 /***/ }),
 
-/***/ 3829:
+/***/ 2160:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -166,14 +268,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 7764:
+/***/ 1893:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.resetInteractionConfigFileToDefault = exports.requestConfigFileState = exports.requestConfigFileChange = exports.requestConfigState = exports.requestConfigChange = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const ConnectionApi_1 = __webpack_require__(2158);
+const ActionCode_1 = __webpack_require__(1962);
+const ConnectionApi_1 = __webpack_require__(3770);
 const uuid_1 = __webpack_require__(7429);
 /**
  * Send updated configuration to the TouchFree Service
@@ -268,7 +370,7 @@ function baseConfigChangeRequest(action, interaction, physical, callback) {
 
 /***/ }),
 
-/***/ 73:
+/***/ 7265:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -293,7 +395,7 @@ var TrackedPosition;
 
 /***/ }),
 
-/***/ 6875:
+/***/ 1962:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -401,91 +503,52 @@ var ActionCode;
 
 /***/ }),
 
-/***/ 4097:
+/***/ 4025:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.CallbackHandler = void 0;
-/**
- * Holds all of the callbacks that are pending response from the service.
- *
- * @internal
- */
-class CallbackHandler {
-    /**
-     * Starts a regular interval to {@link clearUnresponsivePromises} every {@link callbackClearTimer}
-     */
-    constructor() {
-        /**
-         * The amount of time between response callback handling to eliminate unhandled callbacks.
-         * Prevents a performance death spiral scenario.
-         */
-        this.callbackClearTimer = 300;
-        /**
-         * A {@link CallbackList} awaiting {@link WebSocketResponse} responses from the Service.
-         */
-        this.analyticsRequestCallbacks = {};
-        /**
-         * A {@link CallbackList} awaiting {@link ConfigState} responses from the Service.
-         */
-        this.configStateCallbacks = {};
-        /**
-         * A {@link CallbackList} awaiting {@link WebSocketResponse} responses from the Service.
-         */
-        this.responseCallbacks = {};
-        /**
-         * A {@link CallbackList} awaiting {@link ServiceStateResponse} responses from the Service.
-         */
-        this.serviceStatusCallbacks = {};
-        /**
-         * A {@link CallbackList} awaiting {@link TrackingStateResponse} responses from the Service.
-         */
-        this.trackingStateCallbacks = {};
-        /**
-         * A {@link CallbackList} awaiting {@link WebSocketResponse} responses from the Service.
-         */
-        this.handshakeCallbacks = {};
-        setInterval(this.clearUnresponsivePromises, this.callbackClearTimer);
-    }
-    /**
-     * Clear {@link responseCallbacks} that have been around for more than {@link callbackClearTimer}.
-     */
-    clearUnresponsivePromises() {
-        const lastClearTime = Date.now();
-        CallbackHandler.clearUnresponsiveItems(lastClearTime, this.analyticsRequestCallbacks);
-        CallbackHandler.clearUnresponsiveItems(lastClearTime, this.configStateCallbacks);
-        CallbackHandler.clearUnresponsiveItems(lastClearTime, this.responseCallbacks);
-        CallbackHandler.clearUnresponsiveItems(lastClearTime, this.serviceStatusCallbacks);
-        CallbackHandler.clearUnresponsiveItems(lastClearTime, this.trackingStateCallbacks);
-        CallbackHandler.clearUnresponsiveItems(lastClearTime, this.handshakeCallbacks);
-    }
-    static clearUnresponsiveItems(lastClearTime, callbacks) {
-        if (callbacks !== undefined) {
+exports.setClearCallbacksInterval = exports.createDefaultCallbackLists = void 0;
+const createDefaultCallbackLists = () => ({
+    analyticsRequestCallbacks: {},
+    configStateCallbacks: {},
+    handshakeCallbacks: {},
+    responseCallbacks: {},
+    serviceStatusCallbacks: {},
+    trackingStateCallbacks: {},
+});
+exports.createDefaultCallbackLists = createDefaultCallbackLists;
+const setClearCallbacksInterval = (timeoutMs, intervalDurationMs, callbackLists) => {
+    const clearExpiredCallbacks = () => {
+        const currentTime = Date.now();
+        Object.values(callbackLists).forEach((callbacks) => {
+            if (callbacks === undefined)
+                return;
             for (const key in callbacks) {
-                if (callbacks[key].timestamp < lastClearTime) {
+                if (currentTime - callbacks[key].timestamp > timeoutMs) {
                     delete callbacks[key];
                 }
                 else {
                     break;
                 }
             }
-        }
-    }
-}
-exports.CallbackHandler = CallbackHandler;
+        });
+    };
+    setInterval(clearExpiredCallbacks, intervalDurationMs);
+};
+exports.setClearCallbacksInterval = setClearCallbacksInterval;
 
 
 /***/ }),
 
-/***/ 2158:
+/***/ 3770:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.requestServiceStatus = exports.disconnect = exports.connect = exports.getServiceConnection = exports.getCurrentServiceAddress = exports.getDefaultServiceAddress = exports.isConnected = void 0;
-const ConnectionTypes_1 = __webpack_require__(7164);
-const ServiceConnection_1 = __webpack_require__(8952);
+const RequestTypes_1 = __webpack_require__(6735);
+const ServiceConnection_1 = __webpack_require__(7051);
 /** The private reference to the currently managed `ServiceConnection`. */
 let currentServiceConnection = null;
 /** Default address to connect to the service websocket */
@@ -561,19 +624,19 @@ function requestServiceStatus(callback) {
         console.error('Request failed. This is due to a missing callback');
         return;
     }
-    (_a = getServiceConnection()) === null || _a === void 0 ? void 0 : _a.requestServiceStatus((detail) => callback((0, ConnectionTypes_1.convertResponseToServiceState)(detail)));
+    (_a = getServiceConnection()) === null || _a === void 0 ? void 0 : _a.requestServiceStatus((detail) => callback((0, RequestTypes_1.convertResponseToServiceState)(detail)));
 }
 exports.requestServiceStatus = requestServiceStatus;
 
 
 /***/ }),
 
-/***/ 7164:
+/***/ 2630:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.convertResponseToServiceState = exports.InteractionZoneState = exports.HandPresenceState = exports.ConfigurationState = exports.TrackingServiceState = void 0;
+exports.InteractionZoneState = exports.HandPresenceState = exports.ConfigurationState = exports.TrackingServiceState = void 0;
 /**
  * State of the Ultraleap Tracking Service that TouchFree Service connects to
  * @public
@@ -627,35 +690,18 @@ var InteractionZoneState;
     /** Sent when the "active" hand leaves the interaction zone */
     InteractionZoneState[InteractionZoneState["HAND_EXITED"] = 1] = "HAND_EXITED";
 })(InteractionZoneState = exports.InteractionZoneState || (exports.InteractionZoneState = {}));
-/**
- * Converts a response type to {@link ServiceState}
- * @param response - Response object from the service
- * @returns Converted ServiceState
- * @internal
- */
-function convertResponseToServiceState(response) {
-    return {
-        cameraFirmwareVersion: response.cameraFirmwareVersion,
-        cameraSerial: response.cameraSerial,
-        configurationState: response.configurationState,
-        touchFreeServiceVersion: response.serviceVersion,
-        trackingServiceState: response.trackingServiceState,
-        trackingServiceVersion: response.trackingVersion,
-    };
-}
-exports.convertResponseToServiceState = convertResponseToServiceState;
 
 
 /***/ }),
 
-/***/ 5838:
+/***/ 3338:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AnalyticsMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives analytics messages from the service and distributes them
  *
@@ -665,7 +711,7 @@ class AnalyticsMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver
     /**
      * Sets up consuming messages from a queue and passing them to the callbacks
      */
-    constructor(callbackHandler) {
+    constructor(callbackList) {
         super(true);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
@@ -674,7 +720,7 @@ class AnalyticsMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver
             ActionCode_1.ActionCode.ANALYTICS_SESSION_REQUEST,
             ActionCode_1.ActionCode.ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST,
         ];
-        this.setup(() => this.checkQueue(this.queue, callbackHandler.analyticsRequestCallbacks));
+        this.setup(() => this.checkQueue(this.queue, callbackList));
     }
 }
 exports.AnalyticsMessageReceiver = AnalyticsMessageReceiver;
@@ -682,7 +728,7 @@ exports.AnalyticsMessageReceiver = AnalyticsMessageReceiver;
 
 /***/ }),
 
-/***/ 1330:
+/***/ 9079:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -778,30 +824,18 @@ BaseMessageReceiver.logNoCallbacksWarning = (response) => {
         '\n Original request - ' +
         response.originalRequest);
 };
-BaseMessageReceiver.clearUnresponsiveItems = (lastClearTime, callbacks) => {
-    if (callbacks !== undefined) {
-        for (const key in callbacks) {
-            if (callbacks[key].timestamp < lastClearTime) {
-                delete callbacks[key];
-            }
-            else {
-                break;
-            }
-        }
-    }
-};
 
 
 /***/ }),
 
-/***/ 9831:
+/***/ 8066:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ConfigStateMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives configuration state messages from the service and distributes them
  *
@@ -811,7 +845,7 @@ class ConfigStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiv
     /**
      * Sets up consuming messages from a queue and passing them to the callbacks
      */
-    constructor(callbackHandler) {
+    constructor(callbackList) {
         super(true);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
@@ -824,10 +858,10 @@ class ConfigStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiv
         /**
          * Checks {@link queue} for a single {@link configState} and handles it.
          */
-        this.checkForState = (callbackHandler) => {
+        this.checkForState = (callbackList) => {
             const configState = this.queue.shift();
             if (configState) {
-                const configResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(configState, callbackHandler.configStateCallbacks);
+                const configResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(configState, callbackList);
                 switch (configResult) {
                     case 'NoCallbacksFound':
                         console.warn('Received a ConfigState message that did not match a callback.');
@@ -838,7 +872,7 @@ class ConfigStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiv
                 }
             }
         };
-        this.setup(() => this.checkForState(callbackHandler));
+        this.setup(() => this.checkForState(callbackList));
     }
 }
 exports.ConfigStateMessageReceiver = ConfigStateMessageReceiver;
@@ -846,13 +880,13 @@ exports.ConfigStateMessageReceiver = ConfigStateMessageReceiver;
 
 /***/ }),
 
-/***/ 1091:
+/***/ 9659:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.HandDataHandler = void 0;
-const HandDataManager_1 = __webpack_require__(3241);
+const HandDataManager_1 = __webpack_require__(3500);
 /**
  * Receives hand data messages from the service and distributes them
  *
@@ -894,15 +928,15 @@ exports.HandDataHandler = HandDataHandler;
 
 /***/ }),
 
-/***/ 255:
+/***/ 4799:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.HandPresenceMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const ConnectionTypes_1 = __webpack_require__(7164);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const ActionCode_1 = __webpack_require__(1962);
+const ConnectionTypes_1 = __webpack_require__(2630);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives hand presence messages from the service and distributes them
  *
@@ -912,7 +946,7 @@ class HandPresenceMessageReceiver extends BaseMessageReceiver_1.BaseMessageRecei
     /**
      * Sets up consuming hand presence messages and sending them to the {@link ConnectionManager}
      */
-    constructor(serviceConnection) {
+    constructor(callback) {
         super(false);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
@@ -921,15 +955,14 @@ class HandPresenceMessageReceiver extends BaseMessageReceiver_1.BaseMessageRecei
         /**
          * Checks the latest message and processes it if it has not been processed yet
          */
-        this.checkForState = () => {
+        this.checkForState = (callback) => {
             var _a, _b;
             if (((_a = this.lastItem) === null || _a === void 0 ? void 0 : _a.state) !== undefined && ((_b = this.lastItem) === null || _b === void 0 ? void 0 : _b.state) !== ConnectionTypes_1.HandPresenceState.PROCESSED) {
-                this.serviceConnection.handleHandPresenceEvent(this.lastItem.state);
+                callback(this.lastItem.state);
                 this.lastItem.state = ConnectionTypes_1.HandPresenceState.PROCESSED;
             }
         };
-        this.serviceConnection = serviceConnection;
-        this.setup(() => this.checkForState());
+        this.setup(() => this.checkForState(callback));
     }
 }
 exports.HandPresenceMessageReceiver = HandPresenceMessageReceiver;
@@ -937,17 +970,17 @@ exports.HandPresenceMessageReceiver = HandPresenceMessageReceiver;
 
 /***/ }),
 
-/***/ 2574:
+/***/ 7168:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InputActionMessageReceiver = void 0;
-const InputAction_1 = __webpack_require__(9403);
-const InputActionManager_1 = __webpack_require__(7483);
-const ActionCode_1 = __webpack_require__(6875);
-const WebsocketInputAction_1 = __webpack_require__(7596);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const InputAction_1 = __webpack_require__(1614);
+const InputActionManager_1 = __webpack_require__(1751);
+const ActionCode_1 = __webpack_require__(1962);
+const WebsocketInputAction_1 = __webpack_require__(2048);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives input action messages from the service and distributes them
  *
@@ -1023,14 +1056,14 @@ exports.InputActionMessageReceiver = InputActionMessageReceiver;
 
 /***/ }),
 
-/***/ 1902:
+/***/ 9605:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InteractionZoneMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives interaction zone messages from the service and distributes them
  *
@@ -1040,7 +1073,7 @@ class InteractionZoneMessageReceiver extends BaseMessageReceiver_1.BaseMessageRe
     /**
      * Sets up consuming interaction zone messages and sending them to the {@link ConnectionManager}
      */
-    constructor(serviceConnection) {
+    constructor(callback) {
         super(false);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
@@ -1058,15 +1091,14 @@ class InteractionZoneMessageReceiver extends BaseMessageReceiver_1.BaseMessageRe
         /**
          * Checks the latest message and processes it if it has not been processed yet
          */
-        this.checkForState = () => {
+        this.checkForState = (callback) => {
             var _a;
             if (((_a = this.lastItem) === null || _a === void 0 ? void 0 : _a.status) === 'UNPROCESSED') {
-                this.serviceConnection.handleInteractionZoneEvent(this.lastItem.state);
+                callback(this.lastItem.state);
                 this.lastItem.status = 'PROCESSED';
             }
         };
-        this.serviceConnection = serviceConnection;
-        this.setup(() => this.checkForState());
+        this.setup(() => this.checkForState(callback));
     }
 }
 exports.InteractionZoneMessageReceiver = InteractionZoneMessageReceiver;
@@ -1074,14 +1106,14 @@ exports.InteractionZoneMessageReceiver = InteractionZoneMessageReceiver;
 
 /***/ }),
 
-/***/ 5643:
+/***/ 5561:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ResponseMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives response messages from the service and distributes them
  *
@@ -1091,7 +1123,7 @@ class ResponseMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver 
     /**
      * Sets up consuming messages from a queue and passing them to the callbacks
      */
-    constructor(callbackHandler) {
+    constructor(callbackList) {
         super(true);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
@@ -1106,11 +1138,11 @@ class ResponseMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver 
          * Used to check the {@link queue} for a {@link WebSocketResponse}.
          * Sends it to {@link HandleCallbackList} with the {@link responseCallbacks} dictionary if there is one.
          */
-        this.checkForState = (callbackHandler) => {
+        this.checkForState = (callbackList) => {
             const response = this.queue.shift();
             if (!response)
                 return;
-            const responseResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(response, callbackHandler.responseCallbacks);
+            const responseResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(response, callbackList);
             switch (responseResult) {
                 case 'NoCallbacksFound':
                     BaseMessageReceiver_1.BaseMessageReceiver.logNoCallbacksWarning(response);
@@ -1123,7 +1155,7 @@ class ResponseMessageReceiver extends BaseMessageReceiver_1.BaseMessageReceiver 
                     break;
             }
         };
-        this.setup(() => this.checkForState(callbackHandler));
+        this.setup(() => this.checkForState(callbackList));
     }
 }
 exports.ResponseMessageReceiver = ResponseMessageReceiver;
@@ -1131,16 +1163,16 @@ exports.ResponseMessageReceiver = ResponseMessageReceiver;
 
 /***/ }),
 
-/***/ 6167:
+/***/ 1451:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ServiceStateMessageReceiver = void 0;
-const TouchFreeEvents_1 = __webpack_require__(5961);
-const ActionCode_1 = __webpack_require__(6875);
-const ConnectionTypes_1 = __webpack_require__(7164);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const ActionCode_1 = __webpack_require__(1962);
+const RequestTypes_1 = __webpack_require__(6735);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives service state messages from the service and distributes them
  *
@@ -1150,7 +1182,7 @@ class ServiceStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageRecei
     /**
      * Sets up consuming messages from a queue and passing them to the callbacks
      */
-    constructor(callbackHandler) {
+    constructor(callbackList) {
         super(true);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
@@ -1159,10 +1191,10 @@ class ServiceStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageRecei
         /**
          * Checks {@link queue} for a single {@link ServiceStateResponse} and handles it.
          */
-        this.checkForState = (callbackHandler) => {
+        this.checkForState = (callbackList) => {
             const serviceStatus = this.queue.shift();
             if (serviceStatus) {
-                const callbackResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(serviceStatus, callbackHandler.serviceStatusCallbacks);
+                const callbackResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(serviceStatus, callbackList);
                 switch (callbackResult) {
                     // If callback didn't happen for known reasons, we can be sure it's an independent status event rather
                     // than a request response
@@ -1173,7 +1205,7 @@ class ServiceStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageRecei
                         if (serviceStatus.trackingServiceState !== null) {
                             (0, TouchFreeEvents_1.dispatchEventCallback)('onTrackingServiceStateChange', serviceStatus.trackingServiceState);
                         }
-                        (0, TouchFreeEvents_1.dispatchEventCallback)('onServiceStatusChange', (0, ConnectionTypes_1.convertResponseToServiceState)(serviceStatus));
+                        (0, TouchFreeEvents_1.dispatchEventCallback)('onServiceStatusChange', (0, RequestTypes_1.convertResponseToServiceState)(serviceStatus));
                         break;
                     case 'Success':
                         // no-op
@@ -1181,7 +1213,7 @@ class ServiceStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageRecei
                 }
             }
         };
-        this.setup(() => this.checkForState(callbackHandler));
+        this.setup(() => this.checkForState(callbackList));
     }
 }
 exports.ServiceStateMessageReceiver = ServiceStateMessageReceiver;
@@ -1189,14 +1221,14 @@ exports.ServiceStateMessageReceiver = ServiceStateMessageReceiver;
 
 /***/ }),
 
-/***/ 940:
+/***/ 7892:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TrackingStateMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives tracking state messages from the service and distributes them
  *
@@ -1206,13 +1238,13 @@ class TrackingStateMessageReceiver extends BaseMessageReceiver_1.BaseMessageRece
     /**
      * Sets up consuming messages from a queue and passing them to the callbacks
      */
-    constructor(callbackHandler) {
+    constructor(callbackList) {
         super(true);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
          */
         this.actionCode = [ActionCode_1.ActionCode.TRACKING_STATE];
-        this.setup(() => this.checkQueue(this.queue, callbackHandler.trackingStateCallbacks));
+        this.setup(() => this.checkQueue(this.queue, callbackList));
     }
 }
 exports.TrackingStateMessageReceiver = TrackingStateMessageReceiver;
@@ -1220,14 +1252,14 @@ exports.TrackingStateMessageReceiver = TrackingStateMessageReceiver;
 
 /***/ }),
 
-/***/ 206:
+/***/ 3744:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.VersionHandshakeMessageReceiver = void 0;
-const ActionCode_1 = __webpack_require__(6875);
-const BaseMessageReceiver_1 = __webpack_require__(1330);
+const ActionCode_1 = __webpack_require__(1962);
+const BaseMessageReceiver_1 = __webpack_require__(9079);
 /**
  * Receives handshake messages from the service and distributes them
  *
@@ -1237,7 +1269,7 @@ class VersionHandshakeMessageReceiver extends BaseMessageReceiver_1.BaseMessageR
     /**
      * Sets up consuming messages from a queue and passing them to the callbacks
      */
-    constructor(callbackHandler) {
+    constructor(callbackList) {
         super(true);
         /**
          * The {@link ActionCode | ActionCodes} that are handled by this message receiver
@@ -1246,10 +1278,11 @@ class VersionHandshakeMessageReceiver extends BaseMessageReceiver_1.BaseMessageR
         /**
          * Checks {@link queue} for a single {@link WebSocketResponse} and handles it.
          */
-        this.checkForState = (callbackHandler) => {
+        this.checkForState = (callbackList) => {
             const response = this.queue.shift();
             if (response) {
-                const responseResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(response, callbackHandler.handshakeCallbacks);
+                const responseResult = BaseMessageReceiver_1.BaseMessageReceiver.handleCallbackList(response, callbackList);
+                const configStateError = response === null || response === void 0 ? void 0 : response.configurationStateError;
                 switch (responseResult) {
                     case 'NoCallbacksFound':
                         BaseMessageReceiver_1.BaseMessageReceiver.logNoCallbacksWarning(response);
@@ -1266,11 +1299,21 @@ class VersionHandshakeMessageReceiver extends BaseMessageReceiver_1.BaseMessageR
                         else {
                             console.error('Received Handshake Error from TouchFree:\n' + response.message);
                         }
+                        if (configStateError) {
+                            if (configStateError === 'ERROR') {
+                                console.error('Received Configuration State Error from TouchFree. ' +
+                                    'Error loading configuration files.');
+                            }
+                            else if (configStateError === 'DEFAULT') {
+                                console.warn('Received Configuration State Warning from TouchFree. ' +
+                                    'Configuration is default, perform a setup to resolve');
+                            }
+                        }
                         break;
                 }
             }
         };
-        this.setup(() => this.checkForState(callbackHandler));
+        this.setup(() => this.checkForState(callbackList));
     }
 }
 exports.VersionHandshakeMessageReceiver = VersionHandshakeMessageReceiver;
@@ -1278,64 +1321,70 @@ exports.VersionHandshakeMessageReceiver = VersionHandshakeMessageReceiver;
 
 /***/ }),
 
-/***/ 6164:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.createMessageReceivers = exports.HandDataHandler = void 0;
-const AnalyticsMessageReceiver_1 = __webpack_require__(5838);
-const ConfigStateMessageReceiver_1 = __webpack_require__(9831);
-const HandPresenceMessageReceiver_1 = __webpack_require__(255);
-const InputActionMessageReceiver_1 = __webpack_require__(2574);
-const InteractionZoneMessageReceiver_1 = __webpack_require__(1902);
-const ResponseMessageReceiver_1 = __webpack_require__(5643);
-const ServiceStateMessageReceiver_1 = __webpack_require__(6167);
-const TrackingStateMessageReceiver_1 = __webpack_require__(940);
-const VersionHandshakeMessageReceiver_1 = __webpack_require__(206);
-var HandDataHandler_1 = __webpack_require__(1091);
-Object.defineProperty(exports, "HandDataHandler", ({ enumerable: true, get: function () { return HandDataHandler_1.HandDataHandler; } }));
-const createMessageReceivers = (serviceConnection, callbackHandler) => {
-    return [
-        new AnalyticsMessageReceiver_1.AnalyticsMessageReceiver(callbackHandler),
-        new ConfigStateMessageReceiver_1.ConfigStateMessageReceiver(callbackHandler),
-        new HandPresenceMessageReceiver_1.HandPresenceMessageReceiver(serviceConnection),
-        new InputActionMessageReceiver_1.InputActionMessageReceiver(),
-        new InteractionZoneMessageReceiver_1.InteractionZoneMessageReceiver(serviceConnection),
-        new ResponseMessageReceiver_1.ResponseMessageReceiver(callbackHandler),
-        new ServiceStateMessageReceiver_1.ServiceStateMessageReceiver(callbackHandler),
-        new TrackingStateMessageReceiver_1.TrackingStateMessageReceiver(callbackHandler),
-        new VersionHandshakeMessageReceiver_1.VersionHandshakeMessageReceiver(callbackHandler),
-    ];
-};
-exports.createMessageReceivers = createMessageReceivers;
-
-
-/***/ }),
-
-/***/ 1275:
+/***/ 6735:
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.convertResponseToServiceState = void 0;
+/**
+ * Converts a response type to {@link ServiceState}
+ * @param response - Response object from the service
+ * @returns Converted ServiceState
+ * @internal
+ */
+function convertResponseToServiceState(response) {
+    return {
+        cameraFirmwareVersion: response.cameraFirmwareVersion,
+        cameraSerial: response.cameraSerial,
+        configurationState: response.configurationState,
+        touchFreeServiceVersion: response.serviceVersion,
+        trackingServiceState: response.trackingServiceState,
+        trackingServiceVersion: response.trackingVersion,
+    };
+}
+exports.convertResponseToServiceState = convertResponseToServiceState;
 
 
 /***/ }),
 
-/***/ 8952:
+/***/ 7051:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ServiceConnection = void 0;
-const TouchFreeEvents_1 = __webpack_require__(5961);
-const ActionCode_1 = __webpack_require__(6875);
-const CallbackHandler_1 = __webpack_require__(4097);
-const ConnectionTypes_1 = __webpack_require__(7164);
-const HandDataHandler_1 = __webpack_require__(1091);
-const index_1 = __webpack_require__(6164);
-const ServiceTypes_1 = __webpack_require__(6252);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const ActionCode_1 = __webpack_require__(1962);
+const CallbackLists_1 = __webpack_require__(4025);
+const ConnectionTypes_1 = __webpack_require__(2630);
+const AnalyticsMessageReceiver_1 = __webpack_require__(3338);
+const ConfigStateMessageReceiver_1 = __webpack_require__(8066);
+const HandDataHandler_1 = __webpack_require__(9659);
+const HandPresenceMessageReceiver_1 = __webpack_require__(4799);
+const InputActionMessageReceiver_1 = __webpack_require__(7168);
+const InteractionZoneMessageReceiver_1 = __webpack_require__(9605);
+const ResponseMessageReceiver_1 = __webpack_require__(5561);
+const ServiceStateMessageReceiver_1 = __webpack_require__(1451);
+const TrackingStateMessageReceiver_1 = __webpack_require__(7892);
+const VersionHandshakeMessageReceiver_1 = __webpack_require__(3744);
+const ServiceTypes_1 = __webpack_require__(5381);
 const uuid_1 = __webpack_require__(7429);
+const createMessageReceivers = (serviceConnection) => {
+    const callbacks = serviceConnection.getCallbackLists();
+    return [
+        new AnalyticsMessageReceiver_1.AnalyticsMessageReceiver(callbacks.analyticsRequestCallbacks),
+        new ConfigStateMessageReceiver_1.ConfigStateMessageReceiver(callbacks.configStateCallbacks),
+        // Passing wrapped callbacks so that the method is not copied and can be replaced in tests
+        new HandPresenceMessageReceiver_1.HandPresenceMessageReceiver((state) => serviceConnection.handleHandPresenceEvent(state)),
+        new InputActionMessageReceiver_1.InputActionMessageReceiver(),
+        new InteractionZoneMessageReceiver_1.InteractionZoneMessageReceiver((state) => serviceConnection.handleInteractionZoneEvent(state)),
+        new ResponseMessageReceiver_1.ResponseMessageReceiver(callbacks.responseCallbacks),
+        new ServiceStateMessageReceiver_1.ServiceStateMessageReceiver(callbacks.serviceStatusCallbacks),
+        new TrackingStateMessageReceiver_1.TrackingStateMessageReceiver(callbacks.trackingStateCallbacks),
+        new VersionHandshakeMessageReceiver_1.VersionHandshakeMessageReceiver(callbacks.handshakeCallbacks),
+    ];
+};
 /**
  * Represents a connection to the TouchFree Service.
  *
@@ -1366,8 +1415,11 @@ class ServiceConnection {
     get handshakeComplete() {
         return this.handshakeCompleted;
     }
-    get callbackHandler() {
-        return this._callbackHandler;
+    /**
+     * Get callback lists object
+     */
+    getCallbackLists() {
+        return this.callbackLists;
     }
     /**
      * Sets up {@link WebSocket} connection and adds appropriate listeners for incoming messages.
@@ -1404,7 +1456,7 @@ class ServiceConnection {
                 if (!this.handshakeRequested) {
                     this.handshakeRequested = true;
                     // send message
-                    this.sendMessageWithSimpleResponse(JSON.stringify(handshakeRequest), guid, this.connectionResultCallback, this._callbackHandler.handshakeCallbacks);
+                    this.sendMessageWithSimpleResponse(JSON.stringify(handshakeRequest), guid, this.connectionResultCallback, this.callbackLists.handshakeCallbacks);
                 }
             }
         };
@@ -1459,7 +1511,7 @@ class ServiceConnection {
          * @param callback - Callback to handle the response
          */
         this.sendMessage = (message, requestID, callback) => {
-            this.sendMessageWithSimpleResponse(message, requestID, callback, this._callbackHandler.responseCallbacks);
+            this.sendMessageWithSimpleResponse(message, requestID, callback, this.callbackLists.responseCallbacks);
         };
         this.sendMessageWithSimpleResponse = (message, requestID, callback, callbacksStore) => {
             if (!requestID) {
@@ -1485,7 +1537,7 @@ class ServiceConnection {
          * @param callback - Callback to handle the response from the service
          */
         this.requestConfigState = (callback) => {
-            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_CONFIGURATION_STATE, 'config state', callback, this._callbackHandler.configStateCallbacks);
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_CONFIGURATION_STATE, 'config state', callback, this.callbackLists.configStateCallbacks);
         };
         /**
          * Request Service to reset the Interaction Config File to its default state
@@ -1493,7 +1545,7 @@ class ServiceConnection {
          * @param callback - Callback to handle the response from the service
          */
         this.resetInteractionConfigFile = (callback) => {
-            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.RESET_INTERACTION_CONFIG_FILE, 'config state', callback, this._callbackHandler.configStateCallbacks);
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.RESET_INTERACTION_CONFIG_FILE, 'config state', callback, this.callbackLists.configStateCallbacks);
         };
         /**
          * Request service status from the Service.
@@ -1501,7 +1553,7 @@ class ServiceConnection {
          * @param callback - Callback to handle the response from the service
          */
         this.requestServiceStatus = (callback) => {
-            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_SERVICE_STATUS, 'service status', callback, this._callbackHandler.serviceStatusCallbacks);
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_SERVICE_STATUS, 'service status', callback, this.callbackLists.serviceStatusCallbacks);
         };
         /**
          * Request config state of the config files from the Service
@@ -1509,7 +1561,7 @@ class ServiceConnection {
          * @param callback - Callback to handle the response from the service
          */
         this.requestConfigFile = (callback) => {
-            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_CONFIGURATION_FILE, 'config file', callback, this._callbackHandler.configStateCallbacks);
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.REQUEST_CONFIGURATION_FILE, 'config file', callback, this.callbackLists.configStateCallbacks);
         };
         /**
          * Request a quick setup on the Service
@@ -1521,7 +1573,7 @@ class ServiceConnection {
         this.quickSetupRequest = (atTopTarget, callback, configurationCallback) => {
             this.baseRequestWithMultipleCallbacks({
                 position: atTopTarget ? 'Top' : 'Bottom',
-            }, ActionCode_1.ActionCode.QUICK_SETUP, this._callbackHandler.responseCallbacks, callback, this._callbackHandler.configStateCallbacks, configurationCallback);
+            }, ActionCode_1.ActionCode.QUICK_SETUP, this.callbackLists.responseCallbacks, callback, this.callbackLists.configStateCallbacks, configurationCallback);
         };
         /**
          * Request tracking state update from the Service
@@ -1529,7 +1581,7 @@ class ServiceConnection {
          * @param callback - Callback to handle the response from the service
          */
         this.requestTrackingState = (callback) => {
-            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.GET_TRACKING_STATE, 'tracking state', callback, this._callbackHandler.trackingStateCallbacks);
+            this.baseRequestWithRequiredCallback(ActionCode_1.ActionCode.GET_TRACKING_STATE, 'tracking state', callback, this.callbackLists.trackingStateCallbacks);
         };
         /**
          * Request a change to tracking state on the Service
@@ -1551,7 +1603,7 @@ class ServiceConnection {
             if (state.analyticsEnabled !== undefined) {
                 requestContent.analyticsEnabled = state.analyticsEnabled;
             }
-            this.baseRequest(requestContent, ActionCode_1.ActionCode.SET_TRACKING_STATE, this._callbackHandler.trackingStateCallbacks, callback);
+            this.baseRequest(requestContent, ActionCode_1.ActionCode.SET_TRACKING_STATE, this.callbackLists.trackingStateCallbacks, callback);
         };
         /**
          * Base functionality for sending a request to the Service
@@ -1612,50 +1664,51 @@ class ServiceConnection {
          * @param sessionID - Session ID
          * @param callback - Optional callback to handle the response from the service
          */
-        this.analyticsSessionRequest = (requestType, sessionID, callback) => this.baseRequest({ sessionID, requestType }, ActionCode_1.ActionCode.ANALYTICS_SESSION_REQUEST, this._callbackHandler.analyticsRequestCallbacks, callback);
+        this.analyticsSessionRequest = (requestType, sessionID, callback) => this.baseRequest({ sessionID, requestType }, ActionCode_1.ActionCode.ANALYTICS_SESSION_REQUEST, this.callbackLists.analyticsRequestCallbacks, callback);
         /**
          * Used to send a request to update the analytic session's events stored in the Service
          * @param sessionID - ID of the session
          * @param events - Analytics events to send
          * @param callback - Optional callback to handle the response from the service
          */
-        this.updateAnalyticSessionEvents = (sessionID, events, callback) => this.baseRequest({ sessionID, sessionEvents: events }, ActionCode_1.ActionCode.ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST, this._callbackHandler.analyticsRequestCallbacks, callback);
-        this._callbackHandler = new CallbackHandler_1.CallbackHandler();
-        this.messageReceivers = (0, index_1.createMessageReceivers)(this, this._callbackHandler);
+        this.updateAnalyticSessionEvents = (sessionID, events, callback) => this.baseRequest({ sessionID, sessionEvents: events }, ActionCode_1.ActionCode.ANALYTICS_UPDATE_SESSION_EVENTS_REQUEST, this.callbackLists.analyticsRequestCallbacks, callback);
+        /**
+         * Handles HandPresence events from the service and dispatches
+         * the `handFound` and `handsLost` events on this class
+         * @param state - Hand state
+         */
+        this.handleHandPresenceEvent = (state) => {
+            this.currentHandPresence = state;
+            if (state === ConnectionTypes_1.HandPresenceState.HAND_FOUND) {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handFound');
+            }
+            else {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handsLost');
+            }
+        };
+        /**
+         * Handle an InteractionZone event by dispatching
+         * `handEntered` and `handExited` events on this class
+         */
+        this.handleInteractionZoneEvent = (state) => {
+            this.currentInteractionZoneState = state;
+            if (state === ConnectionTypes_1.InteractionZoneState.HAND_ENTERED) {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handEntered');
+            }
+            else {
+                (0, TouchFreeEvents_1.dispatchEventCallback)('handExited');
+            }
+        };
+        this.callbackLists = (0, CallbackLists_1.createDefaultCallbackLists)();
         this.handDataHandler = new HandDataHandler_1.HandDataHandler();
+        this.messageReceivers = createMessageReceivers(this);
+        (0, CallbackLists_1.setClearCallbacksInterval)(300, 300, this.callbackLists);
         this.webSocket = new WebSocket(`ws://${address.ip}:${address.port}/connect`);
         this.webSocket.binaryType = 'arraybuffer';
         this.webSocket.addEventListener('message', this.onMessage);
         this.handshakeRequested = false;
         this.handshakeCompleted = false;
         this.webSocket.addEventListener('open', this.requestHandshake, { once: true });
-    }
-    /**
-     * Handles HandPresence events from the service and dispatches
-     * the `handFound` and `handsLost` events on this class
-     * @param state - Hand state
-     */
-    handleHandPresenceEvent(state) {
-        this.currentHandPresence = state;
-        if (state === ConnectionTypes_1.HandPresenceState.HAND_FOUND) {
-            (0, TouchFreeEvents_1.dispatchEventCallback)('handFound');
-        }
-        else {
-            (0, TouchFreeEvents_1.dispatchEventCallback)('handsLost');
-        }
-    }
-    /**
-     * Handle an InteractionZone event by dispatching
-     * `handEntered` and `handExited` events on this class
-     */
-    handleInteractionZoneEvent(state) {
-        this.currentInteractionZoneState = state;
-        if (state === ConnectionTypes_1.InteractionZoneState.HAND_ENTERED) {
-            (0, TouchFreeEvents_1.dispatchEventCallback)('handEntered');
-        }
-        else {
-            (0, TouchFreeEvents_1.dispatchEventCallback)('handExited');
-        }
     }
 }
 exports.ServiceConnection = ServiceConnection;
@@ -1667,7 +1720,7 @@ var ServiceBinaryDataTypes;
 
 /***/ }),
 
-/***/ 6252:
+/***/ 5381:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -1692,13 +1745,13 @@ exports.VERSION_INFO = {
 
 /***/ }),
 
-/***/ 7596:
+/***/ 2048:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getInteractionTypeFromFlags = exports.getInputTypeFromFlags = exports.getHandTypeFromFlags = exports.getChiralityFromFlags = exports.getInteractionFlags = exports.convertInputAction = exports.BitmaskFlags = void 0;
-const InputAction_1 = __webpack_require__(9403);
+const InputAction_1 = __webpack_require__(1614);
 /**
  * Used to request a combination of the {@link HandChirality}, {@link HandType},
  * {@link InputType}, and {@link InteractionType} flags from the Service at once.
@@ -1938,7 +1991,7 @@ exports.getInteractionTypeFromFlags = getInteractionTypeFromFlags;
 
 /***/ }),
 
-/***/ 4773:
+/***/ 1429:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -1966,16 +2019,16 @@ exports.setCurrentCursor = setCurrentCursor;
 
 /***/ }),
 
-/***/ 4925:
+/***/ 1282:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DotCursor = void 0;
-const InputAction_1 = __webpack_require__(9403);
-const Utilities_1 = __webpack_require__(6593);
-const TouchFreeEvents_1 = __webpack_require__(5961);
-const TouchlessCursor_1 = __webpack_require__(1004);
+const InputAction_1 = __webpack_require__(1614);
+const Utilities_1 = __webpack_require__(245);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const TouchlessCursor_1 = __webpack_require__(3084);
 /**
  * {@link TouchlessCursor} which positions a dot on the screen at the hand location,
  * reacting to the current {@link TouchFreeInputAction.ProgressToClick}.
@@ -2192,16 +2245,16 @@ exports.DotCursor = DotCursor;
 
 /***/ }),
 
-/***/ 9080:
+/***/ 3320:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SVGCursor = void 0;
-const InputAction_1 = __webpack_require__(9403);
-const Utilities_1 = __webpack_require__(6593);
-const TouchFreeEvents_1 = __webpack_require__(5961);
-const TouchlessCursor_1 = __webpack_require__(1004);
+const InputAction_1 = __webpack_require__(1614);
+const Utilities_1 = __webpack_require__(245);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const TouchlessCursor_1 = __webpack_require__(3084);
 /**
  * {@link TouchlessCursor} created with SVG elements.
  * @public
@@ -2455,13 +2508,13 @@ exports.SVGCursor = SVGCursor;
 
 /***/ }),
 
-/***/ 1004:
+/***/ 3084:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.TouchlessCursor = void 0;
-const TouchFreeEvents_1 = __webpack_require__(5961);
+const TouchFreeEvents_1 = __webpack_require__(1539);
 /**
  * Base class for creating touchless cursors.
  *
@@ -2581,7 +2634,7 @@ exports.TouchlessCursor = TouchlessCursor;
 
 /***/ }),
 
-/***/ 3241:
+/***/ 3500:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2627,7 +2680,7 @@ HandDataManager.lastFrame = undefined;
 
 /***/ }),
 
-/***/ 6828:
+/***/ 3759:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2710,17 +2763,17 @@ exports.RawBone = RawBone;
 
 /***/ }),
 
-/***/ 7607:
+/***/ 7110:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.init = void 0;
-const ConnectionApi_1 = __webpack_require__(2158);
-const CurrentCursor_1 = __webpack_require__(4773);
-const SvgCursor_1 = __webpack_require__(9080);
-const CurrentInputController_1 = __webpack_require__(4366);
-const WebInputController_1 = __webpack_require__(5570);
+const ConnectionApi_1 = __webpack_require__(3770);
+const CurrentCursor_1 = __webpack_require__(1429);
+const SvgCursor_1 = __webpack_require__(3320);
+const CurrentInputController_1 = __webpack_require__(7029);
+const WebInputController_1 = __webpack_require__(2353);
 /**
  * Initializes TouchFree - must be called before any functionality requiring a TouchFree service connection.
  *
@@ -2744,7 +2797,7 @@ exports.init = init;
 
 /***/ }),
 
-/***/ 9403:
+/***/ 1614:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2816,13 +2869,13 @@ var InteractionType;
 
 /***/ }),
 
-/***/ 7483:
+/***/ 1751:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InputActionManager = void 0;
-const TouchFreeEvents_1 = __webpack_require__(5961);
+const TouchFreeEvents_1 = __webpack_require__(1539);
 /**
  * Manages all `TouchFreeInputAction` events, dispatching a `transmitInputAction` event for each action received.
  * @remarks
@@ -2882,7 +2935,7 @@ InputActionManager.plugins = null;
 
 /***/ }),
 
-/***/ 6649:
+/***/ 8236:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -2934,14 +2987,14 @@ exports.InputActionPlugin = InputActionPlugin;
 
 /***/ }),
 
-/***/ 9775:
+/***/ 9230:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.BaseInputController = void 0;
-const InputAction_1 = __webpack_require__(9403);
-const TouchFreeEvents_1 = __webpack_require__(5961);
+const InputAction_1 = __webpack_require__(1614);
+const TouchFreeEvents_1 = __webpack_require__(1539);
 /**
  * Converts {@link TouchFreeInputAction | TouchFreeInputActions} into inputs for specific environments.
  *
@@ -3001,7 +3054,7 @@ BaseInputController.instantiated = false;
 
 /***/ }),
 
-/***/ 4366:
+/***/ 7029:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3021,15 +3074,15 @@ exports.setInputController = setInputController;
 
 /***/ }),
 
-/***/ 5570:
+/***/ 2353:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.WebInputController = void 0;
-const InputAction_1 = __webpack_require__(9403);
-const TouchFreeEvents_1 = __webpack_require__(5961);
-const BaseInputController_1 = __webpack_require__(9775);
+const InputAction_1 = __webpack_require__(1614);
+const TouchFreeEvents_1 = __webpack_require__(1539);
+const BaseInputController_1 = __webpack_require__(9230);
 /**
  * Provides web PointerEvents from incoming {@link TouchFreeInputAction}s.
  *
@@ -3399,7 +3452,7 @@ var ScrollDirection;
 
 /***/ }),
 
-/***/ 6593:
+/***/ 245:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3436,7 +3489,7 @@ exports.mapRangeToRange = mapRangeToRange;
 
 /***/ }),
 
-/***/ 1991:
+/***/ 7503:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3445,13 +3498,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 5961:
+/***/ 1539:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.dispatchEventCallback = exports.registerEventCallback = void 0;
-const ConnectionApi_1 = __webpack_require__(2158);
+const ConnectionApi_1 = __webpack_require__(3770);
 const touchFreeEventTarget = new EventTarget();
 /**
  * Registers a callback function to be called when a specific event occurs
@@ -3609,13 +3662,13 @@ function eventImplementations() {
 
 /***/ }),
 
-/***/ 2178:
+/***/ 2081:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.requestTrackingChange = exports.requestTrackingState = void 0;
-const ConnectionApi_1 = __webpack_require__(2158);
+const ConnectionApi_1 = __webpack_require__(3770);
 /**
  * Request a {@link TrackingState} representing the current state of the tracking software
  * @remarks
@@ -3676,7 +3729,7 @@ function convertResponseToState(response) {
 
 /***/ }),
 
-/***/ 5152:
+/***/ 7046:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -3685,7 +3738,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 5004:
+/***/ 2721:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -3713,37 +3766,47 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-__exportStar(__webpack_require__(605), exports);
-__exportStar(__webpack_require__(3829), exports);
-__exportStar(__webpack_require__(7764), exports);
-__exportStar(__webpack_require__(73), exports);
-__exportStar(__webpack_require__(6875), exports);
-__exportStar(__webpack_require__(4097), exports);
-__exportStar(__webpack_require__(7164), exports);
-__exportStar(__webpack_require__(2158), exports);
-__exportStar(__webpack_require__(6164), exports);
-__exportStar(__webpack_require__(1275), exports);
-__exportStar(__webpack_require__(8952), exports);
-__exportStar(__webpack_require__(6252), exports);
-__exportStar(__webpack_require__(7596), exports);
-__exportStar(__webpack_require__(4773), exports);
-__exportStar(__webpack_require__(4925), exports);
-__exportStar(__webpack_require__(9080), exports);
-__exportStar(__webpack_require__(1004), exports);
-__exportStar(__webpack_require__(3241), exports);
-__exportStar(__webpack_require__(6828), exports);
-__exportStar(__webpack_require__(7607), exports);
-__exportStar(__webpack_require__(9403), exports);
-__exportStar(__webpack_require__(7483), exports);
-__exportStar(__webpack_require__(6649), exports);
-__exportStar(__webpack_require__(9775), exports);
-__exportStar(__webpack_require__(4366), exports);
-__exportStar(__webpack_require__(5570), exports);
-__exportStar(__webpack_require__(6593), exports);
-__exportStar(__webpack_require__(1991), exports);
-__exportStar(__webpack_require__(5961), exports);
-__exportStar(__webpack_require__(2178), exports);
-__exportStar(__webpack_require__(5152), exports);
+__exportStar(__webpack_require__(6661), exports);
+__exportStar(__webpack_require__(2160), exports);
+__exportStar(__webpack_require__(1893), exports);
+__exportStar(__webpack_require__(7265), exports);
+__exportStar(__webpack_require__(1962), exports);
+__exportStar(__webpack_require__(4025), exports);
+__exportStar(__webpack_require__(3770), exports);
+__exportStar(__webpack_require__(2630), exports);
+__exportStar(__webpack_require__(3338), exports);
+__exportStar(__webpack_require__(9079), exports);
+__exportStar(__webpack_require__(8066), exports);
+__exportStar(__webpack_require__(9659), exports);
+__exportStar(__webpack_require__(4799), exports);
+__exportStar(__webpack_require__(7168), exports);
+__exportStar(__webpack_require__(9605), exports);
+__exportStar(__webpack_require__(5561), exports);
+__exportStar(__webpack_require__(1451), exports);
+__exportStar(__webpack_require__(7892), exports);
+__exportStar(__webpack_require__(3744), exports);
+__exportStar(__webpack_require__(6735), exports);
+__exportStar(__webpack_require__(7051), exports);
+__exportStar(__webpack_require__(5381), exports);
+__exportStar(__webpack_require__(2048), exports);
+__exportStar(__webpack_require__(1429), exports);
+__exportStar(__webpack_require__(1282), exports);
+__exportStar(__webpack_require__(3320), exports);
+__exportStar(__webpack_require__(3084), exports);
+__exportStar(__webpack_require__(3500), exports);
+__exportStar(__webpack_require__(3759), exports);
+__exportStar(__webpack_require__(7110), exports);
+__exportStar(__webpack_require__(1614), exports);
+__exportStar(__webpack_require__(1751), exports);
+__exportStar(__webpack_require__(8236), exports);
+__exportStar(__webpack_require__(9230), exports);
+__exportStar(__webpack_require__(7029), exports);
+__exportStar(__webpack_require__(2353), exports);
+__exportStar(__webpack_require__(245), exports);
+__exportStar(__webpack_require__(7503), exports);
+__exportStar(__webpack_require__(1539), exports);
+__exportStar(__webpack_require__(2081), exports);
+__exportStar(__webpack_require__(7046), exports);
 
 
 /***/ }),
@@ -4812,72 +4875,13 @@ exports["default"] = _default;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-var exports = __webpack_exports__;
-
-/**
- * @packageDocumentation
- * TouchFree is an ecosystem of software products for enabling
- * touchless interfaces. This package is a client package
- * for integrating TouchFree into web application.
- * See https://docs.ultraleap.com/touchfree-user-manual/
- */
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.dispatchEventCallback = exports.registerEventCallback = exports.mapRangeToRange = exports.InteractionType = exports.InputType = exports.HandType = exports.HandChirality = exports.init = exports.setCurrentCursor = exports.getCurrentCursor = exports.TouchlessCursor = exports.SVGCursor = exports.DotCursor = exports.InteractionZoneState = exports.HandPresenceState = exports.ConfigurationState = exports.TrackingServiceState = exports.requestServiceStatus = exports.getDefaultServiceAddress = exports.getCurrentServiceAddress = exports.disconnect = exports.connect = exports.isConnected = exports.TrackedPosition = exports.resetInteractionConfigFileToDefault = exports.requestConfigFileState = exports.requestConfigFileChange = exports.requestConfigState = exports.requestConfigChange = exports.stopAnalyticsSession = exports.startAnalyticsSession = exports.unregisterAnalyticEvents = exports.registerAnalyticEvents = exports.getRegisteredAnalyticEventKeys = exports.getAnalyticSessionEvents = exports.isAnalyticsActive = void 0;
-/**
- * This file exports the public API surface of the library.
- * Internals should not be leaked from this export, if any
- * internals are required then explicit usage of the internal
- * module is recommended.
- */
-var index_1 = __webpack_require__(5004);
-/** Analytics - Record analytics data while running */
-Object.defineProperty(exports, "isAnalyticsActive", ({ enumerable: true, get: function () { return index_1.isAnalyticsActive; } }));
-Object.defineProperty(exports, "getAnalyticSessionEvents", ({ enumerable: true, get: function () { return index_1.getAnalyticSessionEvents; } }));
-Object.defineProperty(exports, "getRegisteredAnalyticEventKeys", ({ enumerable: true, get: function () { return index_1.getRegisteredAnalyticEventKeys; } }));
-Object.defineProperty(exports, "registerAnalyticEvents", ({ enumerable: true, get: function () { return index_1.registerAnalyticEvents; } }));
-Object.defineProperty(exports, "unregisterAnalyticEvents", ({ enumerable: true, get: function () { return index_1.unregisterAnalyticEvents; } }));
-Object.defineProperty(exports, "startAnalyticsSession", ({ enumerable: true, get: function () { return index_1.startAnalyticsSession; } }));
-Object.defineProperty(exports, "stopAnalyticsSession", ({ enumerable: true, get: function () { return index_1.stopAnalyticsSession; } }));
-/** Configuration - Change configuration of the TouchFree Service */
-Object.defineProperty(exports, "requestConfigChange", ({ enumerable: true, get: function () { return index_1.requestConfigChange; } }));
-Object.defineProperty(exports, "requestConfigState", ({ enumerable: true, get: function () { return index_1.requestConfigState; } }));
-Object.defineProperty(exports, "requestConfigFileChange", ({ enumerable: true, get: function () { return index_1.requestConfigFileChange; } }));
-Object.defineProperty(exports, "requestConfigFileState", ({ enumerable: true, get: function () { return index_1.requestConfigFileState; } }));
-Object.defineProperty(exports, "resetInteractionConfigFileToDefault", ({ enumerable: true, get: function () { return index_1.resetInteractionConfigFileToDefault; } }));
-Object.defineProperty(exports, "TrackedPosition", ({ enumerable: true, get: function () { return index_1.TrackedPosition; } }));
-/** Connection - Manage a connection to the TouchFree service and messages send or receive messages */
-Object.defineProperty(exports, "isConnected", ({ enumerable: true, get: function () { return index_1.isConnected; } }));
-Object.defineProperty(exports, "connect", ({ enumerable: true, get: function () { return index_1.connect; } }));
-Object.defineProperty(exports, "disconnect", ({ enumerable: true, get: function () { return index_1.disconnect; } }));
-Object.defineProperty(exports, "getCurrentServiceAddress", ({ enumerable: true, get: function () { return index_1.getCurrentServiceAddress; } }));
-Object.defineProperty(exports, "getDefaultServiceAddress", ({ enumerable: true, get: function () { return index_1.getDefaultServiceAddress; } }));
-Object.defineProperty(exports, "requestServiceStatus", ({ enumerable: true, get: function () { return index_1.requestServiceStatus; } }));
-Object.defineProperty(exports, "TrackingServiceState", ({ enumerable: true, get: function () { return index_1.TrackingServiceState; } }));
-Object.defineProperty(exports, "ConfigurationState", ({ enumerable: true, get: function () { return index_1.ConfigurationState; } }));
-Object.defineProperty(exports, "HandPresenceState", ({ enumerable: true, get: function () { return index_1.HandPresenceState; } }));
-Object.defineProperty(exports, "InteractionZoneState", ({ enumerable: true, get: function () { return index_1.InteractionZoneState; } }));
-/** Cursors - Multiple cursor styles/implementations and current cursor management */
-Object.defineProperty(exports, "DotCursor", ({ enumerable: true, get: function () { return index_1.DotCursor; } }));
-Object.defineProperty(exports, "SVGCursor", ({ enumerable: true, get: function () { return index_1.SVGCursor; } }));
-Object.defineProperty(exports, "TouchlessCursor", ({ enumerable: true, get: function () { return index_1.TouchlessCursor; } }));
-Object.defineProperty(exports, "getCurrentCursor", ({ enumerable: true, get: function () { return index_1.getCurrentCursor; } }));
-Object.defineProperty(exports, "setCurrentCursor", ({ enumerable: true, get: function () { return index_1.setCurrentCursor; } }));
-Object.defineProperty(exports, "init", ({ enumerable: true, get: function () { return index_1.init; } }));
-Object.defineProperty(exports, "HandChirality", ({ enumerable: true, get: function () { return index_1.HandChirality; } }));
-Object.defineProperty(exports, "HandType", ({ enumerable: true, get: function () { return index_1.HandType; } }));
-Object.defineProperty(exports, "InputType", ({ enumerable: true, get: function () { return index_1.InputType; } }));
-Object.defineProperty(exports, "InteractionType", ({ enumerable: true, get: function () { return index_1.InteractionType; } }));
-/** Math types and functions */
-Object.defineProperty(exports, "mapRangeToRange", ({ enumerable: true, get: function () { return index_1.mapRangeToRange; } }));
-Object.defineProperty(exports, "registerEventCallback", ({ enumerable: true, get: function () { return index_1.registerEventCallback; } }));
-Object.defineProperty(exports, "dispatchEventCallback", ({ enumerable: true, get: function () { return index_1.dispatchEventCallback; } }));
-
-})();
-
-__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__(7816);
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

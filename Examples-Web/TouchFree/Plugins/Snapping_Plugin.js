@@ -11,13 +11,13 @@
 })(self, () => {
 return (self["webpackChunktouchfree"] = self["webpackChunktouchfree"] || []).push([[370],{
 
-/***/ 5520:
+/***/ 3934:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Ray = void 0;
-const Vector2_1 = __webpack_require__(2092);
+const Vector2_1 = __webpack_require__(4435);
 class Ray {
     static cast(start, end, element) {
         const pos = new Vector2_1.Vector2(start.x, start.y);
@@ -92,14 +92,14 @@ exports.Ray = Ray;
 
 /***/ }),
 
-/***/ 6762:
+/***/ 7326:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SnappableElement = void 0;
-const Ray_1 = __webpack_require__(5520);
-const Vector2_1 = __webpack_require__(2092);
+const Ray_1 = __webpack_require__(3934);
+const Vector2_1 = __webpack_require__(4435);
 class SnappableElement {
     constructor(element, distance, closestPoint, center, centerDistance, hovered) {
         this.element = element;
@@ -127,15 +127,15 @@ exports.SnappableElement = SnappableElement;
 
 /***/ }),
 
-/***/ 7534:
+/***/ 9983:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SnappingPlugin = exports.SnapMode = void 0;
-const index_1 = __webpack_require__(5004);
-const SnappableElement_1 = __webpack_require__(6762);
-const Vector2_1 = __webpack_require__(2092);
+const index_1 = __webpack_require__(2721);
+const SnappableElement_1 = __webpack_require__(7326);
+const Vector2_1 = __webpack_require__(4435);
 var SnapMode;
 (function (SnapMode) {
     SnapMode[SnapMode["MAGNET"] = 0] = "MAGNET";
@@ -214,7 +214,7 @@ SnappingPlugin.MIN_SOFTNESS = 0;
 
 /***/ }),
 
-/***/ 2092:
+/***/ 4435:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -240,7 +240,7 @@ exports.Vector2 = Vector2;
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(7534));
+/******/ var __webpack_exports__ = (__webpack_exec__(9983));
 /******/ return __webpack_exports__;
 /******/ }
 ]);
