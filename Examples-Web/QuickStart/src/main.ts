@@ -1,6 +1,6 @@
 import "./style.css";
-import * as TouchFree from "touchfree";
-import { TouchFreeInputAction } from "touchfree";
+import * as TouchFree from "touchfree/src";
+import { TouchFreeInputAction } from "touchfree/src";
 
 TouchFree.init();
 

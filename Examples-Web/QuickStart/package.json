@@ -7,7 +7,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "touchfree": "github:ultraleap/TouchFreeWebTooling"
+    "touchfree": "https://github.com/ultraleap/TouchFreeWebTooling/tarball/develop"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
