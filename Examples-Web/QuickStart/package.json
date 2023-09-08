@@ -7,7 +7,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "touchfree": "^2.0.0"
+    "touchfree": "github:ultraleap/TouchFreeWebTooling"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
