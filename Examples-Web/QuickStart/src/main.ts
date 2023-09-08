@@ -1,8 +1,11 @@
 import "./style.css";
-import * as TouchFree from "touchfree/src";
-import { TouchFreeInputAction } from "touchfree/src";
+import {
+  init,
+  registerEventCallback,
+  TouchFreeInputAction,
+} from "touchfree/src";
 
-TouchFree.init();
+init();
 
 const COLOR_MAP = [
   "var(--melon)",
@@ -90,13 +93,10 @@ for (let i = 0; i < 8; i++) {
   horizontalContainer?.appendChild(createButton(i, "ALPHA"));
 }
 
-TouchFree.registerEventCallback(
-  "transmitInputAction",
-  (action: TouchFreeInputAction) => {
-    const hovered = document.querySelector(
-      ".hovered"
-    ) as HTMLButtonElement | null;
-    if (!hovered) return;
-    hovered.style.transform = `scale(${1.1 - action.ProgressToClick * 0.1})`;
-  }
-);
+registerEventCallback("transmitInputAction", (action: TouchFreeInputAction) => {
+  const hovered = document.querySelector(
+    ".hovered"
+  ) as HTMLButtonElement | null;
+  if (!hovered) return;
+  hovered.style.transform = `scale(${1.1 - action.ProgressToClick * 0.1})`;
+});
