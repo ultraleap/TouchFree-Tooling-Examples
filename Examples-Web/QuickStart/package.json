@@ -1,0 +1,16 @@
+{
+  "name": "quickstart",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite --port 3000"
+  },
+  "dependencies": {
+    "touchfree": "https://github.com/ultraleap/TouchFreeWebTooling/tarball/develop"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9"
+  }
+}
