@@ -22,6 +22,14 @@ Several examples use a bundled version of tooling while others reference the [To
    - A single `TouchFree_Tooling.js` bundle file available as a [download on the Ultraleap website](https://developer.leapmotion.com/touchfree-tooling-for-web).
    - Steps to add this to a website are shown in the [documentation site](https://docs.ultraleap.com/touchfree-user-manual/tooling-for-web.html#add-touchfree-tooling-in-one-minute).
 
+## QuickStart
+
+This example is a basic application that demonstrates key features of TouchFree.
+
+![Quick Start Example](Media/QuickStartExample.gif)
+
+Recommended Interaction: AirPush
+
 ## Hover Buttons
 
 This example shows you the most basic way to add hover states to your UI using `pointerEnter` and `pointerExit` events.
