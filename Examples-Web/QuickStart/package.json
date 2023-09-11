@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite"
+    "start": "vite --port 3000"
   },
   "dependencies": {
     "touchfree": "https://github.com/ultraleap/TouchFreeWebTooling/tarball/develop"
