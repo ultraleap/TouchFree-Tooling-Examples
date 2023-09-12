@@ -45,11 +45,11 @@
     // ===========================================
 
     // ============= TouchFree Setup =============
-    TouchFree.Init();
+    touchfree.init();
 
-    TouchFree.RegisterEventCallback("WhenConnected", () => {
+    touchfree.registerEventCallback("whenConnected", () => {
       // Register non-touchfree events to be logged. Defaults to touch events: 'touchstart', 'touchmove' & 'touchend'
-      TouchFree.RegisterAnalyticEvents([
+      touchfree.registerAnalyticEvents([
         "touchstart",
         "touchmove",
         "touchend",
@@ -72,7 +72,7 @@
     }
 
     function onStart() {
-      TouchFree.StartAnalyticsSession(applicationName, {
+      touchfree.startAnalyticsSession(applicationName, {
         callback: (detail) => {
           if (detail.status !== "Failure") {
             statusTextElement.textContent = "Running";
@@ -84,7 +84,7 @@
     }
 
     function onStop() {
-      TouchFree.StopAnalyticsSession(applicationName, {
+      touchfree.stopAnalyticsSession(applicationName, {
         callback: (detail) => {
           if (detail.status !== "Failure") {
             statusTextElement.textContent = "Stopped";

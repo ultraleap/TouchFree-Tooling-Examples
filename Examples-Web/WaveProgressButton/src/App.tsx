@@ -1,12 +1,7 @@
 import surferImg from "./Images/surfer.png";
 import InteractionButton from "./InteractionButton";
 import "./style.css";
-import { DotCursor } from "TouchFree/src/Cursors/DotCursor";
-import TouchFree from "TouchFree/src/TouchFree";
-import {
-  InputType,
-  TouchFreeInputAction,
-} from "TouchFree/src/TouchFreeToolingTypes";
+import { init, registerEventCallback, DotCursor, InputType, TouchFreeInputAction } from "touchfree/src";
 import React, { useEffect, useRef } from "react";
 
 const colors: string[] = [
@@ -24,22 +19,18 @@ const colors: string[] = [
 
 const App: React.FC = () => {
   const [progressToClick, setProgressToClick] = React.useState<number>(0);
-  const [backgroundColor, setBackgroundColor] =
-    React.useState<string>("lightgray");
+  const [backgroundColor, setBackgroundColor] = React.useState<string>("lightgray");
 
   const appRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    TouchFree.Init({ initialiseCursor: false });
+    init({ initialiseCursor: false });
     addTouchFreeCursor();
 
-    const inputHandler = TouchFree.RegisterEventCallback(
-      "TransmitInputAction",
-      handleTFInput
-    );
+    const inputHandler = registerEventCallback("transmitInputAction", handleTFInput);
 
     return () => {
-      inputHandler.UnregisterEventCallback();
+      inputHandler.unregisterEventCallback();
     };
   }, []);
 

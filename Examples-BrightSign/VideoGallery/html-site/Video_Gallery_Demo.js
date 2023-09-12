@@ -19,11 +19,11 @@ let lastElementWithDown = null;
 const retryTrackingTimeout = 30000;
 
 window.onload = function () {
-    TouchFree.Init({ initialiseCursor: false });
-    TouchFree.RegisterEventCallback("OnConnected", () => (connectedToTracking = true));
-    TouchFree.RegisterEventCallback("HandFound", handleHandFound);
-    TouchFree.RegisterEventCallback("HandsLost", handleHandsLost);
-    TouchFree.RegisterEventCallback("TransmitInputAction", handleInputAction);
+    touchfree.init({ initialiseCursor: false });
+    touchfree.registerEventCallback("onConnected", () => (connectedToTracking = true));
+    touchfree.registerEventCallback("handFound", handleHandFound);
+    touchfree.registerEventCallback("handsLost", handleHandsLost);
+    touchfree.registerEventCallback("transmitInputAction", handleInputAction);
 
     document.getElementById("left").style.backgroundImage = `url(Media/Madronzio.png)`;
     document.getElementById("middle").style.backgroundImage = `url(Media/Routure.png)`;
@@ -65,7 +65,7 @@ function handleHandsLost() {
 function tryConnect() {
     if (!connectedToTracking) {
         try {
-            TouchFree.Connection.ConnectionManager.Connect();
+            touchfree.connect();
             console.log("Connected");
         } catch {}
 
@@ -74,8 +74,8 @@ function tryConnect() {
         }, retryTrackingTimeout);
     }
 
-    TouchFree.Plugins.InputActionManager.SetPlugins([new LockedYAxis()]);
-    TouchFree.Plugins.InputActionManager.plugins[0].SetYValue(window.innerHeight / 2);
+    touchfree.internal.InputActionManager.setPlugins([new LockedYAxis()]);
+    touchfree.internal.InputActionManager.plugins[0].setYValue(window.innerHeight / 2);
 }
 
 function pointerdown(element) {
@@ -140,19 +140,19 @@ function dehover(element, file) {
     element.style.transform = "scale(1)";
 }
 
-class LockedYAxis extends TouchFree.Plugins.InputActionPlugin {
+class LockedYAxis extends touchfree.internal.InputActionPlugin {
     constructor() {
         super(...arguments);
         this.yValue = 100;
         console.log("Plugin initialised");
     }
 
-    ModifyInputAction(_inputAction) {
+    modifyInputAction(_inputAction) {
         _inputAction.CursorPosition[1] = this.yValue;
         return _inputAction;
     }
 
-    SetYValue(value) {
+    setYValue(value) {
         this.yValue = value;
     }
 }

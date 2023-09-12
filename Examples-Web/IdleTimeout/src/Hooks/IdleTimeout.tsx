@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import TouchFree, { EventHandle } from 'TouchFree/src/TouchFree';
+import { TouchFreeEventHandle, registerEventCallback } from 'touchfree/src';
 
 // Custom hook which will return whether the application is idle or not
 // based on hand presence.
 // If no hands have been observed for specified timeout in milliseconds
 // the state will be idle.
-// TouchFree.Init() must be called before this hook.
+// touchfree.init() must be called before this hook.
 const useIdleTimeout = (timeoutMs: number): boolean => {
     const [isIdle, setIsIdle] = useState(true);
 
@@ -19,13 +19,13 @@ const useIdleTimeout = (timeoutMs: number): boolean => {
         const handLostCallback = () => {
             timeoutId = setTimeout(() => setIsIdle(true), timeoutMs);
         };
-        const handlers: EventHandle[] = [
-            TouchFree.RegisterEventCallback('HandFound', handFoundCallback),
-            TouchFree.RegisterEventCallback('HandsLost', handLostCallback),
+        const handlers: TouchFreeEventHandle[] = [
+            registerEventCallback('handFound', handFoundCallback),
+            registerEventCallback('handsLost', handLostCallback),
         ];
 
         return () => {
-            handlers.forEach((handler) => handler.UnregisterEventCallback());
+            handlers.forEach((handler) => handler.unregisterEventCallback());
         };
     }, [timeoutMs]);
 

@@ -11,17 +11,17 @@
 })(self, () => {
 return (self["webpackChunktouchfree"] = self["webpackChunktouchfree"] || []).push([[370],{
 
-/***/ 520:
+/***/ 5520:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Ray = void 0;
-const Vector2_1 = __webpack_require__(92);
+const Vector2_1 = __webpack_require__(2092);
 class Ray {
-    static Cast(start, end, element) {
+    static cast(start, end, element) {
         const pos = new Vector2_1.Vector2(start.x, start.y);
-        let hasSnap = Ray.Hit(pos, element.getBoundingClientRect());
+        let hasSnap = Ray.hit(pos, element.getBoundingClientRect());
         let hadSnap = hasSnap;
         // Store the current segment
         const vector = {
@@ -61,7 +61,7 @@ class Ray {
         pos.x = pos.x + vector.x / 2;
         pos.y = pos.y + vector.y / 2;
         while (distance > 1) {
-            hasSnap = Ray.Hit(pos, element.getBoundingClientRect());
+            hasSnap = Ray.hit(pos, element.getBoundingClientRect());
             // If we changed state, we reverse the direction
             if ((hasSnap && !hadSnap) || (!hasSnap && hadSnap)) {
                 nextEnd.x = prevPos.x;
@@ -82,7 +82,7 @@ class Ray {
         }
         return pos;
     }
-    static Hit(position, rect) {
+    static hit(position, rect) {
         // Is position inside the rect?
         return position.x < rect.right && position.x > rect.left && position.y < rect.bottom && position.y > rect.top;
     }
@@ -92,34 +92,34 @@ exports.Ray = Ray;
 
 /***/ }),
 
-/***/ 762:
+/***/ 6762:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SnappableElement = void 0;
-const Ray_1 = __webpack_require__(520);
-const Vector2_1 = __webpack_require__(92);
+const Ray_1 = __webpack_require__(5520);
+const Vector2_1 = __webpack_require__(2092);
 class SnappableElement {
-    constructor(element, distance, closest_point, center, center_distance, hovered) {
+    constructor(element, distance, closestPoint, center, centerDistance, hovered) {
         this.element = element;
         this.distance = distance;
-        this.closest_point = closest_point;
+        this.closestPoint = closestPoint;
         this.center = center;
-        this.center_distance = center_distance;
+        this.centerDistance = centerDistance;
         this.hovered = hovered;
     }
-    static Compute(element, distant_point) {
+    static compute(element, distantPoint) {
         const rect = element.getBoundingClientRect();
         const center = new Vector2_1.Vector2(rect.x + rect.width / 2, rect.y + rect.height / 2);
-        const center_distance = Math.sqrt(Math.pow(distant_point.x - center.x, 2) + Math.pow(distant_point.y - center.y, 2));
-        const closest_point = Ray_1.Ray.Cast(distant_point, center, element);
-        let distance = Math.sqrt(Math.pow(distant_point.x - closest_point.x, 2) + Math.pow(distant_point.y - closest_point.y, 2));
-        const hovered = Ray_1.Ray.Hit(distant_point, element.getBoundingClientRect());
+        const centerDistance = Math.sqrt(Math.pow(distantPoint.x - center.x, 2) + Math.pow(distantPoint.y - center.y, 2));
+        const closestPoint = Ray_1.Ray.cast(distantPoint, center, element);
+        let distance = Math.sqrt(Math.pow(distantPoint.x - closestPoint.x, 2) + Math.pow(distantPoint.y - closestPoint.y, 2));
+        const hovered = Ray_1.Ray.hit(distantPoint, element.getBoundingClientRect());
         if (hovered) {
             distance = -distance;
         }
-        return new SnappableElement(element, distance, closest_point, center, center_distance, hovered);
+        return new SnappableElement(element, distance, closestPoint, center, centerDistance, hovered);
     }
 }
 exports.SnappableElement = SnappableElement;
@@ -127,87 +127,83 @@ exports.SnappableElement = SnappableElement;
 
 /***/ }),
 
-/***/ 534:
+/***/ 7534:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SnappingPlugin = exports.SnapMode = void 0;
-const InputActionPlugin_1 = __webpack_require__(988);
-const SnappableElement_1 = __webpack_require__(762);
-const Vector2_1 = __webpack_require__(92);
+const index_1 = __webpack_require__(5004);
+const SnappableElement_1 = __webpack_require__(6762);
+const Vector2_1 = __webpack_require__(2092);
 var SnapMode;
 (function (SnapMode) {
-    SnapMode[SnapMode["Magnet"] = 0] = "Magnet";
-    SnapMode[SnapMode["Center"] = 1] = "Center";
+    SnapMode[SnapMode["MAGNET"] = 0] = "MAGNET";
+    SnapMode[SnapMode["CENTER"] = 1] = "CENTER";
 })(SnapMode = exports.SnapMode || (exports.SnapMode = {}));
-class SnappingPlugin extends InputActionPlugin_1.InputActionPlugin {
+class SnappingPlugin extends index_1.InputActionPlugin {
     constructor() {
         super(...arguments);
         this.snapDistance = 50;
-        this.snapMode = SnapMode.Magnet;
+        this.snapMode = SnapMode.MAGNET;
         this.snapSoftness = 0.3;
     }
-    ModifyInputAction(_inputAction) {
+    modifyInputAction(inputAction) {
         var _a;
         const cursorPos = {
-            x: _inputAction.CursorPosition[0],
-            y: _inputAction.CursorPosition[1],
+            x: inputAction.CursorPosition[0],
+            y: inputAction.CursorPosition[1],
         };
-        // Build a list of snappable elements
-        let elements = [...document.getElementsByClassName('snappable')].map((value, _index, _array) => {
-            return SnappableElement_1.SnappableElement.Compute(value, Vector2_1.Vector2.FromTuple(cursorPos));
-        });
-        // Sort them by distance
-        elements = elements.sort((a, b) => {
-            return a.distance - b.distance;
-        });
+        // Build a list of snappable elements and sort them by distance
+        const elements = [...document.getElementsByClassName('snappable')]
+            .map((value) => SnappableElement_1.SnappableElement.compute(value, Vector2_1.Vector2.fromTuple(cursorPos)))
+            .sort((a, b) => a.distance - b.distance);
         // Let's snap if there is snappable elements
         if (elements.length > 0) {
             if (elements[0].distance < this.snapDistance) {
-                if (this.snapMode === SnapMode.Center) {
+                if (this.snapMode === SnapMode.CENTER) {
                     // If snapForce = 1, cursor position inside the shape is the same
                     // If snapForce = 0, cursor position is snapped in the middle
                     const snapForce = Number.parseFloat((_a = elements[0].element.getAttribute('data-snapforce')) !== null && _a !== void 0 ? _a : this.snapSoftness.toString());
                     // From center of the shape to the border of the shape, following
                     // the direction between the center and the cursor
                     // From what we already have, vector = closest_center - closest_point
-                    const centerToBorderVector = new Vector2_1.Vector2(elements[0].center.x - elements[0].closest_point.x, elements[0].center.y - elements[0].closest_point.y);
+                    const centerToBorderVector = new Vector2_1.Vector2(elements[0].center.x - elements[0].closestPoint.x, elements[0].center.y - elements[0].closestPoint.y);
                     const distance = Math.sqrt(Math.pow(centerToBorderVector.x, 2) + Math.pow(centerToBorderVector.y, 2));
                     // Intensity of the lerp between the edge and the center
-                    let softSnapT = (elements[0].center_distance / distance) *
+                    let softSnapT = (elements[0].centerDistance / distance) *
                         this.lerp(SnappingPlugin.MIN_SOFTNESS, SnappingPlugin.MAX_SOFTNESS, snapForce);
                     softSnapT = Math.max(Math.min(softSnapT, 1), 0);
                     const finalPos = {
                         x: this.lerp(elements[0].center.x, cursorPos.x, softSnapT),
                         y: this.lerp(elements[0].center.y, cursorPos.y, softSnapT),
                     };
-                    _inputAction.CursorPosition[0] = finalPos.x;
-                    _inputAction.CursorPosition[1] = finalPos.y;
+                    inputAction.CursorPosition[0] = finalPos.x;
+                    inputAction.CursorPosition[1] = finalPos.y;
                 }
                 else {
                     if (!elements[0].hovered) {
-                        _inputAction.CursorPosition[0] = elements[0].closest_point.x;
-                        _inputAction.CursorPosition[1] = elements[0].closest_point.y;
+                        inputAction.CursorPosition[0] = elements[0].closestPoint.x;
+                        inputAction.CursorPosition[1] = elements[0].closestPoint.y;
                     }
                 }
             }
         }
-        return _inputAction;
+        return inputAction;
     }
     lerp(x, y, a) {
         return x * (1 - a) + y * a;
     }
-    SetSnapModeToMagnet() {
-        this.snapMode = SnapMode.Magnet;
+    setSnapModeToMagnet() {
+        this.snapMode = SnapMode.MAGNET;
     }
-    SetSnapModeToCenter() {
-        this.snapMode = SnapMode.Center;
+    setSnapModeToCenter() {
+        this.snapMode = SnapMode.CENTER;
     }
-    SetSnapDistance(value) {
+    setSnapDistance(value) {
         this.snapDistance = value;
     }
-    SetSnapSoftness(value) {
+    setSnapSoftness(value) {
         this.snapSoftness = value;
     }
 }
@@ -218,7 +214,7 @@ SnappingPlugin.MIN_SOFTNESS = 0;
 
 /***/ }),
 
-/***/ 92:
+/***/ 2092:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -229,7 +225,7 @@ class Vector2 {
         this.x = x;
         this.y = y;
     }
-    static FromTuple(tuple) {
+    static fromTuple(tuple) {
         return new Vector2(tuple.x, tuple.y);
     }
     toTuple() {
@@ -244,7 +240,7 @@ exports.Vector2 = Vector2;
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(534));
+/******/ var __webpack_exports__ = (__webpack_exec__(7534));
 /******/ return __webpack_exports__;
 /******/ }
 ]);

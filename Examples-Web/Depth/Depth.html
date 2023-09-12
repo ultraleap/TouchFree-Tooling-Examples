@@ -39,9 +39,9 @@
             }
 
             // Initialse TouchFree without a cursor
-            TouchFree.Init({ initialiseCursor: false });
+            touchfree.init({ initialiseCursor: false });
             // Call onAction when we recieve an InputAction from TouchFree
-            TouchFree.RegisterEventCallback("TransmitInputAction", onAction);
+            touchfree.registerEventCallback("transmitInputAction", onAction);
         };
 
         const maxDistanceM = 0.4;
