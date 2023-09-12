@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { TouchFreeEventHandle, registerEventCallback } from 'touchfree/src/index';
+import { TouchFreeEventHandle, registerEventCallback } from 'touchfree/src';
 
 // Custom hook which will return whether the application is idle or not
 // based on hand presence.

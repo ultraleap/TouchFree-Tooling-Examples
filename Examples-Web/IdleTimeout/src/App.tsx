@@ -2,7 +2,7 @@ import './App.scss';
 
 import { useEffect } from 'react';
 
-import { init } from 'touchfree/src/index';
+import { init } from 'touchfree/src';
 
 import IdleOverlay from 'Components/IdleOverlay';
 import useIdleTimeout from 'Hooks/IdleTimeout';

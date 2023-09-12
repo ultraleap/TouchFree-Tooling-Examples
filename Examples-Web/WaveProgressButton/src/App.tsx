@@ -1,7 +1,7 @@
 import surferImg from "./Images/surfer.png";
 import InteractionButton from "./InteractionButton";
 import "./style.css";
-import { init, registerEventCallback, DotCursor, InputType, TouchFreeInputAction } from "touchfree/src/index";
+import { init, registerEventCallback, DotCursor, InputType, TouchFreeInputAction } from "touchfree/src";
 import React, { useEffect, useRef } from "react";
 
 const colors: string[] = [
@@ -19,8 +19,7 @@ const colors: string[] = [
 
 const App: React.FC = () => {
   const [progressToClick, setProgressToClick] = React.useState<number>(0);
-  const [backgroundColor, setBackgroundColor] =
-    React.useState<string>("lightgray");
+  const [backgroundColor, setBackgroundColor] = React.useState<string>("lightgray");
 
   const appRef = useRef<HTMLDivElement>(null);
 
@@ -28,10 +27,7 @@ const App: React.FC = () => {
     init({ initialiseCursor: false });
     addTouchFreeCursor();
 
-    const inputHandler = registerEventCallback(
-      "transmitInputAction",
-      handleTFInput
-    );
+    const inputHandler = registerEventCallback("transmitInputAction", handleTFInput);
 
     return () => {
       inputHandler.unregisterEventCallback();
